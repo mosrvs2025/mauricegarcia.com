@@ -11,6 +11,9 @@ export function Footer() {
           <a href={site.github} className="hover:text-[var(--color-ink)]">
             GitHub
           </a>
+          <a href={site.instagram} className="hover:text-[var(--color-ink)]">
+            Instagram
+          </a>
           {linkedin ? (
             <a href={linkedin} className="hover:text-[var(--color-ink)]">
               LinkedIn

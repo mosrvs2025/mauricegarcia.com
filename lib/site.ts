@@ -8,6 +8,9 @@ export const site = {
   location: "California",
   github: "https://github.com/mosrvs2025",
   githubHandle: "mosrvs2025",
+  instagram: "https://instagram.com/itstherealmoe",
+  instagramHandle: "itstherealmoe",
+  photo: "/images/maurice.jpg",
   pipelineUrl: "https://pl.donhowardconstruction.com/",
 } as const;
 

@@ -13,7 +13,8 @@ export function JsonLd() {
       addressRegion: "CA",
       addressCountry: "US",
     },
-    sameAs: [site.github],
+    sameAs: [site.github, site.instagram],
+    image: `${site.url}${site.photo}`,
   };
 
   const service = {
