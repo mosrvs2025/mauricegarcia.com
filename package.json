@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "perl scripts/pdf.pl \"Replace Invoice2Go\" \"A practical playbook for trade shops\" public/products/replace-invoice2go.pdf scripts/replace-invoice2go.txt && perl scripts/pdf.pl \"How to scope a CRM for a trade shop\" \"A buyers guide\" public/products/scope-a-crm.pdf scripts/scope-a-crm.txt",
+    "prebuild": "mkdir -p public/products && perl scripts/pdf.pl \"Replace Invoice2Go\" \"A practical playbook for trade shops\" public/products/replace-invoice2go.pdf scripts/replace-invoice2go.txt && perl scripts/pdf.pl \"How to scope a CRM for a trade shop\" \"A buyers guide\" public/products/scope-a-crm.pdf scripts/scope-a-crm.txt",
     "build": "next build",
     "start": "next start"
   },
