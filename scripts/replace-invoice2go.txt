@@ -1,0 +1,118 @@
+A practical playbook for trade shops leaving Invoice2Go.
+Written for owners who still have jobs on the board this week.
+
+# Why shops leave Invoice2Go
+Invoice2Go is good at invoices. Shops are not only invoicing. A painting or construction company also captures leads, writes estimates, takes deposits, schedules crews, and answers where a job stands at 7 a.m. When those steps live in texts, notebooks, and a separate invoicing app, money leaks.
+
+Leaving a familiar tool is a migration of the work, not a branding project. This playbook is the sequence I use so the shop keeps billing while the new system comes up.
+
+# Draw the real path of a job
+Sit with the owner and one estimator. Walk one recent job from first call to final payment. Write the objects, not the feelings:
+Lead: who called, address, kind of work, photos if any.
+Estimate: line items, tax, validity window, who approved.
+Deposit: amount, method, date, what it unlocks.
+Job: start window, crew, spec notes, change orders.
+Invoice: remaining balance, extras, how the customer pays.
+Closeout: photos, warranty note.
+
+If a step only exists in someones head, it is still a step.
+
+# Freeze what you will not rebuild on day one
+You do not need CRM theater. You need the path above. Out of scope until the path is live: marketing automation, a public customer portal you did not already promise, inventory unless missing stock stops jobs, GPS clocks if paper timesheets work. Write the freeze on one page.
+
+# Export without folklore
+Export customers, open invoices, and paid history. Keep PDFs of every open estimate. Spreadsheet columns you actually need: customer name, phone, email, address, invoice number, amount, balance, status, date.
+Duplicate customers now. Bad phones now. Print invoices with a remaining balance. That list is the only migration that can hurt cash if you miss it.
+
+# Keep billing during the cutover
+Pick a Friday. After that date, new estimates are born in the new system. Old open invoices may be collected in Invoice2Go until they hit zero, or you re-key the balances once. Mixing both for new work is how you double-bill.
+Tell the crew: new jobs go in the new app. Do not start a job that is not in there.
+
+# What the first version must do
+Create a lead from a phone call in under a minute.
+Turn the lead into an estimate with line items.
+Convert the estimate to a job.
+Record a deposit.
+Issue an invoice for the remainder.
+Show the owner a list of jobs by status today.
+If the phone cannot do those six, you are not ready to switch. A PWA beats a native app you will not maintain.
+
+# Payments and deposits
+Record method (check, card, cash, Zelle) and who took it. Tie every payment to a job, not only to a customer. Deposits should change job status. Keep your card processor; the ops app stores the result. Never let a crew start a job with an unrecorded deposit unless the owner says so in the record.
+
+# Crew radio is not Slack
+Field crews will not live in email. A simple job-scoped thread plus photo upload beats a second chat product. Keep it on the job record so six months later you can see why an extra coat was approved.
+
+# Training that lasts one morning
+Owner, estimator, office person, one foreman. Run a fake job all the way through. Then run a real small job the same day. Leave a one-page cheat sheet: new lead, send estimate, take deposit, invoice.
+If someone still opens Invoice2Go for new work after the cutover, watch them try before calling it a people problem.
+
+# A two-week sequence
+Days 1-2: map the job path, export data, freeze scope.
+Days 3-6: build the six actions, import customers.
+Day 7: office dry run.
+Days 8-10: live small jobs; new system is source of truth.
+Days 11-12: collect remaining Invoice2Go balances; stop new use there.
+Days 13-14: fix the three sharp edges people hit; write the operating note.
+
+# What I shipped
+Pipeline CRM at https://pl.donhowardconstruction.com/ is a Next.js PWA for Don Howard Construction / Painting. It replaced Invoice2Go for leads, estimates, invoices, deposits and payments, jobs, and crew radio. Use it as a picture of the destination, not a claim that your shop is identical.
+
+# If you hire this out
+Ask to see a live ops app, not a deck. Ask who answers when an invoice number is wrong. Ask for source code in your git. Prices on mauricegarcia.com are published starting numbers so you are not guessing.
+Questions: hello@mauricegarcia.com
+
+# Office checklist the week you switch
+Print the open-balance list.
+Confirm every crew phone can add the PWA to the home screen.
+Put the cheat sheet on the office wall.
+Turn off new Invoice2Go documents after the cutover date.
+Keep login to Invoice2Go for 30 days only to collect old balances.
+Name one person who is allowed to create customers so duplicates stop.
+
+# Line items that survive a customer reading them
+Write what the crew will do in words the homeowner already uses: rooms, coats, prep, haul-away.
+Avoid internal SKU codes on the customer PDF.
+Show deposit as its own line so it is obvious what was already paid.
+Date the estimate and say how long it is good for.
+If paint product is specified, name it. If it is allowance, say allowance.
+
+# Change orders
+A change order is a new estimate line tied to the same job, not a text that disappears.
+Who can approve: owner of the shop, not the newest helper on site.
+Take a photo before extra work starts.
+Do not invoice extras that were never written.
+
+# Photos
+Before, during, after. Attach to the job, not to a camera roll that gets wiped.
+A wet-wall photo is worth more than a paragraph in a dispute.
+
+# When not to leave Invoice2Go yet
+If you have no one who will enter leads the same day, wait.
+If the owner will not look at a daily list of open money, wait.
+Software does not replace that habit. It only makes the habit cheaper.
+
+# After ninety days
+Delete the unused columns you added in week one.
+Archive jobs that are paid and older than a season.
+Export a CSV and put it somewhere that is not only the laptop.
+
+# Naming the app
+Call it something the crew will say out loud. Pipeline is a shop word. Do not name it after a framework.
+The home-screen icon should be obvious at arm length.
+
+# Permissions
+Office can see money. Crew can see the job they are on and radio. Owner sees everything.
+Do not give every helper delete rights.
+
+# Backups
+Nightly dump. Test a restore once before you need it.
+If the app is hosted, know which account owns the project.
+
+# A note on Invoice2Go data quality
+You will find jobs billed to a first name only.
+You will find the same phone on three customers.
+Fix the ones with open balances first. History can stay messy.
+
+# Closing
+The point is not a prettier invoice. The point is one record of the job so the shop can answer money and schedule questions without a scavenger hunt.
