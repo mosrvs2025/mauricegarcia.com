@@ -10,30 +10,37 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <div className="space-y-16">
-      <section className="max-w-3xl pt-6">
-        <p className="stamp">Independent engineer · California</p>
-        <h1 className="display mt-4 text-4xl leading-tight sm:text-6xl">
-          Software for shops that still write estimates on paper.
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--color-ink-soft)]">
-          I am Maurice Garcia, a full-stack engineer. I build operations software for
-          small businesses — the kind that has to work on a phone in a truck, not just
-          on a pitch deck.
-        </p>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link
-            href="/work"
-            className="bg-[var(--color-ink)] px-5 py-3 text-sm text-[var(--color-paper)]"
-          >
-            See the work
-          </Link>
-          <Link
-            href="/contact"
-            className="border border-[var(--color-ink)] px-5 py-3 text-sm"
-          >
-            Start a conversation
-          </Link>
+      <section className="grid items-center gap-10 pt-6 md:grid-cols-[1.2fr_minmax(0,280px)]">
+        <div>
+          <p className="stamp">Independent engineer · California</p>
+          <h1 className="display mt-4 text-4xl leading-tight sm:text-6xl">
+            Software for shops that still write estimates on paper.
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--color-ink-soft)]">
+            I am Maurice Garcia, a full-stack engineer. I build operations software for
+            small businesses — the kind that has to work on a phone in a truck, not just
+            on a pitch deck.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/work"
+              className="bg-[var(--color-ink)] px-5 py-3 text-sm text-[var(--color-paper)]"
+            >
+              See the work
+            </Link>
+            <Link
+              href="/contact"
+              className="border border-[var(--color-ink)] px-5 py-3 text-sm"
+            >
+              Start a conversation
+            </Link>
+          </div>
         </div>
+        <img
+          src={site.photo}
+          alt="Maurice Garcia"
+          className="w-full max-w-xs justify-self-start border border-[var(--color-rule)] object-cover aspect-square md:justify-self-end"
+        />
       </section>
 
       <div className="hairline" />
