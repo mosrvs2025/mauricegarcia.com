@@ -9,84 +9,74 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <div className="space-y-16">
-      <section className="grid items-center gap-10 pt-6 md:grid-cols-[1.2fr_minmax(0,280px)]">
-        <div>
-          <p className="stamp">Independent engineer · California</p>
-          <h1 className="display mt-4 text-4xl leading-tight sm:text-6xl">
-            Software for shops that still write estimates on paper.
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--color-ink-soft)]">
-            I am Maurice Garcia, a full-stack engineer. I build operations software for
-            small businesses — the kind that has to work on a phone in a truck, not just
-            on a pitch deck.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/work"
-              className="bg-[var(--color-ink)] px-5 py-3 text-sm text-[var(--color-paper)]"
-            >
-              See the work
-            </Link>
-            <Link
-              href="/contact"
-              className="border border-[var(--color-ink)] px-5 py-3 text-sm"
-            >
-              Start a conversation
-            </Link>
-          </div>
-        </div>
+    <div>
+      <section className="relative min-h-[92vh] overflow-hidden">
         <img
           src={site.photo}
-          alt="Maurice Garcia"
-          className="w-full max-w-xs justify-self-start border border-[var(--color-rule)] object-cover aspect-square md:justify-self-end"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover object-[center_20%] opacity-55"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-void)] via-[rgba(7,6,5,0.55)] to-[rgba(7,6,5,0.25)]" />
+        <div className="relative mx-auto flex min-h-[92vh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28">
+          <p className="stamp">Independent engineer · California</p>
+          <h1 className="display mt-5 max-w-4xl text-5xl leading-[0.92] sm:text-7xl lg:text-8xl">
+            Software for shops still writing estimates on paper.
+          </h1>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-[var(--color-paper)]">
+            I am Maurice Garcia. I build ops software crews actually use in a truck,
+            not a pitch deck.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <Link href="/work" className="btn btn-fill">See the work</Link>
+            <Link href="/contact" className="btn btn-ghost">Start a conversation</Link>
+          </div>
+        </div>
       </section>
 
-      <div className="hairline" />
+      <div className="marquee">
+        <div className="marquee-track">
+          Estimates · Invoices · Deposits · Jobs · Crew radio · Pipeline · Estimates · Invoices · Deposits · Jobs · Crew radio · Pipeline ·
+        </div>
+      </div>
 
-      <section className="grid gap-10 md:grid-cols-2">
+      <section className="mx-auto grid max-w-6xl gap-12 px-5 py-24 md:grid-cols-2">
         <div>
           <p className="stamp">Flagship</p>
-          <h2 className="display mt-3 text-3xl">Pipeline CRM</h2>
-          <p className="mt-4 leading-relaxed text-[var(--color-ink-soft)]">
+          <h2 className="display mt-4 text-4xl sm:text-5xl">Pipeline CRM</h2>
+          <p className="mt-5 text-lg leading-relaxed text-[var(--color-ink-soft)]">
             A live Next.js PWA for Don Howard Construction / Painting. It replaced
-            Invoice2Go for leads, estimates, invoices, deposits and payments, jobs,
-            and crew radio.
+            Invoice2Go for leads, estimates, invoices, deposits, jobs, and walkie radio.
           </p>
-          <p className="mt-4">
-            <a
-              href={site.pipelineUrl}
-              className="text-[var(--color-rust)] underline decoration-[var(--color-rule)] underline-offset-4"
-            >
+          <p className="mt-6">
+            <a href={site.pipelineUrl} className="text-[var(--color-rust)] underline underline-offset-4">
               pl.donhowardconstruction.com
             </a>
           </p>
         </div>
-        <div className="border border-[var(--color-rule)] bg-[var(--color-paper-2)]/50 p-6">
+        <div className="border border-[var(--color-rule)] p-8">
           <p className="stamp">How I work</p>
-          <ul className="mt-4 space-y-3 text-[var(--color-ink-soft)]">
+          <ul className="mt-6 space-y-4 text-[var(--color-ink-soft)]">
             <li>Talk to the people doing the job, then model the work.</li>
             <li>Ship a usable slice before expanding the map.</li>
             <li>Keep the stack boring: Next.js, TypeScript, a database you can backup.</li>
-            <li>No fake metrics. The product is either in production or it is not.</li>
+            <li>No fake metrics. It is in production or it is not.</li>
           </ul>
         </div>
       </section>
 
-      <section className="grid gap-6 sm:grid-cols-3">
+      <section className="mx-auto grid max-w-6xl gap-4 px-5 pb-24 sm:grid-cols-3">
         {[
-          { href: "/services", k: "Hire", t: "Fixed scopes, clear prices." },
-          { href: "/shop", k: "Read", t: "Short PDFs for owners leaving generic invoicing tools." },
-          { href: "/contact", k: "Write", t: "hello@mauricegarcia.com" },
+          { href: "/services", k: "01 Hire", t: "Fixed scopes. Published prices." },
+          { href: "/shop", k: "02 Read", t: "Short PDFs for owners leaving Invoice2Go." },
+          { href: "/contact", k: "03 Write", t: "hello@mauricegarcia.com" },
         ].map((c) => (
           <Link
             key={c.href}
             href={c.href}
-            className="border border-[var(--color-rule)] p-5 hover:border-[var(--color-ink)]"
+            className="group border border-[var(--color-rule)] p-6 transition hover:border-[var(--color-rust)]"
           >
             <p className="stamp">{c.k}</p>
-            <p className="mt-3 leading-relaxed">{c.t}</p>
+            <p className="display mt-4 text-2xl group-hover:text-white">{c.t}</p>
           </Link>
         ))}
       </section>

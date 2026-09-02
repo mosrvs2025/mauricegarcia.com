@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Fraunces, Instrument_Sans } from "next/font/google";
+import { Instrument_Sans, Syne } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const fraunces = Fraunces({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  variable: "--font-syne",
   display: "swap",
 });
 
@@ -45,11 +45,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${instrument.variable}`}>
+    <html lang="en" className={`${syne.variable} ${instrument.variable}`}>
       <body className="min-h-screen antialiased">
         <JsonLd />
         <Header />
-        <main className="mx-auto max-w-5xl px-5 py-12">{children}</main>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
