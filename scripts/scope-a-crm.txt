@@ -1,0 +1,75 @@
+A buyers guide for trade-shop owners.
+How to scope a CRM when the customer is a job site.
+
+# What a CRM means here
+For a painter or general contractor, a CRM is not a funnel of marketing leads. It is the book of work: who asked for a bid, what you promised, what you collected, and whether the crew is on the wall. If a vendor demo starts with drip campaigns, you are in the wrong aisle.
+
+# Start with objects, not modules
+Write the nouns on a legal pad: people (owner, office, estimator, foreman), customer, lead, estimate, job, invoice, payment, message or photo.
+Every feature request must attach to a noun. Reporting is not a noun until you name the decision it changes, such as which deposits are late this week.
+
+# Questions that prevent a bad purchase
+Where does a new call get entered today, and how long does it take?
+Who is allowed to change a price after the customer said yes?
+When is a deposit required, and what happens if it is missing?
+How do change orders get written: text, verbal, extra line on the invoice?
+What must a foreman see on a phone in the sun?
+What happens when two people edit the same job?
+Who owns the data if you cancel (export format, not a promise)?
+Can you add a field without a professional-services team?
+If a salesperson cannot answer the phone and export questions in plain language, keep walking.
+
+# Build versus buy
+Buy a generic CRM when your process is truly sales-shaped: pipeline stages, one closer, little field work. Build or tightly adapt when estimates, deposits, and jobs are the product. Invoice tools cover billing. Project tools cover tasks. Shops bleed in the seams between those two.
+A custom ops app is expensive compared with a monthly seat. It is cheap compared with a year of double entry. Published starting price: 8000 dollars for a custom ops app, 4500 for a two-week slice if you need to see the shape first.
+
+# Scope that fits on one page
+Good first scope: lead in, estimate out, job on the board, invoice and payment recorded, mobile-usable lists, owner view of open money, CSV backup.
+Bad first scope: customer portal, automations, inventory, GPS, five integrations, and a junk drawer called phase two.
+Integrations: pick one source of truth. If QuickBooks must remain the ledger, say so in the scope and only sync what you will reconcile. Two ledgers is how you lose weekends.
+
+# How to read a proposal
+Demand named users and the jobs they do, a cutover plan for current open estimates, hosting and backups, repository ownership, and what done looks like (the six actions in the Invoice2Go playbook).
+Reject hour estimates with no objects, phase two as a junk drawer, and lock-in with no export.
+
+# A one-hour workshop agenda
+0:00-0:15 walk a real job from call to cash.
+0:15-0:30 list the nouns and who touches them.
+0:30-0:45 mark must-have versus freeze.
+0:45-0:55 choose build, buy, or a two-week sprint.
+0:55-1:00 write the next tangible date.
+Bring the exports from whatever you use today. Do not workshop from memory.
+
+# After you decide
+If you buy: negotiate data export in the contract. If you build: start with the live path, not a redesign of your logo. If you want help scoping or building, use the contact page on mauricegarcia.com or write hello@mauricegarcia.com.
+This guide is not legal advice and it is not a claim about any vendors roadmap. It is the checklist I use so a shop does not pay for a second copy of a generic sales CRM.
+
+# Seats and who actually logs in
+Count humans, not theoretical roles. If only the owner and the office person will type, do not buy a package for 25 sales reps.
+A foreman who only reads the job list still needs a login that works with fat fingers and sun glare.
+
+# Mobile is not a checkbox
+Ask to create a lead on the vendors phone in the parking lot.
+If it requires landscape mode and twelve fields, it will not get used after a site walk.
+
+# Estimates are documents
+The customer may need a PDF they can forward to a spouse. If the CRM cannot produce that without a designer, keep your current estimate path until it can.
+
+# Deposits are promises
+A CRM that cannot record a deposit against a job will train the office to keep a second notebook. That notebook becomes the real system.
+
+# Red flags in demos
+The demo data is a SaaS company, not a job site.
+The mobile app cannot work offline for an hour.
+The quote is per-user and climbs when the crew grows.
+You cannot get a sample export file before you pay.
+
+# A written scope template
+Users: owner, office, estimator, one foreman.
+Must: lead, estimate, job, invoice, payment, job messages.
+Must not: marketing, GPS, inventory.
+Cutover: date, open invoices, who trains whom.
+Done: six actions on a phone, CSV export, owner can see open money.
+
+# Price honesty
+If a custom build is more than you can spend, buy the smallest tool that covers invoices and keep a paper board for jobs. A half-finished CRM is worse than Invoice2Go plus a whiteboard.
