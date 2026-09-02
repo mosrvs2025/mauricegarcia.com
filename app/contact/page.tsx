@@ -15,10 +15,10 @@ export default async function ContactPage({
   const { service } = await searchParams;
   const known = serviceBySlug(service);
   return (
-    <div className="space-y-8">
-      <header className="max-w-2xl">
+    <div className="mx-auto max-w-3xl space-y-10 px-5 py-16">
+      <header>
         <p className="stamp">Contact</p>
-        <h1 className="display mt-3 text-4xl sm:text-5xl">Tell me about the shop.</h1>
+        <h1 className="display mt-3 text-5xl sm:text-6xl">Tell me about the shop.</h1>
         <p className="mt-4 text-lg text-[var(--color-ink-soft)]">
           {known
             ? `You selected ${known.name} (${known.price}). Change it below if that is wrong.`

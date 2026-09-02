@@ -44,7 +44,7 @@ export function ShopBuyButton({ slug, title, stripeReady }: Props) {
     return (
       <a
         href={mailto}
-        className="inline-block bg-[var(--color-ink)] px-4 py-2 text-sm text-[var(--color-paper)]"
+        className="btn btn-fill"
       >
         Email to buy
       </a>
@@ -57,7 +57,7 @@ export function ShopBuyButton({ slug, title, stripeReady }: Props) {
         type="button"
         onClick={checkout}
         disabled={pending}
-        className="bg-[var(--color-rust)] px-4 py-2 text-sm text-[var(--color-paper)] disabled:opacity-60"
+        className="btn btn-fill disabled:opacity-60"
       >
         {pending ? "Opening checkout…" : "Buy with Stripe"}
       </button>

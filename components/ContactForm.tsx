@@ -40,7 +40,7 @@ export function ContactForm({ initialService }: { initialService?: string }) {
         <input
           required
           name="name"
-          className="mt-1 w-full border border-[var(--color-rule)] bg-transparent px-3 py-2"
+          className="mt-1 w-full border border-[var(--color-rule)] px-3 py-3 outline-none focus:border-[var(--color-rust)]"
         />
       </label>
       <label className="block text-sm">
@@ -49,7 +49,7 @@ export function ContactForm({ initialService }: { initialService?: string }) {
           required
           type="email"
           name="email"
-          className="mt-1 w-full border border-[var(--color-rule)] bg-transparent px-3 py-2"
+          className="mt-1 w-full border border-[var(--color-rule)] px-3 py-3 outline-none focus:border-[var(--color-rust)]"
         />
       </label>
       <label className="block text-sm">
@@ -57,7 +57,7 @@ export function ContactForm({ initialService }: { initialService?: string }) {
         <select
           name="service"
           defaultValue={initialService || ""}
-          className="mt-1 w-full border border-[var(--color-rule)] bg-transparent px-3 py-2"
+          className="mt-1 w-full border border-[var(--color-rule)] px-3 py-3 outline-none focus:border-[var(--color-rust)]"
         >
           <option value="">General</option>
           {services.map((s) => (
@@ -73,13 +73,13 @@ export function ContactForm({ initialService }: { initialService?: string }) {
           required
           name="body"
           rows={6}
-          className="mt-1 w-full border border-[var(--color-rule)] bg-transparent px-3 py-2"
+          className="mt-1 w-full border border-[var(--color-rule)] px-3 py-3 outline-none focus:border-[var(--color-rust)]"
         />
       </label>
       <button
         type="submit"
         disabled={status === "sending"}
-        className="bg-[var(--color-ink)] px-5 py-2 text-sm text-[var(--color-paper)] disabled:opacity-60"
+        className="btn btn-fill disabled:opacity-60"
       >
         {status === "sending" ? "Sending…" : "Send"}
       </button>
