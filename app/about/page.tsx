@@ -6,6 +6,11 @@ export const metadata: Metadata = {
   description: "Maurice Garcia is a full-stack engineer in California who builds software for small businesses.",
 };
 
+const extraPhotos = [
+  { src: "/images/maurice-beard.jpg", alt: "Maurice outdoors" },
+  { src: "/images/maurice-chalkboard.jpg", alt: "Maurice in front of a chalkboard" },
+];
+
 export default function AboutPage() {
   return (
     <article className="max-w-3xl">
@@ -47,6 +52,24 @@ export default function AboutPage() {
           </p>
         </div>
       </div>
+      <section className="mt-16">
+        <p className="stamp">From Instagram</p>
+        <div className="mt-5 grid grid-cols-3 gap-3">
+          <img
+            src={site.photo}
+            alt="Maurice Garcia"
+            className="aspect-[3/4] w-full border border-[var(--color-rule)] object-cover"
+          />
+          {extraPhotos.map((photo) => (
+            <img
+              key={photo.src}
+              src={photo.src}
+              alt={photo.alt}
+              className="aspect-[3/4] w-full border border-[var(--color-rule)] object-cover"
+            />
+          ))}
+        </div>
+      </section>
     </article>
   );
 }
