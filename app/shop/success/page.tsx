@@ -19,7 +19,7 @@ export default async function ShopSuccessPage({
 
   if (!session_id || !stripe) {
     return (
-      <div className="max-w-xl space-y-4">
+      <div className="mx-auto max-w-xl space-y-4 px-5 py-16">
         <h1 className="display text-4xl">Payment not verified</h1>
         <p className="text-[var(--color-ink-soft)]">
           If you already paid, email hello@mauricegarcia.com with your receipt and I
@@ -42,7 +42,7 @@ export default async function ShopSuccessPage({
     }
     const token = signDownload(product.slug);
     return (
-      <div className="max-w-xl space-y-4">
+      <div className="mx-auto max-w-xl space-y-4 px-5 py-16">
         <p className="stamp">Paid</p>
         <h1 className="display text-4xl">{product.title}</h1>
         <p className="text-[var(--color-ink-soft)]">
@@ -50,7 +50,7 @@ export default async function ShopSuccessPage({
         </p>
         <a
           href={`/api/download?token=${token}`}
-          className="inline-block bg-[var(--color-ink)] px-5 py-3 text-sm text-[var(--color-paper)]"
+          className="btn btn-fill"
         >
           Download PDF
         </a>
@@ -58,7 +58,7 @@ export default async function ShopSuccessPage({
     );
   } catch {
     return (
-      <div className="max-w-xl space-y-4">
+      <div className="mx-auto max-w-xl space-y-4 px-5 py-16">
         <h1 className="display text-4xl">Could not unlock the file</h1>
         <p className="text-[var(--color-ink-soft)]">
           Write to hello@mauricegarcia.com with the email you used at checkout.
