@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SampleReel } from "@/components/SampleReel";
 import { services } from "@/lib/services";
 
 export const metadata: Metadata = {
@@ -59,10 +60,13 @@ export default function AdsPage() {
         <p className="stamp">Samples</p>
         <h2 className="display mt-3 text-4xl">Work I have already cut.</h2>
         <p className="mt-4 max-w-2xl text-[var(--color-ink-soft)]">
-          Send YouTube, Instagram, or Don Howard page links and they go here as
-          embeds. Packages are live now so a shop can book without waiting.
+          These are placeholders. Send YouTube / Instagram / Don Howard links and
+          they replace these cuts.
         </p>
-        <Link href="/contact?service=video-monthly" className="btn btn-ghost mt-8">
+        <div className="mt-10">
+          <SampleReel />
+        </div>
+        <Link href="/contact?service=video-monthly" className="btn btn-ghost mt-10">
           Send a brief
         </Link>
       </section>
