@@ -2,7 +2,7 @@ export const site = {
   name: "Maurice Garcia",
   title: "Maurice Garcia — independent full-stack engineer",
   description:
-    "Independent full-stack engineer in California. I build operations software for small businesses — estimates, invoices, jobs, and the tools crews actually use.",
+    "I build ops software for small businesses and video ads for local shops. Pipeline CRM, plus monthly spots from $1,000.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://mauricegarcia.com",
   email: "hello@mauricegarcia.com",
   location: "California",
