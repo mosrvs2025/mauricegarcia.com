@@ -64,7 +64,6 @@ export default function HomePage() {
         </div>
       </section>
 
-
       <section className="relative overflow-hidden border-y border-[var(--color-rule)]">
         <img src="/promo/workshop-still.jpg" alt="" className="absolute inset-0 h-full w-full object-cover opacity-30" />
         <div className="relative mx-auto grid max-w-6xl gap-8 px-5 py-20 md:grid-cols-2">
