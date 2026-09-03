@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Instrument_Sans, Syne } from "next/font/google";
+import { Analytics } from "@/components/Analytics";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${syne.variable} ${instrument.variable}`}>
       <body className="min-h-screen antialiased">
+        <Analytics />
         <JsonLd />
         <Header />
         <main>{children}</main>
