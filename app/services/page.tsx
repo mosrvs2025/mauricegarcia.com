@@ -20,7 +20,7 @@ export default function ServicesPage() {
         </p>
       </header>
       <div className="grid gap-4 lg:grid-cols-3">
-        {services.map((s) => (
+        {services.filter((s) => s.kind === "software").map((s) => (
           <article key={s.slug} className="flex flex-col border border-[var(--color-rule)] p-7">
             <p className="stamp">{s.price}</p>
             <h2 className="display mt-4 text-3xl">{s.name}</h2>
@@ -36,6 +36,13 @@ export default function ServicesPage() {
           </article>
         ))}
       </div>
+      <p className="text-[var(--color-ink-soft)]">
+        Video ad packages live on the{" "}
+        <Link href="/ads" className="text-[var(--color-rust)] underline underline-offset-4">
+          Ads
+        </Link>{" "}
+        page.
+      </p>
     </div>
   );
 }

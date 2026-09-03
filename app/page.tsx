@@ -64,10 +64,27 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-4 px-5 pb-24 sm:grid-cols-3">
+
+      <section className="relative overflow-hidden border-y border-[var(--color-rule)]">
+        <img src="/promo/workshop-still.jpg" alt="" className="absolute inset-0 h-full w-full object-cover opacity-30" />
+        <div className="relative mx-auto grid max-w-6xl gap-8 px-5 py-20 md:grid-cols-2">
+          <div>
+            <p className="stamp">Also: video ads</p>
+            <h2 className="display mt-4 text-4xl sm:text-5xl">$1,000 a month to stay on the feed.</h2>
+            <p className="mt-4 text-[var(--color-ink-soft)]">
+              One-off spots, a monthly cadence, or a launch pack. Built for Chesapeake
+              shops that are not painting, decks, or pressure washing.
+            </p>
+            <Link href="/ads" className="btn btn-fill mt-8">See ad packages</Link>
+          </div>
+          <img src="/promo/monthly-ads.jpg" alt="Monthly video ads, one thousand dollars" className="w-full object-cover" />
+        </div>
+      </section>
+
+      <section className="mx-auto grid max-w-6xl gap-4 px-5 py-24 sm:grid-cols-3">
         {[
-          { href: "/services", k: "01 Hire", t: "Fixed scopes. Published prices." },
-          { href: "/shop", k: "02 Read", t: "Short PDFs for owners leaving Invoice2Go." },
+          { href: "/ads", k: "01 Ads", t: "Video ads for local shops. From $750." },
+          { href: "/services", k: "02 Software", t: "Ops apps. Published prices." },
           { href: "/contact", k: "03 Write", t: "hello@mauricegarcia.com" },
         ].map((c) => (
           <Link
