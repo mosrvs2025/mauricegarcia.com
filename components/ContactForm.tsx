@@ -23,13 +23,20 @@ export function ContactForm({ initialService }: { initialService?: string }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error("fail");
+      if (!res.ok) {
+        if (res.status === 503) throw new Error("not-configured");
+        throw new Error("send-failed");
+      }
       setStatus("ok");
       setMessage("Received. I will write back.");
       e.currentTarget.reset();
-    } catch {
+    } catch (error) {
       setStatus("err");
-      setMessage("Could not send through the site. Email hello@mauricegarcia.com.");
+      setMessage(
+        error instanceof Error && error.message === "not-configured"
+          ? "The form is temporarily unavailable. Email hello@mauricegarcia.com instead."
+          : "Could not send through the site. Email hello@mauricegarcia.com instead.",
+      );
     }
   }
 
@@ -83,7 +90,12 @@ export function ContactForm({ initialService }: { initialService?: string }) {
       >
         {status === "sending" ? "Sending…" : "Send"}
       </button>
-      {message ? <p className="text-sm text-[var(--color-ink-soft)]">{message}</p> : null}
+      {message ? (
+        <p className="text-sm text-[var(--color-ink-soft)]" role="status" aria-live="polite">
+          {message}
+        </p>
+      ) : null}
     </form>
   );
 }
+
