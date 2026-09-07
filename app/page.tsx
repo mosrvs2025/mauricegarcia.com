@@ -1,101 +1,20 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { site } from "@/lib/site";
-
-export const metadata: Metadata = {
-  title: site.title,
-  description: site.description,
-};
+import { services } from "@/lib/services";
 
 export default function HomePage() {
-  return (
-    <div>
-      <section className="relative min-h-[92vh] overflow-hidden">
-        <img
-          src={site.photo}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover object-[center_20%] opacity-55"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-void)] via-[rgba(7,6,5,0.55)] to-[rgba(7,6,5,0.25)]" />
-        <div className="relative mx-auto flex min-h-[92vh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28">
-          <p className="stamp">Independent engineer · California</p>
-          <h1 className="display mt-5 max-w-4xl text-5xl leading-[0.92] sm:text-7xl lg:text-8xl">
-            Software for shops still writing estimates on paper.
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-[var(--color-paper)]">
-            I am Maurice Garcia. I build ops software crews actually use in a truck,
-            not a pitch deck.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Link href="/work" className="btn btn-fill">See the work</Link>
-            <Link href="/contact" className="btn btn-ghost">Start a conversation</Link>
-          </div>
-        </div>
-      </section>
-
-      <div className="marquee">
-        <div className="marquee-track">
-          Estimates · Invoices · Deposits · Jobs · Crew radio · Pipeline · Estimates · Invoices · Deposits · Jobs · Crew radio · Pipeline ·
-        </div>
+  return <div>
+    <section className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 lg:grid-cols-[1.4fr_1fr] lg:py-24">
+      <div><p className="stamp">Maurice Garcia · Independent web developer</p>
+        <h1 className="display mt-6 text-5xl leading-[1.02] sm:text-7xl">Your next chapter<br/><span className="text-[var(--color-rust)]">starts with a website.</span></h1>
+        <p className="mt-6 max-w-xl text-lg leading-relaxed text-[var(--color-ink-soft)]">I build websites and custom tools for people growing a business. From your first page to a better way to take bookings, sell products, or manage work.</p>
+        <div className="mt-8 flex flex-wrap gap-3"><Link href="/contact" className="btn btn-fill">Plan my website →</Link><Link href="/work" className="btn btn-ghost">See my work</Link></div>
+        <p className="mt-4 text-sm text-[var(--color-ink-soft)]">Start with an idea. Get a clear scope before you commit.</p>
       </div>
-
-      <section className="mx-auto grid max-w-6xl gap-12 px-5 py-24 md:grid-cols-2">
-        <div>
-          <p className="stamp">Flagship</p>
-          <h2 className="display mt-4 text-4xl sm:text-5xl">Pipeline CRM</h2>
-          <p className="mt-5 text-lg leading-relaxed text-[var(--color-ink-soft)]">
-            A live Next.js PWA for Don Howard Construction / Painting. It replaced
-            Invoice2Go for leads, estimates, invoices, deposits, jobs, and walkie radio.
-          </p>
-          <p className="mt-6">
-            <a href={site.pipelineUrl} className="text-[var(--color-rust)] underline underline-offset-4">
-              pl.donhowardconstruction.com
-            </a>
-          </p>
-        </div>
-        <div className="border border-[var(--color-rule)] p-8">
-          <p className="stamp">How I work</p>
-          <ul className="mt-6 space-y-4 text-[var(--color-ink-soft)]">
-            <li>Talk to the people doing the job, then model the work.</li>
-            <li>Ship a usable slice before expanding the map.</li>
-            <li>Keep the stack boring: Next.js, TypeScript, a database you can backup.</li>
-            <li>No fake metrics. It is in production or it is not.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden border-y border-[var(--color-rule)]">
-        <img src="/promo/workshop-still.jpg" alt="" className="absolute inset-0 h-full w-full object-cover opacity-30" />
-        <div className="relative mx-auto grid max-w-6xl gap-8 px-5 py-20 md:grid-cols-2">
-          <div>
-            <p className="stamp">Also: video ads</p>
-            <h2 className="display mt-4 text-4xl sm:text-5xl">$1,000 a month to stay on the feed.</h2>
-            <p className="mt-4 text-[var(--color-ink-soft)]">
-              One-off spots, a monthly cadence, or a launch pack. Built for Chesapeake
-              shops that are not painting, decks, or pressure washing.
-            </p>
-            <Link href="/ads" className="btn btn-fill mt-8">See ad packages</Link>
-          </div>
-          <img src="/promo/monthly-ads.jpg" alt="Monthly video ads, one thousand dollars" className="w-full object-cover" />
-        </div>
-      </section>
-
-      <section className="mx-auto grid max-w-6xl gap-4 px-5 py-24 sm:grid-cols-3">
-        {[
-          { href: "/ads", k: "01 Ads", t: "Video ads for local shops. From $750." },
-          { href: "/services", k: "02 Software", t: "Ops apps. Published prices." },
-          { href: "/contact", k: "03 Write", t: "hello@mauricegarcia.com" },
-        ].map((c) => (
-          <Link
-            key={c.href}
-            href={c.href}
-            className="group border border-[var(--color-rule)] p-6 transition hover:border-[var(--color-rust)]"
-          >
-            <p className="stamp">{c.k}</p>
-            <p className="display mt-4 text-2xl group-hover:text-white">{c.t}</p>
-          </Link>
-        ))}
-      </section>
-    </div>
-  );
+      <div className="relative border border-[var(--color-rule)] p-3"><img src={site.photo} alt="Maurice Garcia" className="aspect-[4/5] w-full object-cover object-[center_20%]"/><div className="border-t border-[var(--color-rule)] px-3 py-5"><p className="stamp">A direct working relationship</p><p className="display mt-2 text-2xl">Your idea. My hands on the build.</p></div></div>
+    </section>
+    <section className="border-y border-[var(--color-rule)]"><div className="mx-auto max-w-6xl px-5 py-16"><p className="stamp">Ways we can work together</p><h2 className="display mt-4 text-4xl">Build it. Improve it. Keep it useful.</h2><div className="mt-8 grid gap-4 md:grid-cols-3">{services.slice(0,3).map((s,i) => <article key={s.slug} className="flex flex-col border border-[var(--color-rule)] p-6"><p className="stamp">0{i+1} · {s.price}</p><h3 className="display mt-5 text-3xl">{s.name}</h3><p className="mt-4 flex-1 leading-relaxed text-[var(--color-ink-soft)]">{s.summary}</p><Link href={`/contact?service=${s.slug}`} className="mt-8 underline underline-offset-4">Talk about this →</Link></article>)}</div><p className="mt-6 text-[var(--color-ink-soft)]">Need something more involved? <Link href="/services" className="underline">Explore custom software and other services.</Link></p></div></section>
+    <section className="mx-auto grid max-w-6xl gap-12 px-5 py-20 md:grid-cols-2"><div><p className="stamp">Selected work · Custom software</p><h2 className="display mt-4 text-4xl">More than a good-looking page.</h2><p className="mt-5 text-lg leading-relaxed text-[var(--color-ink-soft)]">Pipeline CRM was built for Don Howard Construction / Painting to handle leads, estimates, invoices, deposits, and jobs. Bring me the way your business works, and we can plan the right tools around it.</p><Link href="/work" className="btn btn-ghost mt-6">Explore the project</Link></div><div className="border-l-2 border-[var(--color-rust)] pl-8"><p className="stamp">From idea to launch</p><ol className="mt-6 space-y-7">{[["01 / Tell me what you need","A short project brief starts the conversation. You do not need a technical specification."],["02 / Agree on a plan","We define the pages, features, price, and timeline before the build."],["03 / Build, review, and launch","Review the work together, then launch with a handoff and an optional care plan."]].map(([title,body]) => <li key={title}><h3 className="display text-2xl">{title}</h3><p className="mt-2 text-[var(--color-ink-soft)]">{body}</p></li>)}</ol></div></section>
+    <section className="border-t border-[var(--color-rule)]"><div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-8 px-5 py-16"><div><p className="stamp">Have something in mind?</p><h2 className="display mt-4 text-4xl">You do not need it all figured out.</h2><p className="mt-4 text-[var(--color-ink-soft)]">Tell me what you want your business to do next.</p></div><Link href="/contact" className="btn btn-fill">Plan my website →</Link></div></section>
+  </div>;
 }

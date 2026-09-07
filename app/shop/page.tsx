@@ -16,8 +16,8 @@ export default function ShopPage() {
         <h1 className="display mt-3 text-5xl sm:text-6xl">Field notes as PDFs.</h1>
         <p className="mt-4 text-lg text-[var(--color-ink-soft)]">
           Paid downloads. If checkout is not configured yet, email{" "}
-          <a href="mailto:hello@mauricegarcia.com" className="underline">
-            hello@mauricegarcia.com
+          <a href="mailto:maurice.garcia+site@gmail.com" className="underline">
+            maurice.garcia+site@gmail.com
           </a>{" "}
           and I will send an invoice.
         </p>
@@ -39,3 +39,4 @@ export default function ShopPage() {
     </div>
   );
 }
+

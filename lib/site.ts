@@ -1,10 +1,10 @@
 export const site = {
   name: "Maurice Garcia",
-  title: "Maurice Garcia — independent full-stack engineer",
+  title: "Maurice Garcia — Websites & custom software",
   description:
-    "I build ops software for small businesses and video ads for local shops. Pipeline CRM, plus monthly spots from $1,000.",
+    "Custom websites, redesigns, and software for small businesses. Tell Maurice Garcia what you need and get a project proposal.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://mauricegarcia.com",
-  email: "hello@mauricegarcia.com",
+  email: "maurice.garcia+site@gmail.com",
   location: "California",
   github: "https://github.com/mosrvs2025",
   githubHandle: "mosrvs2025",
@@ -18,3 +18,4 @@ export function linkedInUrl(): string | null {
   const value = process.env.NEXT_PUBLIC_LINKEDIN_URL?.trim();
   return value ? value : null;
 }
+

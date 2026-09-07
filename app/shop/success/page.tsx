@@ -22,7 +22,7 @@ export default async function ShopSuccessPage({
       <div className="mx-auto max-w-xl space-y-4 px-5 py-16">
         <h1 className="display text-4xl">Payment not verified</h1>
         <p className="text-[var(--color-ink-soft)]">
-          If you already paid, email hello@mauricegarcia.com with your receipt and I
+          If you already paid, email maurice.garcia+site@gmail.com with your receipt and I
           will send the PDF.
         </p>
         <Link href="/shop" className="underline">
@@ -61,9 +61,10 @@ export default async function ShopSuccessPage({
       <div className="mx-auto max-w-xl space-y-4 px-5 py-16">
         <h1 className="display text-4xl">Could not unlock the file</h1>
         <p className="text-[var(--color-ink-soft)]">
-          Write to hello@mauricegarcia.com with the email you used at checkout.
+          Write to maurice.garcia+site@gmail.com with the email you used at checkout.
         </p>
       </div>
     );
   }
 }
+

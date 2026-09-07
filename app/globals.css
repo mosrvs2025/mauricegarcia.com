@@ -120,3 +120,8 @@ input, textarea, select {
 option {
   color: #111;
 }
+
+:focus-visible { outline: 2px solid var(--color-rust); outline-offset: 4px; }
+.stamp { font-size: 0.75rem; }
+.btn { font-size: 0.875rem; }
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }

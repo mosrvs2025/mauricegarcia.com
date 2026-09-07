@@ -12,7 +12,7 @@ export function ShopBuyButton({ slug, title, stripeReady }: Props) {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const mailto = `mailto:hello@mauricegarcia.com?subject=${encodeURIComponent(
+  const mailto = `mailto:maurice.garcia+site@gmail.com?subject=${encodeURIComponent(
     `PDF order: ${title}`,
   )}&body=${encodeURIComponent(
     `I would like to buy “${title}” (${slug}). Please send a payment link or invoice.`,
@@ -65,7 +65,7 @@ export function ShopBuyButton({ slug, title, stripeReady }: Props) {
         <p className="text-sm text-[var(--color-ink-soft)]">
           {error}{" "}
           <a href={mailto} className="underline">
-            Email hello@mauricegarcia.com
+            Email maurice.garcia+site@gmail.com
           </a>
         </p>
       ) : (
@@ -79,3 +79,4 @@ export function ShopBuyButton({ slug, title, stripeReady }: Props) {
     </div>
   );
 }
+

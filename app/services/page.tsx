@@ -5,7 +5,7 @@ import { services } from "@/lib/services";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Custom ops apps from $8,000, two-week product sprints for $4,500, and advisory retainers at $2,000/month.",
+    "Business websites, redesigns, ongoing care, and custom software. Request a proposal for your project.",
 };
 
 export default function ServicesPage() {
@@ -13,7 +13,7 @@ export default function ServicesPage() {
     <div className="mx-auto max-w-6xl space-y-12 px-5 py-16">
       <header className="max-w-2xl">
         <p className="stamp">Services</p>
-        <h1 className="display mt-3 text-5xl sm:text-6xl">Clear scopes. Published prices.</h1>
+        <h1 className="display mt-3 text-5xl sm:text-6xl">Websites built around your business.</h1>
         <p className="mt-4 text-lg text-[var(--color-ink-soft)]">
           Independent work for small businesses. If the fit is wrong I will say so
           before you spend money.
@@ -46,3 +46,4 @@ export default function ServicesPage() {
     </div>
   );
 }
+

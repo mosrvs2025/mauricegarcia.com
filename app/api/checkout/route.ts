@@ -7,7 +7,7 @@ export async function POST(req: Request) {
   const stripe = getStripe();
   if (!stripe) {
     return NextResponse.json(
-      { error: "Stripe is not configured. Email hello@mauricegarcia.com." },
+      { error: "Stripe is not configured. Email maurice.garcia+site@gmail.com." },
       { status: 503 },
     );
   }
@@ -42,3 +42,4 @@ export async function POST(req: Request) {
   }
   return NextResponse.json({ url: session.url });
 }
+
