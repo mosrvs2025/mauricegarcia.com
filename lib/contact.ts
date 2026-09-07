@@ -1,4 +1,4 @@
-export const contactEmail = "maurice.garcia+site@gmail.com";
+export const contactEmail = "hello@mauricegarcia.com";
 export function parseInquiry(value: unknown) {
   if (!value || typeof value !== "object" || Array.isArray(value)) return null;
   const source = value as Record<string, unknown>;
@@ -12,3 +12,4 @@ export function parseInquiry(value: unknown) {
   if (!fields.name || !fields.body || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email) || /[\r\n]/.test(fields.name)) return null;
   return fields;
 }
+

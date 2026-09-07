@@ -30,7 +30,7 @@ const request = (body, origin = 'https://www.mauricegarcia.com') => new Request(
   assert.equal((await POST(request(valid))).status, 503);
   process.env.RESEND_API_KEY = 'test-mocked';
   assert.equal((await POST(request(valid))).status, 200);
-  assert.equal(sent.to, 'maurice.garcia+site@gmail.com');
+  assert.equal(sent.to, 'hello@mauricegarcia.com');
   assert.equal(sent.replyTo, valid.email);
   assert.match(sent.text, /Budget: \$1,000/);
   assert.match(sent.text, /Business: Example Co/);
@@ -39,3 +39,4 @@ const request = (body, origin = 'https://www.mauricegarcia.com') => new Request(
   if (oldKey === undefined) delete process.env.RESEND_API_KEY; else process.env.RESEND_API_KEY = oldKey;
   console.log('Contact checks passed: validation, spam field, origin, missing configuration, recipient, reply-to, brief, and provider failure. No real email sent.');
 })().catch(error => { console.error(error); process.exitCode = 1; });
+
