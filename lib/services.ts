@@ -8,6 +8,10 @@ export type Service = {
 };
 
 export const services: Service[] = [
+  { slug: "business-website", name: "Business website", price: "Custom quote", kind: "software", summary: "A website that explains what you do and makes it easy for customers to reach you.", details: ["Responsive pages for phones and desktops", "Service pages and a clear inquiry flow", "Basic search and sharing setup", "Scope and price agreed before work begins"] },
+  { slug: "website-redesign", name: "Website redesign", price: "Custom quote", kind: "software", summary: "Turn an existing site into a clearer, more useful home for your business.", details: ["Review of your current site and goals", "Refreshed layout and messaging", "Simpler navigation and contact flow", "Agreed launch and handoff plan"] },
+  { slug: "website-care", name: "Website care", price: "Monthly plan · quoted to scope", kind: "software", summary: "Keep your website useful as your business changes.", details: ["Content updates and small improvements", "Maintenance needs agreed in advance", "A monthly scope you can understand", "Ask about ongoing support with your build"] },
+  { slug: "ai-receptionist", name: "AI receptionist pilot", price: "Setup + monthly management · custom quote", kind: "software", summary: "A scoped pilot for missed calls, after-hours intake, and human handoff for contractors and home service businesses.", details: ["Free initial call-flow review", "Approved answers and escalation rules", "Pilot testing before launch", "Usage allowance and calling costs stated in the proposal"] },
   {
     slug: "custom-ops-app",
     name: "Custom ops app",
@@ -98,3 +102,5 @@ export function serviceBySlug(slug: string | null | undefined) {
   if (!slug) return undefined;
   return services.find((s) => s.slug === slug);
 }
+
+

@@ -1,29 +1,12 @@
+"use client";
 import Link from "next/link";
-
-const links = [
-  { href: "/work", label: "Work" },
-  { href: "/ads", label: "Ads" },
-  { href: "/services", label: "Services" },
-  { href: "/shop", label: "Shop" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-];
-
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+const links = [{ href: "/work", label: "Work" },{ href: "/services", label: "Services" },{ href: "/about", label: "About" },{ href: "/ai-receptionist", label: "AI receptionist" },{ href: "/shop", label: "Shop" }];
 export function Header() {
-  return (
-    <header className="sticky top-0 z-40 border-b border-[var(--color-rule)] bg-[rgba(7,6,5,0.72)] backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-4">
-        <Link href="/" className="display text-lg tracking-tight sm:text-xl">
-          Maurice Garcia
-        </Link>
-        <nav className="flex flex-wrap justify-end gap-x-5 gap-y-2 text-xs uppercase tracking-[0.16em] text-[var(--color-ink-soft)]">
-          {links.map((l) => (
-            <Link key={l.href} href={l.href} className="hover:text-[var(--color-ink)]">
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-      </div>
-    </header>
-  );
+ const [open,setOpen] = useState(false);
+ const pathname = usePathname();
+ return <header className="site-header"><div className="studio-wrap nav-bar"><Link href="/" onClick={()=>setOpen(false)} className="brand" aria-label="Maurice Garcia home"><span className="brand-mark">mg<span>✳</span></span><span className="brand-name">MAURICE<br/>GARCIA</span></Link><nav className="desktop-nav" aria-label="Main navigation">{links.map(l=><Link key={l.href} href={l.href} aria-current={pathname===l.href?'page':undefined}>{l.label}</Link>)}</nav><Link href="/contact" className="nav-cta">Let’s talk ↗</Link><button aria-expanded={open} aria-controls="mobile-menu" className="menu-toggle" onClick={()=>setOpen(!open)}>{open ? "Close −" : "Menu +"}</button></div>{open && <nav id="mobile-menu" className="mobile-menu" aria-label="Mobile navigation">{[...links,{href:"/contact",label:"Start a project"}].map(l=><Link href={l.href} key={l.href} onClick={()=>setOpen(false)}>{l.label}<span>↗</span></Link>)}</nav>}</header>;
 }
+
+

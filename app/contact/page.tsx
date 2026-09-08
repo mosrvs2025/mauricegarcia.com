@@ -1,31 +1,11 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
+import { connection } from "next/server";
 import { serviceBySlug } from "@/lib/services";
-
-export const metadata: Metadata = {
-  title: "Contact",
-  description: "Write Maurice Garcia about a custom ops app, sprint, or retainer.",
-};
-
-export default async function ContactPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ service?: string }>;
-}) {
-  const { service } = await searchParams;
-  const known = serviceBySlug(service);
-  return (
-    <div className="mx-auto max-w-3xl space-y-10 px-5 py-16">
-      <header>
-        <p className="stamp">Contact</p>
-        <h1 className="display mt-3 text-5xl sm:text-6xl">Tell me about the shop.</h1>
-        <p className="mt-4 text-lg text-[var(--color-ink-soft)]">
-          {known
-            ? `You selected ${known.name} (${known.price}). Change it below if that is wrong.`
-            : "Use the form, or email hello@mauricegarcia.com."}
-        </p>
-      </header>
-      <ContactForm initialService={known?.slug} />
-    </div>
-  );
+export const metadata: Metadata = { title: "Start a project", description: "Plan a website, redesign, or custom application with Maurice Garcia." };
+export default async function ContactPage({searchParams}:{searchParams:Promise<{service?:string}>}) {
+ await connection();
+ const {service}=await searchParams; const known=serviceBySlug(service);
+ return <div className="studio-wrap contact-layout"><header><p className="eyebrow">Your idea starts here</p><h1 className="display">Let’s make<br/>your next<br/><em>move.</em></h1><p>Tell me a little about your business. I’ll review the brief and get back to you with the next steps.</p><a href="mailto:hello@mauricegarcia.com" className="text-link">hello@mauricegarcia.com ↗</a><div className="contact-note"><span>01 / A short conversation</span><span>02 / A clear proposal</span><span>03 / A plan to launch</span></div></header><section className="contact-panel">{known && <p className="selected-service">Let’s talk about: {known.name}</p>}<ContactForm initialService={known?.slug} emailEnabled={Boolean(process.env.RESEND_API_KEY?.trim())}/></section></div>;
 }
+

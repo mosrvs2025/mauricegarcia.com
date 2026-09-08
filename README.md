@@ -15,7 +15,7 @@ npm run dev
 Copy .env.example to .env.local
 
 ## Config
-See .env.example. Shop falls back to email. In local development, contact submissions fall back to `data/inbox.json`, which is gitignored. Production requires Resend configuration and never writes submissions to Vercel's filesystem.
+See .env.example. Shop falls back to email. Contact submissions require RESEND_API_KEY and a verified CONTACT_FROM_EMAIL. They send directly to hello@mauricegarcia.com (lib/contact.ts), with the customer as Reply-To. Missing configuration returns an honest failure and the form offers a direct email link. No filesystem inbox is used. Run node scripts/contact.test.cjs for mocked delivery checks.
 
 ## Hosting
 Import this repo on Vercel. Set env from .env.example. Attach mauricegarcia.com in Vercel Domains and follow their DNS UI.
@@ -23,3 +23,7 @@ Import this repo on Vercel. Set env from .env.example. Attach mauricegarcia.com 
 ## Routes
 /, /work, /services, /shop, /about, /contact
 
+
+
+
+Incoming mail for hello@mauricegarcia.com is handled separately by Porkbun forwarding to maurice.garcia+site@gmail.com. Resend handles outbound form notifications; keep the root domain MX records pointed at Porkbun.

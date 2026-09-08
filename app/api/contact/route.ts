@@ -1,77 +1,31 @@
-import { mkdir, readFile, writeFile } from "fs/promises";
-import path from "path";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { serviceBySlug } from "@/lib/services";
-
-type Body = { name?: string; email?: string; service?: string; body?: string };
-
-async function saveLocally(record: Record<string, string>) {
-  const dir = path.join(process.cwd(), "data");
-  await mkdir(dir, { recursive: true });
-  const file = path.join(dir, "inbox.json");
-  let inbox: unknown[] = [];
-  try {
-    inbox = JSON.parse(await readFile(file, "utf8")) as unknown[];
-  } catch {
-    inbox = [];
-  }
-  inbox.push(record);
-  await writeFile(file, JSON.stringify(inbox, null, 2));
-}
+import { contactEmail, parseInquiry } from "@/lib/contact";
 
 export async function POST(req: Request) {
-  const json = (await req.json().catch(() => ({}))) as Body;
-  const name = (json.name || "").trim();
-  const email = (json.email || "").trim();
-  const service = (json.service || "").trim();
-  const body = (json.body || "").trim();
-  if (!name || !email || !body) {
-    return NextResponse.json({ error: "Missing fields" }, { status: 400 });
-  }
-  const known = serviceBySlug(service);
-  const record = {
-    at: new Date().toISOString(),
-    name,
-    email,
-    service: known?.slug || service || "general",
-    body,
-  };
-
-  const resendKey = process.env.RESEND_API_KEY?.trim();
-  const to = process.env.CONTACT_TO_EMAIL?.trim();
-  const from = process.env.CONTACT_FROM_EMAIL?.trim() ||
-    "Maurice Garcia site <noreply@mauricegarcia.com>";
-
-  if (!resendKey || !to) {
-    if (process.env.NODE_ENV === "development") {
-      await saveLocally(record);
-      return NextResponse.json({ ok: true, via: "inbox" });
-    }
-    console.error("[contact] Missing RESEND_API_KEY or CONTACT_TO_EMAIL");
-    return NextResponse.json(
-      { error: "Contact email is not configured" },
-      { status: 503 },
-    );
-  }
-
+  const origin = req.headers.get("origin");
+  if (origin && origin !== new URL(req.url).origin) return NextResponse.json({ error: "Invalid origin" }, { status: 403 });
+  const raw = await req.text();
+  if (raw.length > 20000) return NextResponse.json({ error: "Request too large" }, { status: 413 });
+  let value: unknown;
+  try { value = JSON.parse(raw); } catch { return NextResponse.json({ error: "Invalid request" }, { status: 400 }); }
+  const inquiry = parseInquiry(value);
+  if (!inquiry) return NextResponse.json({ error: "Please check your name, email, and project details." }, { status: 400 });
+  if (inquiry.companyFax) return NextResponse.json({ error: "Unable to submit this request." }, { status: 400 });
+  const key = process.env.RESEND_API_KEY?.trim();
+  if (!key) return NextResponse.json({ error: "Email is temporarily unavailable. Please email Maurice directly." }, { status: 503 });
+  const service = serviceBySlug(inquiry.service)?.name || "General inquiry";
+  const text = [`Service: ${service}`, `Name: ${inquiry.name}`, `Email: ${inquiry.email}`, `Business: ${inquiry.business || "Not provided"}`, `Website: ${inquiry.website || "Not provided"}`, `Budget: ${inquiry.budget || "Not sure yet"}`, `Timeline: ${inquiry.timeline || "Flexible"}`, "", "Project brief:", inquiry.body].join("\n");
   try {
-    const resend = new Resend(resendKey);
-    const { error } = await resend.emails.send({
-      from,
-      to,
-      replyTo: email,
-      subject: `Site inquiry: ${record.service} — ${name}`,
-      text: `${body}\n\n— ${name} <${email}>`,
+    const { error } = await new Resend(key).emails.send({
+      from: process.env.CONTACT_FROM_EMAIL?.trim() || "Maurice Garcia site <noreply@mauricegarcia.com>",
+      to: contactEmail, replyTo: inquiry.email,
+      subject: `Website inquiry: ${service} — ${inquiry.name}`, text,
     });
-    if (error) {
-      console.error("[contact] Resend rejected the message", error);
-      return NextResponse.json({ error: "Email failed" }, { status: 502 });
-    }
-    return NextResponse.json({ ok: true, via: "resend" });
-  } catch (error) {
-    console.error("[contact] Resend request failed", error);
-    return NextResponse.json({ error: "Email failed" }, { status: 502 });
+    if (error) return NextResponse.json({ error: "Email could not be sent. Please try again or email Maurice directly." }, { status: 502 });
+    return NextResponse.json({ ok: true });
+  } catch {
+    return NextResponse.json({ error: "Email could not be sent. Please try again or email Maurice directly." }, { status: 502 });
   }
 }
-
