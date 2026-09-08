@@ -3,15 +3,19 @@ import { useState } from "react";
 import { services } from "@/lib/services";
 import { contactEmail } from "@/lib/contact";
 const control = "mt-2 w-full border border-[var(--color-rule)] px-3 py-3 focus:outline-2 focus:outline-[var(--color-rust)]";
-export function ContactForm({ initialService }: { initialService?: string }) {
+export function ContactForm({ initialService, emailEnabled = true }: { initialService?: string; emailEnabled?: boolean }) {
   const [step, setStep] = useState(1);
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "err">("idle");
   const [message, setMessage] = useState("");
+  const [draftUrl, setDraftUrl] = useState("");
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (step === 1) { setStep(2); return; }
     const form = e.currentTarget;
     const payload = Object.fromEntries(new FormData(form));
+    const draft = `mailto:${contactEmail}?subject=${encodeURIComponent(`Project inquiry: ${payload.service}`)}&body=${encodeURIComponent(Object.entries(payload).filter(([k]) => k !== "companyFax").map(([k,v]) => `${k}: ${v}`).join("\n\n"))}`;
+    setDraftUrl(draft);
+    if (!emailEnabled) { window.location.href = draft; setMessage("Your email draft is ready. Send it from your email app to complete your inquiry. Nothing has been sent by this website."); return; }
     setStatus("sending"); setMessage("");
     try {
       const response = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
@@ -36,12 +40,15 @@ export function ContactForm({ initialService }: { initialService?: string }) {
       <legend className="display mb-5 text-3xl">Tell me about your idea.</legend>
       <label className="block">Your name<input required name="name" maxLength={100} autoComplete="name" className={control}/></label>
       <label className="block">Email<input required type="email" name="email" maxLength={254} autoComplete="email" className={control}/></label>
-      <label className="block">What should your website help people do?<textarea required name="body" maxLength={5000} rows={5} placeholder="For example: learn about my services, book an appointment, buy a product, or request a quote." className={control}/></label>
+      <label className="block">What should your website or assistant help people do?<textarea required name="body" maxLength={5000} rows={5} placeholder="For example: learn about my services, book an appointment, buy a product, or request a quote." className={control}/></label>
       <p className="text-sm text-[var(--color-ink-soft)]">Your details are used to respond to this inquiry. Submitting a brief does not commit you to a purchase.</p>
     </fieldset>
     <div hidden aria-hidden="true"><label>Leave blank<input name="companyFax" tabIndex={-1} autoComplete="off"/></label></div>
-    <div className="flex flex-wrap gap-3">{step === 2 && <button type="button" disabled={status === "sending"} onClick={() => setStep(1)} className="btn btn-ghost">Back</button>}<button type="submit" disabled={status === "sending"} className="btn btn-fill disabled:opacity-60">{status === "sending" ? "Sending…" : step === 1 ? "Continue →" : "Send project brief"}</button></div>
-    {message && <p role="alert">{message} Your details are still here.</p>}
+    <div className="flex flex-wrap gap-3">{step === 2 && <button type="button" disabled={status === "sending"} onClick={() => setStep(1)} className="btn btn-ghost">Back</button>}<button type="submit" disabled={status === "sending"} className="btn btn-fill disabled:opacity-60">{status === "sending" ? "Sending…" : step === 1 ? "Continue →" : emailEnabled ? "Send project brief" : "Open email draft ↗"}</button></div>
+    {!emailEnabled && step === 2 && <p className="text-sm text-[var(--color-ink-soft)]">The next step opens your email app with your brief filled in. Review it and press Send there.</p>}
+    {message && <p role="status">{message} Your details are still here.</p>}
+    {draftUrl && <a className="text-link inline-block" href={draftUrl}>Open the prepared email ↗</a>}
     <p className="text-sm text-[var(--color-ink-soft)]">Prefer email? <a className="underline break-all" href={`mailto:${contactEmail}`}>{contactEmail}</a></p>
   </form>;
 }
+
