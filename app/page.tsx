@@ -17,6 +17,13 @@ export default function HomePage() {
       <div className="hero-bottom studio-wrap"><span>Strategy → Design → Development → Launch</span><span>01 / A better presence</span></div>
     </section>
     <div className="capability-strip"><span>Business websites</span><b>✳</b><span>Online stores</span><b>✳</b><span>Custom applications</span><b>✳</b><span>Ongoing care</span></div>
+    <section className="studio-wrap studio-section">
+      <div className="section-heading"><p className="eyebrow">Two ways to work together</p><h2 className="display">Get it built.<br/>Or learn to build it.</h2><p>Choose the kind of help you need. I can handle the project, or work alongside you while you learn the tools.</p></div>
+      <div className="grid gap-5 md:grid-cols-2">
+        <Link href="/services" className="offer-card"><div className="offer-top"><span>Build it for me</span><span className="offer-arrow">↗</span></div><h3 className="display">Your idea, delivered.</h3><p>Websites, custom software, and AI receptionist pilots. A clear scope, a working result, and help putting it to use.</p><div className="offer-price">Explore services <span>↗</span></div></Link>
+        <Link href="/coaching" className="offer-card"><div className="offer-top"><span>Teach me how</span><span className="offer-arrow">↗</span></div><h3 className="display">Build your confidence.</h3><p>Practical one-to-one coaching with tools like Claude Code. Bring your idea, ask questions, and work through your next step together.</p><div className="offer-price">Explore coaching <span>↗</span></div></Link>
+      </div>
+    </section>
     <section id="services" className="studio-wrap studio-section">
       <div className="section-heading"><p className="eyebrow">01 / What I can do for you</p><h2 className="display">A big idea.<br/>A practical way forward.</h2><p>A new business, an overdue refresh, or a tool you wish existed. Let’s turn it into something people can use.</p></div>
       <div className="offer-grid">{services.slice(0,3).map((s,i) => <Link href={`/contact?service=${s.slug}`} key={s.slug} className="offer-card"><div className="offer-top"><span>0{i+1}</span><span className="offer-arrow">↗</span></div><h3 className="display">{s.name}</h3><p>{s.summary}</p><div className="offer-tags">{s.details.slice(0,2).map(d=><span key={d}>{d}</span>)}</div><div className="offer-price">{s.price}<span>Let’s talk</span></div></Link>)}</div>
