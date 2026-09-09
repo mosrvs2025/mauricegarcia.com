@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-const links = [{ href: "/work", label: "Work" },{ href: "/services", label: "Services" },{ href: "/about", label: "About" },{ href: "/ai-receptionist", label: "AI receptionist" },{ href: "/shop", label: "Shop" }];
+const links = [{ href: "/work", label: "Work" },{ href: "/services", label: "Services" },{ href: "/coaching", label: "Coaching" },{ href: "/ai-receptionist", label: "AI receptionist" },{ href: "/about", label: "About" }];
 export function Header() {
  const [open,setOpen] = useState(false);
  const pathname = usePathname();
