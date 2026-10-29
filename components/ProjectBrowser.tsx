@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useMemo, useState, type CSSProperties } from "react";
 import { THEME_COLORS } from "@/lib/themes";
 
-export type BrowserProject = { slug: string; title: string; tagline: string; themes: string[]; themeLabels: string[]; state: string; stateLabel: string; tier: "featured" | "archive"; image?: { src: string; alt: string }; lastChange?: string; proposed: boolean; playable: boolean };
+export type BrowserProject = { slug: string; title: string; tagline: string; themes: string[]; themeLabels: string[]; state: string; stateLabel: string; tier: "featured" | "archive"; image?: { src: string; alt: string }; lastChange?: string; proposed: boolean; playable: boolean; demo?: string; repo?: string };
 
 /** Filtering is client-side over a small, public-only list. Without JavaScript, every project is rendered and linked. */
 export function ProjectBrowser({ projects, themes }: { projects: BrowserProject[]; themes: { id: string; label: string }[] }) {
@@ -30,6 +30,12 @@ export function ProjectBrowser({ projects, themes }: { projects: BrowserProject[
           <p>{p.tagline}</p>
         </div>
       </Link>
+      {(p.demo || p.repo) && (
+        <div className="j-actions j-tile-links" style={{ padding: "0 22px 22px" }}>
+          {p.demo && <a className="j-link j-arrow" href={p.demo} rel="noopener noreferrer" data-track="demo_visit" data-track-project={p.slug}>Live site</a>}
+          {p.repo && <a className="j-link j-arrow" href={p.repo} rel="noopener noreferrer" data-track="source_click" data-track-project={p.slug}>GitHub</a>}
+        </div>
+      )}
     </li>
   );
   return (

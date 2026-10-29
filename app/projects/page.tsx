@@ -12,7 +12,7 @@ export default function ProjectsPage() {
   const projects: BrowserProject[] = listedProjects().map((p) => ({
     slug: p.slug, title: p.title, tagline: p.tagline, themes: p.themes, themeLabels: p.themes.map((t) => THEME_LABELS[t]),
     state: p.state, stateLabel: STATE_LABELS[p.state], tier: p.tier, lastChange: p.dates.lastChange,
-    image: p.media[0] ? { src: p.media[0].src, alt: p.media[0].alt } : undefined, proposed: isProposed(p), playable: !!p.links.demo,
+    image: p.media[0] ? { src: p.media[0].src, alt: p.media[0].alt } : undefined, proposed: isProposed(p), playable: !!p.links.demo, demo: p.links.demo, repo: p.links.repo,
   }));
   const used = new Set(projects.flatMap((p) => p.themes));
   const themes = Object.entries(THEME_LABELS).filter(([id]) => used.has(id)).map(([id, label]) => ({ id, label }));
