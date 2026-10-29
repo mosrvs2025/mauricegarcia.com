@@ -1,0 +1,17 @@
+{
+  "id": "upd-seed-gridheart-keyboard",
+  "slug": "gridheart-keyboard-aim-and-swing",
+  "title": "Gridheart: aim and swing from the keyboard",
+  "summary": "Gridheart can now be played without a mouse. Arrow keys or IJKL aim and attack in that direction, and F attacks the way you are facing.",
+  "whyCare": "You can play on a laptop trackpad, a keyboard-only setup or alongside a controller-style habit, and switch back to the mouse mid-fight.",
+  "limitations": "I checked that the hosted build loads. I haven't re-tested the new controls in every room.",
+  "kind": "progress",
+  "projectId": "prj-gridheart",
+  "status": "proposed",
+  "visibility": "public",
+  "eventAt": "2026-09-21T21:09:03Z",
+  "publishedAt": "2026-10-29T12:00:00Z",
+  "tags": ["games", "controls"],
+  "evidence": [{ "label": "The commit", "url": "https://github.com/mosrvs2025/gridheart/commit/24800e510fac2ad7bde550d20077e0cb9b042d76", "kind": "source" }],
+  "provenance": { "origin": "agent", "eventId": "seed:gridheart-keyboard-aim", "importedAt": "2026-10-29T12:00:00Z" }
+}

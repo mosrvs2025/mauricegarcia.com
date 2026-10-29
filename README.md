@@ -1,29 +1,39 @@
 # mauricegarcia.com
 
-Personal site for Maurice Garcia.
-Independent full-stack engineer in California.
-Builds software for small businesses.
-Flagship: Pipeline CRM for Don Howard Construction / Painting.
-https://pl.donhowardconstruction.com/
+Maurice Garcia's workshop and journal: projects, short updates, writing, a Now page, and ways to get in touch. Next.js (App Router), TypeScript, Tailwind v4. No database; content is files in this repository.
 
-## Stack
-Next.js App Router, TypeScript, Tailwind v4.
+## Run it
 
-## Local
+```bash
 npm install
-npm run dev
-Copy .env.example to .env.local
+npm run dev                       # http://localhost:3000
+SITE_PREVIEW=1 npm run dev        # also shows "proposed" content awaiting approval
+```
 
-## Config
-See .env.example. Shop falls back to email. Contact submissions require RESEND_API_KEY and a verified CONTACT_FROM_EMAIL. They send directly to hello@mauricegarcia.com (lib/contact.ts), with the customer as Reply-To. Missing configuration returns an honest failure and the form offers a direct email link. No filesystem inbox is used. Run node scripts/contact.test.cjs for mocked delivery checks.
+Copy `.env.example` to `.env.local`.
 
-## Hosting
-Import this repo on Vercel. Set env from .env.example. Attach mauricegarcia.com in Vercel Domains and follow their DNS UI.
+## Check it
 
-## Routes
-/, /work, /services, /shop, /about, /contact
+```bash
+npm run typecheck
+npm run content:validate          # every content file against its schema + cross-references
+npm test                          # contact flow, sync, studio, content visibility
+NEXT_DIST_DIR=.next-prod npm run build && NEXT_DIST_DIR=.next-prod npm run leak-check
+```
 
+## Map
 
+| | |
+| --- | --- |
+| `content/` | Projects, updates, posts, `now.json`, `sources.json`, machine candidates |
+| `lib/content/` | Schemas, loader, visibility rules (`visibility.ts` is the one gate), safe Markdown |
+| `lib/sync/`, `scripts/sync.ts` | GitHub → candidates → drafts; publication rule |
+| `lib/studio/`, `app/studio/`, `app/api/studio/` | Owner editor: auth, Git-backed store, save/publish/rollback |
+| `.github/workflows/` | `sync.yml` (scheduled + manual), `ci.yml` |
+| `docs/` | `OWNER_GUIDE.md`, `AGENT_HANDOFF.md`, `AGENT_SNIPPET.md`, `INVENTORY.md`, JSON Schema |
 
+Routes: `/`, `/projects`, `/projects/[slug]`, `/writing`, `/writing/[slug]`, `/updates`, `/updates/[slug]`, `/now`, `/about`, `/connect`, plus the existing `/services`, `/coaching`, `/ai-receptionist`, `/shop`, `/ads`. Feeds: `/writing/rss.xml`, `/updates/rss.xml`. Moved: `/contact`→`/connect`, `/work`→`/projects/pipeline-crm`. Studio: `/studio` (off until configured).
 
-Incoming mail for hello@mauricegarcia.com is handled separately by Porkbun forwarding to maurice.garcia+site@gmail.com. Resend handles outbound form notifications; keep the root domain MX records pointed at Porkbun.
+## Contact, shop and hosting
+
+Unchanged in principle: contact submissions need `RESEND_API_KEY` and a verified `CONTACT_FROM_EMAIL`, go to hello@mauricegarcia.com with the visitor as Reply-To, and fail honestly with a direct-email fallback. The shop falls back to email without Stripe keys. Incoming mail is handled by Porkbun forwarding; Resend sends outbound form notifications. **Do not change DNS or MX records.** Import the repo on Vercel and set env from `.env.example`.

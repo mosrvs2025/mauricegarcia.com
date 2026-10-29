@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "sources": [
+    { "id": "src-lumen", "repo": "mosrvs2025/excalidraw", "projectId": "prj-lumen", "visibility": "public", "branch": "claude/peaceful-darwin-rzjbgm", "enabled": true, "include": { "releases": true, "mergedPullRequests": true, "websiteUpdateFiles": true, "commitDigest": false }, "autoPublish": false, "batchWindowHours": 168 },
+    { "id": "src-gridheart", "repo": "mosrvs2025/gridheart", "projectId": "prj-gridheart", "visibility": "public", "branch": "main", "enabled": true, "include": { "releases": true, "mergedPullRequests": true, "websiteUpdateFiles": true, "commitDigest": false }, "autoPublish": false, "batchWindowHours": 168 },
+    { "id": "src-reality-research", "repo": "mosrvs2025/reality-research", "projectId": "prj-reality-research", "visibility": "public", "branch": "main", "enabled": true, "include": { "releases": true, "mergedPullRequests": true, "websiteUpdateFiles": true, "commitDigest": false }, "autoPublish": false, "batchWindowHours": 168 },
+    { "id": "src-swirl-room", "repo": "mosrvs2025/oddlysatisfying", "projectId": "prj-swirl-room", "visibility": "public", "branch": "main", "enabled": true, "include": { "releases": true, "mergedPullRequests": true, "websiteUpdateFiles": true, "commitDigest": false }, "autoPublish": false, "batchWindowHours": 168 },
+    { "id": "src-exit-pass", "repo": "mosrvs2025/checkout", "projectId": "prj-exit-pass", "visibility": "public", "branch": "ccr-a6a79977-kah5nk", "enabled": true, "include": { "releases": true, "mergedPullRequests": true, "websiteUpdateFiles": true, "commitDigest": false }, "autoPublish": false, "batchWindowHours": 168 }
+  ]
+}

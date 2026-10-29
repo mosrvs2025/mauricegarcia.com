@@ -1,0 +1,149 @@
+{
+  "$ref": "#/definitions/WebsiteUpdate",
+  "definitions": {
+    "WebsiteUpdate": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "type": "number",
+          "const": 1
+        },
+        "projectId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$",
+          "maxLength": 120
+        },
+        "eventId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$",
+          "maxLength": 120
+        },
+        "eventAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400
+        },
+        "changed": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400
+        },
+        "whyCare": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "shipped",
+            "in-progress",
+            "prototype",
+            "experiment",
+            "paused"
+          ]
+        },
+        "limitations": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "evidenceUrl": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 500
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "publish"
+          ]
+        },
+        "publicSafe": {
+          "type": "boolean"
+        },
+        "completion": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "release",
+                "merged-pull-request",
+                "deployment",
+                "none"
+              ]
+            },
+            "verified": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false,
+          "default": {
+            "kind": "none",
+            "verified": false
+          }
+        },
+        "provenance": {
+          "type": "object",
+          "properties": {
+            "origin": {
+              "type": "string",
+              "enum": [
+                "agent",
+                "sync"
+              ]
+            },
+            "agent": {
+              "type": "string",
+              "maxLength": 80
+            },
+            "importedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "contentHash": {
+              "type": "string",
+              "maxLength": 64
+            }
+          },
+          "required": [
+            "origin"
+          ],
+          "additionalProperties": false,
+          "default": {
+            "origin": "agent"
+          }
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "projectId",
+        "eventId",
+        "eventAt",
+        "title",
+        "summary",
+        "changed",
+        "whyCare",
+        "status",
+        "state",
+        "publicSafe"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

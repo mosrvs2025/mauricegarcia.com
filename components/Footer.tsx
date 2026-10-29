@@ -4,21 +4,41 @@ import { linkedInUrl, site } from "@/lib/site";
 export function Footer() {
   const linkedin = linkedInUrl();
   return (
-    <footer className="border-t border-[var(--color-rule)]">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-10 text-sm text-[var(--color-ink-soft)] sm:flex-row sm:items-end sm:justify-between">
+    <footer className="j-footer">
+      <div className="studio-wrap j-footer-grid">
         <div>
-          <p className="display text-2xl text-[var(--color-ink)]">MG</p>
-          <p className="mt-2">© 2026 Maurice Garcia · California</p>
+          <p className="display j-footer-mark">Maurice Garcia</p>
+          <p>Useful tools, playful worlds, experiments worth trying.</p>
+          <p className="j-muted">© {new Date().getFullYear()} Maurice Garcia</p>
         </div>
-        <p className="flex flex-wrap gap-x-5 gap-y-2 uppercase tracking-[0.14em] text-xs">
-          <a href={site.github} className="hover:text-[var(--color-ink)]">GitHub</a>
-          <a href={site.instagram} className="hover:text-[var(--color-ink)]">Instagram</a>
-          {linkedin ? (
-            <a href={linkedin} className="hover:text-[var(--color-ink)]">LinkedIn</a>
-          ) : null}
-          <a href={`mailto:${site.email}`} className="hover:text-[var(--color-ink)]">{site.email}</a>
-          <Link href="/contact" className="hover:text-[var(--color-ink)]">Contact</Link>
-        </p>
+        <nav aria-label="Footer">
+          <p className="eyebrow">Read &amp; follow</p>
+          <ul>
+            <li><Link href="/projects">Projects</Link></li>
+            <li><Link href="/writing">Writing</Link> · <a href="/writing/rss.xml" data-track="feed_click" data-track-feed="writing">RSS</a></li>
+            <li><Link href="/updates">Updates</Link> · <a href="/updates/rss.xml" data-track="feed_click" data-track-feed="updates">RSS</a></li>
+            <li><Link href="/now">Now</Link></li>
+          </ul>
+        </nav>
+        <nav aria-label="Work with me">
+          <p className="eyebrow">Work with me</p>
+          <ul>
+            <li><Link href="/services">Services</Link></li>
+            <li><Link href="/coaching">AI tools coaching</Link></li>
+            <li><Link href="/ai-receptionist">AI receptionist pilots</Link></li>
+            <li><Link href="/shop">Shop</Link></li>
+          </ul>
+        </nav>
+        <nav aria-label="Elsewhere">
+          <p className="eyebrow">Say hello</p>
+          <ul>
+            <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+            <li><Link href="/connect">Contact form</Link></li>
+            <li><a href={site.github}>GitHub</a></li>
+            <li><a href={site.instagram}>Instagram</a></li>
+            {linkedin ? <li><a href={linkedin}>LinkedIn</a></li> : null}
+          </ul>
+        </nav>
       </div>
     </footer>
   );

@@ -1,57 +1,45 @@
-import type { Metadata } from "next";
-import { Instrument_Sans, Syne } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Fraunces, Instrument_Sans } from "next/font/google";
+import { ActionTracker } from "@/components/ActionTracker";
 import { Analytics } from "@/components/Analytics";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { JsonLd } from "@/components/JsonLd";
+import { isPreviewBuild } from "@/lib/content/visibility";
+import { ldScript, personLd, websiteLd } from "@/lib/jsonld";
 import { site } from "@/lib/site";
 import "./globals.css";
+import "./journal.css";
 
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-syne",
-  display: "swap",
-});
+const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces", display: "swap", axes: ["opsz"] });
+const instrument = Instrument_Sans({ subsets: ["latin"], variable: "--font-instrument", display: "swap" });
 
-const instrument = Instrument_Sans({
-  subsets: ["latin"],
-  variable: "--font-instrument",
-  display: "swap",
-});
+export const viewport: Viewport = { themeColor: "#12100d", colorScheme: "dark" };
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: {
-    default: site.title,
-    template: "%s · Maurice Garcia",
-  },
+  title: { default: site.title, template: "%s · Maurice Garcia" },
   description: site.description,
-  openGraph: {
-    title: site.title,
-    description: site.description,
-    url: site.url,
-    siteName: site.name,
-    locale: "en_US",
-    type: "website",
-    images: [{ url: site.photo }],
+  alternates: {
+    canonical: "./",
+    types: { "application/rss+xml": [{ url: "/writing/rss.xml", title: "Maurice Garcia: writing" }, { url: "/updates/rss.xml", title: "Maurice Garcia: updates" }] },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: site.title,
-    description: site.description,
-    images: [site.photo],
-  },
+  openGraph: { title: site.title, description: site.description, siteName: site.name, locale: "en_US", type: "website" },
+  twitter: { card: "summary_large_image", title: site.title, description: site.description },
   icons: { icon: "/favicon.svg" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${syne.variable} ${instrument.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${instrument.variable}`}>
       <body className="min-h-screen antialiased">
+        <a href="#main" className="skip-link">Skip to content</a>
         <Analytics />
-        <JsonLd />
+        <ActionTracker />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldScript(personLd()) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldScript(websiteLd()) }} />
+        {isPreviewBuild() && <div className="j-banner" role="status">Preview build: items marked “Proposed” await Maurice’s approval and are hidden on the live site.</div>}
         <Header />
-        <main>{children}</main>
+        <main id="main" tabIndex={-1}>{children}</main>
         <Footer />
       </body>
     </html>

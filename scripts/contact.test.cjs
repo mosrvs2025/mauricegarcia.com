@@ -36,7 +36,25 @@ const request = (body, origin = 'https://www.mauricegarcia.com') => new Request(
   assert.match(sent.text, /Business: Example Co/);
   providerError = { message: 'Rejected' };
   assert.equal((await POST(request(valid))).status, 502);
+  // New connect-form fields: intent and project carry through; budget stays optional.
+  contact.resetSubmissions();
+  providerError = null;
+  const hello = { name: 'Friend', email: 'friend@example.com', body: 'Played Gridheart, loved it.', intent: 'collaborate', project: 'gridheart' };
+  assert.equal((await POST(request(hello))).status, 200);
+  assert.match(sent.text, /Intent: Collaboration/);
+  assert.match(sent.text, /Project: gridheart \(https:\/\/mauricegarcia.com\/projects\/gridheart\)/);
+  assert.match(sent.text, /Budget: Not provided/);
+  assert.match(sent.subject, /Collaboration/);
+  assert.equal(contact.parseInquiry({ ...hello, intent: 'sell-me-things' }), null);
+  assert.equal(contact.parseInquiry({ ...hello, project: '../../etc' }), null);
+  // Proportionate spam protection: link floods and bursts from one client are refused with honest messages.
+  assert.equal((await POST(request({ ...hello, body: 'http://a.example http://b.example http://c.example http://d.example' }))).status, 400);
+  contact.resetSubmissions();
+  const burst = () => new Request('https://www.mauricegarcia.com/api/contact', { method: 'POST', headers: { origin: 'https://www.mauricegarcia.com', 'x-forwarded-for': '203.0.113.9' }, body: JSON.stringify(hello) });
+  const codes = []; for (let i = 0; i < 7; i++) codes.push((await POST(burst())).status);
+  assert.deepEqual(codes, [200, 200, 200, 200, 200, 429, 429]);
+  contact.resetSubmissions();
   if (oldKey === undefined) delete process.env.RESEND_API_KEY; else process.env.RESEND_API_KEY = oldKey;
-  console.log('Contact checks passed: validation, spam field, origin, missing configuration, recipient, reply-to, brief, and provider failure. No real email sent.');
+  console.log('Contact checks passed: validation, spam field, link flood, rate limit, origin, missing configuration, recipient, reply-to, intent/project context, and provider failure. No real email sent.');
 })().catch(error => { console.error(error); process.exitCode = 1; });
 

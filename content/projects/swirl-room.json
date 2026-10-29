@@ -1,0 +1,44 @@
+{
+  "id": "prj-swirl-room",
+  "slug": "swirl-room",
+  "title": "Swirl Room",
+  "tagline": "An oddly satisfying toy box of fluid, lava, sand and slime that runs in your browser.",
+  "status": "proposed",
+  "visibility": "public",
+  "tier": "featured",
+  "order": 50,
+  "themes": ["curiosity", "creative-tools"],
+  "state": "playable-slice",
+  "stateNote": "Playable now on phone or desktop. The Terrarium world simulator inside it is the deepest part.",
+  "problem": "Sometimes you just want something to push around. Swirl Room is a set of tactile toys where the physics, graphics and sound are all generated live, with no libraries.",
+  "audience": "Anyone with a spare minute and a touchscreen or mouse, and people who like seeing how much can fit in one HTML file.",
+  "contribution": "It is my project. The whole app is one self-contained page, and the repository builds and deploys it to GitHub Pages.",
+  "worksToday": [
+    "Eight toys: fluid, lava, sand, cymatics, slime, domino, swing and pop.",
+    "Multi-touch works on phones, and keys 1 to 8 switch toys on desktop.",
+    "Terrarium is a sand-based world simulator with dozens of materials, save slots and share codes."
+  ],
+  "limitations": [
+    "The fluid toy uses WebGL2, so older devices may struggle.",
+    "I checked that the hosted page loads and renders. I haven't tested every toy on every device."
+  ],
+  "links": { "demo": "https://mosrvs2025.github.io/oddlysatisfying/", "repo": "https://github.com/mosrvs2025/oddlysatisfying", "other": [] },
+  "repoVisibility": "public",
+  "ai": { "assisted": "unknown" },
+  "media": [{ "src": "/projects/swirl-room.webp", "alt": "The Swirl Room fluid toy showing swirls of purple, yellow, blue and green ink on a black background, with a row of toy tabs along the bottom.", "caption": "The fluid toy, with a tab bar for the other seven.", "capturedAt": "2026-10-29" }],
+  "dates": { "lastChange": "2026-10-09", "lastChangeSource": "latest merge", "reviewed": "2026-10-29" },
+  "evidence": [
+    { "label": "Hosted page (loads and renders, checked 2026-10-29)", "url": "https://mosrvs2025.github.io/oddlysatisfying/", "kind": "demo", "verifiedAt": "2026-10-29" },
+    { "label": "Source and README", "url": "https://github.com/mosrvs2025/oddlysatisfying", "kind": "source", "verifiedAt": "2026-10-29" }
+  ],
+  "sourceId": "src-swirl-room",
+  "involve": {
+    "headline": "Found a toy that feels wrong?",
+    "asks": [
+      "Tell me which toy you'd keep and which you'd drop.",
+      "If you have an idea for a ninth toy, I'd like to hear it."
+    ],
+    "intent": "hello"
+  },
+  "formerSlugs": []
+}

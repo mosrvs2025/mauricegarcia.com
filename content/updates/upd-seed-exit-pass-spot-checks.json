@@ -1,0 +1,17 @@
+{
+  "id": "upd-seed-exit-pass-spot-checks",
+  "slug": "exit-pass-explaining-spot-checks",
+  "title": "Exit Pass: explaining spot checks to shoppers",
+  "summary": "Exit Pass now tells shoppers why a random spot check happened, and gives register lanes an actionable hint when their sync is out of date.",
+  "whyCare": "A check feels fair when you know the reason for it. That is the whole bet behind verifying a few items instead of the whole cart.",
+  "limitations": "Everything runs on simulated store systems. This is not connected to a real store.",
+  "kind": "progress",
+  "projectId": "prj-exit-pass",
+  "status": "proposed",
+  "visibility": "public",
+  "eventAt": "2026-10-02T00:24:13Z",
+  "publishedAt": "2026-10-29T12:00:00Z",
+  "tags": ["retail"],
+  "evidence": [{ "label": "The commit", "url": "https://github.com/mosrvs2025/checkout/commit/b6ff75a6f03506ddd8f1f588c66dbdd821b72247", "kind": "source" }],
+  "provenance": { "origin": "agent", "eventId": "seed:exit-pass-spot-checks", "importedAt": "2026-10-29T12:00:00Z" }
+}
