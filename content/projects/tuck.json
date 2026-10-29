@@ -1,0 +1,66 @@
+{
+  "id": "prj-tuck",
+  "slug": "tuck",
+  "title": "Tuck",
+  "tagline": "A bill-pay prototype that gives every bill its own pocket of money.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 190,
+  "themes": [
+    "practical"
+  ],
+  "state": "prototype",
+  "stateNote": "A browser-only demo with play money. It is not a bank.",
+  "problem": "Bills come out of one balance, so it's easy to spend money that was meant for rent or a subscription. Tuck reserves money per merchant ahead of time.",
+  "audience": "People who juggle recurring bills.",
+  "contribution": "It is my project, built with plain JavaScript modules. The source is private.",
+  "worksToday": [
+    "Make pockets for a merchant, amount and schedule, per the README.",
+    "Move play money in and out, and freeze demo cards.",
+    "A payment lab shows matching, declines and frozen-card behavior."
+  ],
+  "limitations": [
+    "It is not a bank account or payment service; everything is simulated.",
+    "Data stays in one browser.",
+    "Tuck is a working name only."
+  ],
+  "links": {
+    "demo": "https://tuck-finance-demo.vercel.app",
+    "other": []
+  },
+  "repoVisibility": "private",
+  "privateSummaryApproved": true,
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [
+    {
+      "src": "/projects/tuck.webp",
+      "alt": "The Tuck overview: 'Big plans. Small pockets.' with demo balances split between tucked away and free to spend.",
+      "caption": "The home screen of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-10-17",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://tuck-finance-demo.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Bills stress you out?",
+    "asks": [
+      "Try the demo and tell me what's confusing."
+    ],
+    "intent": "hello"
+  },
+  "formerSlugs": []
+}

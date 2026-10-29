@@ -5,8 +5,8 @@
   "tagline": "A pixel-art action roguelite where your health is a shape, and every weapon carves a different pattern out of it.",
   "status": "published",
   "visibility": "public",
-  "tier": "featured",
-  "order": 30,
+  "tier": "archive",
+  "order": 220,
   "themes": [
     "games"
   ],

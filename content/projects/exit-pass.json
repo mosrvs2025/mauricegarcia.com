@@ -6,7 +6,7 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 125,
+  "order": 150,
   "themes": [
     "retail",
     "practical"
@@ -24,24 +24,38 @@
   "limitations": [
     "Point of sale, payments, cart sensors and store traffic are all simulated.",
     "The README's security notes say what a production version would still need.",
-    "I haven't found a hosted demo. You run it locally with npm."
+    "A hosted copy runs on my Vercel. Everything in it is still simulated."
   ],
   "links": {
     "repo": "https://github.com/mosrvs2025/checkout",
-    "other": []
+    "other": [],
+    "demo": "https://checkout-eight-self.vercel.app"
   },
   "repoVisibility": "public",
   "ai": {
     "assisted": "yes",
     "note": "Commit trailers show Claude as a co-author."
   },
-  "media": [],
+  "media": [
+    {
+      "src": "/projects/exit-pass.webp",
+      "alt": "The Exit Pass start screen: 'Checkout happens while you shop.'",
+      "caption": "The start screen of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
   "dates": {
     "lastChange": "2026-10-02",
     "lastChangeSource": "latest commit",
     "reviewed": "2026-10-29"
   },
   "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://checkout-eight-self.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
     {
       "label": "README, security notes and source",
       "url": "https://github.com/mosrvs2025/checkout",

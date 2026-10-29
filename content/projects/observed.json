@@ -6,12 +6,12 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 120,
+  "order": 200,
   "themes": [
     "curiosity"
   ],
   "state": "prototype",
-  "stateNote": "Runs locally. The seeded demo campaign is clearly labelled as simulated.",
+  "stateNote": "Runs locally with npm. A hosted copy exists, but its server isn't running there (its data calls return 404), so it shows an error. That is why there is no live link.",
   "problem": "People argue about basics like the shape of the Earth from their sofas. OBSERVED asks them to lock a prediction, measure a shadow or a sunset, and see every model scored against open data.",
   "audience": "Curious people, teachers and skeptics who prefer evidence they can recompute themselves.",
   "contribution": "It is my project. The README describes a signed, hash-chained record of observations, and the evidence page recomputes statistics in your browser.",
@@ -20,7 +20,8 @@
     "The README lists tests for the physics and for tamper and forgery checks."
   ],
   "limitations": [
-    "I haven't run the tests or the app. This summary comes from the README.",
+    "The hosted copy at observed-neon.vercel.app loads its shell but its API returns 404, so it doesn't work for visitors yet (checked 2026-10-29).",
+    "I haven't run the tests or the app locally. This summary comes from the README.",
     "The README's own 'Honest limits' section notes the system can't prove a shadow was real."
   ],
   "links": {

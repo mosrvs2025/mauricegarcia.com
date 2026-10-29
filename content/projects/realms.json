@@ -6,12 +6,12 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 250,
+  "order": 145,
   "themes": [
     "games"
   ],
   "state": "prototype",
-  "stateNote": "Run locally, or build it as a single self-contained HTML file. I haven't found a hosted copy.",
+  "stateNote": "A hosted build runs on my Vercel. You can also run it locally or build it as a single HTML file.",
   "problem": "No plugins and no binary assets: the terrain, sky, water, characters, music and sound are all made at load.",
   "audience": "Action RPG fans and procedural-generation tinkerers.",
   "contribution": "It is my project. The repository is named 'aetherwake'.",
@@ -19,24 +19,37 @@
     "The README describes a Warden with a wolf companion crossing a valley to a silent Keep."
   ],
   "limitations": [
-    "I haven't run it.",
-    "No hosted copy to link."
+    "I haven't run it."
   ],
   "links": {
     "repo": "https://github.com/mosrvs2025/aetherwake",
-    "other": []
+    "other": [],
+    "demo": "https://realms-skyfall.vercel.app"
   },
   "repoVisibility": "public",
   "ai": {
     "assisted": "unknown"
   },
-  "media": [],
+  "media": [
+    {
+      "src": "/projects/realms.webp",
+      "alt": "The REALMS title screen over a misty 3D valley.",
+      "caption": "The start screen of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
   "dates": {
     "lastChange": "2026-09-06",
     "lastChangeSource": "latest commit",
     "reviewed": "2026-10-29"
   },
   "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://realms-skyfall.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
     {
       "label": "README and source",
       "url": "https://github.com/mosrvs2025/aetherwake",

@@ -6,12 +6,12 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 260,
+  "order": 180,
   "themes": [
     "games"
   ],
   "state": "prototype",
-  "stateNote": "Described in the README. I haven't found a hosted copy of this one.",
+  "stateNote": "A hosted copy runs on my Vercel. I haven't played it through.",
   "problem": "Humans freak out when a chair scoots, so you hold SPACE to freeze as innocent furniture, then sneak, sabotage rival furniture and evolve across five chairs.",
   "audience": "Anyone who likes silly stealth games.",
   "contribution": "It is my project, built with WebGL and Three.js. The repository is named 'chairgame'.",
@@ -19,24 +19,37 @@
     "The README describes red-light-green-light stealth, sabotage and five chair chassis."
   ],
   "limitations": [
-    "I haven't played it.",
-    "A similarly named site on Vercel is someone else's, so none is linked."
+    "I haven't played it."
   ],
   "links": {
     "repo": "https://github.com/mosrvs2025/chairgame",
-    "other": []
+    "other": [],
+    "demo": "https://chairgame-ten.vercel.app"
   },
   "repoVisibility": "public",
   "ai": {
     "assisted": "unknown"
   },
-  "media": [],
+  "media": [
+    {
+      "src": "/projects/sit-on-me.webp",
+      "alt": "The Sit On Me campaign operation picker with mission cards.",
+      "caption": "The start screen of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
   "dates": {
     "lastChange": "2026-10-18",
     "lastChangeSource": "latest commit",
     "reviewed": "2026-10-29"
   },
   "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://chairgame-ten.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
     {
       "label": "README and source",
       "url": "https://github.com/mosrvs2025/chairgame",

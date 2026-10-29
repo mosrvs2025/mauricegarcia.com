@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { CountUp } from "@/components/CountUp";
-import { ProjectLead, ProjectRow, Proposed, UpdateItem } from "@/components/ProjectParts";
+import { FeaturedGrid } from "@/components/FeaturedGrid";
+import { Proposed, UpdateItem } from "@/components/ProjectParts";
+import { toCard } from "@/lib/content/cards";
 import { Reveal } from "@/components/Reveal";
 import { SurpriseMe } from "@/components/SurpriseMe";
 import { Ticker } from "@/components/Ticker";
@@ -16,8 +18,6 @@ const HeroField = dynamic(() => import("@/components/HeroField").then((m) => m.H
 export default function HomePage() {
   const all = listedProjects();
   const featured = featuredProjects();
-  const lead = featured.find((p) => p.media[0]) ?? featured[0];
-  const rest = featured.filter((p) => p !== lead);
   const now = shownNow();
   const updates = listedUpdates().slice(0, 3);
   const posts = listedPosts().slice(0, 2);
@@ -79,8 +79,7 @@ export default function HomePage() {
           <div><p className="eyebrow">Selected projects</p><h2 className="display" id="projects-h">Things you can try, read about, or help with</h2></div>
           <Link href="/projects" className="j-link j-arrow">All {all.length} projects</Link>
         </div></Reveal>
-        {lead && <Reveal><ProjectLead project={lead} /></Reveal>}
-        {rest.length > 0 && <ul className="j-rows">{rest.map((p, i) => <Reveal as="li" key={p.id} delay={i * 70} className="j-row-wrap"><ProjectRow project={p} bare /></Reveal>)}</ul>}
+        <FeaturedGrid projects={featured.map(toCard)} headingId="projects-h" />
         <Reveal><p style={{ marginTop: 34 }}><Link href="/projects" className="btn btn-ghost j-shine">Browse all {all.length}, filter by what you like</Link></p></Reveal>
       </section>
 

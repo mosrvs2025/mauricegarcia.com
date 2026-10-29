@@ -6,12 +6,12 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 200,
+  "order": 215,
   "themes": [
     "games"
   ],
   "state": "prototype",
-  "stateNote": "Described in the README. I haven't found a hosted copy that I can verify is yours.",
+  "stateNote": "A hosted copy runs on my Vercel. I haven't played a full game on it.",
   "problem": "Party word games get stuck on one phone. Here every player has a phone, and the other team can slam BUZZ if the describer says the word.",
   "audience": "Groups of four or more with a TV or laptop.",
   "contribution": "It is my project, built as an installable PWA with room codes.",
@@ -19,25 +19,38 @@
     "Host, join by code on a phone, and show the display on a TV browser, per the README."
   ],
   "limitations": [
-    "I haven't played it.",
-    "No verified hosted copy to link."
+    "I haven't played it."
   ],
   "links": {
     "repo": "https://github.com/mosrvs2025/buzzwords",
-    "other": []
+    "other": [],
+    "demo": "https://buzzwords-nine.vercel.app"
   },
   "repoVisibility": "public",
   "ai": {
     "assisted": "yes",
     "note": "Commit trailers show Claude as a co-author."
   },
-  "media": [],
+  "media": [
+    {
+      "src": "/projects/buzzwords.webp",
+      "alt": "The Buzzwords start screen with a room code field and how-to-play steps.",
+      "caption": "The start screen of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
   "dates": {
     "lastChange": "2026-10-03",
     "lastChangeSource": "latest commit",
     "reviewed": "2026-10-29"
   },
   "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://buzzwords-nine.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
     {
       "label": "README and source",
       "url": "https://github.com/mosrvs2025/buzzwords",

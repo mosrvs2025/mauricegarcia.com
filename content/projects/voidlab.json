@@ -1,0 +1,64 @@
+{
+  "id": "prj-voidlab",
+  "slug": "voidlab",
+  "title": "VOIDLAB",
+  "tagline": "A cosmic sandbox: paint matter, bend gravity and see what happens.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 205,
+  "themes": [
+    "curiosity",
+    "games"
+  ],
+  "state": "playable-slice",
+  "stateNote": "Runs in the browser. You can save and share a universe.",
+  "problem": "Gravity and star formation are easier to feel than to read about. VOIDLAB lets you paint elements into empty space and watch them collapse, orbit and ignite.",
+  "audience": "Anyone curious about space who likes sandboxes.",
+  "contribution": "It is my project. I haven't linked a public repository for it.",
+  "worksToday": [
+    "Paint elements such as hydrogen, iron and dark matter into space.",
+    "Orbit assist, pause-to-build and a field guide of 25 entries, as shown on the site."
+  ],
+  "limitations": [
+    "It is a toy model, not a physics simulation.",
+    "I've checked that it loads and runs, not every feature."
+  ],
+  "links": {
+    "demo": "https://voidlab-tawny.vercel.app",
+    "other": []
+  },
+  "repoVisibility": "none",
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [
+    {
+      "src": "/projects/voidlab.webp",
+      "alt": "The VOIDLAB sandbox: an elements palette on the left and an empty universe waiting for hydrogen.",
+      "caption": "The home screen of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-09-23",
+    "lastChangeSource": "latest Vercel deployment",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://voidlab-tawny.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Made something cool?",
+    "asks": [
+      "Share a universe you built with me."
+    ],
+    "intent": "hello"
+  },
+  "formerSlugs": []
+}

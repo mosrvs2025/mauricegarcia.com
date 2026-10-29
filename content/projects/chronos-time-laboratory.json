@@ -1,0 +1,64 @@
+{
+  "id": "prj-chronos-time-laboratory",
+  "slug": "chronos-time-laboratory",
+  "title": "Chronos Time Laboratory",
+  "tagline": "Ten real physics experiments about time: make a guess, move a slider, see what happens.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 155,
+  "themes": [
+    "curiosity"
+  ],
+  "state": "playable-slice",
+  "stateNote": "Runs in the browser. Illustrations are labelled as not to scale.",
+  "problem": "Time dilation and other strange facts about time are hard to picture from equations. Each experiment asks for a guess first, then lets you try it.",
+  "audience": "Curious people with no physics background.",
+  "contribution": "It is my project. I haven't linked a public repository for it.",
+  "worksToday": [
+    "Ten experiments, starting with the 1977 muon lifetime result, as shown on the site.",
+    "Each one follows guess, try it, then explain."
+  ],
+  "limitations": [
+    "I've checked that the first experiment loads, not all ten.",
+    "The visuals are illustrations, not simulations to scale."
+  ],
+  "links": {
+    "demo": "https://chronos-time-laboratory.vercel.app",
+    "other": []
+  },
+  "repoVisibility": "none",
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [
+    {
+      "src": "/projects/chronos-time-laboratory.webp",
+      "alt": "The Chronos Time Laboratory home page: 'Time is weird. Let's play with it.'",
+      "caption": "The home screen of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-10-24",
+    "lastChangeSource": "latest Vercel deployment",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://chronos-time-laboratory.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Like weird physics?",
+    "asks": [
+      "Tell me which experiment surprised you.",
+      "Know a teacher who might use it? Pass it on."
+    ],
+    "intent": "hello"
+  },
+  "formerSlugs": []
+}
