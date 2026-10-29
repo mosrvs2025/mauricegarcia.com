@@ -1,13 +1,17 @@
 ---
 id: post-how-this-site-stays-current
 slug: how-this-site-stays-current
-title: How this site stays current, and what it will never do
-description: Where updates come from, what is published automatically, and what always waits for me.
-status: proposed
+title: 'How this site stays current, and what it will never do'
+description: >-
+  Where updates come from, what is published automatically, and what always
+  waits for me.
+status: published
 visibility: public
 kind: reflection
-publishedAt: "2026-10-29T12:00:00Z"
-tags: [site, process]
+publishedAt: '2026-10-29T12:00:00Z'
+tags:
+  - site
+  - process
 projectIds: []
 provenance:
   origin: manual

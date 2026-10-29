@@ -1,19 +1,41 @@
 {
   "id": "now",
-  "status": "proposed",
+  "status": "published",
   "visibility": "public",
-  "focus": "Giving this site a home for my projects and for short notes on how they're going, and getting a few of them, like Gridheart, Swirl Room and Reality Research, in front of people who will tell me what's wrong with them.",
+  "focus": "Keeping Ultimate, my offline Android toolkit, moving, and giving this site a home for my projects and for short notes on how they're going, so people can try them and tell me what's wrong.",
   "building": [
-    { "text": "Keeping the playable projects working in the browser and writing down what changed.", "projectId": "prj-gridheart" },
-    { "text": "Practical software for trade shops, building on the Pipeline CRM work.", "projectId": "prj-pipeline-crm" }
+    {
+      "text": "Ultimate, an offline Android toolkit that keeps growing.",
+      "projectId": "prj-ultimate"
+    },
+    {
+      "text": "Keeping the playable projects working in the browser and writing down what changed.",
+      "projectId": "prj-gridheart"
+    },
+    {
+      "text": "Practical software for trade shops, building on the Pipeline CRM work.",
+      "projectId": "prj-pipeline-crm"
+    }
   ],
   "exploring": [],
   "welcome": [
-    { "text": "People who want to play something I made and tell me where it breaks.", "intent": "collaborate" },
-    { "text": "Trade shops and small businesses that need a website or a custom tool.", "intent": "paid-work" },
-    { "text": "Anyone learning to build with AI tools who wants a working session on their own idea.", "intent": "coaching" },
-    { "text": "A quick hello. No agenda needed.", "intent": "hello" }
+    {
+      "text": "People who want to play something I made and tell me where it breaks.",
+      "intent": "collaborate"
+    },
+    {
+      "text": "Trade shops and small businesses that need a website or a custom tool.",
+      "intent": "paid-work"
+    },
+    {
+      "text": "Anyone learning to build with AI tools who wants a working session on their own idea.",
+      "intent": "coaching"
+    },
+    {
+      "text": "A quick hello. No agenda needed.",
+      "intent": "hello"
+    }
   ],
   "reviewedAt": "2026-10-29",
-  "reviewedBy": "pending"
+  "reviewedBy": "owner"
 }

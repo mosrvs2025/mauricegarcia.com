@@ -7,11 +7,26 @@
   "limitations": "I checked that the hosted build loads. I haven't re-tested the new controls in every room.",
   "kind": "progress",
   "projectId": "prj-gridheart",
-  "status": "proposed",
+  "status": "published",
   "visibility": "public",
   "eventAt": "2026-09-21T21:09:03Z",
   "publishedAt": "2026-10-29T12:00:00Z",
-  "tags": ["games", "controls"],
-  "evidence": [{ "label": "The commit", "url": "https://github.com/mosrvs2025/gridheart/commit/24800e510fac2ad7bde550d20077e0cb9b042d76", "kind": "source" }],
-  "provenance": { "origin": "agent", "eventId": "seed:gridheart-keyboard-aim", "importedAt": "2026-10-29T12:00:00Z" }
+  "tags": [
+    "games",
+    "controls"
+  ],
+  "evidence": [
+    {
+      "label": "The commit",
+      "url": "https://github.com/mosrvs2025/gridheart/commit/24800e510fac2ad7bde550d20077e0cb9b042d76",
+      "kind": "source"
+    }
+  ],
+  "provenance": {
+    "origin": "agent",
+    "eventId": "seed:gridheart-keyboard-aim",
+    "importedAt": "2026-10-29T12:00:00Z",
+    "editedByOwner": true,
+    "reviewedAt": "2026-10-29T08:13:44.382Z"
+  }
 }

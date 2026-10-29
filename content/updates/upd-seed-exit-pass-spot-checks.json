@@ -7,11 +7,25 @@
   "limitations": "Everything runs on simulated store systems. This is not connected to a real store.",
   "kind": "progress",
   "projectId": "prj-exit-pass",
-  "status": "proposed",
+  "status": "published",
   "visibility": "public",
   "eventAt": "2026-10-02T00:24:13Z",
   "publishedAt": "2026-10-29T12:00:00Z",
-  "tags": ["retail"],
-  "evidence": [{ "label": "The commit", "url": "https://github.com/mosrvs2025/checkout/commit/b6ff75a6f03506ddd8f1f588c66dbdd821b72247", "kind": "source" }],
-  "provenance": { "origin": "agent", "eventId": "seed:exit-pass-spot-checks", "importedAt": "2026-10-29T12:00:00Z" }
+  "tags": [
+    "retail"
+  ],
+  "evidence": [
+    {
+      "label": "The commit",
+      "url": "https://github.com/mosrvs2025/checkout/commit/b6ff75a6f03506ddd8f1f588c66dbdd821b72247",
+      "kind": "source"
+    }
+  ],
+  "provenance": {
+    "origin": "agent",
+    "eventId": "seed:exit-pass-spot-checks",
+    "importedAt": "2026-10-29T12:00:00Z",
+    "editedByOwner": true,
+    "reviewedAt": "2026-10-29T08:13:44.382Z"
+  }
 }

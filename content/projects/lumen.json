@@ -3,11 +3,13 @@
   "slug": "lumen",
   "title": "Lumen",
   "tagline": "An infinite canvas that reads what you sketched and offers the next move beside it.",
-  "status": "proposed",
+  "status": "published",
   "visibility": "public",
   "tier": "featured",
   "order": 20,
-  "themes": ["creative-tools"],
+  "themes": [
+    "creative-tools"
+  ],
   "state": "prototype",
   "stateNote": "Runs locally. It works without an API key, and Claude can be added for generation. I haven't found a hosted demo.",
   "problem": "Whiteboards leave the structuring to you, and chat sidebars pull attention away from the canvas. Lumen puts a small set of suggestions right at the thing you selected, so rough notes can become structure and structure can become something that runs.",
@@ -24,14 +26,39 @@
     "Real-time collaboration across devices needs a small relay you run yourself.",
     "There is no hosted demo yet, so you run it locally with npm."
   ],
-  "links": { "repo": "https://github.com/mosrvs2025/excalidraw", "other": [{ "label": "Excalidraw (upstream, MIT)", "url": "https://github.com/excalidraw/excalidraw" }] },
+  "links": {
+    "repo": "https://github.com/mosrvs2025/excalidraw",
+    "other": [
+      {
+        "label": "Excalidraw (upstream, MIT)",
+        "url": "https://github.com/excalidraw/excalidraw"
+      }
+    ]
+  },
   "repoVisibility": "public",
-  "upstream": { "name": "Excalidraw", "url": "https://github.com/excalidraw/excalidraw", "license": "MIT", "note": "Lumen uses the Excalidraw editor component. The repository is a fork-based workspace, and its default branch is not main." },
-  "ai": { "assisted": "yes", "note": "Commit trailers show Claude as a co-author." },
+  "upstream": {
+    "name": "Excalidraw",
+    "url": "https://github.com/excalidraw/excalidraw",
+    "license": "MIT",
+    "note": "Lumen uses the Excalidraw editor component. The repository is a fork-based workspace, and its default branch is not main."
+  },
+  "ai": {
+    "assisted": "yes",
+    "note": "Commit trailers show Claude as a co-author."
+  },
   "media": [],
-  "dates": { "lastChange": "2026-10-11", "lastChangeSource": "repository last push", "reviewed": "2026-10-29" },
+  "dates": {
+    "lastChange": "2026-10-11",
+    "lastChangeSource": "repository last push",
+    "reviewed": "2026-10-29"
+  },
   "evidence": [
-    { "label": "README and source", "url": "https://github.com/mosrvs2025/excalidraw", "kind": "source", "verifiedAt": "2026-10-29" }
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/excalidraw",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
   ],
   "sourceId": "src-lumen",
   "involve": {

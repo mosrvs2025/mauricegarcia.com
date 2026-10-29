@@ -3,11 +3,14 @@
   "slug": "swirl-room",
   "title": "Swirl Room",
   "tagline": "An oddly satisfying toy box of fluid, lava, sand and slime that runs in your browser.",
-  "status": "proposed",
+  "status": "published",
   "visibility": "public",
   "tier": "featured",
   "order": 50,
-  "themes": ["curiosity", "creative-tools"],
+  "themes": [
+    "curiosity",
+    "creative-tools"
+  ],
   "state": "playable-slice",
   "stateNote": "Playable now on phone or desktop. The Terrarium world simulator inside it is the deepest part.",
   "problem": "Sometimes you just want something to push around. Swirl Room is a set of tactile toys where the physics, graphics and sound are all generated live, with no libraries.",
@@ -22,14 +25,41 @@
     "The fluid toy uses WebGL2, so older devices may struggle.",
     "I checked that the hosted page loads and renders. I haven't tested every toy on every device."
   ],
-  "links": { "demo": "https://mosrvs2025.github.io/oddlysatisfying/", "repo": "https://github.com/mosrvs2025/oddlysatisfying", "other": [] },
+  "links": {
+    "demo": "https://mosrvs2025.github.io/oddlysatisfying/",
+    "repo": "https://github.com/mosrvs2025/oddlysatisfying",
+    "other": []
+  },
   "repoVisibility": "public",
-  "ai": { "assisted": "unknown" },
-  "media": [{ "src": "/projects/swirl-room.webp", "alt": "The Swirl Room fluid toy showing swirls of purple, yellow, blue and green ink on a black background, with a row of toy tabs along the bottom.", "caption": "The fluid toy, with a tab bar for the other seven.", "capturedAt": "2026-10-29" }],
-  "dates": { "lastChange": "2026-10-09", "lastChangeSource": "latest merge", "reviewed": "2026-10-29" },
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [
+    {
+      "src": "/projects/swirl-room.webp",
+      "alt": "The Swirl Room fluid toy showing swirls of purple, yellow, blue and green ink on a black background, with a row of toy tabs along the bottom.",
+      "caption": "The fluid toy, with a tab bar for the other seven.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-10-09",
+    "lastChangeSource": "latest merge",
+    "reviewed": "2026-10-29"
+  },
   "evidence": [
-    { "label": "Hosted page (loads and renders, checked 2026-10-29)", "url": "https://mosrvs2025.github.io/oddlysatisfying/", "kind": "demo", "verifiedAt": "2026-10-29" },
-    { "label": "Source and README", "url": "https://github.com/mosrvs2025/oddlysatisfying", "kind": "source", "verifiedAt": "2026-10-29" }
+    {
+      "label": "Hosted page (loads and renders, checked 2026-10-29)",
+      "url": "https://mosrvs2025.github.io/oddlysatisfying/",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
+    {
+      "label": "Source and README",
+      "url": "https://github.com/mosrvs2025/oddlysatisfying",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
   ],
   "sourceId": "src-swirl-room",
   "involve": {

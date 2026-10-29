@@ -6,11 +6,23 @@
   "whyCare": "If you follow along, you'll get dated notes about real progress, with the limits stated, and an easy way to say hello or ask about paid work.",
   "limitations": "Draft pages are written to be reviewed before they go live. Nothing here is posted automatically without a check.",
   "kind": "note",
-  "status": "proposed",
+  "status": "published",
   "visibility": "public",
   "eventAt": "2026-10-29",
   "publishedAt": "2026-10-29T12:00:00Z",
-  "tags": ["site"],
-  "evidence": [{ "label": "The site's source", "url": "https://github.com/mosrvs2025/mauricegarcia.com", "kind": "source" }],
-  "provenance": { "origin": "manual" }
+  "tags": [
+    "site"
+  ],
+  "evidence": [
+    {
+      "label": "The site's source",
+      "url": "https://github.com/mosrvs2025/mauricegarcia.com",
+      "kind": "source"
+    }
+  ],
+  "provenance": {
+    "origin": "manual",
+    "editedByOwner": true,
+    "reviewedAt": "2026-10-29T08:13:44.382Z"
+  }
 }

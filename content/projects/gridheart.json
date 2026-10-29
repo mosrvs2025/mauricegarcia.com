@@ -3,11 +3,13 @@
   "slug": "gridheart",
   "title": "Gridheart",
   "tagline": "A pixel-art action roguelite where your health is a shape, and every weapon carves a different pattern out of it.",
-  "status": "proposed",
+  "status": "published",
   "visibility": "public",
   "tier": "featured",
   "order": 30,
-  "themes": ["games"],
+  "themes": [
+    "games"
+  ],
   "state": "playable-slice",
   "stateNote": "A browser build you can play now. Expect a slice of the game, not a finished one.",
   "problem": "Health bars are a number. In Gridheart every character has a grid of health cells, and a weapon's shape is placed on that grid in the direction of the blow, so where you stand changes how much damage lands.",
@@ -22,14 +24,42 @@
     "It is a slice of a game. Content and balance are still changing.",
     "I checked that the hosted build loads, not every room or weapon."
   ],
-  "links": { "demo": "https://mosrvs2025.github.io/gridheart/", "repo": "https://github.com/mosrvs2025/gridheart", "other": [] },
+  "links": {
+    "demo": "https://mosrvs2025.github.io/gridheart/",
+    "repo": "https://github.com/mosrvs2025/gridheart",
+    "other": []
+  },
   "repoVisibility": "public",
-  "ai": { "assisted": "yes", "note": "Commit trailers show Claude as a co-author." },
-  "media": [{ "src": "/projects/gridheart.webp", "alt": "A pixel-art dungeon room where a player swings a sword at two goblins and an armored knight, with a grid of yellow health cells in the top left.", "caption": "The health grid sits in the top-left corner.", "capturedAt": "2026-10-29" }],
-  "dates": { "lastChange": "2026-09-21", "lastChangeSource": "latest commit", "reviewed": "2026-10-29" },
+  "ai": {
+    "assisted": "yes",
+    "note": "Commit trailers show Claude as a co-author."
+  },
+  "media": [
+    {
+      "src": "/projects/gridheart.webp",
+      "alt": "A pixel-art dungeon room where a player swings a sword at two goblins and an armored knight, with a grid of yellow health cells in the top left.",
+      "caption": "The health grid sits in the top-left corner.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-09-21",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
   "evidence": [
-    { "label": "Hosted build (loads, checked 2026-10-29)", "url": "https://mosrvs2025.github.io/gridheart/", "kind": "demo", "verifiedAt": "2026-10-29" },
-    { "label": "Source and README", "url": "https://github.com/mosrvs2025/gridheart", "kind": "source", "verifiedAt": "2026-10-29" }
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://mosrvs2025.github.io/gridheart/",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
+    {
+      "label": "Source and README",
+      "url": "https://github.com/mosrvs2025/gridheart",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
   ],
   "sourceId": "src-gridheart",
   "involve": {

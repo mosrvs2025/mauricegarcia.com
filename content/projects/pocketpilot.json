@@ -3,7 +3,7 @@
   "slug": "pocketpilot",
   "title": "PocketPilot",
   "tagline": "An experimental privacy-first Android media assistant that routes plain-English requests to safe actions.",
-  "status": "proposed",
+  "status": "published",
   "visibility": "public",
   "tier": "archive",
   "order": 230,

@@ -3,11 +3,14 @@
   "slug": "exit-pass",
   "title": "Exit Pass",
   "tagline": "What if grocery checkout were finished before you got to the front of the store?",
-  "status": "proposed",
+  "status": "published",
   "visibility": "public",
-  "tier": "featured",
-  "order": 60,
-  "themes": ["retail", "practical"],
+  "tier": "archive",
+  "order": 125,
+  "themes": [
+    "retail",
+    "practical"
+  ],
   "state": "simulation",
   "stateNote": "A working prototype that runs entirely on simulated store systems. It is not connected to any store.",
   "problem": "Scan-and-go apps still end at a register where someone audits the cart. Exit Pass explores targeted verification: you pay as you shop, and the exit check only looks at the one to three things that matter, so most trips skip it.",
@@ -23,13 +26,28 @@
     "The README's security notes say what a production version would still need.",
     "I haven't found a hosted demo. You run it locally with npm."
   ],
-  "links": { "repo": "https://github.com/mosrvs2025/checkout", "other": [] },
+  "links": {
+    "repo": "https://github.com/mosrvs2025/checkout",
+    "other": []
+  },
   "repoVisibility": "public",
-  "ai": { "assisted": "yes", "note": "Commit trailers show Claude as a co-author." },
+  "ai": {
+    "assisted": "yes",
+    "note": "Commit trailers show Claude as a co-author."
+  },
   "media": [],
-  "dates": { "lastChange": "2026-10-02", "lastChangeSource": "latest commit", "reviewed": "2026-10-29" },
+  "dates": {
+    "lastChange": "2026-10-02",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
   "evidence": [
-    { "label": "README, security notes and source", "url": "https://github.com/mosrvs2025/checkout", "kind": "source", "verifiedAt": "2026-10-29" }
+    {
+      "label": "README, security notes and source",
+      "url": "https://github.com/mosrvs2025/checkout",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
   ],
   "sourceId": "src-exit-pass",
   "involve": {
