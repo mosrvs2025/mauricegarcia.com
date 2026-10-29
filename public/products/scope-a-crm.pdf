@@ -3,411 +3,85 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [ 5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R ] /Count 6 >>
+<< /Type /Pages /Kids [ 3 0 R 4 0 R 5 0 R 6 0 R 7 0 R 8 0 R ] /Count 6 >>
 endobj
 3 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 9 0 R /Resources << /Font << /F1 15 0 R >> >> >>
 endobj
 4 0 obj
-<< /Length 1352 >>
-stream
-BT
-/F1 11 Tf
-14 TL
-1 0 0 1 54 738 Tm
-(Maurice Garcia | How to scope a CRM for a trade shop) Tj
-T*
-/F1 9 Tf
-(mauricegarcia.com  page 1 / 6) Tj
-T*
-T*
-/F1 18 Tf
-(How to scope a CRM for a trade shop) Tj
-T*
-/F1 11 Tf
-(A buyers guide) Tj
-T*
-T*
-/F1 11 Tf
-(A buyers guide for trade-shop owners.) Tj
-T*
-(How to scope a CRM when the customer is a job site.) Tj
-T*
-( ) Tj
-T*
-T*
-/F1 13 Tf
-(What a CRM means here) Tj
-T*
-/F1 11 Tf
-(For a painter or general contractor, a CRM is not a funnel of marketing leads. It is) Tj
-T*
-(the book of work: who asked for a bid, what you promised, what you collected, and) Tj
-T*
-(whether the crew is on the wall. If a vendor demo starts with drip campaigns, you) Tj
-T*
-(are in the wrong aisle.) Tj
-T*
-( ) Tj
-T*
-T*
-/F1 13 Tf
-(Start with objects, not modules) Tj
-T*
-/F1 11 Tf
-(Write the nouns on a legal pad: people \(owner, office, estimator, foreman\),) Tj
-T*
-(customer, lead, estimate, job, invoice, payment, message or photo.) Tj
-T*
-(Every feature request must attach to a noun. Reporting is not a noun until you name) Tj
-T*
-(the decision it changes, such as which deposits are late this week.) Tj
-T*
-( ) Tj
-T*
-T*
-/F1 13 Tf
-(Questions that prevent a bad purchase) Tj
-T*
-/F1 11 Tf
-(Where does a new call get entered today, and how long does it take?) Tj
-T*
-(Who is allowed to change a price after the customer said yes?) Tj
-T*
-ET
-endstream
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 10 0 R /Resources << /Font << /F1 15 0 R >> >> >>
 endobj
 5 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 11 0 R /Resources << /Font << /F1 15 0 R >> >> >>
 endobj
 6 0 obj
-<< /Length 1316 >>
-stream
-BT
-/F1 11 Tf
-14 TL
-1 0 0 1 54 738 Tm
-(Maurice Garcia | How to scope a CRM for a trade shop) Tj
-T*
-/F1 9 Tf
-(mauricegarcia.com  page 2 / 6) Tj
-T*
-T*
-/F1 11 Tf
-(When is a deposit required, and what happens if it is missing?) Tj
-T*
-(How do change orders get written: text, verbal, extra line on the invoice?) Tj
-T*
-(What must a foreman see on a phone in the sun?) Tj
-T*
-(What happens when two people edit the same job?) Tj
-T*
-(Who owns the data if you cancel \(export format, not a promise\)?) Tj
-T*
-(Can you add a field without a professional-services team?) Tj
-T*
-(If a salesperson cannot answer the phone and export questions in plain language,) Tj
-T*
-(keep walking.) Tj
-T*
-( ) Tj
-T*
-T*
-/F1 13 Tf
-(Build versus buy) Tj
-T*
-/F1 11 Tf
-(Buy a generic CRM when your process is truly sales-shaped: pipeline stages, one) Tj
-T*
-(closer, little field work. Build or tightly adapt when estimates, deposits, and jobs) Tj
-T*
-(are the product. Invoice tools cover billing. Project tools cover tasks. Shops bleed) Tj
-T*
-(in the seams between those two.) Tj
-T*
-(A custom ops app is expensive compared with a monthly seat. It is cheap compared) Tj
-T*
-(with a year of double entry. Published starting price: 8000 dollars for a custom ops) Tj
-T*
-(app, 4500 for a two-week slice if you need to see the shape first.) Tj
-T*
-( ) Tj
-T*
-ET
-endstream
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 12 0 R /Resources << /Font << /F1 15 0 R >> >> >>
 endobj
 7 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 13 0 R /Resources << /Font << /F1 15 0 R >> >> >>
 endobj
 8 0 obj
-<< /Length 1237 >>
-stream
-BT
-/F1 11 Tf
-14 TL
-1 0 0 1 54 738 Tm
-(Maurice Garcia | How to scope a CRM for a trade shop) Tj
-T*
-/F1 9 Tf
-(mauricegarcia.com  page 3 / 6) Tj
-T*
-T*
-/F1 11 Tf
-T*
-/F1 13 Tf
-(Scope that fits on one page) Tj
-T*
-/F1 11 Tf
-(Good first scope: lead in, estimate out, job on the board, invoice and payment) Tj
-T*
-(recorded, mobile-usable lists, owner view of open money, CSV backup.) Tj
-T*
-(Bad first scope: customer portal, automations, inventory, GPS, five integrations,) Tj
-T*
-(and a junk drawer called phase two.) Tj
-T*
-(Integrations: pick one source of truth. If QuickBooks must remain the ledger, say so) Tj
-T*
-(in the scope and only sync what you will reconcile. Two ledgers is how you lose) Tj
-T*
-(weekends.) Tj
-T*
-( ) Tj
-T*
-T*
-/F1 13 Tf
-(How to read a proposal) Tj
-T*
-/F1 11 Tf
-(Demand named users and the jobs they do, a cutover plan for current open estimates,) Tj
-T*
-(hosting and backups, repository ownership, and what done looks like \(the six actions) Tj
-T*
-(in the Invoice2Go playbook\).) Tj
-T*
-(Reject hour estimates with no objects, phase two as a junk drawer, and lock-in with) Tj
-T*
-(no export.) Tj
-T*
-( ) Tj
-T*
-T*
-/F1 13 Tf
-(A one-hour workshop agenda) Tj
-T*
-/F1 11 Tf
-(0:00-0:15 walk a real job from call to cash.) Tj
-T*
-ET
-endstream
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 14 0 R /Resources << /Font << /F1 15 0 R >> >> >>
 endobj
 9 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
+<< /Length 116 >>
+stream
+BT /F1 18 Tf 54 720 Td (How to scope a CRM for a trade shop) Tj 0 -24 Td /F1 12 Tf (A buyers guide. Page 1 of 6.) Tj ET
+endstream
 endobj
 10 0 obj
-<< /Length 1268 >>
+<< /Length 128 >>
 stream
-BT
-/F1 11 Tf
-14 TL
-1 0 0 1 54 738 Tm
-(Maurice Garcia | How to scope a CRM for a trade shop) Tj
-T*
-/F1 9 Tf
-(mauricegarcia.com  page 4 / 6) Tj
-T*
-T*
-/F1 11 Tf
-(0:15-0:30 list the nouns and who touches them.) Tj
-T*
-(0:30-0:45 mark must-have versus freeze.) Tj
-T*
-(0:45-0:55 choose build, buy, or a two-week sprint.) Tj
-T*
-(0:55-1:00 write the next tangible date.) Tj
-T*
-(Bring the exports from whatever you use today. Do not workshop from memory.) Tj
-T*
-( ) Tj
-T*
-T*
-/F1 13 Tf
-(After you decide) Tj
-T*
-/F1 11 Tf
-(If you buy: negotiate data export in the contract. If you build: start with the live) Tj
-T*
-(path, not a redesign of your logo. If you want help scoping or building, use the) Tj
-T*
-(contact page on mauricegarcia.com or write hello@mauricegarcia.com.) Tj
-T*
-(This guide is not legal advice and it is not a claim about any vendors roadmap. It) Tj
-T*
-(is the checklist I use so a shop does not pay for a second copy of a generic sales) Tj
-T*
-(CRM.) Tj
-T*
-( ) Tj
-T*
-T*
-/F1 13 Tf
-(Seats and who actually logs in) Tj
-T*
-/F1 11 Tf
-(Count humans, not theoretical roles. If only the owner and the office person will) Tj
-T*
-(type, do not buy a package for 25 sales reps.) Tj
-T*
-(A foreman who only reads the job list still needs a login that works with fat) Tj
-T*
-ET
+BT /F1 12 Tf 54 720 Td (Write nouns first: lead, estimate, job, invoice, payment. Page 2 of 6.) Tj ET
 endstream
 endobj
 11 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 10 0 R >>
+<< /Length 121 >>
+stream
+BT /F1 12 Tf 54 720 Td (Ask who owns the data if you cancel. Try a lead on a phone. Page 3 of 6.) Tj ET
+endstream
 endobj
 12 0 obj
-<< /Length 1058 >>
+<< /Length 130 >>
 stream
-BT
-/F1 11 Tf
-14 TL
-1 0 0 1 54 738 Tm
-(Maurice Garcia | How to scope a CRM for a trade shop) Tj
-T*
-/F1 9 Tf
-(mauricegarcia.com  page 5 / 6) Tj
-T*
-T*
-/F1 11 Tf
-(fingers and sun glare.) Tj
-T*
-( ) Tj
-T*
-T*
-/F1 13 Tf
-(Mobile is not a checkbox) Tj
-T*
-/F1 11 Tf
-(Ask to create a lead on the vendors phone in the parking lot.) Tj
-T*
-(If it requires landscape mode and twelve fields, it will not get used after a site) Tj
-T*
-(walk.) Tj
-T*
-( ) Tj
-T*
-T*
-/F1 13 Tf
-(Estimates are documents) Tj
-T*
-/F1 11 Tf
-(The customer may need a PDF they can forward to a spouse. If the CRM cannot produce) Tj
-T*
-(that without a designer, keep your current estimate path until it can.) Tj
-T*
-( ) Tj
-T*
-T*
-/F1 13 Tf
-(Deposits are promises) Tj
-T*
-/F1 11 Tf
-(A CRM that cannot record a deposit against a job will train the office to keep a) Tj
-T*
-(second notebook. That notebook becomes the real system.) Tj
-T*
-( ) Tj
-T*
-T*
-/F1 13 Tf
-(Red flags in demos) Tj
-T*
-/F1 11 Tf
-(The demo data is a SaaS company, not a job site.) Tj
-T*
-(The mobile app cannot work offline for an hour.) Tj
-T*
-ET
+BT /F1 12 Tf 54 720 Td (First scope: lead, estimate, job, invoice, payment, CSV backup. Page 4 of 6.) Tj ET
 endstream
 endobj
 13 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 12 0 R >>
+<< /Length 119 >>
+stream
+BT /F1 12 Tf 54 720 Td (Workshop: walk a real job, freeze extras, pick build or buy. Page 5 of 6.) Tj ET
+endstream
 endobj
 14 0 obj
-<< /Length 911 >>
+<< /Length 107 >>
 stream
-BT
-/F1 11 Tf
-14 TL
-1 0 0 1 54 738 Tm
-(Maurice Garcia | How to scope a CRM for a trade shop) Tj
-T*
-/F1 9 Tf
-(mauricegarcia.com  page 6 / 6) Tj
-T*
-T*
-/F1 11 Tf
-(The quote is per-user and climbs when the crew grows.) Tj
-T*
-(You cannot get a sample export file before you pay.) Tj
-T*
-( ) Tj
-T*
-T*
-/F1 13 Tf
-(A written scope template) Tj
-T*
-/F1 11 Tf
-(Users: owner, office, estimator, one foreman.) Tj
-T*
-(Must: lead, estimate, job, invoice, payment, job messages.) Tj
-T*
-(Must not: marketing, GPS, inventory.) Tj
-T*
-(Cutover: date, open invoices, who trains whom.) Tj
-T*
-(Done: six actions on a phone, CSV export, owner can see open money.) Tj
-T*
-( ) Tj
-T*
-T*
-/F1 13 Tf
-(Price honesty) Tj
-T*
-/F1 11 Tf
-(If a custom build is more than you can spend, buy the smallest tool that covers) Tj
-T*
-(invoices and keep a paper board for jobs. A half-finished CRM is worse than) Tj
-T*
-(Invoice2Go plus a whiteboard.) Tj
-T*
-ET
+BT /F1 12 Tf 54 720 Td (Questions: hello@mauricegarcia.com. Page 6 of 6.) Tj ET
 endstream
 endobj
 15 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 14 0 R >>
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman >>
 endobj
 xref
 0 16
 0000000000 65535 f 
 0000000009 00000 n 
 0000000058 00000 n 
-0000000150 00000 n 
-0000000222 00000 n 
-0000001625 00000 n 
-0000001751 00000 n 
-0000003118 00000 n 
-0000003244 00000 n 
-0000004532 00000 n 
-0000004658 00000 n 
-0000005978 00000 n 
-0000006106 00000 n 
-0000007216 00000 n 
-0000007344 00000 n 
-0000008306 00000 n 
+0000000154 00000 n 
+0000000303 00000 n 
+0000000452 00000 n 
+0000000601 00000 n 
+0000000750 00000 n 
+0000000899 00000 n 
+0000001048 00000 n 
+0000001215 00000 n 
+0000001394 00000 n 
+0000001566 00000 n 
+0000001747 00000 n 
+0000001917 00000 n 
+0000002075 00000 n 
 trailer
 << /Size 16 /Root 1 0 R >>
 startxref
-8434
+2148
 %%EOF
