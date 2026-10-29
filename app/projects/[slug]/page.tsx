@@ -37,7 +37,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <div className="j-tags" style={{ marginTop: 18 }}><StateTag project={p} />{isProposed(p) && <Proposed />}</div>
         {p.stateNote && <p className="j-muted" style={{ marginTop: 12, maxWidth: "40em" }}>{p.stateNote}</p>}
         <div className="j-actions">
-          {p.links.demo && <a className="btn btn-fill" href={p.links.demo} rel="noopener noreferrer" data-track="demo_visit" data-track-project={p.slug}>Try it</a>}
+          {p.links.demo && <a className="btn btn-fill" href={p.links.demo} rel="noopener noreferrer" data-track="demo_visit" data-track-project={p.slug}>Live site</a>}
           {p.links.repo && <a className="btn btn-ghost" href={p.links.repo} rel="noopener noreferrer" data-track="source_click" data-track-project={p.slug}>See the source</a>}
           {p.links.other.map((l) => <a key={l.url} className="j-link j-arrow" href={l.url} rel="noopener noreferrer">{l.label}</a>)}
           <Link className="j-link j-arrow" href={`/connect?project=${p.slug}&intent=${p.involve.intent}`} data-track="project_to_contact" data-track-project={p.slug}>Talk to me about this</Link>

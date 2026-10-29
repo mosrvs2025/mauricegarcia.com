@@ -11,7 +11,7 @@
     "creative-tools"
   ],
   "state": "prototype",
-  "stateNote": "Runs locally. It works without an API key, and Claude can be added for generation. I haven't found a hosted demo.",
+  "stateNote": "A hosted copy runs on my Vercel. It works without an API key, and Claude can be added for generation.",
   "problem": "Whiteboards leave the structuring to you, and chat sidebars pull attention away from the canvas. Lumen puts a small set of suggestions right at the thing you selected, so rough notes can become structure and structure can become something that runs.",
   "audience": "People who think by sketching, and anyone curious about AI that works on the canvas itself instead of in a chat window.",
   "contribution": "Lumen is my project, built on top of Excalidraw's open-source React component. The drawing editor underneath is Excalidraw's work.",
@@ -23,8 +23,7 @@
   ],
   "limitations": [
     "The feature list comes from the project README. Not every feature has had an independent test pass.",
-    "Real-time collaboration across devices needs a small relay you run yourself.",
-    "There is no hosted demo yet, so you run it locally with npm."
+    "Real-time collaboration across devices needs a small relay you run yourself."
   ],
   "links": {
     "repo": "https://github.com/mosrvs2025/excalidraw",
@@ -33,7 +32,8 @@
         "label": "Excalidraw (upstream, MIT)",
         "url": "https://github.com/excalidraw/excalidraw"
       }
-    ]
+    ],
+    "demo": "https://excalidraw-six-delta.vercel.app"
   },
   "repoVisibility": "public",
   "upstream": {
@@ -53,6 +53,12 @@
     "reviewed": "2026-10-29"
   },
   "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://excalidraw-six-delta.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
     {
       "label": "README and source",
       "url": "https://github.com/mosrvs2025/excalidraw",

@@ -11,7 +11,7 @@
     "curiosity"
   ],
   "state": "prototype",
-  "stateNote": "Runs locally. The seeded demo campaign is clearly labelled as simulated.",
+  "stateNote": "A hosted copy runs on my Vercel. The seeded demo campaign is clearly labelled as simulated.",
   "problem": "People argue about basics like the shape of the Earth from their sofas. OBSERVED asks them to lock a prediction, measure a shadow or a sunset, and see every model scored against open data.",
   "audience": "Curious people, teachers and skeptics who prefer evidence they can recompute themselves.",
   "contribution": "It is my project. The README describes a signed, hash-chained record of observations, and the evidence page recomputes statistics in your browser.",
@@ -25,7 +25,8 @@
   ],
   "links": {
     "repo": "https://github.com/mosrvs2025/observed",
-    "other": []
+    "other": [],
+    "demo": "https://observed-neon.vercel.app"
   },
   "repoVisibility": "public",
   "ai": {
@@ -39,6 +40,12 @@
     "reviewed": "2026-10-29"
   },
   "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://observed-neon.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
     {
       "label": "README and source",
       "url": "https://github.com/mosrvs2025/observed",

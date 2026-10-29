@@ -11,7 +11,7 @@
     "games"
   ],
   "state": "prototype",
-  "stateNote": "The README links to a hosted build that returned a 404 when I checked, so no demo is linked.",
+  "stateNote": "The README's older hosted link returns a 404, but a current build runs on my Vercel.",
   "problem": "A big-hearted platformer where you run, wall-climb, dash and ground pound through living jungles and glowing caves, and grow a home of your own.",
   "audience": "Platformer fans who like exploration and companions.",
   "contribution": "It is my project, with its own characters, worlds and music. The repository lives under the name 'donkeykong'.",
@@ -20,11 +20,12 @@
   ],
   "limitations": [
     "I haven't played it. This is from the README and its screenshots.",
-    "The hosted link in the README returned a 404."
+    "The hosted link in the README is out of date and returns a 404; the link here is the current build."
   ],
   "links": {
     "repo": "https://github.com/mosrvs2025/donkeykong",
-    "other": []
+    "other": [],
+    "demo": "https://donkeykong-two.vercel.app"
   },
   "repoVisibility": "public",
   "ai": {
@@ -45,6 +46,12 @@
     "reviewed": "2026-10-29"
   },
   "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://donkeykong-two.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
     {
       "label": "README and source",
       "url": "https://github.com/mosrvs2025/donkeykong",

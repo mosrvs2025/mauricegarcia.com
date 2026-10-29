@@ -1,0 +1,67 @@
+{
+  "id": "prj-living-cosmos",
+  "slug": "living-cosmos",
+  "title": "Living Cosmos",
+  "tagline": "Build a planet, shape its climate and food web, and grow a sustainable settlement.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 360,
+  "themes": [
+    "curiosity",
+    "games"
+  ],
+  "state": "playable-slice",
+  "stateNote": "An educational game prototype that runs in the browser. Saves stay on your device.",
+  "problem": "Climate, ecosystems and settlement are usually taught separately. Here one planet connects them, so a change to starlight shows up in the food web.",
+  "audience": "Students and curious players.",
+  "contribution": "It is my project, built with Three.js. The source is private.",
+  "worksToday": [
+    "Place planets, stars, neutron stars and black holes, then enter a planet.",
+    "Change climate, run predict-then-observe experiments, and build an outpost, per the README.",
+    "Save and load in the browser."
+  ],
+  "limitations": [
+    "It uses simplified science and is not a research tool, per the README.",
+    "Saves don't sync between devices.",
+    "The source is private."
+  ],
+  "links": {
+    "demo": "https://living-cosmos.vercel.app",
+    "other": []
+  },
+  "repoVisibility": "private",
+  "privateSummaryApproved": true,
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [
+    {
+      "src": "/projects/living-cosmos.webp",
+      "alt": "The Living Cosmos universe view: 'Make room for new worlds.' with options to place planets and stars.",
+      "caption": "The home screen of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-09-21",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://living-cosmos.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Teach science?",
+    "asks": [
+      "Tell me whether this would work in a classroom."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": []
+}

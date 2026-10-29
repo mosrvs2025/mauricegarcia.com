@@ -1,0 +1,64 @@
+{
+  "id": "prj-mo-os",
+  "slug": "mo-os",
+  "title": "MO OS",
+  "tagline": "Six concepts for a customizable personal dashboard.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 390,
+  "themes": [
+    "creative-tools",
+    "practical"
+  ],
+  "state": "prototype",
+  "stateNote": "Design concepts that run in the browser. The data shown is sample data.",
+  "problem": "A to-do app, a calendar and a budget tool rarely share one screen. MO OS explores six ways to lay out a personal daily cockpit.",
+  "audience": "People who want one place for their day.",
+  "contribution": "It is my project. I haven't linked a public repository for it.",
+  "worksToday": [
+    "Six layouts: Personal OS, Spatial Desktop, Mission Control, Card Deck and AI-First, among others, per the site.",
+    "Widgets can be added and rearranged."
+  ],
+  "limitations": [
+    "The numbers and events shown are sample data.",
+    "These are concepts, not a finished app."
+  ],
+  "links": {
+    "demo": "https://dashboard-worlds.vercel.app",
+    "other": []
+  },
+  "repoVisibility": "none",
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [
+    {
+      "src": "/projects/mo-os.webp",
+      "alt": "The MO OS Personal OS layout with daily focus, active projects and a money snapshot.",
+      "caption": "The home screen of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-09-02",
+    "lastChangeSource": "latest Vercel deployment",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://dashboard-worlds.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Want your own dashboard?",
+    "asks": [
+      "Tell me which layout you'd actually use."
+    ],
+    "intent": "hello"
+  },
+  "formerSlugs": []
+}

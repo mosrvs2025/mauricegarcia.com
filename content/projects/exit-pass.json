@@ -24,11 +24,12 @@
   "limitations": [
     "Point of sale, payments, cart sensors and store traffic are all simulated.",
     "The README's security notes say what a production version would still need.",
-    "I haven't found a hosted demo. You run it locally with npm."
+    "A hosted copy runs on my Vercel. Everything in it is still simulated."
   ],
   "links": {
     "repo": "https://github.com/mosrvs2025/checkout",
-    "other": []
+    "other": [],
+    "demo": "https://checkout-eight-self.vercel.app"
   },
   "repoVisibility": "public",
   "ai": {
@@ -42,6 +43,12 @@
     "reviewed": "2026-10-29"
   },
   "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://checkout-eight-self.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
     {
       "label": "README, security notes and source",
       "url": "https://github.com/mosrvs2025/checkout",

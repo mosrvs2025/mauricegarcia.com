@@ -1,0 +1,69 @@
+{
+  "id": "prj-cognition-os",
+  "slug": "cognition-os",
+  "title": "Cognition OS",
+  "tagline": "Brain science turned into small experiments you can try today, scored like a game.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 310,
+  "themes": [
+    "practical",
+    "curiosity"
+  ],
+  "state": "pilot",
+  "stateNote": "Live, with a free tier. The full course is unlocked with a license key.",
+  "problem": "Most advice about focus and decisions is either vague or buried in videos. Cognition OS turns it into lessons, habits and tools you try in the browser.",
+  "audience": "Students and anyone who wants to think more clearly.",
+  "contribution": "It is my project, built with React and TypeScript. The source is private.",
+  "worksToday": [
+    "26 lessons, 17 habits and 6 thinking tools, as listed on the site.",
+    "Progress stays in your browser; no sign-up is needed for the free part.",
+    "A Brain Power calculator you can try on the home page."
+  ],
+  "limitations": [
+    "The Brain Power numbers are the site's own cautious estimates, not medical advice.",
+    "Most lessons need a paid license.",
+    "The source is private."
+  ],
+  "links": {
+    "demo": "https://learnai-wheat.vercel.app",
+    "other": []
+  },
+  "repoVisibility": "private",
+  "privateSummaryApproved": true,
+  "ai": {
+    "assisted": "yes",
+    "note": "Commit trailers show Claude as a co-author."
+  },
+  "media": [
+    {
+      "src": "/projects/cognition-os.webp",
+      "alt": "The Cognition OS home page: 'Think clearer. Focus longer. Decide better.' with a Start free button.",
+      "caption": "The home screen of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-10-25",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://learnai-wheat.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Want to think more clearly?",
+    "asks": [
+      "Try the free lessons and tell me which one helped.",
+      "Teach a class? I'd like to hear if this would fit."
+    ],
+    "intent": "hello"
+  },
+  "formerSlugs": []
+}
