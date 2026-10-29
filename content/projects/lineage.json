@@ -1,0 +1,71 @@
+{
+  "id": "prj-lineage",
+  "slug": "lineage",
+  "title": "Lineage",
+  "tagline": "An evolution RTS where ancestors discover something and later generations discover what else it can do.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 100,
+  "themes": [
+    "games"
+  ],
+  "state": "playable-slice",
+  "stateNote": "The README describes a first vertical slice, The First Winter. The hosted menu also shows a story campaign and online rooms I haven't checked.",
+  "problem": "Most strategy games reset knowledge every match. In Lineage discoveries are inherited, so civilizations branch over generations.",
+  "audience": "Strategy fans and anyone curious about inherited-knowledge mechanics.",
+  "contribution": "It is my project. The repo includes a CLAUDE.md development brief and a design concept document.",
+  "worksToday": [
+    "Choose Humans or Neanderthals and play The First Winter, a 20 to 30 minute scenario, per the README.",
+    "The hosted build loads a main menu with campaign, skirmish and tutorial options."
+  ],
+  "limitations": [
+    "I only checked that the hosted menu loads.",
+    "Online play wasn't tested."
+  ],
+  "links": {
+    "demo": "https://lineage-rts.vercel.app",
+    "repo": "https://github.com/mosrvs2025/lineage-rts",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "yes",
+    "note": "The repository includes a CLAUDE.md development brief for AI coding assistants."
+  },
+  "media": [
+    {
+      "src": "/projects/lineage.webp",
+      "alt": "The Lineage main menu over a top-down view of autumn trees, with Story Campaign, Custom Skirmish, Online and Chat Rooms, Tutorial, Settings and Field Manual buttons.",
+      "caption": "The main menu of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-10-17",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://lineage-rts.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/lineage-rts",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Do the generations feel different?",
+    "asks": [
+      "Tell me whether the tutorial teaches inheritance clearly."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": []
+}

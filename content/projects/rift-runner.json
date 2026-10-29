@@ -1,0 +1,71 @@
+{
+  "id": "prj-rift-runner",
+  "slug": "rift-runner",
+  "title": "Rift Runner",
+  "tagline": "A mobile-first lane-dodging game that installs to your home screen and plays offline.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 160,
+  "themes": [
+    "games"
+  ],
+  "state": "prototype",
+  "stateNote": "Built on a starter: the README says it ships with a small playable loop and invites swapping in your own game.",
+  "problem": "A small, polished mobile loop: a ship runs up a three-lane track and you dodge falling rifts.",
+  "audience": "Anyone with a phone and a minute, and developers who want a PixiJS and TypeScript starter.",
+  "contribution": "It is my project, built with Vite, TypeScript, PixiJS v8, GSAP and Howler.js, and set up as an offline PWA.",
+  "worksToday": [
+    "Tap, swipe or use the keyboard to change lanes.",
+    "Installs to a phone's home screen as a PWA, per the README."
+  ],
+  "limitations": [
+    "It is a starter loop, not a full game.",
+    "I checked that the title screen loads."
+  ],
+  "links": {
+    "demo": "https://mosrvs2025.github.io/rift-runner/",
+    "repo": "https://github.com/mosrvs2025/rift-runner",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "yes",
+    "note": "Commit trailers show Claude as a co-author."
+  },
+  "media": [
+    {
+      "src": "/projects/rift-runner.webp",
+      "alt": "The Rift Runner title screen: glowing 'RIFT RUNNER' text over a starfield with a Play button.",
+      "caption": "The title screen of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-09-23",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://mosrvs2025.github.io/rift-runner/",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/rift-runner",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Try it on your phone.",
+    "asks": [
+      "Tell me how it feels on your phone."
+    ],
+    "intent": "hello"
+  },
+  "formerSlugs": []
+}

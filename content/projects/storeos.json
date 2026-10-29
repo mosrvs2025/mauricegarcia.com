@@ -1,0 +1,71 @@
+{
+  "id": "prj-storeos",
+  "slug": "storeos",
+  "title": "StoreOS",
+  "tagline": "A live map of where things actually are in a store, built by scanning while you work.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 190,
+  "themes": [
+    "practical",
+    "retail"
+  ],
+  "state": "simulation",
+  "stateNote": "The demo uses a fictional store, Fernwood Market, with simulated history.",
+  "problem": "Inventory systems describe what a store should look like. Workers live in what it actually looks like. StoreOS treats every scan, put-away and 'not here' as an observation.",
+  "audience": "Store workers and retail operations people.",
+  "contribution": "It is my project: an Android-first progressive web app with a demo store.",
+  "worksToday": [
+    "Try the demo store with two weeks of simulated crew history.",
+    "Set up a store by photographing aisle signs or by typing aisles in, per the README."
+  ],
+  "limitations": [
+    "The demo store and its history are fictional and simulated.",
+    "I haven't tested it in a real store."
+  ],
+  "links": {
+    "demo": "https://storeosant.vercel.app/",
+    "repo": "https://github.com/mosrvs2025/storeOSant",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [
+    {
+      "src": "/projects/storeos.webp",
+      "alt": "The StoreOS start screen in a phone frame with options to snap the store, type it in, or try the demo store.",
+      "caption": "The start screen of the hosted app.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-09-30",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "Hosted app (loads, checked 2026-10-29)",
+      "url": "https://storeosant.vercel.app/",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/storeOSant",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Work in a store?",
+    "asks": [
+      "If you work in a store, tell me where the model is wrong."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": []
+}

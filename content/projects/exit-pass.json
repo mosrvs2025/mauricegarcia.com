@@ -1,0 +1,62 @@
+{
+  "id": "prj-exit-pass",
+  "slug": "exit-pass",
+  "title": "Exit Pass",
+  "tagline": "What if grocery checkout were finished before you got to the front of the store?",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 125,
+  "themes": [
+    "retail",
+    "practical"
+  ],
+  "state": "simulation",
+  "stateNote": "A working prototype that runs entirely on simulated store systems. It is not connected to any store.",
+  "problem": "Scan-and-go apps still end at a register where someone audits the cart. Exit Pass explores targeted verification: you pay as you shop, and the exit check only looks at the one to three things that matter, so most trips skip it.",
+  "audience": "Shoppers who hate lines, and store teams and builders who think about checkout, shrink and staffing.",
+  "contribution": "It is my project. The shopper phone app, the register lane, the pass decision engine and the store radar are built from scratch against a simulated point-of-sale.",
+  "worksToday": [
+    "A shopper flow with scanning, a running tax-included total and a live pass QR.",
+    "A register lane that recalls a paid basket and handles the check.",
+    "A store view that shows carts arriving, with simulated shoppers."
+  ],
+  "limitations": [
+    "Point of sale, payments, cart sensors and store traffic are all simulated.",
+    "The README's security notes say what a production version would still need.",
+    "I haven't found a hosted demo. You run it locally with npm."
+  ],
+  "links": {
+    "repo": "https://github.com/mosrvs2025/checkout",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "yes",
+    "note": "Commit trailers show Claude as a co-author."
+  },
+  "media": [],
+  "dates": {
+    "lastChange": "2026-10-02",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "README, security notes and source",
+      "url": "https://github.com/mosrvs2025/checkout",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "sourceId": "src-exit-pass",
+  "involve": {
+    "headline": "Work in retail or build checkout software?",
+    "asks": [
+      "Tell me where the pass logic would fall apart in a real store.",
+      "If you want to pilot something like this, I'd like to talk."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": []
+}

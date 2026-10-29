@@ -1,0 +1,73 @@
+{
+  "id": "prj-lumen",
+  "slug": "lumen",
+  "title": "Lumen",
+  "tagline": "An infinite canvas that reads what you sketched and offers the next move beside it.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "featured",
+  "order": 20,
+  "themes": [
+    "creative-tools"
+  ],
+  "state": "prototype",
+  "stateNote": "Runs locally. It works without an API key, and Claude can be added for generation. I haven't found a hosted demo.",
+  "problem": "Whiteboards leave the structuring to you, and chat sidebars pull attention away from the canvas. Lumen puts a small set of suggestions right at the thing you selected, so rough notes can become structure and structure can become something that runs.",
+  "audience": "People who think by sketching, and anyone curious about AI that works on the canvas itself instead of in a chat window.",
+  "contribution": "Lumen is my project, built on top of Excalidraw's open-source React component. The drawing editor underneath is Excalidraw's work.",
+  "worksToday": [
+    "Select notes, an outline or a flowchart and a dock offers actions that fit that selection, such as clustering, structuring or tidying.",
+    "An offline engine handles outlines, arrows, clustering and graph checks with no API key.",
+    "Results land on the canvas as ordinary editable objects with undo and version history.",
+    "Boards share by link without a server, and everything is stored locally first."
+  ],
+  "limitations": [
+    "The feature list comes from the project README. Not every feature has had an independent test pass.",
+    "Real-time collaboration across devices needs a small relay you run yourself.",
+    "There is no hosted demo yet, so you run it locally with npm."
+  ],
+  "links": {
+    "repo": "https://github.com/mosrvs2025/excalidraw",
+    "other": [
+      {
+        "label": "Excalidraw (upstream, MIT)",
+        "url": "https://github.com/excalidraw/excalidraw"
+      }
+    ]
+  },
+  "repoVisibility": "public",
+  "upstream": {
+    "name": "Excalidraw",
+    "url": "https://github.com/excalidraw/excalidraw",
+    "license": "MIT",
+    "note": "Lumen uses the Excalidraw editor component. The repository is a fork-based workspace, and its default branch is not main."
+  },
+  "ai": {
+    "assisted": "yes",
+    "note": "Commit trailers show Claude as a co-author."
+  },
+  "media": [],
+  "dates": {
+    "lastChange": "2026-10-11",
+    "lastChangeSource": "repository last push",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/excalidraw",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "sourceId": "src-lumen",
+  "involve": {
+    "headline": "Want to pressure-test it?",
+    "asks": [
+      "Run it locally and tell me where the dock suggests something unhelpful.",
+      "If you build canvas or whiteboard tools, I'd like to compare notes on live objects and sandboxing."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": []
+}

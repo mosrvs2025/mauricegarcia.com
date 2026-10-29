@@ -1,0 +1,31 @@
+{
+  "id": "upd-seed-ultimate-migration",
+  "slug": "ultimate-standalone-migration-terminal-ssh",
+  "title": "Ultimate: now its own repository, with a terminal and SSH/SFTP work",
+  "summary": "Ultimate, my offline Android toolkit, has moved into its own standalone repository, and the latest merge adds a terminal, an orb and SSH/SFTP.",
+  "whyCare": "It's the main thing I'm building right now, and the repository is public if you want to read how it's put together.",
+  "limitations": "This is taken from the commit message and README. I haven't built or run the app, so I can't say how the new pieces behave on a phone.",
+  "kind": "progress",
+  "projectId": "prj-ultimate",
+  "status": "published",
+  "visibility": "public",
+  "eventAt": "2026-10-29T00:41:15-07:00",
+  "publishedAt": "2026-10-29T12:00:00Z",
+  "tags": [
+    "android"
+  ],
+  "evidence": [
+    {
+      "label": "The commit",
+      "url": "https://github.com/mosrvs2025/ultimate-android/commit/abc8e1bdd9c1e3a1cafa248ffe48f84e2ed02fae",
+      "kind": "source"
+    }
+  ],
+  "provenance": {
+    "origin": "agent",
+    "eventId": "seed:ultimate-migration",
+    "importedAt": "2026-10-29T12:00:00Z",
+    "editedByOwner": true,
+    "reviewedAt": "2026-10-29T08:13:44.382Z"
+  }
+}

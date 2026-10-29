@@ -4,16 +4,25 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "mkdir -p public/products && perl scripts/pdf.pl \"Replace Invoice2Go\" \"A practical playbook for trade shops\" public/products/replace-invoice2go.pdf scripts/replace-invoice2go.txt && perl scripts/pdf.pl \"How to scope a CRM for a trade shop\" \"A buyers guide\" public/products/scope-a-crm.pdf scripts/scope-a-crm.txt",
+    "prebuild": "npm run content:validate && mkdir -p public/products && perl scripts/pdf.pl \"Replace Invoice2Go\" \"A practical playbook for trade shops\" public/products/replace-invoice2go.pdf scripts/replace-invoice2go.txt && perl scripts/pdf.pl \"How to scope a CRM for a trade shop\" \"A buyers guide\" public/products/scope-a-crm.pdf scripts/scope-a-crm.txt",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "content:validate": "tsx scripts/validate-content.ts",
+    "content:approve": "tsx scripts/approve-proposed.ts",
+    "sync": "tsx scripts/sync.ts",
+    "leak-check": "tsx scripts/leak-check.ts",
+    "test": "node scripts/contact.test.cjs && tsx --test tests/*.test.ts"
   },
   "dependencies": {
+    "gray-matter": "^4.0.3",
+    "marked": "^15.0.12",
     "next": "^16.3.4",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "resend": "^4.8.0",
-    "stripe": "^18.5.0"
+    "stripe": "^18.5.0",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.12",
@@ -21,6 +30,8 @@
     "@types/react": "^19.1.12",
     "@types/react-dom": "^19.1.9",
     "tailwindcss": "^4.1.12",
-    "typescript": "^5.9.2"
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.2",
+    "zod-to-json-schema": "^3.25.2"
   }
 }

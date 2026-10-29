@@ -44,7 +44,7 @@ export default function AdsPage() {
                 <li key={d}>{d}</li>
               ))}
             </ul>
-            <Link href={`/contact?service=${s.slug}`} className="btn btn-fill mt-8 self-start">
+            <Link href={`/connect?service=${s.slug}`} className="btn btn-fill mt-8 self-start">
               Request this
             </Link>
           </article>
@@ -66,7 +66,7 @@ export default function AdsPage() {
         <div className="mt-10">
           <SampleReel />
         </div>
-        <Link href="/contact?service=video-monthly" className="btn btn-ghost mt-10">
+        <Link href="/connect?service=video-monthly" className="btn btn-ghost mt-10">
           Send a brief
         </Link>
       </section>

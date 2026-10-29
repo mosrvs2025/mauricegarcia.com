@@ -1,0 +1,54 @@
+name: Sync project updates
+
+# Collects meaningful completed work from allowlisted repositories into DRAFT updates.
+# Triggers: schedule and manual run only. There is deliberately no `push` trigger, so the
+# commits this job makes can never start another sync (no loops).
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: site-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write   # commit generated drafts to this repository. Nothing else is granted.
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run content:validate
+
+      # Fine-grained, READ-ONLY token (Contents + Metadata: read) limited to the allowlisted repositories.
+      # Without it the job still works for public repositories, within GitHub's anonymous rate limit.
+      - name: Sync
+        id: sync
+        continue-on-error: true   # keep what succeeded; the final step turns the run red if any source failed
+        env:
+          SYNC_READ_TOKEN: ${{ secrets.SYNC_READ_TOKEN }}
+        run: npm run sync
+
+      - name: Validate what was written
+        run: npm run content:validate
+
+      - name: Commit changes (drafts only; the site's last good content is untouched on failure)
+        run: |
+          git config user.name "site-sync[bot]"
+          git config user.email "site-sync@users.noreply.github.com"
+          git add content/candidates content/updates content/sync-status.json
+          if git diff --cached --quiet; then echo "Nothing new."; exit 0; fi
+          git commit -m "Sync project updates [site-sync]"
+          git push
+
+      - name: Report failure
+        if: steps.sync.outcome == 'failure'
+        run: |
+          echo "::error::At least one source failed. Successful sources were saved; the published site is unchanged. Re-run this workflow, or renew SYNC_READ_TOKEN if the log mentions a token."
+          exit 1

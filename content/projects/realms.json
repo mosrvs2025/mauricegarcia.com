@@ -1,0 +1,55 @@
+{
+  "id": "prj-realms",
+  "slug": "realms",
+  "title": "Realms: The Sundered Shelf",
+  "tagline": "A third-person fantasy action RPG that is generated entirely in code and runs in a browser tab.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 250,
+  "themes": [
+    "games"
+  ],
+  "state": "prototype",
+  "stateNote": "Run locally, or build it as a single self-contained HTML file. I haven't found a hosted copy.",
+  "problem": "No plugins and no binary assets: the terrain, sky, water, characters, music and sound are all made at load.",
+  "audience": "Action RPG fans and procedural-generation tinkerers.",
+  "contribution": "It is my project. The repository is named 'aetherwake'.",
+  "worksToday": [
+    "The README describes a Warden with a wolf companion crossing a valley to a silent Keep."
+  ],
+  "limitations": [
+    "I haven't run it.",
+    "No hosted copy to link."
+  ],
+  "links": {
+    "repo": "https://github.com/mosrvs2025/aetherwake",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [],
+  "dates": {
+    "lastChange": "2026-09-06",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/aetherwake",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Curious about the build?",
+    "asks": [
+      "Tell me if a single-file build is something you'd use."
+    ],
+    "intent": "hello"
+  },
+  "formerSlugs": []
+}

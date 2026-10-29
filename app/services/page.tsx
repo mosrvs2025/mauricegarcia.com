@@ -30,7 +30,7 @@ export default function ServicesPage() {
                 <li key={d}>{d}</li>
               ))}
             </ul>
-            <Link href={`/contact?service=${s.slug}`} className="btn btn-fill mt-8 self-start">
+            <Link href={`/connect?service=${s.slug}`} className="btn btn-fill mt-8 self-start">
               Request this
             </Link>
           </article>

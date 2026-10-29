@@ -1,0 +1,74 @@
+{
+  "id": "prj-gridheart",
+  "slug": "gridheart",
+  "title": "Gridheart",
+  "tagline": "A pixel-art action roguelite where your health is a shape, and every weapon carves a different pattern out of it.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "featured",
+  "order": 30,
+  "themes": [
+    "games"
+  ],
+  "state": "playable-slice",
+  "stateNote": "A browser build you can play now. Expect a slice of the game, not a finished one.",
+  "problem": "Health bars are a number. In Gridheart every character has a grid of health cells, and a weapon's shape is placed on that grid in the direction of the blow, so where you stand changes how much damage lands.",
+  "audience": "Anyone who likes action roguelites and odd mechanics, and game developers curious about shape-based damage.",
+  "contribution": "It is my project, made in Godot 4.3 and exported to the web. Weapons, armor plating and body-shape growth between rooms are the core mechanics.",
+  "worksToday": [
+    "A sword, spear, hammer, axe, dagger and bow each take a different pattern from the target's grid.",
+    "After a room you choose a growth shape, rotate it and attach it to your own grid.",
+    "Mouse, keyboard aim and attack-in-direction controls all work, and you can switch mid-fight."
+  ],
+  "limitations": [
+    "It is a slice of a game. Content and balance are still changing.",
+    "I checked that the hosted build loads, not every room or weapon."
+  ],
+  "links": {
+    "demo": "https://mosrvs2025.github.io/gridheart/",
+    "repo": "https://github.com/mosrvs2025/gridheart",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "yes",
+    "note": "Commit trailers show Claude as a co-author."
+  },
+  "media": [
+    {
+      "src": "/projects/gridheart.webp",
+      "alt": "A pixel-art dungeon room where a player swings a sword at two goblins and an armored knight, with a grid of yellow health cells in the top left.",
+      "caption": "The health grid sits in the top-left corner.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-09-21",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://mosrvs2025.github.io/gridheart/",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
+    {
+      "label": "Source and README",
+      "url": "https://github.com/mosrvs2025/gridheart",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "sourceId": "src-gridheart",
+  "involve": {
+    "headline": "Play it and tell me where it breaks.",
+    "asks": [
+      "Tell me which weapon felt best and which felt pointless.",
+      "If you make pixel art or design combat, I'd like to hear what you'd change."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": []
+}

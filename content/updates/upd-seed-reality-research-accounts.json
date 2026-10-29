@@ -1,0 +1,31 @@
+{
+  "id": "upd-seed-reality-research-accounts",
+  "slug": "reality-research-accounts-and-drill-down",
+  "title": "Reality Research: accounts, attribution and run-level drill-down",
+  "summary": "The latest commit adds accounts, attribution of results to the person who ran them, and a drill-down from a summary to individual runs.",
+  "whyCare": "It makes results inspectable: you can go from a headline number to the runs behind it.",
+  "limitations": "Accounts depend on a backend I haven't verified. The hosted demo loads without one.",
+  "kind": "progress",
+  "projectId": "prj-reality-research",
+  "status": "published",
+  "visibility": "public",
+  "eventAt": "2026-09-08T10:15:42-07:00",
+  "publishedAt": "2026-10-29T12:00:00Z",
+  "tags": [
+    "curiosity"
+  ],
+  "evidence": [
+    {
+      "label": "The commit",
+      "url": "https://github.com/mosrvs2025/reality-research/commit/f5db4f36d27f463a221ae884508d4cb9b013436e",
+      "kind": "source"
+    }
+  ],
+  "provenance": {
+    "origin": "agent",
+    "eventId": "seed:reality-research-accounts",
+    "importedAt": "2026-10-29T12:00:00Z",
+    "editedByOwner": true,
+    "reviewedAt": "2026-10-29T08:13:44.382Z"
+  }
+}

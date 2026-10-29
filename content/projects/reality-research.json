@@ -1,0 +1,74 @@
+{
+  "id": "prj-reality-research",
+  "slug": "reality-research",
+  "title": "Reality Research",
+  "tagline": "A laboratory for testing attention, randomness and coincidence that is built to show you when nothing happened.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 105,
+  "themes": [
+    "curiosity"
+  ],
+  "state": "prototype",
+  "stateNote": "The hosted app loads. Accounts and group sessions depend on a backend I haven't verified.",
+  "problem": "Claims about consciousness and coincidence are usually easy to believe and hard to check. Each instrument here records real trials, keeps a control, and reports honestly, including how often pure noise looks significant.",
+  "audience": "Curious skeptics and curious believers who want to run an experiment themselves in about twenty seconds.",
+  "contribution": "It is my project: the instruments, the pre-registration approach and the interface are built to behave like a scientific instrument and not a dashboard.",
+  "worksToday": [
+    "Eight instruments, including a blinded target guess and a baseline auditor that runs null experiments.",
+    "The first experiment needs no account and takes twenty seconds.",
+    "A prediction vault, a synchronicity log and a data explorer record what you did."
+  ],
+  "limitations": [
+    "It is a research toy, not research. Nothing here is a scientific result.",
+    "Group sessions and accounts need the backend, which I haven't checked."
+  ],
+  "links": {
+    "demo": "https://mosrvs2025.github.io/reality-research/",
+    "repo": "https://github.com/mosrvs2025/reality-research",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "yes",
+    "note": "Commit trailers show Claude as a co-author."
+  },
+  "media": [
+    {
+      "src": "/projects/reality-research.webp",
+      "alt": "The Reality Research home screen with the question 'Can attention change randomness?' and eight instruments listed below.",
+      "caption": "Home screen of the hosted app.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-09-08",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "Hosted app (loads, checked 2026-10-29)",
+      "url": "https://mosrvs2025.github.io/reality-research/",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
+    {
+      "label": "Source and README",
+      "url": "https://github.com/mosrvs2025/reality-research",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "sourceId": "src-reality-research",
+  "involve": {
+    "headline": "Help me find the flaws.",
+    "asks": [
+      "If you know experimental design or statistics, tell me which instrument is least convincing.",
+      "Run an instrument and send me what felt confusing."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": []
+}

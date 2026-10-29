@@ -1,0 +1,44 @@
+{
+  "id": "prj-pipeline-crm",
+  "slug": "pipeline-crm",
+  "title": "Pipeline CRM",
+  "tagline": "One place for a trade shop's leads, estimates, invoices, deposits and jobs.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "featured",
+  "order": 10,
+  "themes": ["practical"],
+  "state": "in-use",
+  "stateNote": "Used by one shop. There is no public demo, and I don't show its data.",
+  "problem": "Invoice2Go handled invoices, but the shop still needed a single place for leads, estimates, deposits, job status and talking to the crew.",
+  "audience": "Don Howard Construction / Painting: the people in the office and the crew in the field.",
+  "contribution": "I built it as a Next.js progressive web app that works on phones and in the office.",
+  "worksToday": [
+    "Leads, estimates and invoices live in one system instead of several apps.",
+    "Deposits and payments are recorded against the job.",
+    "Job status and history are kept without a second spreadsheet.",
+    "A simple crew channel keeps the field from being a black box."
+  ],
+  "limitations": [
+    "It is one client's private system, so there is no public sign-up or demo.",
+    "I don't publish customer data or screenshots of it."
+  ],
+  "links": { "other": [{ "label": "The production address", "url": "https://pl.donhowardconstruction.com/" }] },
+  "repoVisibility": "private",
+  "privateSummaryApproved": true,
+  "ai": { "assisted": "unknown" },
+  "media": [],
+  "dates": { "reviewed": "2026-10-29" },
+  "evidence": [
+    { "label": "Production address, as listed on this site's earlier Work page", "url": "https://pl.donhowardconstruction.com/", "kind": "other" }
+  ],
+  "involve": {
+    "headline": "Running a trade shop on a pile of apps and spreadsheets?",
+    "asks": [
+      "Tell me how money and labor move through your shop and I'll tell you honestly whether custom software is worth it.",
+      "Know a shop that would benefit from this kind of system? An introduction is welcome."
+    ],
+    "intent": "paid-work"
+  },
+  "formerSlugs": []
+}

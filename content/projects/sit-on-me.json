@@ -1,0 +1,55 @@
+{
+  "id": "prj-sit-on-me",
+  "slug": "sit-on-me",
+  "title": "SIT ON ME",
+  "tagline": "A 3D stealth and physics comedy where you play a sentient chair.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 260,
+  "themes": [
+    "games"
+  ],
+  "state": "prototype",
+  "stateNote": "Described in the README. I haven't found a hosted copy of this one.",
+  "problem": "Humans freak out when a chair scoots, so you hold SPACE to freeze as innocent furniture, then sneak, sabotage rival furniture and evolve across five chairs.",
+  "audience": "Anyone who likes silly stealth games.",
+  "contribution": "It is my project, built with WebGL and Three.js. The repository is named 'chairgame'.",
+  "worksToday": [
+    "The README describes red-light-green-light stealth, sabotage and five chair chassis."
+  ],
+  "limitations": [
+    "I haven't played it.",
+    "A similarly named site on Vercel is someone else's, so none is linked."
+  ],
+  "links": {
+    "repo": "https://github.com/mosrvs2025/chairgame",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [],
+  "dates": {
+    "lastChange": "2026-10-18",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/chairgame",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Which chair is funniest?",
+    "asks": [
+      "Tell me which chair deserves to be the funniest."
+    ],
+    "intent": "hello"
+  },
+  "formerSlugs": []
+}

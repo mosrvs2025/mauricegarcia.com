@@ -1,0 +1,72 @@
+{
+  "id": "prj-evolveborn",
+  "slug": "evolveborn",
+  "title": "Evolveborn",
+  "tagline": "Start as a wisp, devour what you hunt, rebuild your body, and heal a world.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 130,
+  "themes": [
+    "games"
+  ],
+  "state": "playable-slice",
+  "stateNote": "A Godot browser action RPG with a story update (v0.3). It needs WebGL 2.",
+  "problem": "Most creature-growth games hand you upgrades. Here you hunt eight species, take their adaptations, and fit them into a body with limited capacity, so every build is a trade-off.",
+  "audience": "Players who like action RPGs with a build-your-body twist.",
+  "contribution": "It is my project, made in Godot and GDScript for the browser. The v0.3 'Luma's Garden' update adds five memory-shrine puzzles, a journal and two endings, per the README.",
+  "worksToday": [
+    "Hunt eight species, devour their adaptations and evolve, per the README.",
+    "Saves stay in your browser; no account is needed."
+  ],
+  "limitations": [
+    "I checked that the title menu loads, not the full game.",
+    "The README also mentions a Windows build; I haven't checked it.",
+    "Clearing site data clears your save."
+  ],
+  "links": {
+    "demo": "https://evolveborn.vercel.app",
+    "repo": "https://github.com/mosrvs2025/evolveborn",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [
+    {
+      "src": "/projects/evolveborn.webp",
+      "alt": "The Evolveborn start menu over a dark teal cave scene: 'A hungry heart. A world to heal.' with an 'Awaken in the Hollow' button.",
+      "caption": "The start menu of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-09-22",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://evolveborn.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/evolveborn",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Hungry for feedback.",
+    "asks": [
+      "Tell me which adaptation felt the most fun.",
+      "If you do Godot, I'd like to compare notes on web performance."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": []
+}

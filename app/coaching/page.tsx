@@ -14,7 +14,7 @@ export default function CoachingPage() {
         <h1 className="display text-5xl leading-tight sm:text-7xl">Your idea.<br/><em>Your hands on the tools.</em></h1>
         <p>Want to understand how to build it yourself? Work with me on a real project and get comfortable using AI tools like Claude Code, one useful step at a time.</p>
       </div>
-      <Link className="btn btn-fill" href="/contact?service=ai-coaching">Tell me what you want to learn ↗</Link>
+      <Link className="btn btn-fill" href="/connect?service=ai-coaching">Tell me what you want to learn ↗</Link>
       <p className="mt-5 text-sm text-[var(--color-ink-soft)]">Share your goals first. We agree on the session scope, price, and time before you commit.</p>
     </section>
     <section className="work-section"><div className="studio-wrap studio-section">
@@ -40,6 +40,6 @@ export default function CoachingPage() {
       ["Will we finish my entire project in one session?", "We agree on a focused goal that fits the session. Larger projects may need more time; any follow-up work is agreed separately."],
       ["Can you just build it for me instead?", "Absolutely. Choose a website, custom software, or AI receptionist inquiry if you want me to handle the build. We can also discuss a build with a guided handoff."],
     ].map(([q, a]) => <details key={q}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}</div></section>
-    <section className="closing-cta"><div className="studio-wrap"><p className="eyebrow">Let’s work on your idea</p><h2 className="display">Learn something.<br/><em>Make something.</em></h2><Link className="btn btn-fill" href="/contact?service=ai-coaching">Ask about coaching ↗</Link></div></section>
+    <section className="closing-cta"><div className="studio-wrap"><p className="eyebrow">Let’s work on your idea</p><h2 className="display">Learn something.<br/><em>Make something.</em></h2><Link className="btn btn-fill" href="/connect?service=ai-coaching">Ask about coaching ↗</Link></div></section>
   </>;
 }

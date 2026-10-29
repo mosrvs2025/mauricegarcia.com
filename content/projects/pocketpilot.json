@@ -1,0 +1,54 @@
+{
+  "id": "prj-pocketpilot",
+  "slug": "pocketpilot",
+  "title": "PocketPilot",
+  "tagline": "An experimental privacy-first Android media assistant that routes plain-English requests to safe actions.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 230,
+  "themes": [
+    "practical"
+  ],
+  "state": "prototype",
+  "stateNote": "Early. The README describes an implementation direction as well as what exists.",
+  "problem": "Phone storage fills up and compressing video is fiddly. PocketPilot would let you ask for what you want and approve each proposed operation before anything changes.",
+  "audience": "Android users with full phones.",
+  "contribution": "It is my project. The repository is named 'videocompress'.",
+  "worksToday": [
+    "The README describes storage insights, file selection, safe compression and on-device intent routing."
+  ],
+  "limitations": [
+    "I haven't checked how much of the README is built."
+  ],
+  "links": {
+    "repo": "https://github.com/mosrvs2025/videocompress",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [],
+  "dates": {
+    "lastChange": "2026-10-27",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/videocompress",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "What would you ask?",
+    "asks": [
+      "Tell me what you'd ask your phone to clean up."
+    ],
+    "intent": "hello"
+  },
+  "formerSlugs": []
+}

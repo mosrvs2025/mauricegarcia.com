@@ -1,0 +1,57 @@
+{
+  "id": "prj-observed",
+  "slug": "observed",
+  "title": "OBSERVED",
+  "tagline": "A citizen observatory: pick an experiment, predict first, measure with your phone, inspect the evidence.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 120,
+  "themes": [
+    "curiosity"
+  ],
+  "state": "prototype",
+  "stateNote": "Runs locally. The seeded demo campaign is clearly labelled as simulated.",
+  "problem": "People argue about basics like the shape of the Earth from their sofas. OBSERVED asks them to lock a prediction, measure a shadow or a sunset, and see every model scored against open data.",
+  "audience": "Curious people, teachers and skeptics who prefer evidence they can recompute themselves.",
+  "contribution": "It is my project. The README describes a signed, hash-chained record of observations, and the evidence page recomputes statistics in your browser.",
+  "worksToday": [
+    "Two experiments are described end to end: The Shadow Stick and One Sunset, Everywhere.",
+    "The README lists tests for the physics and for tamper and forgery checks."
+  ],
+  "limitations": [
+    "I haven't run the tests or the app. This summary comes from the README.",
+    "The README's own 'Honest limits' section notes the system can't prove a shadow was real."
+  ],
+  "links": {
+    "repo": "https://github.com/mosrvs2025/observed",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "yes",
+    "note": "Commit trailers show Claude as a co-author."
+  },
+  "media": [],
+  "dates": {
+    "lastChange": "2026-10-07",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/observed",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Want to run the shadow stick?",
+    "asks": [
+      "Tell me which part of the capture flow would stop you."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": []
+}

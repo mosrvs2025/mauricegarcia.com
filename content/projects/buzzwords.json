@@ -1,0 +1,56 @@
+{
+  "id": "prj-buzzwords",
+  "slug": "buzzwords",
+  "title": "Buzzwords",
+  "tagline": "A shout-it-out word party game where phones are controllers and a TV is the stage.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 200,
+  "themes": [
+    "games"
+  ],
+  "state": "prototype",
+  "stateNote": "Described in the README. I haven't found a hosted copy that I can verify is yours.",
+  "problem": "Party word games get stuck on one phone. Here every player has a phone, and the other team can slam BUZZ if the describer says the word.",
+  "audience": "Groups of four or more with a TV or laptop.",
+  "contribution": "It is my project, built as an installable PWA with room codes.",
+  "worksToday": [
+    "Host, join by code on a phone, and show the display on a TV browser, per the README."
+  ],
+  "limitations": [
+    "I haven't played it.",
+    "No verified hosted copy to link."
+  ],
+  "links": {
+    "repo": "https://github.com/mosrvs2025/buzzwords",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "yes",
+    "note": "Commit trailers show Claude as a co-author."
+  },
+  "media": [],
+  "dates": {
+    "lastChange": "2026-10-03",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/buzzwords",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Game night?",
+    "asks": [
+      "If you'd like to run a game night with it, tell me."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": []
+}

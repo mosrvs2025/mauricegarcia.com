@@ -1,0 +1,70 @@
+{
+  "id": "prj-echofield",
+  "slug": "echofield",
+  "title": "Echofield",
+  "tagline": "A procedural action slice set after the Sundering, when four ages were crushed into one continent.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 150,
+  "themes": [
+    "games"
+  ],
+  "state": "playable-slice",
+  "stateNote": "A browser action slice with Low, Medium and High quality settings.",
+  "problem": "What if a world were stitched out of four different ages? You play a seamwalker crossing the seam from Crosscamp to the Chrome Needle.",
+  "audience": "Players of exploration and action games, and procedural-generation fans.",
+  "contribution": "It is my project. The README says the world, characters and audio are procedural, with no external models or sound files.",
+  "worksToday": [
+    "Walk from Crosscamp to the Chrome Needle across a continuous map.",
+    "A phone with no saved setting starts on Low quality."
+  ],
+  "limitations": [
+    "I checked that the title screen loads, not the whole slice.",
+    "Quality and performance vary a lot between devices."
+  ],
+  "links": {
+    "demo": "https://echofield-five.vercel.app",
+    "repo": "https://github.com/mosrvs2025/Echofield",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [
+    {
+      "src": "/projects/echofield.webp",
+      "alt": "The Echofield title card over a misty low-poly grassland with red tents, offering 'Begin walk' and Low, Medium and High quality buttons.",
+      "caption": "The title screen of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-09-24",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://echofield-five.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/Echofield",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "How does it run for you?",
+    "asks": [
+      "Tell me what quality setting your device handled."
+    ],
+    "intent": "hello"
+  },
+  "formerSlugs": []
+}
