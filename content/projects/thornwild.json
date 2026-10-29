@@ -5,13 +5,13 @@
   "tagline": "An original 2.5D cinematic platformer with nine worlds, five companions and six giant guardians.",
   "status": "published",
   "visibility": "public",
-  "tier": "archive",
-  "order": 170,
+  "tier": "featured",
+  "order": 20,
   "themes": [
     "games"
   ],
   "state": "prototype",
-  "stateNote": "The README links to a hosted build that returned a 404 when I checked, so no demo is linked.",
+  "stateNote": "The README's older hosted link returns a 404, but a current build runs on my Vercel.",
   "problem": "A big-hearted platformer where you run, wall-climb, dash and ground pound through living jungles and glowing caves, and grow a home of your own.",
   "audience": "Platformer fans who like exploration and companions.",
   "contribution": "It is my project, with its own characters, worlds and music. The repository lives under the name 'donkeykong'.",
@@ -20,11 +20,12 @@
   ],
   "limitations": [
     "I haven't played it. This is from the README and its screenshots.",
-    "The hosted link in the README returned a 404."
+    "The hosted link in the README is out of date and returns a 404; the link here is the current build."
   ],
   "links": {
     "repo": "https://github.com/mosrvs2025/donkeykong",
-    "other": []
+    "other": [],
+    "demo": "https://donkeykong-two.vercel.app"
   },
   "repoVisibility": "public",
   "ai": {
@@ -33,9 +34,21 @@
   },
   "media": [
     {
-      "src": "/projects/thornwild.webp",
-      "alt": "The Thornwild title screen artwork from the repository.",
-      "caption": "Title artwork from the repository's docs folder.",
+      "src": "/projects/thornwild-1.webp",
+      "alt": "The Thornwild title screen, 'The Lumen Seed', over a misty 3D forest.",
+      "caption": "Title screen, from the hosted build.",
+      "capturedAt": "2026-10-29"
+    },
+    {
+      "src": "/projects/thornwild-2.webp",
+      "alt": "An in-game cutscene: a glowing seed in a stone chamber with the line 'Then the Sunwrights vanished.'",
+      "caption": "Opening cutscene, from the hosted build.",
+      "capturedAt": "2026-10-29"
+    },
+    {
+      "src": "/projects/thornwild-3.webp",
+      "alt": "The Rootwild level intro over a 3D forest, with a 'Hold to jump higher' tip.",
+      "caption": "First level, from the hosted build.",
       "capturedAt": "2026-10-29"
     }
   ],
@@ -45,6 +58,12 @@
     "reviewed": "2026-10-29"
   },
   "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://donkeykong-two.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
     {
       "label": "README and source",
       "url": "https://github.com/mosrvs2025/donkeykong",
@@ -59,5 +78,11 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "preview": {
+    "webm": "/projects/thornwild-preview.webm",
+    "mp4": "/projects/thornwild-preview.mp4",
+    "poster": "/projects/thornwild-2.webp",
+    "capturedAt": "2026-10-29"
+  }
 }

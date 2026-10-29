@@ -27,7 +27,8 @@ export function ProjectLead({ project }: { project: Project }) {
         <p className="j-muted" style={{ fontSize: ".9rem" }}>{project.stateNote}</p>
         <div className="j-actions" style={{ marginTop: 6 }}>
           <Link className="btn btn-fill" href={`/projects/${project.slug}`}>See the project</Link>
-          {project.links.demo && <a className="j-link j-arrow" href={project.links.demo} data-track="demo_visit" data-track-project={project.slug}>Try it</a>}
+          {project.links.demo && <a className="j-link j-arrow" href={project.links.demo} rel="noopener noreferrer" data-track="demo_visit" data-track-project={project.slug}>Live site</a>}
+          {project.links.repo && <a className="j-link j-arrow" href={project.links.repo} rel="noopener noreferrer" data-track="source_click" data-track-project={project.slug}>GitHub</a>}
         </div>
       </div>
     </article>
@@ -46,6 +47,12 @@ export function ProjectRow({ project, bare = false }: { project: Project; bare?:
       <div>
         <h3 className="display"><Link href={`/projects/${project.slug}`}>{project.title}</Link></h3>
         <p>{project.tagline}</p>
+        {(project.links.demo || project.links.repo) && (
+          <p className="j-actions" style={{ marginTop: 8 }}>
+            {project.links.demo && <a className="j-link j-arrow" href={project.links.demo} rel="noopener noreferrer" data-track="demo_visit" data-track-project={project.slug}>Live site</a>}
+            {project.links.repo && <a className="j-link j-arrow" href={project.links.repo} rel="noopener noreferrer" data-track="source_click" data-track-project={project.slug}>GitHub</a>}
+          </p>
+        )}
         {isProposed(project) && <p style={{ marginTop: 8 }}><Proposed /></p>}
       </div>
       <div className="j-tags"><StateTag project={project} /></div>

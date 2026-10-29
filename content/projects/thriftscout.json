@@ -1,0 +1,86 @@
+{
+  "id": "prj-thriftscout",
+  "slug": "thriftscout",
+  "title": "ThriftScout",
+  "tagline": "The world is your thrift store: say what you want, and scouts already thrifting keep an eye out.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "featured",
+  "order": 10,
+  "themes": [
+    "retail",
+    "practical"
+  ],
+  "state": "pilot",
+  "stateNote": "A live no-card pilot with real accounts. No payments or payouts are collected yet.",
+  "problem": "Good finds sit in thrift stores where the people who want them never see them. ThriftScout connects buyers, scouts who are already in the aisles, and the stores themselves.",
+  "audience": "Thrift shoppers, people who thrift for others, and thrift stores.",
+  "contribution": "It is my project, built with Next.js and Supabase. The source is private.",
+  "worksToday": [
+    "Browse finds, post a wanted request, or run a price check, as shown on the live site.",
+    "Scouts can post finds from a store, per the README.",
+    "Real accounts work across devices in the pilot, per the README."
+  ],
+  "limitations": [
+    "No card payments or payouts are collected yet.",
+    "The store listed is an unclaimed scout location, not a verified partner, per the README.",
+    "The source is private."
+  ],
+  "links": {
+    "demo": "https://thriftscouter.com",
+    "other": []
+  },
+  "repoVisibility": "private",
+  "privateSummaryApproved": true,
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [
+    {
+      "src": "/projects/thriftscout-1.webp",
+      "alt": "The ThriftScout home page: 'The world is your thrift store.'",
+      "caption": "Home, from the hosted build.",
+      "capturedAt": "2026-10-29"
+    },
+    {
+      "src": "/projects/thriftscout-2.webp",
+      "alt": "How it works: 'One photo. One tap. A real purchase at a real store.'",
+      "caption": "How it works, from the hosted build.",
+      "capturedAt": "2026-10-29"
+    },
+    {
+      "src": "/projects/thriftscout-3.webp",
+      "alt": "The store pitch page: 'Turn your shoppers into your online sales force.'",
+      "caption": "For stores, from the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-10-17",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://thriftscouter.com",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Run a thrift store, or thrift a lot?",
+    "asks": [
+      "If you run a thrift store and want to try it, tell me.",
+      "Tell me what you'd want a scout to find for you."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": [],
+  "preview": {
+    "webm": "/projects/thriftscout-preview.webm",
+    "mp4": "/projects/thriftscout-preview.mp4",
+    "poster": "/projects/thriftscout-1.webp",
+    "capturedAt": "2026-10-29"
+  }
+}

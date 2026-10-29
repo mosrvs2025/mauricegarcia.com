@@ -83,6 +83,13 @@ export const projectSchema = z.object({
     caption: z.string().max(300).optional(),
     capturedAt: dateSchema.optional(),
   })).max(6).default([]),
+  /** A short muted loop recorded from the live site. Plays on hover or when in view; never under reduced motion. */
+  preview: z.object({
+    webm: z.string().regex(/^\/[A-Za-z0-9/_.-]+\.webm$/, "must be a /public .webm path"),
+    mp4: z.string().regex(/^\/[A-Za-z0-9/_.-]+\.mp4$/, "must be a /public .mp4 path"),
+    poster: z.string().regex(/^\/[A-Za-z0-9/_.-]+$/, "must be a /public path"),
+    capturedAt: dateSchema.optional(),
+  }).optional(),
   dates: z.object({
     started: dateSchema.optional(),
     /** Last meaningful change, taken from the repository or stated by the owner. Never "now". */

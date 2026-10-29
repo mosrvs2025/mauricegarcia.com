@@ -5,8 +5,8 @@
   "tagline": "One Android app of small offline tools: video editing, shrinking, audio extraction, a sound meter and an app inspector. No ads, no accounts, no internet permission.",
   "status": "published",
   "visibility": "public",
-  "tier": "featured",
-  "order": 25,
+  "tier": "archive",
+  "order": 140,
   "themes": [
     "practical",
     "creative-tools"
