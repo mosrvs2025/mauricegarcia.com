@@ -118,7 +118,7 @@ export default function HomePage() {
           <Reveal delay={100}><div className="j-panel">
             <h3 className="display">Need something built, or want to learn?</h3>
             <p>I build websites and custom software for small businesses, run AI-receptionist pilots, and coach people one-to-one on building with AI tools. Scope and price are agreed before any work starts.</p>
-            <div className="actions"><Link className="btn btn-ghost" href="/services">See how I work</Link><Link className="j-link" href="/connect?intent=paid-work">Ask about paid work</Link></div>
+            <div className="actions"><Link className="btn btn-ghost" href="/services">See how I work</Link><Link className="j-link" href="/connect?intent=paid-work">Ask about paid work</Link><Link className="j-link j-arrow" href="/lab">Browse the design lab</Link></div>
           </div></Reveal>
         </div>
       </section>
