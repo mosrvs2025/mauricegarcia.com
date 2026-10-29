@@ -6,11 +6,10 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 220,
+  "order": 140,
   "themes": [
     "games"
   ],
-  "state": "playable-slice",
   "stateNote": "A browser build you can play now. Expect a slice of the game, not a finished one.",
   "problem": "Health bars are a number. In Gridheart every character has a grid of health cells, and a weapon's shape is placed on that grid in the direction of the blow, so where you stand changes how much damage lands.",
   "audience": "Anyone who likes action roguelites and odd mechanics, and game developers curious about shape-based damage.",
@@ -70,5 +69,12 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "beta",
+  "track": "experiences",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

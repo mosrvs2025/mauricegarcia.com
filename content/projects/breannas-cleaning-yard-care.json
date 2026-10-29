@@ -3,14 +3,13 @@
   "slug": "breannas-cleaning-yard-care",
   "title": "Breanna's Cleaning & Yard Care",
   "tagline": "A website for a house cleaning and yard care business in Lancaster, PA.",
-  "status": "published",
+  "status": "draft",
   "visibility": "public",
   "tier": "archive",
-  "order": 195,
+  "order": 920,
   "themes": [
     "practical"
   ],
-  "state": "in-use",
   "stateNote": "A live site for a real local business, built as client work.",
   "problem": "A small service business needed a clear site with services, starting prices and an easy way to get in touch.",
   "audience": "Homeowners in and around Lancaster, PA.",
@@ -29,7 +28,6 @@
     "other": []
   },
   "repoVisibility": "private",
-  "privateSummaryApproved": true,
   "ai": {
     "assisted": "unknown"
   },
@@ -61,5 +59,12 @@
     ],
     "intent": "paid-work"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "prototype",
+  "track": "products",
+  "openTo": [],
+  "disclosure": {
+    "basis": "none",
+    "note": "Private source. Hidden until the owner documents permission to show it."
+  }
 }

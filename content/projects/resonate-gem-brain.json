@@ -6,12 +6,11 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 275,
+  "order": 390,
   "themes": [
     "creative-tools",
     "practical"
   ],
-  "state": "maintained",
   "stateNote": "A small pattern repository, last changed in August 2025.",
   "problem": "Gem instructions get messy. This repo keeps them composable and versioned: a Gem reads AGENTS.md, which delegates through a manifest to one primary agent.",
   "audience": "People building Gems or similar instruction-driven assistants.",
@@ -51,5 +50,12 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "prototype",
+  "track": "labs",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

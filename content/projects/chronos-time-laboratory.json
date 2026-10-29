@@ -6,11 +6,10 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 155,
+  "order": 350,
   "themes": [
     "curiosity"
   ],
-  "state": "playable-slice",
   "stateNote": "Runs in the browser. Illustrations are labelled as not to scale.",
   "problem": "Time dilation and other strange facts about time are hard to picture from equations. Each experiment asks for a guess first, then lets you try it.",
   "audience": "Curious people with no physics background.",
@@ -60,5 +59,12 @@
     ],
     "intent": "hello"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "beta",
+  "track": "labs",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-demo-only",
+    "note": "Described only from what the public site itself shows; no source is referenced."
+  }
 }

@@ -5,12 +5,11 @@
   "tagline": "A laboratory for testing attention, randomness and coincidence that is built to show you when nothing happened.",
   "status": "published",
   "visibility": "public",
-  "tier": "archive",
-  "order": 240,
+  "tier": "featured",
+  "order": 330,
   "themes": [
     "curiosity"
   ],
-  "state": "prototype",
   "stateNote": "The hosted app loads. Accounts and group sessions depend on a backend I haven't verified.",
   "problem": "Claims about consciousness and coincidence are usually easy to believe and hard to check. Each instrument here records real trials, keeps a control, and reports honestly, including how often pure noise looks significant.",
   "audience": "Curious skeptics and curious believers who want to run an experiment themselves in about twenty seconds.",
@@ -70,5 +69,12 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "beta",
+  "track": "labs",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

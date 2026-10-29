@@ -1,8 +1,8 @@
 export const site = {
   name: "Maurice Garcia",
-  title: "Maurice Garcia: useful tools, playful worlds, experiments worth trying",
+  title: "Maurice Garcia: Experience Engineer, creative technologist, independent builder",
   description:
-    "I'm Maurice. I build useful tools, playful worlds, and experiments worth trying. Try them, follow how they're going, and say hello.",
+    "Maurice Garcia is an Experience Engineer and independent builder working across AI, software, automation, interactive experiences, games, Android and experimental technology. See what he has built, learn to build with AI, or work with him.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://mauricegarcia.com",
   email: "hello@mauricegarcia.com",
   github: "https://github.com/mosrvs2025",
@@ -20,3 +20,12 @@ export function linkedInUrl(): string | null {
 }
 
 export const abs = (path: string) => `${site.url}${path}`;
+
+/**
+ * The owner's YouTube channel, configured by environment variable and never invented.
+ * Only a well-formed https youtube.com channel URL is accepted; anything else is treated as "not set".
+ */
+export function youtubeChannelUrl(): string | null {
+  const v = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_URL?.trim();
+  return v && /^https:\/\/(www\.)?youtube\.com\/(@[\w.-]+|channel\/[\w-]+|c\/[\w.-]+|user\/[\w.-]+)\/?$/.test(v) ? v : null;
+}

@@ -3,8 +3,8 @@ import path from "node:path";
 import matter from "gray-matter";
 import { z } from "zod";
 import {
-  candidateSchema, nowSchema, postFrontmatterSchema, projectSchema, sourcesFileSchema, syncStatusSchema, updateSchema,
-  type Candidate, type Now, type Post, type Project, type Source, type SyncStatus, type Update,
+  candidateSchema, lessonFrontmatterSchema, nowSchema, postFrontmatterSchema, projectSchema, sourcesFileSchema, syncStatusSchema, updateSchema,
+  type Candidate, type Lesson, type Now, type Post, type Project, type Source, type SyncStatus, type Update,
 } from "./schemas";
 import { readingMinutes } from "./markdown";
 
@@ -53,6 +53,18 @@ export function parsePostFile(raw: string, file = "post.md"): Post {
   return { ...fm, body: content.trim(), readingMinutes: readingMinutes(content) };
 }
 
+export function parseLessonFile(raw: string, file = "lesson.md"): Lesson {
+  const { data, content } = matter(raw);
+  const fm = parse(lessonFrontmatterSchema, data, file);
+  return { ...fm, body: content.trim(), readingMinutes: readingMinutes(content) };
+}
+
+export function loadLessons(): Lesson[] {
+  const list = files("lessons", ".md").map((f) => parseLessonFile(fs.readFileSync(f, "utf8"), f));
+  assertUnique(list, "lesson");
+  return list.sort((a, b) => (b.publishedAt || "").localeCompare(a.publishedAt || ""));
+}
+
 export function loadProjects(): Project[] {
   const list = files("projects", ".json").map((f) => parse(projectSchema, readJson(f), f));
   assertUnique(list, "project");
@@ -94,13 +106,14 @@ export function loadSyncStatus(): SyncStatus | null {
 /** Cross-file integrity: references resolve, sources match projects. */
 export function validateAll(): string[] {
   const problems: string[] = [];
-  const projects = loadProjects(); const updates = loadUpdates(); const posts = loadPosts();
+  const projects = loadProjects(); const updates = loadUpdates(); const posts = loadPosts(); const lessons = loadLessons();
   loadNow(); loadCandidates(); loadSyncStatus();
   const sources = loadSources();
   const projectIds = new Set(projects.map((p) => p.id));
   const sourceIds = new Set(sources.map((s) => s.id));
   for (const u of updates) if (u.projectId && !projectIds.has(u.projectId)) problems.push(`update ${u.id}: unknown projectId ${u.projectId}`);
   for (const p of posts) for (const id of p.projectIds) if (!projectIds.has(id)) problems.push(`post ${p.id}: unknown projectId ${id}`);
+  for (const l of lessons) for (const id of l.projectIds) if (!projectIds.has(id)) problems.push(`lesson ${l.id}: unknown projectId ${id}`);
   for (const s of sources) if (!projectIds.has(s.projectId)) problems.push(`source ${s.id}: unknown projectId ${s.projectId}`);
   for (const p of projects) if (p.sourceId && !sourceIds.has(p.sourceId)) problems.push(`project ${p.id}: unknown sourceId ${p.sourceId}`);
   const slugs = new Map<string, string>();

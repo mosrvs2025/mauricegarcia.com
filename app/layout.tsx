@@ -5,10 +5,12 @@ import { Analytics } from "@/components/Analytics";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { isPreviewBuild } from "@/lib/content/visibility";
+import { SKIN_BOOT_SCRIPT } from "@/lib/skin";
 import { ldScript, personLd, websiteLd } from "@/lib/jsonld";
 import { site } from "@/lib/site";
 import "./globals.css";
 import "./journal.css";
+import "./skins.css";
 
 const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces", display: "swap", axes: ["opsz"] });
 const instrument = Instrument_Sans({ subsets: ["latin"], variable: "--font-instrument", display: "swap" });
@@ -30,7 +32,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${instrument.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${instrument.variable}`} suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{ __html: SKIN_BOOT_SCRIPT }} /></head>
       <body className="min-h-screen antialiased">
         <a href="#main" className="skip-link">Skip to content</a>
         <Analytics />

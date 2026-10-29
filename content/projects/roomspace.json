@@ -6,12 +6,11 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 175,
+  "order": 190,
   "themes": [
     "games",
     "creative-tools"
   ],
-  "state": "prototype",
   "stateNote": "Built for Meta Quest Browser. A desktop preview exists, but the mixed-reality apps need a Quest.",
   "problem": "Most XR apps ignore your room. Roomspace uses it as the mechanic: a piano that sits on your table, fireflies that hide behind your furniture.",
   "audience": "Meta Quest 3 and 3S owners and WebXR developers.",
@@ -68,5 +67,12 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "prototype",
+  "track": "experiences",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

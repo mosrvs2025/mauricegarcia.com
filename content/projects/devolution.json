@@ -3,14 +3,13 @@
   "slug": "devolution",
   "title": "Devolution",
   "tagline": "An original 3D dinosaur survival game: survive the night, tame a spitfrill, found a tribe.",
-  "status": "published",
+  "status": "draft",
   "visibility": "public",
-  "tier": "featured",
-  "order": 40,
+  "tier": "archive",
+  "order": 950,
   "themes": [
     "games"
   ],
-  "state": "playable-slice",
   "stateNote": "Runs in the browser, solo offline or online. Works with keyboard, touch or a PlayStation controller.",
   "problem": "I wanted a survival game you can start in a browser tab on any device, alone or with real players.",
   "audience": "Players who like survival and taming games.",
@@ -29,7 +28,6 @@
     "other": []
   },
   "repoVisibility": "private",
-  "privateSummaryApproved": true,
   "ai": {
     "assisted": "unknown"
   },
@@ -79,5 +77,12 @@
     "mp4": "/projects/devolution-preview.mp4",
     "poster": "/projects/devolution-2.webp",
     "capturedAt": "2026-10-29"
+  },
+  "maturity": "prototype",
+  "track": "experiences",
+  "openTo": [],
+  "disclosure": {
+    "basis": "none",
+    "note": "Private source. Hidden until the owner documents permission to show it."
   }
 }

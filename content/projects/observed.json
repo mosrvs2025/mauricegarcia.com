@@ -6,11 +6,10 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 200,
+  "order": 340,
   "themes": [
     "curiosity"
   ],
-  "state": "prototype",
   "stateNote": "Runs locally with npm. A hosted copy exists, but its server isn't running there (its data calls return 404), so it shows an error. That is why there is no live link.",
   "problem": "People argue about basics like the shape of the Earth from their sofas. OBSERVED asks them to lock a prediction, measure a shadow or a sunset, and see every model scored against open data.",
   "audience": "Curious people, teachers and skeptics who prefer evidence they can recompute themselves.",
@@ -54,5 +53,12 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "prototype",
+  "track": "labs",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

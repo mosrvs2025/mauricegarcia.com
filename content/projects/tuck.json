@@ -3,14 +3,13 @@
   "slug": "tuck",
   "title": "Tuck",
   "tagline": "A bill-pay prototype that gives every bill its own pocket of money.",
-  "status": "published",
+  "status": "draft",
   "visibility": "public",
   "tier": "archive",
-  "order": 190,
+  "order": 910,
   "themes": [
     "practical"
   ],
-  "state": "prototype",
   "stateNote": "A browser-only demo with play money. It is not a bank.",
   "problem": "Bills come out of one balance, so it's easy to spend money that was meant for rent or a subscription. Tuck reserves money per merchant ahead of time.",
   "audience": "People who juggle recurring bills.",
@@ -30,7 +29,6 @@
     "other": []
   },
   "repoVisibility": "private",
-  "privateSummaryApproved": true,
   "ai": {
     "assisted": "unknown"
   },
@@ -62,5 +60,12 @@
     ],
     "intent": "hello"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "prototype",
+  "track": "products",
+  "openTo": [],
+  "disclosure": {
+    "basis": "none",
+    "note": "Private source. Hidden until the owner documents permission to show it."
+  }
 }

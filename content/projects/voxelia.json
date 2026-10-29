@@ -6,11 +6,10 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 250,
+  "order": 230,
   "themes": [
     "games"
   ],
-  "state": "prototype",
   "stateNote": "Run locally with npm. I haven't found a hosted copy.",
   "problem": "A sandbox game that runs on desktop and mobile in a browser, with a moodier look than vanilla.",
   "audience": "Sandbox fans and Three.js developers.",
@@ -52,5 +51,12 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "prototype",
+  "track": "experiences",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

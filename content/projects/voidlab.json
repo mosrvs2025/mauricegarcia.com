@@ -6,12 +6,11 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 205,
+  "order": 360,
   "themes": [
     "curiosity",
     "games"
   ],
-  "state": "playable-slice",
   "stateNote": "Runs in the browser. You can save and share a universe.",
   "problem": "Gravity and star formation are easier to feel than to read about. VOIDLAB lets you paint elements into empty space and watch them collapse, orbit and ignite.",
   "audience": "Anyone curious about space who likes sandboxes.",
@@ -60,5 +59,12 @@
     ],
     "intent": "hello"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "beta",
+  "track": "labs",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-demo-only",
+    "note": "Described only from what the public site itself shows; no source is referenced."
+  }
 }

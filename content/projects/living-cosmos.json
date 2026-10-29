@@ -3,15 +3,14 @@
   "slug": "living-cosmos",
   "title": "Living Cosmos",
   "tagline": "Build a planet, shape its climate and food web, and grow a sustainable settlement.",
-  "status": "published",
+  "status": "draft",
   "visibility": "public",
   "tier": "archive",
-  "order": 185,
+  "order": 930,
   "themes": [
     "curiosity",
     "games"
   ],
-  "state": "playable-slice",
   "stateNote": "An educational game prototype that runs in the browser. Saves stay on your device.",
   "problem": "Climate, ecosystems and settlement are usually taught separately. Here one planet connects them, so a change to starlight shows up in the food web.",
   "audience": "Students and curious players.",
@@ -31,7 +30,6 @@
     "other": []
   },
   "repoVisibility": "private",
-  "privateSummaryApproved": true,
   "ai": {
     "assisted": "unknown"
   },
@@ -63,5 +61,12 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "prototype",
+  "track": "labs",
+  "openTo": [],
+  "disclosure": {
+    "basis": "none",
+    "note": "Private source. Hidden until the owner documents permission to show it."
+  }
 }

@@ -2,12 +2,13 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import { SkinPicker } from "./SkinPicker";
 
 const links = [
   { href: "/projects", label: "Projects" },
-  { href: "/writing", label: "Writing" },
+  { href: "/learn", label: "Learn" },
   { href: "/updates", label: "Updates" },
-  { href: "/now", label: "Now" },
+  { href: "/writing", label: "Writing" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Work with me" },
 ];
@@ -34,6 +35,7 @@ export function Header() {
         <nav className="desktop-nav" aria-label="Main">
           {links.map((l) => <Link key={l.href} href={l.href} aria-current={current(l.href)}>{l.label}</Link>)}
         </nav>
+        <div className="skin-desktop"><SkinPicker /></div>
         <Link href="/connect" className="nav-cta">Say hello</Link>
         <button ref={toggle} type="button" aria-expanded={open} aria-controls="mobile-menu" className="menu-toggle" onClick={() => setOpen(!open)}>
           {open ? "Close" : "Menu"}
@@ -44,6 +46,7 @@ export function Header() {
           {[...links, { href: "/connect", label: "Say hello" }].map((l) => (
             <Link href={l.href} key={l.href} aria-current={current(l.href)}>{l.label}<span aria-hidden="true">→</span></Link>
           ))}
+          <SkinPicker mobile />
         </nav>
       )}
     </header>

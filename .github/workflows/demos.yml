@@ -1,0 +1,21 @@
+name: Check demo links
+
+# Weekly: every public demo on a shown project must still answer. A red run is the signal to fix or remove a link.
+on:
+  schedule:
+    - cron: "41 13 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  demos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run demos:check

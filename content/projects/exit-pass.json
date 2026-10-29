@@ -6,12 +6,11 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 150,
+  "order": 40,
   "themes": [
     "retail",
     "practical"
   ],
-  "state": "simulation",
   "stateNote": "A working prototype that runs entirely on simulated store systems. It is not connected to any store.",
   "problem": "Scan-and-go apps still end at a register where someone audits the cart. Exit Pass explores targeted verification: you pay as you shop, and the exit check only looks at the one to three things that matter, so most trips skip it.",
   "audience": "Shoppers who hate lines, and store teams and builders who think about checkout, shrink and staffing.",
@@ -72,5 +71,12 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "prototype",
+  "track": "products",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

@@ -3,7 +3,7 @@ import { Gallery } from "@/components/Gallery";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Proposed, StateTag, UpdateItem } from "@/components/ProjectParts";
-import { formatDate, projectBySlug, shownProjects, STATE_LABELS, THEME_LABELS, updatesForProject, postsForProject } from "@/lib/content/query";
+import { formatDate, projectBySlug, shownProjects, CHANNEL_LABELS, MATURITY_HELP, MATURITY_LABELS, THEME_LABELS, TRACK_LABELS, updatesForProject, postsForProject } from "@/lib/content/query";
 import { isListed, isProposed } from "@/lib/content/visibility";
 import { ldScript, projectLd } from "@/lib/jsonld";
 
@@ -47,9 +47,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <Gallery title={p.title} media={p.media} preview={p.preview} captured={p.preview?.capturedAt ? formatDate(p.preview.capturedAt) : p.media[0]?.capturedAt ? formatDate(p.media[0].capturedAt) : undefined} />
 
       <dl className="j-facts">
-        <div><dt>State</dt><dd>{STATE_LABELS[p.state]}</dd></div>
+        <div><dt>Maturity</dt><dd>{MATURITY_LABELS[p.maturity]} <span className="j-muted">· {MATURITY_HELP[p.maturity]}</span></dd></div>
+        <div><dt>Track</dt><dd><Link className="j-link" href={`/projects?track=${p.track}`}>{TRACK_LABELS[p.track].title}</Link></dd></div>
         {p.dates.lastChange && <div><dt>Last change</dt><dd>{formatDate(p.dates.lastChange)}{p.dates.lastChangeSource ? <span className="j-muted"> · {p.dates.lastChangeSource}</span> : null}</dd></div>}
         <div><dt>Page last reviewed</dt><dd>{formatDate(p.dates.reviewed)}</dd></div>
+        {p.openTo.length > 0 && <div><dt>Open to</dt><dd>{p.openTo.map((c) => CHANNEL_LABELS[c]).join(", ")} <span className="j-muted">· conversations, not offers or claims of traction</span></dd></div>}
         {p.ai.assisted === "yes" && <div><dt>Built with</dt><dd>AI coding assistants. {p.ai.note}</dd></div>}
       </dl>
 
@@ -62,6 +64,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
       {updates.length > 0 && <section className="j-block"><h2>Updates</h2><ul className="j-updates">{updates.map((u) => <UpdateItem key={u.id} update={u} />)}</ul></section>}
       {posts.length > 0 && <section className="j-block"><h2>Writing</h2><ul>{posts.map((w) => <li key={w.id}><Link className="j-link" href={`/writing/${w.slug}`}>{w.title}</Link></li>)}</ul></section>}
+
+      <section className="j-block"><h2>About this page</h2><p className="j-muted">{p.disclosure.note}{p.disclosure.documentedAt ? ` Documented ${formatDate(p.disclosure.documentedAt)}.` : ""}</p></section>
 
       <section className="j-callout" style={{ marginTop: 40 }} aria-labelledby="involve">
         <h2 className="display" id="involve">How you can get involved</h2>

@@ -1,8 +1,8 @@
 export const contactEmail = "hello@mauricegarcia.com";
 
-export const INTENTS = ["hello", "collaborate", "paid-work", "coaching"] as const;
+export const INTENTS = ["hello", "collaborate", "paid-work", "partner", "coaching", "hire"] as const;
 export type Intent = (typeof INTENTS)[number];
-export const INTENT_LABELS: Record<Intent, string> = { hello: "Saying hello", collaborate: "Collaboration", "paid-work": "Paid work", coaching: "Coaching" };
+export const INTENT_LABELS: Record<Intent, string> = { hello: "Saying hello", collaborate: "Collaboration", "paid-work": "Build something", partner: "Licensing, partnership or investment", coaching: "Learning with me", hire: "Hiring or a role" };
 
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 

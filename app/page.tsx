@@ -2,13 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { CountUp } from "@/components/CountUp";
-import { FeaturedGrid } from "@/components/FeaturedGrid";
 import { Proposed, UpdateItem } from "@/components/ProjectParts";
-import { toCard } from "@/lib/content/cards";
 import { Reveal } from "@/components/Reveal";
 import { SurpriseMe } from "@/components/SurpriseMe";
 import { Ticker } from "@/components/Ticker";
-import { featuredProjects, formatDate, listedPosts, listedProjects, listedUpdates, projectById, shownNow } from "@/lib/content/query";
+import { TrackSection } from "@/components/TrackSection";
+import { capabilities } from "@/lib/capabilities";
+import { toCard } from "@/lib/content/cards";
+import { featuredByTrack, formatDate, listedPosts, listedProjects, listedUpdates, projectById, projectBySlug, projectsByTrack, shownNow } from "@/lib/content/query";
 import { isProposed } from "@/lib/content/visibility";
 import { site } from "@/lib/site";
 
@@ -17,15 +18,13 @@ const HeroField = dynamic(() => import("@/components/HeroField").then((m) => m.H
 
 export default function HomePage() {
   const all = listedProjects();
-  const featured = featuredProjects();
   const now = shownNow();
   const updates = listedUpdates().slice(0, 3);
   const posts = listedPosts().slice(0, 2);
   const withDemo = all.filter((p) => p.links.demo);
   const demos = withDemo.map((p) => ({ title: p.title, url: p.links.demo!, slug: p.slug }));
   const ticker = all.map((p) => ({ slug: p.slug, title: p.title, theme: p.themes[0], playable: !!p.links.demo }));
-  const games = all.filter((p) => p.themes.includes("games")).length;
-  const words = ["I build", "useful tools,", "playful worlds,", "and experiments", "worth trying."];
+  const words = ["I turn", "ambitious ideas", "into working", "products, worlds", "and experiments."];
   return (
     <>
       <section className="j-hero-wrap">
@@ -33,21 +32,21 @@ export default function HomePage() {
         <HeroField />
         <div className="studio-wrap j-hero">
           <div>
-            <p className="eyebrow j-pop">Maurice Garcia · workshop &amp; journal</p>
+            <p className="eyebrow j-pop">Experience Engineer · Creative technologist · Independent builder</p>
             <h1 className="display j-title">
               {words.map((w, i) => <span className="j-word" style={{ "--i": i } as React.CSSProperties} key={w}>{i === 1 ? <em>{w}</em> : w}{" "}</span>)}
             </h1>
-            <p className="lede j-pop" style={{ "--i": 6 } as React.CSSProperties}>This is where I keep what I make and how it's going. Try the things, read the notes, and tell me what you think. If you'd like to build something together, or need something built, there's a way to start below.</p>
+            <p className="lede j-pop" style={{ "--i": 6 } as React.CSSProperties}>I&apos;m Maurice Garcia. I work across AI, software, automation, interactive experiences, games, Android and experimental technology, and I ship what I build. Try it, then tell me what you&apos;d build.</p>
             <div className="j-actions j-pop" style={{ "--i": 7 } as React.CSSProperties}>
-              <Link href="/projects" className="btn btn-fill j-shine">Explore what I'm building</Link>
-              <Link href="/connect" className="btn btn-ghost">Say hello</Link>
-              <Link href="/services" className="j-link j-arrow">Hire me for a project</Link>
+              <Link href="#products" className="btn btn-fill j-shine">See what I&apos;ve built</Link>
+              <Link href="/services" className="btn btn-ghost">Work with me</Link>
+              <Link href="/connect" className="j-link j-arrow">Say hello</Link>
             </div>
             <div className="j-pop" style={{ "--i": 8 } as React.CSSProperties}><SurpriseMe demos={demos} /></div>
           </div>
           <figure className="j-portrait j-pop" style={{ "--i": 4 } as React.CSSProperties}>
             <Image src={site.photo} alt="Portrait of Maurice Garcia outdoors" width={600} height={750} sizes="(max-width:760px) 80vw, 30vw" priority />
-            <figcaption>Hi, I'm Maurice. Most people call me Moe.</figcaption>
+            <figcaption>Hi, I&apos;m Maurice. Most people call me Moe.</figcaption>
           </figure>
         </div>
       </section>
@@ -55,32 +54,44 @@ export default function HomePage() {
       <Ticker items={ticker} />
 
       <section className="studio-wrap j-stats" aria-label="At a glance">
-        <Reveal><div><b><CountUp to={all.length} /></b><span>projects on the shelf</span></div></Reveal>
-        <Reveal delay={80}><div><b><CountUp to={withDemo.length} /></b><span>you can try in your browser right now</span></div></Reveal>
-        <Reveal delay={160}><div><b><CountUp to={games} /></b><span>games and worlds</span></div></Reveal>
+        <Reveal><div><b><CountUp to={all.length} /></b><span>projects on the shelf, each labelled production, beta, prototype or concept</span></div></Reveal>
+        <Reveal delay={80}><div><b><CountUp to={withDemo.length} /></b><span>with a public demo you can open right now</span></div></Reveal>
+        <Reveal delay={160}><div><b><CountUp to={3} /></b><span>tracks: products, experiences and labs</span></div></Reveal>
       </section>
 
-      {now && (
-        <Reveal><section className="j-focus" aria-labelledby="focus-h">
-          <div className="studio-wrap">
-            <p className="eyebrow" id="focus-h">Current focus</p>
-            <blockquote style={{ marginTop: 14 }}>{now.focus}</blockquote>
-            <p className="j-meta">
-              {now.reviewedBy === "owner" ? <span>Last reviewed {formatDate(now.reviewedAt)}</span> : <span>Not yet reviewed by me</span>}
-              {isProposed(now) && <Proposed />}
-              <Link className="j-link" href="/now">More on the Now page</Link>
-            </p>
-          </div>
-        </section></Reveal>
-      )}
+      <section className="studio-wrap j-section" aria-labelledby="cap-h">
+        <Reveal><div className="j-head"><div><p className="eyebrow">What I build</p><h2 className="display" id="cap-h">Six kinds of work, each with something you can open</h2></div></div></Reveal>
+        <ul className="j-caps">
+          {capabilities.map((c, i) => (
+            <Reveal as="li" key={c.id} delay={i * 60} className="j-cap-wrap"><div className="j-cap">
+              <h3 className="display">{c.title}</h3><p>{c.line}</p>
+              <p className="j-cap-proof">
+                {c.proof.map((slug) => projectBySlug(slug)).filter(Boolean).map((p, k) => <span key={p!.slug}>{k > 0 && " · "}<Link className="j-link" href={`/projects/${p!.slug}`}>{p!.title}</Link></span>)}
+                {c.href && <Link className="j-link j-arrow" href={c.href}>Learn with me</Link>}
+              </p>
+            </div></Reveal>
+          ))}
+        </ul>
+      </section>
 
-      <section className="studio-wrap j-section" id="projects" aria-labelledby="projects-h">
-        <Reveal><div className="j-head">
-          <div><p className="eyebrow">Selected projects</p><h2 className="display" id="projects-h">Things you can try, read about, or help with</h2></div>
-          <Link href="/projects" className="j-link j-arrow">All {all.length} projects</Link>
-        </div></Reveal>
-        <FeaturedGrid projects={featured.map(toCard)} headingId="projects-h" />
-        <Reveal><p style={{ marginTop: 34 }}><Link href="/projects" className="btn btn-ghost j-shine">Browse all {all.length}, filter by what you like</Link></p></Reveal>
+      <TrackSection track="products" lead="Practical software built for real use and real business value" projects={featuredByTrack("products").map(toCard)} total={projectsByTrack("products").length} />
+      <TrackSection track="experiences" lead="Games and worlds that run in a browser tab" projects={featuredByTrack("experiences").map(toCard)} total={projectsByTrack("experiences").length} />
+      <TrackSection track="labs" lead="Experiments and tools that test what's possible" projects={featuredByTrack("labs").map(toCard)} total={projectsByTrack("labs").length} />
+      <div className="studio-wrap"><Reveal><p style={{ paddingBottom: 30 }}><Link href="/projects" className="btn btn-ghost j-shine">Browse all {all.length} projects</Link></p></Reveal></div>
+
+      <section className="studio-wrap j-section" aria-labelledby="work-h">
+        <Reveal><div className="j-head"><div><p className="eyebrow">Work together</p><h2 className="display" id="work-h">Five ways to start</h2></div><Link href="/services" className="j-link j-arrow">How each one works</Link></div></Reveal>
+        <div className="j-ways">
+          {[
+            ["Build something with me", "You have an ambitious idea, or a system that needs custom software, automation or AI. We scope it together and I quote it to the work.", "Start a build", "/connect?intent=paid-work"],
+            ["License, invest or partner", "Several of my products are early. If one fits your company or your portfolio, let's talk about licensing, partnership or backing it.", "Talk partnership", "/connect?intent=partner"],
+            ["Learn to build with AI", "Free tutorials and walkthroughs, and hands-on sessions if you want to move faster. Any AI tool, any experience level.", "Start learning", "/learn"],
+            ["Hire me", "Recruiters and teams: I'm a creative engineer who builds across AI, software, games and mobile. Tell me about the role.", "Tell me about the role", "/connect?intent=hire"],
+            ["Just say hello", "Played a demo, found a bug, or have an odd idea? Write to me. No agenda and no budget needed.", "Say hello", "/connect"],
+          ].map(([t, p, cta, href], i) => (
+            <Reveal key={t} delay={i * 60}><div className="j-panel"><h3 className="display">{t}</h3><p>{p}</p><div className="actions"><Link className={i === 0 ? "btn btn-fill j-shine" : "btn btn-ghost"} href={href}>{cta}</Link></div></div></Reveal>
+          ))}
+        </div>
       </section>
 
       {updates.length > 0 && (
@@ -106,21 +117,19 @@ export default function HomePage() {
         </section>
       )}
 
-      <section className="studio-wrap j-section" aria-labelledby="connect-h">
-        <Reveal><div className="j-head"><div><p className="eyebrow">Connect</p><h2 className="display" id="connect-h">Start something worthwhile</h2></div></div></Reveal>
-        <div className="j-split">
-          <Reveal><div className="j-panel">
-            <h3 className="display">Say hello, or make something together</h3>
-            <p>Played a demo and found a bug? Have an odd idea you want a collaborator for? Write to me. No agenda needed, and no budget either.</p>
-            <div className="actions"><Link className="btn btn-fill j-shine" href="/connect">Say hello</Link><a className="j-link" href={`mailto:${site.email}`}>{site.email}</a></div>
-          </div></Reveal>
-          <Reveal delay={100}><div className="j-panel">
-            <h3 className="display">Need something built, or want to learn?</h3>
-            <p>I build websites and custom software for small businesses, run AI-receptionist pilots, and coach people one-to-one on building with AI tools. Scope and price are agreed before any work starts.</p>
-            <div className="actions"><Link className="btn btn-ghost" href="/services">See how I work</Link><Link className="j-link" href="/connect?intent=paid-work">Ask about paid work</Link><Link className="j-link j-arrow" href="/lab">Browse the design lab</Link></div>
-          </div></Reveal>
-        </div>
-      </section>
+      {now && (
+        <Reveal><section className="j-focus" aria-labelledby="focus-h">
+          <div className="studio-wrap">
+            <p className="eyebrow" id="focus-h">Current focus</p>
+            <blockquote style={{ marginTop: 14 }}>{now.focus}</blockquote>
+            <p className="j-meta">
+              {now.reviewedBy === "owner" ? <span>Last reviewed {formatDate(now.reviewedAt)}</span> : <span>Not yet reviewed by me</span>}
+              {isProposed(now) && <Proposed />}
+              <Link className="j-link" href="/now">More on the Now page</Link>
+            </p>
+          </div>
+        </section></Reveal>
+      )}
     </>
   );
 }

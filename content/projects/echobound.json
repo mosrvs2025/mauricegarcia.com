@@ -6,11 +6,10 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 225,
+  "order": 160,
   "themes": [
     "games"
   ],
-  "state": "playable-slice",
   "stateNote": "A vertical slice built in Godot 4.3 for the browser, phones included.",
   "problem": "In most games, elements are scripted. In Hollowmere, fire spreads with the wind through dry grass, water douses, conducts and freezes, and lightning races through everything wet.",
   "audience": "Action RPG players who like systems that interact, and Godot developers.",
@@ -68,5 +67,12 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "beta",
+  "track": "experiences",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

@@ -6,11 +6,10 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 160,
+  "order": 170,
   "themes": [
     "games"
   ],
-  "state": "playable-slice",
   "stateNote": "A browser action slice with Low, Medium and High quality settings.",
   "problem": "What if a world were stitched out of four different ages? You play a seamwalker crossing the seam from Crosscamp to the Chrome Needle.",
   "audience": "Players of exploration and action games, and procedural-generation fans.",
@@ -66,5 +65,12 @@
     ],
     "intent": "hello"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "beta",
+  "track": "experiences",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

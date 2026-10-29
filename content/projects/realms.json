@@ -6,11 +6,10 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 145,
+  "order": 180,
   "themes": [
     "games"
   ],
-  "state": "prototype",
   "stateNote": "A hosted build runs on my Vercel. You can also run it locally or build it as a single HTML file.",
   "problem": "No plugins and no binary assets: the terrain, sky, water, characters, music and sound are all made at load.",
   "audience": "Action RPG fans and procedural-generation tinkerers.",
@@ -64,5 +63,12 @@
     ],
     "intent": "hello"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "beta",
+  "track": "experiences",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

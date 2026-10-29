@@ -5,13 +5,12 @@
   "tagline": "An oddly satisfying toy box of fluid, lava, sand and slime that runs in your browser.",
   "status": "published",
   "visibility": "public",
-  "tier": "archive",
-  "order": 130,
+  "tier": "featured",
+  "order": 320,
   "themes": [
     "curiosity",
     "creative-tools"
   ],
-  "state": "playable-slice",
   "stateNote": "Playable now on phone or desktop. The Terrarium world simulator inside it is the deepest part.",
   "problem": "Sometimes you just want something to push around. Swirl Room is a set of tactile toys where the physics, graphics and sound are all generated live, with no libraries.",
   "audience": "Anyone with a spare minute and a touchscreen or mouse, and people who like seeing how much can fit in one HTML file.",
@@ -70,5 +69,12 @@
     ],
     "intent": "hello"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "beta",
+  "track": "labs",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

@@ -6,11 +6,10 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 180,
+  "order": 210,
   "themes": [
     "games"
   ],
-  "state": "prototype",
   "stateNote": "A hosted copy runs on my Vercel. I haven't played it through.",
   "problem": "Humans freak out when a chair scoots, so you hold SPACE to freeze as innocent furniture, then sneak, sabotage rival furniture and evolve across five chairs.",
   "audience": "Anyone who likes silly stealth games.",
@@ -64,5 +63,12 @@
     ],
     "intent": "hello"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "beta",
+  "track": "experiences",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }
