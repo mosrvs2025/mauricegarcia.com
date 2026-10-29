@@ -1,0 +1,63 @@
+{
+  "id": "prj-thornwild",
+  "slug": "thornwild",
+  "title": "Thornwild",
+  "tagline": "An original 2.5D cinematic platformer with nine worlds, five companions and six giant guardians.",
+  "status": "proposed",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 170,
+  "themes": [
+    "games"
+  ],
+  "state": "prototype",
+  "stateNote": "The README links to a hosted build that returned a 404 when I checked, so no demo is linked.",
+  "problem": "A big-hearted platformer where you run, wall-climb, dash and ground pound through living jungles and glowing caves, and grow a home of your own.",
+  "audience": "Platformer fans who like exploration and companions.",
+  "contribution": "It is my project, with its own characters, worlds and music. The repository lives under the name 'donkeykong'.",
+  "worksToday": [
+    "The README describes nine worlds, wall-climbing, dashing and ground pounds."
+  ],
+  "limitations": [
+    "I haven't played it. This is from the README and its screenshots.",
+    "The hosted link in the README returned a 404."
+  ],
+  "links": {
+    "repo": "https://github.com/mosrvs2025/donkeykong",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "yes",
+    "note": "Commit trailers show Claude as a co-author."
+  },
+  "media": [
+    {
+      "src": "/projects/thornwild.webp",
+      "alt": "The Thornwild title screen artwork from the repository.",
+      "caption": "Title artwork from the repository's docs folder.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-10-11",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/donkeykong",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Want to help test it?",
+    "asks": [
+      "If you'd like to host or test it, tell me."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": []
+}

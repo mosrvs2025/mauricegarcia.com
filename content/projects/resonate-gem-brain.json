@@ -1,0 +1,55 @@
+{
+  "id": "prj-resonate-gem-brain",
+  "slug": "resonate-gem-brain",
+  "title": "Resonate Gem Brain",
+  "tagline": "A GitHub-first pattern for making Google Gems behave like an agentic system without extra code.",
+  "status": "proposed",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 280,
+  "themes": [
+    "creative-tools",
+    "practical"
+  ],
+  "state": "maintained",
+  "stateNote": "A small pattern repository, last changed in August 2025.",
+  "problem": "Gem instructions get messy. This repo keeps them composable and versioned: a Gem reads AGENTS.md, which delegates through a manifest to one primary agent.",
+  "audience": "People building Gems or similar instruction-driven assistants.",
+  "contribution": "It is my project: the manifest, agent files, guardrails and examples.",
+  "worksToday": [
+    "The README describes attaching the repo as a Source and instructing the Gem to read AGENTS.md first."
+  ],
+  "limitations": [
+    "I haven't tested it in a Gem."
+  ],
+  "links": {
+    "repo": "https://github.com/mosrvs2025/resonate-gem-brain",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [],
+  "dates": {
+    "lastChange": "2025-08-12",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/resonate-gem-brain",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Built Gems?",
+    "asks": [
+      "If you've tried something similar, I'd like to compare notes."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": []
+}

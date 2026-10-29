@@ -1,0 +1,56 @@
+{
+  "id": "prj-voxelia",
+  "slug": "voxelia",
+  "title": "Voxelia",
+  "tagline": "A voxel sandbox in the style of Minecraft, with a more atmospheric look and real-time multiplayer.",
+  "status": "proposed",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 240,
+  "themes": [
+    "games"
+  ],
+  "state": "prototype",
+  "stateNote": "Run locally with npm. I haven't found a hosted copy.",
+  "problem": "A sandbox game that runs on desktop and mobile in a browser, with a moodier look than vanilla.",
+  "audience": "Sandbox fans and Three.js developers.",
+  "contribution": "It is my project, built with Three.js and a WebSocket server.",
+  "worksToday": [
+    "The README describes a Three.js voxel world with multiplayer."
+  ],
+  "limitations": [
+    "I haven't run it.",
+    "No hosted copy to link."
+  ],
+  "links": {
+    "repo": "https://github.com/mosrvs2025/minecraft",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "yes",
+    "note": "Commit trailers show Claude as a co-author."
+  },
+  "media": [],
+  "dates": {
+    "lastChange": "2026-09-28",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/minecraft",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Want to build together?",
+    "asks": [
+      "If you'd like to build with me in it, say hi."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": []
+}

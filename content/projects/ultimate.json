@@ -1,0 +1,56 @@
+{
+  "id": "prj-ultimate",
+  "slug": "ultimate",
+  "title": "Ultimate",
+  "tagline": "One Android app that holds a growing set of small offline tools, with no ads, no accounts and no internet permission.",
+  "status": "proposed",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 220,
+  "themes": [
+    "practical",
+    "creative-tools"
+  ],
+  "state": "prototype",
+  "stateNote": "Described in the README. I haven't built or run the Android app.",
+  "problem": "Utilities are often bloated with ads and trackers. Ultimate bundles small tools such as a video editor and a video shrinker, and its manifest has no INTERNET permission.",
+  "audience": "Android users who want simple offline tools.",
+  "contribution": "It is my project and consolidates earlier standalone Android tools.",
+  "worksToday": [
+    "The README lists tools including Studio (an offline video editor) and Squeeze (video shrinking)."
+  ],
+  "limitations": [
+    "I haven't built or installed it.",
+    "Claims here come from the README."
+  ],
+  "links": {
+    "repo": "https://github.com/mosrvs2025/ultimate-android",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [],
+  "dates": {
+    "lastChange": "2026-10-29",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/ultimate-android",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Which tool is missing?",
+    "asks": [
+      "Tell me which small offline tool you wish existed."
+    ],
+    "intent": "hello"
+  },
+  "formerSlugs": []
+}

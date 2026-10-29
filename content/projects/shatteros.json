@@ -1,0 +1,56 @@
+{
+  "id": "prj-shatteros",
+  "slug": "shatteros",
+  "title": "ShatterOS",
+  "tagline": "Open one room on several devices and use each screen as a window into one continuous physics world.",
+  "status": "proposed",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 210,
+  "themes": [
+    "curiosity",
+    "creative-tools"
+  ],
+  "state": "prototype",
+  "stateNote": "Runs locally on Node. You calibrate by measuring your screens.",
+  "problem": "Choreographed multi-screen illusions need special software. ShatterOS lets any phones and laptops on your Wi-Fi act as one canvas.",
+  "audience": "People with a few spare screens and a ruler.",
+  "contribution": "It is my project: a Node server with a room code, calibration step and a physics playground.",
+  "worksToday": [
+    "Join the same room on several devices, calibrate with a ruler and arrange the screens on a desk map, per the README."
+  ],
+  "limitations": [
+    "I haven't run it.",
+    "You need devices on the same network."
+  ],
+  "links": {
+    "repo": "https://github.com/mosrvs2025/ShatterOS",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [],
+  "dates": {
+    "lastChange": "2026-10-28",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/ShatterOS",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Got spare screens?",
+    "asks": [
+      "Try it with a couple of devices and tell me where the calibration confuses you."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": []
+}

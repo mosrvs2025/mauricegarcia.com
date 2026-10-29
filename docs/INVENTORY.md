@@ -22,11 +22,26 @@ Compiled 2026-10-29 from the GitHub connection and shallow clones of public repo
 | Gem Studio | `mosrvs2025/gems` | Local static tool; screenshot from a local run. README's hosted link returned **404**, so none is linked. |
 | OBSERVED | `mosrvs2025/observed` (`claude/jolly-volta-hphyyi`) | README only; not run. Seeded data is labelled simulated by the project itself. |
 
-## Public repositories not yet reviewed (not on the site)
+## Added in the second pass (all public; archive tier unless noted)
 
-`ultimate-android`, `ShatterOS`, `videocompress`, `video`, `chairgame`, `lineage-rts`, `dk64-mod-lab`, `donkeykong` (Thornwild), `buzzwords`, `sanboxgame`, `storeOSant`, `dk64`, `minecraft`, `mosslight`, `echobound`, `Echofield`, `rift-runner`, `evolveborn`, `aetherwake`, `embervale`, `Visionai`, `CCC`, `AuraSphere`, `resonate-gem-brain`, `lofitype`, `mixedreality`, `learn-astro-bolt`, `learn-remotion-bolt`, `Blitz-imageai`, `mosrvs2025` (profile README).
+Demos below were confirmed to load on 2026-10-29. Hosted URLs were only linked when the repo's own README links them or they are on the owner's GitHub Pages. Several guessed `*.vercel.app` names (`embervale`, `echobound`, `chairgame`, `buzzwords`) answered with **someone else's site** and are deliberately not linked.
 
-Verify playability before promoting any of the games; pick only the strongest few. `LoFi Typing` was captured from `file://` and rendered unstyled (absolute asset paths), so it was not given a screenshot.
+| Project | Repo | Demo | Notes |
+| --- | --- | --- | --- |
+| Mosslight (featured) | `mosslight` | yes (Vercel + Pages) | Title screen captured; journey not played |
+| Evolveborn | `evolveborn` | yes (Vercel + Pages) | Godot; menu captured |
+| Echobound | `echobound` | yes (Pages) | Godot; menu captured; Claude trailer |
+| Echofield | `Echofield` | yes (Vercel, README-linked) | Title captured |
+| Rift Runner | `rift-runner` | yes (Pages) | README calls it a starter with one small loop |
+| Lineage | `lineage-rts` | yes (Vercel; title and tagline match the README) | Hosted menu is ahead of the README's "first slice" |
+| Thornwild | `donkeykong` | no (README link 404s) | Title art from the repo |
+| Roomspace | `mixedreality` | yes (Pages; XR parts untested) | Needs a Quest |
+| StoreOS | `storeOSant` | yes (Vercel, README-linked) | Demo store is fictional |
+| Buzzwords, ShatterOS, Ultimate, PocketPilot, Voxelia, Realms, SIT ON ME, Embervale (game), Resonate Gem Brain, LoFi Typing | various | none verified | README only; not run |
+
+## Public repositories deliberately left off
+
+`dk64`, `dk64-mod-lab` (Donkey Kong 64 fan tooling: Nintendo IP, owner's call), `video` (no README), `sanboxgame` (empty), `Visionai` and `CCC` (AI Studio starters), `AuraSphere` (README only, unverified), `learn-astro-bolt`, `learn-remotion-bolt`, `Blitz-imageai` (tutorials and starters), `mosrvs2025` (profile README).
 
 ## Upstream work, never presented as achievements
 

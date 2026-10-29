@@ -1,0 +1,55 @@
+{
+  "id": "prj-embervale",
+  "slug": "embervale",
+  "title": "Embervale (game)",
+  "tagline": "A third-person 3D action RPG you can play in a phone browser.",
+  "status": "proposed",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 270,
+  "themes": [
+    "games"
+  ],
+  "state": "prototype",
+  "stateNote": "Run locally. No hosted copy I can verify is yours.",
+  "problem": "Wake as the last Emberbound, restore three Shrines of Dawn, hunt relics and face the Hollow King, with a virtual stick and buttons on phones.",
+  "audience": "Mobile action RPG players.",
+  "contribution": "It is my project, built to play in a phone browser.",
+  "worksToday": [
+    "The README describes touch controls and keyboard controls, shrines and a final boss."
+  ],
+  "limitations": [
+    "I haven't run it.",
+    "The 'embervale' address on Vercel is a different site, so none is linked."
+  ],
+  "links": {
+    "repo": "https://github.com/mosrvs2025/embervale",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [],
+  "dates": {
+    "lastChange": "2026-09-03",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/embervale",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "How does it play on a phone?",
+    "asks": [
+      "Tell me how it plays on your phone."
+    ],
+    "intent": "hello"
+  },
+  "formerSlugs": []
+}

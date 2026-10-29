@@ -1,0 +1,72 @@
+{
+  "id": "prj-mosslight",
+  "slug": "mosslight",
+  "title": "Mosslight",
+  "tagline": "A mischievous forest scavenger, six connected environments, and a sleeping jungle heart to restart.",
+  "status": "proposed",
+  "visibility": "public",
+  "tier": "featured",
+  "order": 35,
+  "themes": [
+    "games"
+  ],
+  "state": "playable-slice",
+  "stateNote": "A Three.js platform adventure you can play in the browser, on phone or desktop.",
+  "problem": "Platformers are usually about getting from A to B. Mosslight is about a small, curious character waking a forgotten world, with creatures you can ride and a journey from the Emerald Wilds to the Heart of the Wild.",
+  "audience": "People who like cozy, atmospheric platformers, and anyone curious what a browser can render.",
+  "contribution": "It is my project: an original, self-contained Three.js game with its own world, characters and music.",
+  "worksToday": [
+    "Move, jump, roll, ride nearby creatures and use their abilities, per the README.",
+    "Touch controls appear automatically on touch devices.",
+    "Checkpoints and collectibles save locally in your browser."
+  ],
+  "limitations": [
+    "I checked that the title screen loads and renders, not the full journey.",
+    "Sound is off until you turn it on."
+  ],
+  "links": {
+    "demo": "https://mosslight-xi.vercel.app",
+    "repo": "https://github.com/mosrvs2025/mosslight",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [
+    {
+      "src": "/projects/mosslight.webp",
+      "alt": "The Mosslight title screen: a small fox-like character beside a green creature in a misty jungle ruin, with the title 'Mosslight, the heart of the wild' and an 'Enter the wild' button.",
+      "caption": "The title screen of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-09-27",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "Hosted build (loads, checked 2026-10-29)",
+      "url": "https://mosslight-xi.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/mosslight",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Found a place it breaks?",
+    "asks": [
+      "Tell me where you got stuck, or where it felt great.",
+      "If you make 3D art or music for games, I'd love to hear what you'd add."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": []
+}

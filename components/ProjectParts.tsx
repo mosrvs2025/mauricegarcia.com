@@ -3,6 +3,8 @@ import Link from "next/link";
 import { STATE_LABELS, THEME_LABELS, formatDate } from "@/lib/content/query";
 import type { Project, Update } from "@/lib/content/schemas";
 import { isProposed } from "@/lib/content/visibility";
+import { themeColor } from "@/lib/themes";
+import { TiltCard } from "./TiltCard";
 
 export const Proposed = () => <span className="j-proposed">Proposed, awaiting approval</span>;
 
@@ -13,7 +15,8 @@ export function StateTag({ project }: { project: Pick<Project, "state"> }) {
 export function ProjectLead({ project }: { project: Project }) {
   const media = project.media[0];
   return (
-    <article className="j-lead">
+    <TiltCard>
+    <article className="j-lead" style={{ "--accent": themeColor(project.themes) } as React.CSSProperties}>
       <div className="j-lead-media">
         {media ? <Image src={media.src} alt={media.alt} fill sizes="(max-width:760px) 100vw, 55vw" style={{ objectFit: "cover" }} priority /> : <div className="j-row-thumb empty" style={{ width: "100%", height: "100%", border: 0, fontSize: "4rem" }} aria-hidden="true">{project.title.slice(0, 1)}</div>}
       </div>
@@ -28,13 +31,15 @@ export function ProjectLead({ project }: { project: Project }) {
         </div>
       </div>
     </article>
+    </TiltCard>
   );
 }
 
-export function ProjectRow({ project }: { project: Project }) {
+export function ProjectRow({ project, bare = false }: { project: Project; bare?: boolean }) {
   const media = project.media[0];
+  const Wrap = bare ? "div" : "li";
   return (
-    <li className="j-row">
+    <Wrap className="j-row" style={{ "--accent": themeColor(project.themes) } as React.CSSProperties}>
       <div className={`j-row-thumb${media ? "" : " empty"}`} aria-hidden={media ? undefined : true}>
         {media ? <Image src={media.src} alt={media.alt} width={192} height={128} sizes="96px" loading="lazy" /> : project.title.slice(0, 1)}
       </div>
@@ -44,13 +49,14 @@ export function ProjectRow({ project }: { project: Project }) {
         {isProposed(project) && <p style={{ marginTop: 8 }}><Proposed /></p>}
       </div>
       <div className="j-tags"><StateTag project={project} /></div>
-    </li>
+    </Wrap>
   );
 }
 
-export function UpdateItem({ update, projectTitle, projectSlug }: { update: Update; projectTitle?: string; projectSlug?: string }) {
+export function UpdateItem({ update, projectTitle, projectSlug, bare = false }: { update: Update; projectTitle?: string; projectSlug?: string; bare?: boolean }) {
+  const Wrap = bare ? "div" : "li";
   return (
-    <li className="j-update">
+    <Wrap className="j-update">
       <time dateTime={update.eventAt}>{formatDate(update.eventAt)}</time>
       <div>
         <h3 className="display"><Link href={`/updates/${update.slug}`}>{update.title}</Link></h3>
@@ -60,6 +66,6 @@ export function UpdateItem({ update, projectTitle, projectSlug }: { update: Upda
           {isProposed(update) && <Proposed />}
         </p>
       </div>
-    </li>
+    </Wrap>
   );
 }

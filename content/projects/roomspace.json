@@ -1,0 +1,72 @@
+{
+  "id": "prj-roomspace",
+  "slug": "roomspace",
+  "title": "Roomspace",
+  "tagline": "Mixed-reality apps for Meta Quest that live in your real room, including a holographic piano.",
+  "status": "proposed",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 180,
+  "themes": [
+    "games",
+    "creative-tools"
+  ],
+  "state": "prototype",
+  "stateNote": "Built for Meta Quest Browser. A desktop preview exists, but the mixed-reality apps need a Quest.",
+  "problem": "Most XR apps ignore your room. Roomspace uses it as the mechanic: a piano that sits on your table, fireflies that hide behind your furniture.",
+  "audience": "Meta Quest 3 and 3S owners and WebXR developers.",
+  "contribution": "It is my project, plain WebXR with no engine, run from a hosted URL.",
+  "worksToday": [
+    "Two apps: Piano and Firefly Night, per the README.",
+    "The hosted page loads and offers a desktop preview."
+  ],
+  "limitations": [
+    "I couldn't test the mixed-reality parts without a headset.",
+    "It needs a Quest browser and Space Setup."
+  ],
+  "links": {
+    "demo": "https://mosrvs2025.github.io/mixedreality/",
+    "repo": "https://github.com/mosrvs2025/mixedreality",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "yes",
+    "note": "Commit trailers show Claude as a co-author."
+  },
+  "media": [
+    {
+      "src": "/projects/roomspace.webp",
+      "alt": "The Roomspace landing page: 'Roomspace' in cream and lime text over a dark starry background, with an 'Open in Meta Quest Browser' button and a Desktop preview button.",
+      "caption": "The hosted landing page.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-10-07",
+    "lastChangeSource": "latest commit",
+    "reviewed": "2026-10-29"
+  },
+  "evidence": [
+    {
+      "label": "Hosted page (loads, checked 2026-10-29)",
+      "url": "https://mosrvs2025.github.io/mixedreality/",
+      "kind": "demo",
+      "verifiedAt": "2026-10-29"
+    },
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/mixedreality",
+      "kind": "source",
+      "verifiedAt": "2026-10-29"
+    }
+  ],
+  "involve": {
+    "headline": "Own a Quest?",
+    "asks": [
+      "If you own a Quest, tell me whether the piano tracks your fingers well."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": []
+}
