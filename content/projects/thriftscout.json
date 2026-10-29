@@ -5,8 +5,8 @@
   "tagline": "The world is your thrift store: say what you want, and scouts already thrifting keep an eye out.",
   "status": "published",
   "visibility": "public",
-  "tier": "archive",
-  "order": 300,
+  "tier": "featured",
+  "order": 10,
   "themes": [
     "retail",
     "practical"
@@ -37,9 +37,21 @@
   },
   "media": [
     {
-      "src": "/projects/thriftscout.webp",
-      "alt": "The ThriftScout home page: 'The world is your thrift store.' with buttons to shop finds or hunt for something.",
-      "caption": "The home screen of the hosted build.",
+      "src": "/projects/thriftscout-1.webp",
+      "alt": "The ThriftScout home page: 'The world is your thrift store.'",
+      "caption": "Home, from the hosted build.",
+      "capturedAt": "2026-10-29"
+    },
+    {
+      "src": "/projects/thriftscout-2.webp",
+      "alt": "How it works: 'One photo. One tap. A real purchase at a real store.'",
+      "caption": "How it works, from the hosted build.",
+      "capturedAt": "2026-10-29"
+    },
+    {
+      "src": "/projects/thriftscout-3.webp",
+      "alt": "The store pitch page: 'Turn your shoppers into your online sales force.'",
+      "caption": "For stores, from the hosted build.",
       "capturedAt": "2026-10-29"
     }
   ],
@@ -64,5 +76,11 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "preview": {
+    "webm": "/projects/thriftscout-preview.webm",
+    "mp4": "/projects/thriftscout-preview.mp4",
+    "poster": "/projects/thriftscout-1.webp",
+    "capturedAt": "2026-10-29"
+  }
 }

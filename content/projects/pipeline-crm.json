@@ -5,9 +5,11 @@
   "tagline": "One place for a trade shop's leads, estimates, invoices, deposits and jobs.",
   "status": "published",
   "visibility": "public",
-  "tier": "featured",
-  "order": 10,
-  "themes": ["practical"],
+  "tier": "archive",
+  "order": 255,
+  "themes": [
+    "practical"
+  ],
   "state": "in-use",
   "stateNote": "Used by one shop. There is no public demo, and I don't show its data.",
   "problem": "Invoice2Go handled invoices, but the shop still needed a single place for leads, estimates, deposits, job status and talking to the crew.",
@@ -23,14 +25,29 @@
     "It is one client's private system, so there is no public sign-up or demo.",
     "I don't publish customer data or screenshots of it."
   ],
-  "links": { "other": [{ "label": "The production address", "url": "https://pl.donhowardconstruction.com/" }] },
+  "links": {
+    "other": [
+      {
+        "label": "The production address",
+        "url": "https://pl.donhowardconstruction.com/"
+      }
+    ]
+  },
   "repoVisibility": "private",
   "privateSummaryApproved": true,
-  "ai": { "assisted": "unknown" },
+  "ai": {
+    "assisted": "unknown"
+  },
   "media": [],
-  "dates": { "reviewed": "2026-10-29" },
+  "dates": {
+    "reviewed": "2026-10-29"
+  },
   "evidence": [
-    { "label": "Production address, as listed on this site's earlier Work page", "url": "https://pl.donhowardconstruction.com/", "kind": "other" }
+    {
+      "label": "Production address, as listed on this site's earlier Work page",
+      "url": "https://pl.donhowardconstruction.com/",
+      "kind": "other"
+    }
   ],
   "involve": {
     "headline": "Running a trade shop on a pile of apps and spreadsheets?",

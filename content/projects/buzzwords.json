@@ -6,7 +6,7 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 200,
+  "order": 215,
   "themes": [
     "games"
   ],
@@ -31,7 +31,14 @@
     "assisted": "yes",
     "note": "Commit trailers show Claude as a co-author."
   },
-  "media": [],
+  "media": [
+    {
+      "src": "/projects/buzzwords.webp",
+      "alt": "The Buzzwords start screen with a room code field and how-to-play steps.",
+      "caption": "The start screen of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
   "dates": {
     "lastChange": "2026-10-03",
     "lastChangeSource": "latest commit",

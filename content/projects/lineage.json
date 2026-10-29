@@ -5,8 +5,8 @@
   "tagline": "An evolution RTS where ancestors discover something and later generations discover what else it can do.",
   "status": "published",
   "visibility": "public",
-  "tier": "archive",
-  "order": 100,
+  "tier": "featured",
+  "order": 30,
   "themes": [
     "games"
   ],
@@ -35,9 +35,21 @@
   },
   "media": [
     {
-      "src": "/projects/lineage.webp",
-      "alt": "The Lineage main menu over a top-down view of autumn trees, with Story Campaign, Custom Skirmish, Online and Chat Rooms, Tutorial, Settings and Field Manual buttons.",
-      "caption": "The main menu of the hosted build.",
+      "src": "/projects/lineage-1.webp",
+      "alt": "The Lineage main menu: story campaign, custom skirmish, online rooms and tutorial.",
+      "caption": "Main menu, from the hosted build.",
+      "capturedAt": "2026-10-29"
+    },
+    {
+      "src": "/projects/lineage-2.webp",
+      "alt": "A skirmish starting: the clan camp on a small 3D island with the first-winter objectives.",
+      "caption": "Skirmish start, from the hosted build.",
+      "capturedAt": "2026-10-29"
+    },
+    {
+      "src": "/projects/lineage-3.webp",
+      "alt": "The same camp a moment later, with the guided tutorial prompts.",
+      "caption": "Early game, from the hosted build.",
       "capturedAt": "2026-10-29"
     }
   ],
@@ -67,5 +79,11 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "preview": {
+    "webm": "/projects/lineage-preview.webm",
+    "mp4": "/projects/lineage-preview.mp4",
+    "poster": "/projects/lineage-1.webp",
+    "capturedAt": "2026-10-29"
+  }
 }

@@ -6,7 +6,7 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 250,
+  "order": 145,
   "themes": [
     "games"
   ],
@@ -30,7 +30,14 @@
   "ai": {
     "assisted": "unknown"
   },
-  "media": [],
+  "media": [
+    {
+      "src": "/projects/realms.webp",
+      "alt": "The REALMS title screen over a misty 3D valley.",
+      "caption": "The start screen of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
   "dates": {
     "lastChange": "2026-09-06",
     "lastChangeSource": "latest commit",

@@ -6,7 +6,7 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 260,
+  "order": 180,
   "themes": [
     "games"
   ],
@@ -30,7 +30,14 @@
   "ai": {
     "assisted": "unknown"
   },
-  "media": [],
+  "media": [
+    {
+      "src": "/projects/sit-on-me.webp",
+      "alt": "The Sit On Me campaign operation picker with mission cards.",
+      "caption": "The start screen of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
   "dates": {
     "lastChange": "2026-10-18",
     "lastChangeSource": "latest commit",

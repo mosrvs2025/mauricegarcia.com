@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { Gallery } from "@/components/Gallery";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Proposed, StateTag, UpdateItem } from "@/components/ProjectParts";
@@ -37,19 +37,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <div className="j-tags" style={{ marginTop: 18 }}><StateTag project={p} />{isProposed(p) && <Proposed />}</div>
         {p.stateNote && <p className="j-muted" style={{ marginTop: 12, maxWidth: "40em" }}>{p.stateNote}</p>}
         <div className="j-actions">
-          {p.links.demo && <a className="btn btn-fill" href={p.links.demo} rel="noopener noreferrer" data-track="demo_visit" data-track-project={p.slug}>Live site</a>}
+          {p.links.demo && <a className="btn btn-fill" href={p.links.demo} rel="noopener noreferrer" data-track="demo_visit" data-track-project={p.slug}>{p.themes.includes("games") ? "▶ Play now" : "Live site"}</a>}
           {p.links.repo && <a className="btn btn-ghost" href={p.links.repo} rel="noopener noreferrer" data-track="source_click" data-track-project={p.slug}>See the source</a>}
           {p.links.other.map((l) => <a key={l.url} className="j-link j-arrow" href={l.url} rel="noopener noreferrer">{l.label}</a>)}
           <Link className="j-link j-arrow" href={`/connect?project=${p.slug}&intent=${p.involve.intent}`} data-track="project_to_contact" data-track-project={p.slug}>Talk to me about this</Link>
         </div>
       </header>
 
-      {p.media[0] && (
-        <figure className="j-figure">
-          <Image src={p.media[0].src} alt={p.media[0].alt} width={1200} height={750} sizes="(max-width:1280px) 100vw, 1200px" priority style={{ width: "100%", height: "auto" }} />
-          <figcaption>{p.media[0].caption}{p.media[0].capturedAt ? ` Captured ${formatDate(p.media[0].capturedAt)}.` : ""}</figcaption>
-        </figure>
-      )}
+      <Gallery title={p.title} media={p.media} preview={p.preview} captured={p.preview?.capturedAt ? formatDate(p.preview.capturedAt) : p.media[0]?.capturedAt ? formatDate(p.media[0].capturedAt) : undefined} />
 
       <dl className="j-facts">
         <div><dt>State</dt><dd>{STATE_LABELS[p.state]}</dd></div>

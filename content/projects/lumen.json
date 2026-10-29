@@ -6,7 +6,7 @@
   "status": "published",
   "visibility": "public",
   "tier": "featured",
-  "order": 20,
+  "order": 60,
   "themes": [
     "creative-tools"
   ],
@@ -46,7 +46,26 @@
     "assisted": "yes",
     "note": "Commit trailers show Claude as a co-author."
   },
-  "media": [],
+  "media": [
+    {
+      "src": "/projects/lumen-1.webp",
+      "alt": "Lumen's start screen: 'Think here. Then make it real.' with starter boards.",
+      "caption": "Start screen, from the hosted build.",
+      "capturedAt": "2026-10-29"
+    },
+    {
+      "src": "/projects/lumen-2.webp",
+      "alt": "The messy brain-dump demo: loose sticky notes on the canvas with a dock of suggested actions.",
+      "caption": "Brain-dump demo, from the hosted build.",
+      "capturedAt": "2026-10-29"
+    },
+    {
+      "src": "/projects/lumen-3.webp",
+      "alt": "The notes on the canvas with the action dock open.",
+      "caption": "Action dock, from the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
   "dates": {
     "lastChange": "2026-10-11",
     "lastChangeSource": "repository last push",
@@ -75,5 +94,11 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "preview": {
+    "webm": "/projects/lumen-preview.webm",
+    "mp4": "/projects/lumen-preview.mp4",
+    "poster": "/projects/lumen-2.webp",
+    "capturedAt": "2026-10-29"
+  }
 }

@@ -6,7 +6,7 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 125,
+  "order": 150,
   "themes": [
     "retail",
     "practical"
@@ -36,7 +36,14 @@
     "assisted": "yes",
     "note": "Commit trailers show Claude as a co-author."
   },
-  "media": [],
+  "media": [
+    {
+      "src": "/projects/exit-pass.webp",
+      "alt": "The Exit Pass start screen: 'Checkout happens while you shop.'",
+      "caption": "The start screen of the hosted build.",
+      "capturedAt": "2026-10-29"
+    }
+  ],
   "dates": {
     "lastChange": "2026-10-02",
     "lastChangeSource": "latest commit",

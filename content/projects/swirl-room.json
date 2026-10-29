@@ -5,8 +5,8 @@
   "tagline": "An oddly satisfying toy box of fluid, lava, sand and slime that runs in your browser.",
   "status": "published",
   "visibility": "public",
-  "tier": "featured",
-  "order": 50,
+  "tier": "archive",
+  "order": 130,
   "themes": [
     "curiosity",
     "creative-tools"

@@ -5,8 +5,8 @@
   "tagline": "An original 3D dinosaur survival game: survive the night, tame a spitfrill, found a tribe.",
   "status": "published",
   "visibility": "public",
-  "tier": "archive",
-  "order": 380,
+  "tier": "featured",
+  "order": 40,
   "themes": [
     "games"
   ],
@@ -35,9 +35,21 @@
   },
   "media": [
     {
-      "src": "/projects/devolution.webp",
-      "alt": "The Devolution title screen: 'Survive the first night. Tame a spitfrill. Build a home. Found a tribe.'",
-      "caption": "The home screen of the hosted build.",
+      "src": "/projects/devolution-1.webp",
+      "alt": "The Devolution title menu over a 3D jungle island with a volcano.",
+      "caption": "Title menu, from the hosted build.",
+      "capturedAt": "2026-10-29"
+    },
+    {
+      "src": "/projects/devolution-2.webp",
+      "alt": "Third-person survival in a dense 3D jungle, with health bars and a 'Gather materials' objective.",
+      "caption": "First night, from the hosted build.",
+      "capturedAt": "2026-10-29"
+    },
+    {
+      "src": "/projects/devolution-3.webp",
+      "alt": "Running through the jungle toward the next objective.",
+      "caption": "Exploring, from the hosted build.",
       "capturedAt": "2026-10-29"
     }
   ],
@@ -61,5 +73,11 @@
     ],
     "intent": "hello"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "preview": {
+    "webm": "/projects/devolution-preview.webm",
+    "mp4": "/projects/devolution-preview.mp4",
+    "poster": "/projects/devolution-2.webp",
+    "capturedAt": "2026-10-29"
+  }
 }

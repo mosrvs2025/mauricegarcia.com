@@ -5,8 +5,8 @@
   "tagline": "Play classic games in your browser, then remix their mechanics into something new.",
   "status": "published",
   "visibility": "public",
-  "tier": "archive",
-  "order": 370,
+  "tier": "featured",
+  "order": 50,
   "themes": [
     "games",
     "creative-tools"
@@ -38,9 +38,21 @@
   },
   "media": [
     {
-      "src": "/projects/game-fusion.webp",
-      "alt": "The Game Fusion library: 'Play anything. Remix everything.' with Glimmerfen and Kong Quest in the list.",
-      "caption": "The home screen of the hosted build.",
+      "src": "/projects/game-fusion-1.webp",
+      "alt": "The Game Fusion home: 'Play anything. Remix everything.'",
+      "caption": "Home and library, from the hosted build.",
+      "capturedAt": "2026-10-29"
+    },
+    {
+      "src": "/projects/game-fusion-2.webp",
+      "alt": "Glimmerfen, an original 3D platformer-RPG, with a turn-based action menu.",
+      "caption": "Glimmerfen battle, from the hosted build.",
+      "capturedAt": "2026-10-29"
+    },
+    {
+      "src": "/projects/game-fusion-3.webp",
+      "alt": "Glimmerfen gameplay on floating islands.",
+      "caption": "Glimmerfen, from the hosted build.",
       "capturedAt": "2026-10-29"
     }
   ],
@@ -64,5 +76,11 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "preview": {
+    "webm": "/projects/game-fusion-preview.webm",
+    "mp4": "/projects/game-fusion-preview.mp4",
+    "poster": "/projects/game-fusion-2.webp",
+    "capturedAt": "2026-10-29"
+  }
 }
