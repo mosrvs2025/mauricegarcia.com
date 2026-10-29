@@ -3,6 +3,8 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const ts = require('typescript');
 let sent;
+let deliveries = [];
+let confirmationError = false;
 let providerError = null;
 function load(file, mocks = {}) {
   const code = ts.transpileModule(fs.readFileSync(file, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
@@ -12,10 +14,11 @@ function load(file, mocks = {}) {
 }
 const contact = load('lib/contact.ts');
 const services = load('lib/services.ts');
+const emails = load('lib/contact-emails.ts', { './contact': contact });
 const { POST } = load('app/api/contact/route.ts', {
-  '@/lib/contact': contact, '@/lib/services': services,
+  '@/lib/contact-emails': emails, '@/lib/contact': contact, '@/lib/services': services,
   'next/server': { NextResponse: { json: (body, init) => Response.json(body, init) } },
-  resend: { Resend: class { emails = { send: async payload => { sent = payload; return { error: providerError }; } }; } },
+  resend: { Resend: class { emails = { send: async payload => { deliveries.push(payload); if (payload.to === contact.contactEmail) sent = payload; return { error: providerError || (confirmationError && payload.to !== contact.contactEmail ? { message: "Confirmation rejected" } : null) }; } }; } },
 });
 const valid = { name: 'Test Client', email: 'client@example.com', body: 'I need booking inquiries.', service: 'business-website', budget: '$1,000–$3,000', timeline: 'Within a month', business: 'Example Co' };
 const request = (body, origin = 'https://www.mauricegarcia.com') => new Request('https://www.mauricegarcia.com/api/contact', { method: 'POST', headers: { origin }, body: JSON.stringify(body) });
@@ -43,7 +46,20 @@ const request = (body, origin = 'https://www.mauricegarcia.com') => new Request(
   assert.equal((await POST(request(hello))).status, 200);
   assert.match(sent.text, /Intent: Collaboration/);
   assert.match(sent.text, /Project: gridheart \(https:\/\/mauricegarcia.com\/projects\/gridheart\)/);
-  assert.match(sent.text, /Budget: Not provided/);
+  assert.doesNotMatch(sent.text, /Not provided|Service: None/);
+  assert.equal(deliveries.at(-1).to, hello.email);
+  assert.equal(deliveries.at(-1).replyTo, contact.contactEmail);
+  assert.match(deliveries.at(-1).html, /automatic confirmation/);
+  assert.match(sent.html, /Reply to Friend/);
+  const escaped = emails.contactEmails({ ...hello, name: "<img>", body: "<script>alert(1)</script>" }, "Hello");
+  assert.doesNotMatch(escaped.owner.html, /<script>|<img>/);
+  assert.match(escaped.visitor.html, /&lt;script&gt;/);
+  contact.resetSubmissions();
+  confirmationError = true;
+  const partial = await POST(request(hello));
+  assert.equal(partial.status, 200);
+  assert.equal((await partial.json()).confirmationSent, false);
+  confirmationError = false;
   assert.match(sent.subject, /Collaboration/);
   assert.equal(contact.parseInquiry({ ...hello, intent: 'sell-me-things' }), null);
   assert.equal(contact.parseInquiry({ ...hello, project: '../../etc' }), null);

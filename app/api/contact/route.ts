@@ -1,3 +1,4 @@
+import { contactEmails } from "@/lib/contact-emails";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { serviceBySlug } from "@/lib/services";
@@ -21,23 +22,27 @@ export async function POST(req: Request) {
   const service = serviceBySlug(inquiry.service)?.name;
   const intent = inquiry.intent ? INTENT_LABELS[inquiry.intent as Intent] : undefined;
   const label = service || intent || "General inquiry";
-  const text = [
-    `Intent: ${intent || "Not selected"}`,
-    `Service: ${service || "None"}`,
-    `Project: ${inquiry.project ? `${inquiry.project} (https://mauricegarcia.com/projects/${inquiry.project})` : "None"}`,
-    `Name: ${inquiry.name}`, `Email: ${inquiry.email}`,
-    `Business: ${inquiry.business || "Not provided"}`, `Website: ${inquiry.website || "Not provided"}`,
-    `Budget: ${inquiry.budget || "Not provided"}`, `Timeline: ${inquiry.timeline || "Not provided"}`,
-    "", "Message:", inquiry.body,
-  ].join("\n");
+  const { owner, visitor } = contactEmails(inquiry, label, service, intent);
   try {
-    const { error } = await new Resend(key).emails.send({
-      from: process.env.CONTACT_FROM_EMAIL?.trim() || "Maurice Garcia site <noreply@mauricegarcia.com>",
+    const resend = new Resend(key);
+    const from = process.env.CONTACT_FROM_EMAIL?.trim() || "Maurice Garcia <noreply@mauricegarcia.com>";
+    const { error } = await resend.emails.send({
+      from,
       to: contactEmail, replyTo: inquiry.email,
-      subject: `Website inquiry: ${label} — ${inquiry.name}`, text,
+      ...owner,
     });
     if (error) return NextResponse.json({ error: "Email could not be sent. Please try again or email Maurice directly." }, { status: 502 });
-    return NextResponse.json({ ok: true });
+    // Once the owner notification is accepted, never invite a duplicate submission
+    // because the secondary confirmation failed.
+    let confirmationSent = false;
+    try {
+      const confirmation = await resend.emails.send({ from, to: inquiry.email, replyTo: contactEmail, ...visitor });
+      confirmationSent = !confirmation.error;
+      if (!confirmationSent) console.error("Contact confirmation rejected by email provider");
+    } catch {
+      console.error("Contact confirmation failed");
+    }
+    return NextResponse.json({ ok: true, confirmationSent });
   } catch {
     return NextResponse.json({ error: "Email could not be sent. Please try again or email Maurice directly." }, { status: 502 });
   }
