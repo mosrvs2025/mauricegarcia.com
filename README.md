@@ -32,7 +32,7 @@ NEXT_DIST_DIR=.next-prod npm run build && NEXT_DIST_DIR=.next-prod npm run leak-
 | `.github/workflows/` | `sync.yml` (scheduled + manual), `ci.yml` |
 | `docs/` | `OWNER_GUIDE.md`, `AGENT_HANDOFF.md`, `AGENT_SNIPPET.md`, `INVENTORY.md`, JSON Schema |
 
-Routes: `/`, `/projects`, `/projects/[slug]`, `/writing`, `/writing/[slug]`, `/updates`, `/updates/[slug]`, `/now`, `/about`, `/connect`, plus the existing `/services`, `/coaching`, `/ai-receptionist`, `/shop`, `/ads`. Feeds: `/writing/rss.xml`, `/updates/rss.xml`. Moved: `/contact`→`/connect`, `/work`→`/projects/pipeline-crm`. Studio: `/studio` (off until configured).
+Routes: `/`, `/projects`, `/projects/[slug]`, `/writing`, `/writing/[slug]`, `/updates`, `/updates/[slug]`, `/now`, `/about`, `/connect`, `/lab` (design lab: the same content in six styles), plus the existing `/services`, `/coaching`, `/ai-receptionist`, `/shop`, `/ads`. Feeds: `/writing/rss.xml`, `/updates/rss.xml`. Moved: `/contact`→`/connect`, `/work`→`/projects/pipeline-crm`. Studio: `/studio` (off until configured).
 
 ## Contact, shop and hosting
 
