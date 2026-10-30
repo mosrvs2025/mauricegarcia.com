@@ -115,6 +115,13 @@ export const projectSchema = z.object({
     reviewed: dateSchema,
   }),
   evidence: z.array(evidenceSchema).max(10).default([]),
+  /** Optional case-study layer: how it was built and why. Facts only, each traceable to evidence. */
+  caseStudy: z.object({
+    approach: z.array(z.string().min(1).max(320)).min(1).max(6),
+    decisions: z.array(z.object({ choice: z.string().min(1).max(120), why: z.string().min(1).max(320) })).max(5).default([]),
+    outcome: z.string().max(400).optional(),
+    source: z.string().min(1).max(200),
+  }).optional(),
   involve: z.object({
     headline: z.string().min(1).max(160),
     asks: z.array(z.string().min(1).max(240)).min(1).max(5),

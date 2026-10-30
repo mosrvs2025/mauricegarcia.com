@@ -67,5 +67,23 @@
     "basis": "owner-documented",
     "note": "The summary text was already public on this site before the redesign, and the owner stated on 2026-10-29 that Pipeline CRM should have serious visibility. No customer data or screenshots are shown.",
     "documentedAt": "2026-10-29"
+  },
+  "caseStudy": {
+    "approach": [
+      "Mapped how leads, estimates, invoices, deposits and job status moved through the shop across several apps and spreadsheets.",
+      "Built one Next.js progressive web app that the office uses on a desktop and the crew uses on their phones.",
+      "Recorded deposits and payments against each job, so money and job history live in the same place."
+    ],
+    "decisions": [
+      {
+        "choice": "A web app, not a native app",
+        "why": "A progressive web app runs on any phone and office computer from one codebase, with nothing to install from a store."
+      },
+      {
+        "choice": "Keep the client's data private",
+        "why": "It's one shop's live system, so there is no public demo and no screenshots of customer data."
+      }
+    ],
+    "source": "the project details above, as documented by the owner on 2026-10-29."
   }
 }

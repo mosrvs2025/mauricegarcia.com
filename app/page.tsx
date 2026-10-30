@@ -38,7 +38,7 @@ export default function HomePage() {
               <Link href="#experiences" className="btn btn-fill j-shine">Explore the work <span aria-hidden="true">↘</span></Link>
               <Link href="/connect?intent=paid-work" className="j-link j-arrow">Let&apos;s build something</Link>
             </div>
-            <div className="home-curiosity"><SurpriseMe demos={demos} /><SecretShelf /></div>
+            <div className="home-curiosity"><SurpriseMe demos={demos} /><Link href="/v/game" className="j-link" data-track="game_version">Play this site as a game</Link><SecretShelf /></div>
           </div>
           <HomeShowcase projects={showcase} />
         </div>

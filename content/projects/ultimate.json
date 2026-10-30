@@ -68,5 +68,28 @@
   "disclosure": {
     "basis": "public-source",
     "note": "Public repository. This page is written from its README and the public build."
+  },
+  "caseStudy": {
+    "approach": [
+      "Started as separate standalone Android tools (Squeeze and Pluck), then merged them into one codebase where each tool is a plug-in.",
+      "Every tool implements one small interface (a screen, a library of what it made, and how to remove it), so Home, the Library, the Activity tab and share routing pick up a new tool with no other changes.",
+      "One foreground service and one notification cover long-running work for every tool, each with its own cancel action and a live log of the decisions it made.",
+      "Product flavors build the same code as six different apps, from the all-in-one Ultimate to single-tool editions, each with its own app id and icon."
+    ],
+    "decisions": [
+      {
+        "choice": "No internet permission",
+        "why": "The standard edition's manifest never asks for INTERNET, so privacy is enforced by Android rather than promised. The traffic inspector, which needs the network, ships only as separate editions."
+      },
+      {
+        "choice": "Compile-time tool flags",
+        "why": "Each edition switches tools on with constants, so the build strips every tool an edition doesn't include instead of hiding it at runtime."
+      },
+      {
+        "choice": "Explain, don't accuse",
+        "why": "The tracker scanner describes what each ad SDK typically collects and why apps include it, as general descriptions rather than claims about one app's configuration."
+      }
+    ],
+    "source": "the project's public README (checked 2026-10-30). Not yet tested on a physical device, per the README."
   }
 }
