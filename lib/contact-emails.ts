@@ -21,11 +21,14 @@ export function contactEmails(inquiry: Record<string, string>, label: string, se
     text: [`${label} — ${inquiry.name}`, "", "Message:", inquiry.body, "", ...details.map(([key, value]) => `${key}: ${value}`), "", `Reply to: ${inquiry.email}`].join("\n"),
     html: frame(`New message from ${inquiry.name}`, paragraph(label) + paragraph(inquiry.body) + `<p><a href="${escape(reply)}" style="display:inline-block;background:#44624b;color:white;padding:12px 20px;text-decoration:none;border-radius:6px">Reply to ${escape(inquiry.name)}</a></p><h2 style="font-size:18px">Inquiry details</h2><table role="table" style="width:100%;border-collapse:collapse;font-size:14px">${rows}</table>`),
   };
-  const confirmation = `Hey ${inquiry.name},\n\nThanks for reaching out! Your message made it to my inbox. I'll read it and get back to you when I can.\n\nIf there's anything else you'd like to add, just reply to this email.\n\n— Mo\nMaurice Garcia`;
+  // The confirmation goes to an address the visitor typed and nobody has verified. So it never repeats anything
+  // they wrote (name or message): otherwise the form could be used to make this domain send arbitrary text to a stranger.
+  const confirmation = `Thanks for reaching out! Your message made it to my inbox. I'll read it and get back to you when I can.\n\nIf there's anything you'd like to add, just reply to this email.\n\n— Mo\nMaurice Garcia`;
+  const notYou = "If you didn't send a message through mauricegarcia.com, you can ignore this email.";
   const visitor = {
     subject: "Thanks for reaching out — Maurice Garcia",
-    text: `${confirmation}\n\nYour message:\n${inquiry.body}\n\nThis is an automatic confirmation from mauricegarcia.com. Reply to ${contactEmail}.`,
-    html: frame("Your message is in my inbox.", paragraph(confirmation) + `<h2 style="font-size:16px">Your message</h2>` + paragraph(inquiry.body) + paragraph("This is an automatic confirmation from mauricegarcia.com.")),
+    text: `${confirmation}\n\nThis is an automatic confirmation from mauricegarcia.com. ${notYou} Reply to ${contactEmail}.`,
+    html: frame("Your message is in my inbox.", paragraph(confirmation) + paragraph(`This is an automatic confirmation from mauricegarcia.com. ${notYou}`)),
   };
   return { owner, visitor };
 }
