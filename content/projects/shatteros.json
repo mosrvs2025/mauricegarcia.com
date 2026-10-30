@@ -6,12 +6,11 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 230,
+  "order": 370,
   "themes": [
     "curiosity",
     "creative-tools"
   ],
-  "state": "prototype",
   "stateNote": "Runs locally on Node. You calibrate by measuring your screens.",
   "problem": "Choreographed multi-screen illusions need special software. ShatterOS lets any phones and laptops on your Wi-Fi act as one canvas.",
   "audience": "People with a few spare screens and a ruler.",
@@ -52,5 +51,12 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "prototype",
+  "track": "labs",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

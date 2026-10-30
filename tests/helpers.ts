@@ -8,7 +8,7 @@ export const tmpDir = () => fs.mkdtempSync(path.join(os.tmpdir(), "mg-content-")
 
 export const project = (over: Partial<Record<string, unknown>> = {}): Project => projectSchema.parse({
   id: "prj-demo", slug: "demo", title: "Demo", tagline: "t", status: "published", visibility: "public", tier: "featured", themes: ["games"],
-  state: "prototype", problem: "p", audience: "a", contribution: "c", worksToday: [], limitations: [], links: { other: [] }, repoVisibility: "public",
+  maturity: "prototype", track: "labs", disclosure: { basis: "public-source", note: "test" }, problem: "p", audience: "a", contribution: "c", worksToday: [], limitations: [], links: { other: [] }, repoVisibility: "public",
   ai: { assisted: "unknown" }, dates: { reviewed: "2026-10-29" }, evidence: [{ label: "x", url: "https://github.com/o/r", kind: "source" }],
   involve: { headline: "h", asks: ["a"], intent: "hello" }, ...over,
 });

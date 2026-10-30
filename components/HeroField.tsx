@@ -18,6 +18,9 @@ export function HeroField() {
     const pointer = { x: -999, y: -999, active: false };
     const ripples: { x: number; y: number; t: number }[] = [];
     let raf = 0, visible = true, last = 0;
+    let acc = "255,122,77", txt = "243,237,227";
+    const colors = () => { const cs = getComputedStyle(document.documentElement); acc = cs.getPropertyValue("--j-accent-rgb").trim() || acc; txt = cs.getPropertyValue("--j-text-rgb").trim() || txt; };
+    colors();
 
     const size = () => {
       dpr = Math.min(devicePixelRatio || 1, 2);
@@ -34,7 +37,7 @@ export function HeroField() {
         if (pointer.active) { const d = Math.hypot(x - pointer.x, y - pointer.y); if (d < 150) glow += (1 - d / 150) ** 2 * 0.85; }
         for (const rp of ripples) { const age = (t - rp.t) / 900; const d = Math.hypot(x - rp.x, y - rp.y); const ring = Math.abs(d - age * 520); if (age < 1 && ring < 38) glow += (1 - ring / 38) * (1 - age) * 0.9; }
         const hot = Math.min(glow, 1);
-        ctx.fillStyle = hot > 0.2 ? `rgba(255,${Math.round(122 + hot * 60)},${Math.round(77 + hot * 40)},${Math.min(0.15 + hot * 0.75, 0.95)})` : `rgba(243,237,227,${0.035 + hot * 0.3})`;
+        ctx.fillStyle = hot > 0.2 ? `rgba(${acc},${Math.min(0.15 + hot * 0.75, 0.95)})` : `rgba(${txt},${0.05 + hot * 0.3})`;
         const s = CELL - GAP; ctx.beginPath(); ctx.roundRect(x - s / 2, y - s / 2, s, s, 5); ctx.fill();
       }
       while (ripples.length && t - ripples[0].t > 900) ripples.shift();
@@ -50,7 +53,9 @@ export function HeroField() {
     const down = (e: PointerEvent) => { const p = rel(e); if (p.y >= 0 && p.y <= h) ripples.push({ ...p, t: performance.now() }); };
 
     size();
-    if (reduce) { draw(0); const ro = new ResizeObserver(() => { size(); draw(0); }); ro.observe(host); return () => ro.disconnect(); }
+    const onSkin = () => { colors(); if (reduce) draw(0); };
+    window.addEventListener("mg-skin", onSkin);
+    if (reduce) { draw(0); const ro = new ResizeObserver(() => { size(); draw(0); }); ro.observe(host); return () => { ro.disconnect(); window.removeEventListener("mg-skin", onSkin); }; }
     const ro = new ResizeObserver(size); ro.observe(host);
     const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; }); io.observe(host);
     const vis = () => { visible = !document.hidden; };
@@ -59,7 +64,7 @@ export function HeroField() {
     window.addEventListener("pointerdown", down, { passive: true });
     document.addEventListener("pointerleave", leave);
     raf = requestAnimationFrame(loop);
-    return () => { cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); document.removeEventListener("visibilitychange", vis); window.removeEventListener("pointermove", move); window.removeEventListener("pointerdown", down); document.removeEventListener("pointerleave", leave); };
+    return () => { window.removeEventListener("mg-skin", onSkin); cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); document.removeEventListener("visibilitychange", vis); window.removeEventListener("pointermove", move); window.removeEventListener("pointerdown", down); document.removeEventListener("pointerleave", leave); };
   }, []);
   return <canvas ref={ref} className="j-field" aria-hidden="true" />;
 }

@@ -39,10 +39,25 @@ export const evidenceSchema = z.object({
 });
 export type Evidence = z.infer<typeof evidenceSchema>;
 
-export const projectStateSchema = z.enum([
-  "prototype", "pilot", "playable-slice", "simulation", "in-use", "maintained", "archived",
-]);
-export type ProjectState = z.infer<typeof projectStateSchema>;
+/** How finished it is, judged on evidence. Beta means a public demo works; production means real use is documented. */
+export const maturitySchema = z.enum(["production", "beta", "prototype", "concept"]);
+export type Maturity = z.infer<typeof maturitySchema>;
+
+/** Where it lives in the portfolio: practical products, interactive experiences, or experimental labs. */
+export const trackSchema = z.enum(["products", "experiences", "labs"]);
+export type Track = z.infer<typeof trackSchema>;
+
+/** Why this page may say what it says. Private work needs permission that is written down, not assumed. */
+export const disclosureSchema = z.object({
+  basis: z.enum(["public-source", "public-demo-only", "owner-documented", "none"]),
+  note: z.string().min(1).max(400),
+  documentedAt: dateSchema.optional(),
+});
+export type Disclosure = z.infer<typeof disclosureSchema>;
+
+/** Commercial directions the owner is open to discussing. These are intentions, never claims of traction. */
+export const channelSchema = z.enum(["custom-development", "subscription", "licensing", "education", "partnership"]);
+export type Channel = z.infer<typeof channelSchema>;
 
 export const themeSchema = z.enum(["practical", "creative-tools", "games", "curiosity", "retail"]);
 export type Theme = z.infer<typeof themeSchema>;
@@ -57,9 +72,10 @@ export const projectSchema = z.object({
   tier: z.enum(["featured", "archive"]),
   order: z.number().int().min(0).default(100),
   themes: z.array(themeSchema).min(1),
-  state: projectStateSchema,
-  /** Plain-language note that qualifies the state label. */
-  stateNote: z.string().max(240).optional(),
+  maturity: maturitySchema,
+  track: trackSchema,
+  /** Plain-language note that qualifies the maturity label. */
+  stateNote: z.string().max(300).optional(),
   problem: z.string().min(1).max(900),
   audience: z.string().min(1).max(400),
   contribution: z.string().min(1).max(600),
@@ -75,8 +91,9 @@ export const projectSchema = z.object({
   upstream: z.object({ name: z.string(), url: httpsUrlSchema, license: z.string().optional(), note: z.string().max(300) }).optional(),
   /** 'yes' only where there is evidence (e.g. commit trailers); 'unknown' renders nothing. */
   ai: z.object({ assisted: z.enum(["yes", "no", "unknown"]), note: z.string().max(300).optional() }),
-  /** Required when the code lives in a private repo: the owner approved this page text as a public summary. */
-  privateSummaryApproved: z.boolean().default(false),
+  disclosure: disclosureSchema,
+  /** Directions the owner is open to discussing for this project. */
+  openTo: z.array(channelSchema).max(5).default([]),
   media: z.array(z.object({
     src: z.string().regex(/^\/[A-Za-z0-9/_.-]+$/, "must be a /public path"),
     alt: z.string().min(1).max(300),
@@ -117,8 +134,21 @@ export const projectSchema = z.object({
   if (p.links.repo && p.repoVisibility !== "public") {
     ctx.addIssue({ code: "custom", path: ["repoVisibility"], message: "a linked repo must be public" });
   }
-  if (p.repoVisibility === "private" && p.status !== "draft" && !p.privateSummaryApproved) {
-    ctx.addIssue({ code: "custom", path: ["privateSummaryApproved"], message: "private-repo projects need an owner-approved public summary" });
+  const live = p.status !== "draft";
+  if (live && p.repoVisibility === "private" && (p.disclosure.basis !== "owner-documented" || !p.disclosure.documentedAt)) {
+    ctx.addIssue({ code: "custom", path: ["disclosure"], message: "a private-repo project may be shown only with permission documented by the owner (basis owner-documented plus documentedAt)" });
+  }
+  if (live && p.repoVisibility === "none" && !["public-demo-only", "owner-documented"].includes(p.disclosure.basis)) {
+    ctx.addIssue({ code: "custom", path: ["disclosure"], message: "a project without a repo must say it is described from its public demo only, or have documented permission" });
+  }
+  if (live && p.repoVisibility === "public" && p.disclosure.basis === "none") {
+    ctx.addIssue({ code: "custom", path: ["disclosure"], message: "disclosure basis 'none' cannot be shown" });
+  }
+  if (live && p.maturity === "beta" && !p.links.demo) {
+    ctx.addIssue({ code: "custom", path: ["maturity"], message: "beta means a public demo works, so links.demo is required" });
+  }
+  if (live && p.maturity === "production" && p.disclosure.basis !== "owner-documented") {
+    ctx.addIssue({ code: "custom", path: ["maturity"], message: "production needs documented real-world use (disclosure basis owner-documented)" });
   }
   if (p.status === "published" && p.evidence.length === 0) {
     ctx.addIssue({ code: "custom", path: ["evidence"], message: "published projects need at least one evidence link" });
@@ -179,6 +209,34 @@ export const postFrontmatterSchema = z.object({
 });
 export type PostFrontmatter = z.infer<typeof postFrontmatterSchema>;
 export type Post = PostFrontmatter & { body: string; readingMinutes: number };
+
+export const lessonKindSchema = z.enum(["tutorial", "video", "walkthrough", "project-breakdown", "resource"]);
+export const levelSchema = z.enum(["beginner", "intermediate", "advanced"]);
+
+/** A Learn item. Video lessons need a YouTube video id; everything else is Markdown. No lessons exist until the owner writes them. */
+export const lessonFrontmatterSchema = z.object({
+  id: idSchema,
+  slug: slugSchema,
+  title: z.string().min(1).max(140),
+  summary: z.string().min(1).max(300),
+  kind: lessonKindSchema,
+  level: levelSchema,
+  /** Any AI models, tools or frameworks the lesson uses. Free text, so the section is never tied to one tool. */
+  tools: z.array(z.string().min(1).max(40)).max(8).default([]),
+  minutes: z.number().int().min(1).max(600).optional(),
+  youtubeId: z.string().regex(/^[A-Za-z0-9_-]{11}$/, "an 11-character YouTube video id, not a URL").optional(),
+  status: statusSchema,
+  visibility: visibilitySchema,
+  publishedAt: dateTimeSchema.optional(),
+  updatedAt: dateTimeSchema.optional(),
+  tags: z.array(slugSchema).max(8).default([]),
+  projectIds: z.array(idSchema).default([]),
+}).superRefine((l, ctx) => {
+  if (l.status === "published" && !l.publishedAt) ctx.addIssue({ code: "custom", path: ["publishedAt"], message: "published lessons need publishedAt" });
+  if (l.kind === "video" && !l.youtubeId) ctx.addIssue({ code: "custom", path: ["youtubeId"], message: "a video lesson needs a youtubeId" });
+});
+export type LessonFrontmatter = z.infer<typeof lessonFrontmatterSchema>;
+export type Lesson = LessonFrontmatter & { body: string; readingMinutes: number };
 
 export const nowSchema = z.object({
   id: z.literal("now"),

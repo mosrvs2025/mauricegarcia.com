@@ -6,11 +6,10 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 235,
+  "order": 220,
   "themes": [
     "games"
   ],
-  "state": "prototype",
   "stateNote": "Built on a starter: the README says it ships with a small playable loop and invites swapping in your own game.",
   "problem": "A small, polished mobile loop: a ship runs up a three-lane track and you dodge falling rifts.",
   "audience": "Anyone with a phone and a minute, and developers who want a PixiJS and TypeScript starter.",
@@ -67,5 +66,12 @@
     ],
     "intent": "hello"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "prototype",
+  "track": "experiences",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

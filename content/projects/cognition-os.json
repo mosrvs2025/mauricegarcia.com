@@ -3,15 +3,14 @@
   "slug": "cognition-os",
   "title": "Cognition OS",
   "tagline": "Brain science turned into small experiments you can try today, scored like a game.",
-  "status": "published",
+  "status": "draft",
   "visibility": "public",
   "tier": "archive",
-  "order": 135,
+  "order": 900,
   "themes": [
     "practical",
     "curiosity"
   ],
-  "state": "pilot",
   "stateNote": "Live, with a free tier. The full course is unlocked with a license key.",
   "problem": "Most advice about focus and decisions is either vague or buried in videos. Cognition OS turns it into lessons, habits and tools you try in the browser.",
   "audience": "Students and anyone who wants to think more clearly.",
@@ -31,7 +30,6 @@
     "other": []
   },
   "repoVisibility": "private",
-  "privateSummaryApproved": true,
   "ai": {
     "assisted": "yes",
     "note": "Commit trailers show Claude as a co-author."
@@ -65,5 +63,12 @@
     ],
     "intent": "hello"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "prototype",
+  "track": "products",
+  "openTo": [],
+  "disclosure": {
+    "basis": "none",
+    "note": "Private source. Hidden until the owner documents permission to show it."
+  }
 }

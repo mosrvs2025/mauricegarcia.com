@@ -7,8 +7,10 @@ import { services } from "@/lib/services";
 const COPY: Record<Intent, { title: string; hint: string }> = {
   hello: { title: "Just saying hello", hint: "No agenda needed." },
   collaborate: { title: "Make something together", hint: "A project, a game, a tool, an idea." },
-  "paid-work": { title: "Paid work", hint: "A website, an app, or a tool for your business." },
-  coaching: { title: "Learn with me", hint: "A working session on your own idea with AI tools." },
+  "paid-work": { title: "Build something", hint: "Custom software, automation, AI or an experience. Custom quote." },
+  partner: { title: "License, invest or partner", hint: "About one of my products or tools." },
+  coaching: { title: "Learn with me", hint: "A working session on your own idea, with any AI tools." },
+  hire: { title: "Hire me", hint: "A role or a team looking for creative engineering talent." },
 };
 
 export type ProjectOption = { slug: string; title: string };
@@ -82,17 +84,17 @@ export function ConnectForm({ initialIntent, initialService, initialProject, pro
 
       <label>Your message
         <textarea required name="body" maxLength={5000} rows={6} value={draft.body} onChange={(e) => setDraft({ ...draft, body: e.target.value })}
-          placeholder={intent === "hello" ? "Anything at all. What are you working on?" : intent === "paid-work" ? "What do you need, and what would make it a success?" : intent === "coaching" ? "What do you want to build, and what have you tried so far?" : "What would you like to try together?"} />
+          placeholder={intent === "hello" ? "Anything at all. What are you working on?" : intent === "paid-work" ? "What do you want to exist, and what would make it a success?" : intent === "coaching" ? "What do you want to build, and what have you tried so far?" : intent === "partner" ? "Which project interests you, and what are you thinking of?" : intent === "hire" ? "Tell me about the role or the team." : "What would you like to try together?"} />
       </label>
 
       {intent === "paid-work" && (
         <details>
           <summary style={{ cursor: "pointer" }}>Add details that help me scope it <span className="hint">(all optional)</span></summary>
           <div style={{ display: "grid", gap: 18, marginTop: 16 }}>
-            <label>Business or project name<input name="business" maxLength={200} autoComplete="organization" /></label>
-            <label>Current website<input name="website" maxLength={500} placeholder="example.com" /></label>
+            <label>Company or project name<input name="business" maxLength={200} autoComplete="organization" /></label>
+            <label>Website, if you have one<input name="website" maxLength={500} placeholder="example.com" /></label>
             <div className="j-two">
-              <label>Budget range, if you have one<select name="budget" defaultValue=""><option value="">Prefer to talk first</option><option>Under $1,000</option><option>$1,000–$3,000</option><option>$3,000–$5,000</option><option>$5,000–$10,000</option><option>$10,000+</option></select></label>
+              <label>Budget range, if you have one<select name="budget" defaultValue=""><option value="">Prefer to talk first</option><option>Still figuring it out</option><option>$5,000–$15,000</option><option>$15,000–$50,000</option><option>$50,000+</option></select></label>
               <label>Timing<select name="timeline" defaultValue=""><option value="">Flexible</option><option>As soon as possible</option><option>Within a month</option><option>Within 3 months</option></select></label>
             </div>
           </div>

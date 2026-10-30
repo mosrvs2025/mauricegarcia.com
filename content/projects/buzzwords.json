@@ -6,11 +6,10 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 215,
+  "order": 200,
   "themes": [
     "games"
   ],
-  "state": "prototype",
   "stateNote": "A hosted copy runs on my Vercel. I haven't played a full game on it.",
   "problem": "Party word games get stuck on one phone. Here every player has a phone, and the other team can slam BUZZ if the describer says the word.",
   "audience": "Groups of four or more with a TV or laptop.",
@@ -65,5 +64,12 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "beta",
+  "track": "experiences",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

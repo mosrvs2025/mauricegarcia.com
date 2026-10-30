@@ -5,12 +5,11 @@
   "tagline": "One place for a trade shop's leads, estimates, invoices, deposits and jobs.",
   "status": "published",
   "visibility": "public",
-  "tier": "archive",
-  "order": 255,
+  "tier": "featured",
+  "order": 10,
   "themes": [
     "practical"
   ],
-  "state": "in-use",
   "stateNote": "Used by one shop. There is no public demo, and I don't show its data.",
   "problem": "Invoice2Go handled invoices, but the shop still needed a single place for leads, estimates, deposits, job status and talking to the crew.",
   "audience": "Don Howard Construction / Painting: the people in the office and the crew in the field.",
@@ -34,7 +33,6 @@
     ]
   },
   "repoVisibility": "private",
-  "privateSummaryApproved": true,
   "ai": {
     "assisted": "unknown"
   },
@@ -57,5 +55,17 @@
     ],
     "intent": "paid-work"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "production",
+  "track": "products",
+  "openTo": [
+    "custom-development",
+    "licensing",
+    "partnership"
+  ],
+  "disclosure": {
+    "basis": "owner-documented",
+    "note": "The summary text was already public on this site before the redesign, and the owner stated on 2026-10-29 that Pipeline CRM should have serious visibility. No customer data or screenshots are shown.",
+    "documentedAt": "2026-10-29"
+  }
 }

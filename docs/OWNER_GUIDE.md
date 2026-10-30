@@ -16,6 +16,44 @@ Everything on the site is a file in this repository. You change the site by chan
 
 Every file has a schema (`lib/content/schemas.ts`). `npm run content:validate` runs in every build, in CI, and inside the studio before each save.
 
+## Positioning and the portfolio
+
+The site presents you as an Experience Engineer, creative technologist and independent builder. Projects sit in three tracks (Products, Experiences, Labs) with a deliberate hierarchy; see `docs/PORTFOLIO_HIERARCHY.md`. Every project is labelled Production, Beta, Prototype or Concept, and the schema enforces what those labels need.
+
+**Permission for private work.** A project backed by a private repository is shown only if its file has `disclosure.basis: "owner-documented"`, a `documentedAt` date and a note saying where the permission is recorded. Otherwise keep `status: "draft"`.
+
+**Pricing.** Everything is a custom quote. Commercial directions a project is open to (`openTo`: custom development, subscription, licensing, education, partnership) are conversation topics, never claims of traction.
+
+**Demo links.** `npm run demos:check` verifies every demo answers; `npm run demos:check -- --browser` also opens each in a real browser and catches pages that load but whose data fails. A weekly workflow runs the quick check.
+
+## Learn section
+
+`/learn` holds tutorials, videos, walkthroughs, project breakdowns and resources, and is deliberately not tied to one AI tool. It ships empty on purpose. To add a lesson, create `content/lessons/<slug>.md`:
+
+```markdown
+---
+id: lesson-first-app
+slug: first-app-with-ai
+title: Build your first app with AI
+summary: One sentence on what the learner will make.
+kind: video            # tutorial | video | walkthrough | project-breakdown | resource
+level: beginner        # beginner | intermediate | advanced
+tools: [Claude, ChatGPT, Gemini]   # whatever the lesson actually uses
+minutes: 18
+youtubeId: abcdefghijk # 11-character video id, only for video lessons
+status: draft          # change to published, and set publishedAt, when ready
+visibility: public
+publishedAt: "2026-11-01T12:00:00Z"
+---
+Write the lesson here in Markdown.
+```
+
+Set your channel with the environment variable `NEXT_PUBLIC_YOUTUBE_CHANNEL_URL` (for example `https://www.youtube.com/@yourhandle`). It is validated and never filled in for you; if it's unset, no YouTube button appears. Videos are click-to-load from youtube-nocookie.com, so nothing contacts YouTube until someone presses play. Lessons are edited in Git for now (the studio edits updates, writing and the Now page).
+
+## Site styles
+
+Visitors can switch the whole site between seven styles (Workshop, Paper & Ink, Terminal, Neo-Pop, Glass Aurora, Swiss Grid, Arcade) with the Style button. The choice is remembered in their browser, and `?skin=terminal` on any URL links straight to a style. The older pages (coaching, AI receptionist, shop, ads) and the studio keep the default look. `/lab` has full-page design demos beyond what a style swap can do. Styles are design tokens in `app/skins.css`, so adding one is a block of variables.
+
 ## States and visibility
 
 - **status**: `draft` (never public), `proposed` (shown only on preview deployments, waiting for your approval), `published`, `archived` (hidden).

@@ -6,11 +6,10 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 270,
+  "order": 240,
   "themes": [
     "games"
   ],
-  "state": "prototype",
   "stateNote": "Run locally. No hosted copy I can verify is yours.",
   "problem": "Wake as the last Emberbound, restore three Shrines of Dawn, hunt relics and face the Hollow King, with a virtual stick and buttons on phones.",
   "audience": "Mobile action RPG players.",
@@ -51,5 +50,12 @@
     ],
     "intent": "hello"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "prototype",
+  "track": "experiences",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

@@ -5,12 +5,11 @@
   "tagline": "A mischievous forest scavenger, six connected environments, and a sleeping jungle heart to restart.",
   "status": "published",
   "visibility": "public",
-  "tier": "archive",
-  "order": 165,
+  "tier": "featured",
+  "order": 130,
   "themes": [
     "games"
   ],
-  "state": "playable-slice",
   "stateNote": "A Three.js platform adventure you can play in the browser, on phone or desktop.",
   "problem": "Platformers are usually about getting from A to B. Mosslight is about a small, curious character waking a forgotten world, with creatures you can ride and a journey from the Emerald Wilds to the Heart of the Wild.",
   "audience": "People who like cozy, atmospheric platformers, and anyone curious what a browser can render.",
@@ -68,5 +67,12 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "beta",
+  "track": "experiences",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

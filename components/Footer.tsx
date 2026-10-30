@@ -8,13 +8,14 @@ export function Footer() {
       <div className="studio-wrap j-footer-grid">
         <div>
           <p className="display j-footer-mark">Maurice Garcia</p>
-          <p>Useful tools, playful worlds, experiments worth trying.</p>
+          <p>Experience Engineer, creative technologist and independent builder.</p>
           <p className="j-muted">© {new Date().getFullYear()} Maurice Garcia</p>
         </div>
         <nav aria-label="Footer">
           <p className="eyebrow">Read &amp; follow</p>
           <ul>
             <li><Link href="/projects">Projects</Link></li>
+            <li><Link href="/learn">Learn</Link> · <a href="/learn/rss.xml" data-track="feed_click" data-track-feed="learn">RSS</a></li>
             <li><Link href="/writing">Writing</Link> · <a href="/writing/rss.xml" data-track="feed_click" data-track-feed="writing">RSS</a></li>
             <li><Link href="/updates">Updates</Link> · <a href="/updates/rss.xml" data-track="feed_click" data-track-feed="updates">RSS</a></li>
             <li><Link href="/now">Now</Link></li>

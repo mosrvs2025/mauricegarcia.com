@@ -3,15 +3,14 @@
   "slug": "game-fusion",
   "title": "Game Fusion",
   "tagline": "Play classic games in your browser, then remix their mechanics into something new.",
-  "status": "published",
+  "status": "draft",
   "visibility": "public",
-  "tier": "featured",
-  "order": 50,
+  "tier": "archive",
+  "order": 940,
   "themes": [
     "games",
     "creative-tools"
   ],
-  "state": "prototype",
   "stateNote": "Runs in the browser. You bring your own ROMs; two original games are included.",
   "problem": "Classic games are full of great mechanics, but you can't easily pull them apart and combine them. Game Fusion is a library, an emulator and a lab for that.",
   "audience": "Players and tinkerers who like classic games.",
@@ -31,7 +30,6 @@
     "other": []
   },
   "repoVisibility": "private",
-  "privateSummaryApproved": true,
   "ai": {
     "assisted": "yes",
     "note": "Commit trailers show Claude as a co-author."
@@ -82,5 +80,12 @@
     "mp4": "/projects/game-fusion-preview.mp4",
     "poster": "/projects/game-fusion-2.webp",
     "capturedAt": "2026-10-29"
+  },
+  "maturity": "prototype",
+  "track": "experiences",
+  "openTo": [],
+  "disclosure": {
+    "basis": "none",
+    "note": "Private source. Hidden until the owner documents permission to show it."
   }
 }

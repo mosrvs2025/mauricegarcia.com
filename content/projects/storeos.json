@@ -6,12 +6,11 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 210,
+  "order": 50,
   "themes": [
     "practical",
     "retail"
   ],
-  "state": "simulation",
   "stateNote": "The demo uses a fictional store, Fernwood Market, with simulated history.",
   "problem": "Inventory systems describe what a store should look like. Workers live in what it actually looks like. StoreOS treats every scan, put-away and 'not here' as an observation.",
   "audience": "Store workers and retail operations people.",
@@ -67,5 +66,12 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "prototype",
+  "track": "products",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

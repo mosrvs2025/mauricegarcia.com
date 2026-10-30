@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { loadPosts, loadProjects, loadSources, loadUpdates } from "../lib/content/load";
+import { loadLessons, loadPosts, loadProjects, loadSources, loadUpdates } from "../lib/content/load";
 import { isListed, isShown } from "../lib/content/visibility";
 
 /**
@@ -19,11 +19,14 @@ const hidden = (i: { status: string; visibility: string }) => !isShown(i);
 for (const p of loadProjects().filter(hidden)) terms.push({ term: p.slug, why: `project ${p.id} is not shown`, word: true }, { term: p.id, why: `project ${p.id}`, word: false }, { term: p.title, why: `project ${p.id} title`, word: true });
 for (const u of loadUpdates().filter(hidden)) terms.push({ term: u.slug, why: `update ${u.id} is not shown`, word: false }, { term: u.id, why: `update ${u.id}`, word: false }, { term: u.title, why: `update ${u.id} title`, word: false });
 for (const p of loadPosts().filter(hidden)) terms.push({ term: p.slug, why: `post ${p.id} is not shown`, word: false }, { term: p.title, why: `post ${p.id} title`, word: false });
+for (const l of loadLessons().filter(hidden)) terms.push({ term: l.slug, why: `lesson ${l.id} is not shown`, word: false }, { term: l.title, why: `lesson ${l.id} title`, word: false });
 for (const s of loadSources().filter((s) => s.visibility === "private")) terms.push({ term: s.repo, why: `private source ${s.id}`, word: false });
 for (const t of (process.env.LEAK_TERMS || "").split(",").map((s) => s.trim()).filter((s) => s.length >= 4)) terms.push({ term: t, why: "LEAK_TERMS", word: true });
 // Unlisted items may have a page but must not appear in lists, feeds or the sitemap.
-const unlisted = [...loadProjects(), ...loadUpdates(), ...loadPosts()].filter((i) => isShown(i) && !isListed(i));
+const unlisted = [...loadProjects(), ...loadUpdates(), ...loadPosts(), ...loadLessons()].filter((i) => isShown(i) && !isListed(i));
 
+// Public asset filenames must not carry hidden project names either (images, videos, posters).
+const hiddenSlugs = loadProjects().filter(hidden).map((p) => p.slug);
 const files = (dir: string): string[] => fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => e.isDirectory() ? files(path.join(dir, e.name)) : [path.join(dir, e.name)]);
 const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const hits: string[] = [];
@@ -32,6 +35,7 @@ const textExt = /\.(html|rsc|txt|xml|json|js|css|map|md|svg|webmanifest|meta|bod
 const serverOnly = (f: string) => /\.nft\.json$/.test(f) || f.includes(`${path.sep}api${path.sep}`) || f.includes(`${path.sep}studio${path.sep}`) || /[\\/]studio\.(html|rsc|meta|segments)/.test(f);
 for (const root of roots) for (const f of files(root)) {
   if (serverOnly(f)) continue;
+  for (const slug of hiddenSlugs) if (path.basename(f).toLowerCase().includes(slug)) hits.push(`${f}: public file named for hidden project ${slug}`);
   if (!textExt.test(f) && path.extname(f) !== "") continue;
   const text = fs.readFileSync(f, "utf8");
   for (const t of terms) {

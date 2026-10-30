@@ -5,13 +5,12 @@
   "tagline": "One Android app of small offline tools: video editing, shrinking, audio extraction, a sound meter and an app inspector. No ads, no accounts, no internet permission.",
   "status": "published",
   "visibility": "public",
-  "tier": "archive",
-  "order": 140,
+  "tier": "featured",
+  "order": 30,
   "themes": [
     "practical",
     "creative-tools"
   ],
-  "state": "prototype",
   "stateNote": "The README describes a large, active toolkit. I haven't built or installed the app, so what it does comes from the README.",
   "problem": "Phone utilities are usually cluttered with ads and trackers, and each one is a separate app. Ultimate keeps small tools in one place, and the standard edition's manifest has no INTERNET permission, so it cannot reach the network.",
   "audience": "Android users who want simple tools that stay on the phone, and anyone curious how apps track them.",
@@ -59,5 +58,15 @@
     ],
     "intent": "collaborate"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "prototype",
+  "track": "products",
+  "openTo": [
+    "licensing",
+    "partnership"
+  ],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

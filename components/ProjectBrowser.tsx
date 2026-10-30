@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useMemo, useState, type CSSProperties } from "react";
 import type { ProjectCard } from "@/lib/content/cards";
 import { THEME_COLORS } from "@/lib/themes";
@@ -12,35 +13,34 @@ export type BrowserProject = ProjectCard;
  * Filtering is client-side over a small, public-only list. Without JavaScript, every project is rendered and linked.
  * With no filter set, featured projects are left out here because the bento above already shows them.
  */
-export function ProjectBrowser({ projects, themes }: { projects: BrowserProject[]; themes: { id: string; label: string }[] }) {
-  const [theme, setTheme] = useState<string>("all");
+export function ProjectBrowser({ projects, tracks }: { projects: BrowserProject[]; tracks: { id: string; label: string }[] }) {
+  const sp = useSearchParams();
+  const fromUrl = sp.get("track");
+  const [track, setTrack] = useState<string>(tracks.some((t) => t.id === fromUrl) ? (fromUrl as string) : "all");
   const [q, setQ] = useState("");
   const [state, setState] = useState("all");
   const [playable, setPlayable] = useState(false);
-  const [client, setClient] = useState(false);
-  const states = useMemo(() => [...new Map(projects.map((p) => [p.state, p.stateLabel])).entries()], [projects]);
-  const filtering = theme !== "all" || state !== "all" || playable || client || q.trim() !== "";
+  const states = useMemo(() => ["production", "beta", "prototype", "concept"].filter((s) => projects.some((p) => p.state === s)).map((s) => [s, projects.find((p) => p.state === s)!.stateLabel] as const), [projects]);
+  const filtering = track !== "all" || state !== "all" || playable || q.trim() !== "";
   const match = (p: BrowserProject) =>
-    (theme === "all" || p.themes.includes(theme)) && (state === "all" || p.state === state) && (!playable || p.playable) && (!client || p.client) &&
+    (track === "all" || p.track === track) && (state === "all" || p.state === state) && (!playable || p.playable) &&
     (!q.trim() || `${p.title} ${p.tagline}`.toLowerCase().includes(q.trim().toLowerCase()));
   const shown = projects.filter((p) => match(p) && (filtering || p.tier !== "featured"));
-  const hasClient = projects.some((p) => p.client);
-  const reset = () => { setTheme("all"); setQ(""); setState("all"); setPlayable(false); setClient(false); };
+  const reset = () => { setTrack("all"); setQ(""); setState("all"); setPlayable(false); };
   return (
     <div>
       <div className="j-chips" role="group" aria-label="Filter projects">
-        {[{ id: "all", label: "Everything" }, ...themes].map((t) => <button key={t.id} type="button" aria-pressed={theme === t.id} onClick={() => setTheme(t.id)} style={t.id !== "all" ? ({ "--accent": THEME_COLORS[t.id] } as CSSProperties) : undefined}>{t.id !== "all" && <i aria-hidden="true" />}{t.label}</button>)}
-        <button type="button" aria-pressed={playable} onClick={() => setPlayable(!playable)}>▶ Playable now</button>
-        {hasClient && <button type="button" aria-pressed={client} onClick={() => setClient(!client)}>Client work</button>}
+        {[{ id: "all", label: "Everything" }, ...tracks].map((t) => <button key={t.id} type="button" aria-pressed={track === t.id} onClick={() => setTrack(t.id)}>{t.label}{t.id !== "all" && <span className="j-count"> {projects.filter((p) => p.track === t.id).length}</span>}</button>)}
+        <button type="button" aria-pressed={playable} onClick={() => setPlayable(!playable)}>▶ Try it now</button>
       </div>
       <div className="j-search">
         <label className="sr-only" htmlFor="pq" style={{ position: "absolute", left: -9999 }}>Search projects</label>
         <input id="pq" type="search" placeholder="Search projects" value={q} onChange={(e) => setQ(e.target.value)} />
-        <label className="sr-only" htmlFor="ps" style={{ position: "absolute", left: -9999 }}>Filter by state</label>
-        <select id="ps" value={state} onChange={(e) => setState(e.target.value)}><option value="all">Any state</option>{states.map(([id, label]) => <option key={id} value={id}>{label}</option>)}</select>
+        <label className="sr-only" htmlFor="ps" style={{ position: "absolute", left: -9999 }}>Filter by maturity</label>
+        <select id="ps" value={state} onChange={(e) => setState(e.target.value)}><option value="all">Any maturity</option>{states.map(([id, label]) => <option key={id} value={id}>{label}</option>)}</select>
       </div>
       <p className="j-muted" id="project-count" role="status" aria-live="polite" style={{ marginBottom: 18 }}>
-        {filtering ? `${shown.length} ${shown.length === 1 ? "project matches" : "projects match"}` : `${shown.length} more projects, ordered by how much went into them and how recent they are`}
+        {filtering ? `${shown.length} ${shown.length === 1 ? "project matches" : "projects match"}` : `${shown.length} more projects. The order is editorial: sophistication, usability, business value, presentation and verified real-world use.`}
         {filtering && <> · <button type="button" className="j-linkbtn" onClick={reset}>Clear filters</button></>}
       </p>
       {shown.length > 0 ? (

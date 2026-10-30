@@ -6,11 +6,10 @@
   "status": "published",
   "visibility": "public",
   "tier": "featured",
-  "order": 20,
+  "order": 110,
   "themes": [
     "games"
   ],
-  "state": "prototype",
   "stateNote": "The README's older hosted link returns a 404, but a current build runs on my Vercel.",
   "problem": "A big-hearted platformer where you run, wall-climb, dash and ground pound through living jungles and glowing caves, and grow a home of your own.",
   "audience": "Platformer fans who like exploration and companions.",
@@ -84,5 +83,12 @@
     "mp4": "/projects/thornwild-preview.mp4",
     "poster": "/projects/thornwild-2.webp",
     "capturedAt": "2026-10-29"
+  },
+  "maturity": "beta",
+  "track": "experiences",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
   }
 }

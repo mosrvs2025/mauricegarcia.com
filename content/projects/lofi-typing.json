@@ -6,11 +6,10 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 280,
+  "order": 80,
   "themes": [
     "creative-tools"
   ],
-  "state": "maintained",
   "stateNote": "A small static site, last changed in August 2025.",
   "problem": "Typing practice is usually stressful. This keeps the numbers (WPM, accuracy, time) with a calm look and optional music.",
   "audience": "Anyone practicing typing.",
@@ -51,5 +50,12 @@
     ],
     "intent": "hello"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "prototype",
+  "track": "products",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

@@ -16,7 +16,7 @@ export const services: Service[] = [
   {
     slug: "custom-ops-app",
     name: "Custom ops app",
-    price: "Starting at $8,000",
+    price: "Custom quote",
     summary:
       "A purpose-built web app for how your shop actually works — leads, estimates, invoices, jobs, and the paperwork in between.",
     kind: "software",
@@ -30,7 +30,7 @@ export const services: Service[] = [
   {
     slug: "product-sprint",
     name: "2-week product sprint",
-    price: "$4,500",
+    price: "Custom quote",
     summary:
       "Two focused weeks to turn a messy workflow into a working slice you can click, show a crew, and decide what to build next.",
     kind: "software",
@@ -44,7 +44,7 @@ export const services: Service[] = [
   {
     slug: "advisory",
     name: "Advisory retainer",
-    price: "$2,000 / month",
+    price: "Custom quote",
     summary:
       "A monthly working relationship for architecture, vendor choices, and the unglamorous decisions that keep software from rotting.",
     kind: "software",

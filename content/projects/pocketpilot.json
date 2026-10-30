@@ -6,11 +6,10 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 245,
+  "order": 60,
   "themes": [
     "practical"
   ],
-  "state": "prototype",
   "stateNote": "Early. The README describes an implementation direction as well as what exists.",
   "problem": "Phone storage fills up and compressing video is fiddly. PocketPilot would let you ask for what you want and approve each proposed operation before anything changes.",
   "audience": "Android users with full phones.",
@@ -50,5 +49,12 @@
     ],
     "intent": "hello"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "concept",
+  "track": "products",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }

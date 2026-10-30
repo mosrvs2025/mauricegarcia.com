@@ -6,24 +6,23 @@
   "status": "published",
   "visibility": "public",
   "tier": "featured",
-  "order": 10,
+  "order": 20,
   "themes": [
     "retail",
     "practical"
   ],
-  "state": "pilot",
   "stateNote": "A live no-card pilot with real accounts. No payments or payouts are collected yet.",
   "problem": "Good finds sit in thrift stores where the people who want them never see them. ThriftScout connects buyers, scouts who are already in the aisles, and the stores themselves.",
   "audience": "Thrift shoppers, people who thrift for others, and thrift stores.",
   "contribution": "It is my project, built with Next.js and Supabase. The source is private.",
   "worksToday": [
     "Browse finds, post a wanted request, or run a price check, as shown on the live site.",
-    "Scouts can post finds from a store, per the README.",
-    "Real accounts work across devices in the pilot, per the README."
+    "Scouts can post finds from a store.",
+    "Real accounts work across devices in the pilot."
   ],
   "limitations": [
     "No card payments or payouts are collected yet.",
-    "The store listed is an unclaimed scout location, not a verified partner, per the README.",
+    "The store listed is an unclaimed scout location, not a verified partner.",
     "The source is private."
   ],
   "links": {
@@ -31,7 +30,6 @@
     "other": []
   },
   "repoVisibility": "private",
-  "privateSummaryApproved": true,
   "ai": {
     "assisted": "unknown"
   },
@@ -82,5 +80,15 @@
     "mp4": "/projects/thriftscout-preview.mp4",
     "poster": "/projects/thriftscout-1.webp",
     "capturedAt": "2026-10-29"
+  },
+  "maturity": "beta",
+  "track": "products",
+  "openTo": [
+    "partnership"
+  ],
+  "disclosure": {
+    "basis": "owner-documented",
+    "note": "The owner stated on 2026-10-29 that ThriftScout should have serious visibility. The source stays private; this page describes only the public site's behavior and its stated limits.",
+    "documentedAt": "2026-10-29"
   }
 }

@@ -12,7 +12,8 @@
     "content:approve": "tsx scripts/approve-proposed.ts",
     "sync": "tsx scripts/sync.ts",
     "leak-check": "tsx scripts/leak-check.ts",
-    "test": "node scripts/contact.test.cjs && tsx --test tests/*.test.ts"
+    "test": "node scripts/contact.test.cjs && tsx --test tests/*.test.ts",
+    "demos:check": "tsx scripts/check-demos.ts"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

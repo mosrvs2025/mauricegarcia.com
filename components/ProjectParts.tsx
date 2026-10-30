@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { STATE_LABELS, THEME_LABELS, formatDate } from "@/lib/content/query";
+import { MATURITY_LABELS, THEME_LABELS, formatDate } from "@/lib/content/query";
 import type { Project, Update } from "@/lib/content/schemas";
 import { isProposed } from "@/lib/content/visibility";
 import { themeColor } from "@/lib/themes";
@@ -8,8 +8,8 @@ import { TiltCard } from "./TiltCard";
 
 export const Proposed = () => <span className="j-proposed">Proposed, awaiting approval</span>;
 
-export function StateTag({ project }: { project: Pick<Project, "state"> }) {
-  return <span className="j-tag state">{STATE_LABELS[project.state]}</span>;
+export function StateTag({ project }: { project: Pick<Project, "maturity"> }) {
+  return <span className="j-tag state">{MATURITY_LABELS[project.maturity]}</span>;
 }
 
 export function ProjectLead({ project }: { project: Project }) {

@@ -6,11 +6,10 @@
   "status": "published",
   "visibility": "public",
   "tier": "archive",
-  "order": 260,
+  "order": 380,
   "themes": [
     "creative-tools"
   ],
-  "state": "prototype",
   "stateNote": "Runs locally with no build step. The README links to a hosted copy that returned a 404 when I checked.",
   "problem": "A prompt-driven Gem only improves if you can see what 'good' looks like. Gem Studio composes prompts, decodes the replies against a template contract, and helps save the good packs as examples.",
   "audience": "People who write songs with AI and want repeatable, checkable output.",
@@ -60,5 +59,12 @@
     ],
     "intent": "hello"
   },
-  "formerSlugs": []
+  "formerSlugs": [],
+  "maturity": "prototype",
+  "track": "labs",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
 }
