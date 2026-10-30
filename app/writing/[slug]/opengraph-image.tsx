@@ -11,5 +11,5 @@ export const generateStaticParams = () => shownPosts().map((p) => ({ slug: p.slu
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const p = postBySlug((await params).slug);
   if (!p) notFound();
-  return ogImage({ kicker: `Writing · ${p.kind}`, title: p.title, subtitle: p.description });
+  return ogImage({ kicker: `Writing · ${p.kind}`, title: p.title, subtitle: p.description, seed: p.slug });
 }
