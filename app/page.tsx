@@ -1,7 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { CountUp } from "@/components/CountUp";
 import { Proposed, UpdateItem } from "@/components/ProjectParts";
 import { Reveal } from "@/components/Reveal";
 import { SurpriseMe } from "@/components/SurpriseMe";
@@ -11,7 +9,8 @@ import { capabilities } from "@/lib/capabilities";
 import { toCard } from "@/lib/content/cards";
 import { featuredByTrack, formatDate, listedPosts, listedProjects, listedUpdates, projectById, projectBySlug, projectsByTrack, shownNow } from "@/lib/content/query";
 import { isProposed } from "@/lib/content/visibility";
-import { site } from "@/lib/site";
+import { HomeShowcase } from "@/components/HomeShowcase";
+import { SecretShelf } from "@/components/SecretShelf";
 
 // The animated grid is decorative: load it after the page is interactive so it never delays first paint.
 const HeroField = dynamic(() => import("@/components/HeroField").then((m) => m.HeroField));
@@ -24,43 +23,41 @@ export default function HomePage() {
   const withDemo = all.filter((p) => p.links.demo);
   const demos = withDemo.map((p) => ({ title: p.title, url: p.links.demo!, slug: p.slug }));
   const ticker = all.map((p) => ({ slug: p.slug, title: p.title, theme: p.themes[0], playable: !!p.links.demo }));
-  const words = ["I turn", "ambitious ideas", "into working", "products, worlds", "and experiments."];
+  const showcase = ["thornwild", "thriftscout", "lumen"].flatMap((slug) => { const p = all.find((p) => p.slug === slug); return p ? [toCard(p)] : []; });
   return (
     <>
-      <section className="j-hero-wrap">
+      <section className="j-hero-wrap home-opening">
         <div className="j-aurora" aria-hidden="true"><i /><i /><i /></div>
         <HeroField />
-        <div className="studio-wrap j-hero">
+        <div className="studio-wrap j-hero home-hero">
           <div>
-            <p className="eyebrow j-pop">Experience Engineer · Creative technologist · Independent builder</p>
-            <h1 className="display j-title">
-              {words.map((w, i) => <span className="j-word" style={{ "--i": i } as React.CSSProperties} key={w}>{i === 1 ? <em>{w}</em> : w}{" "}</span>)}
-            </h1>
-            <p className="lede j-pop" style={{ "--i": 6 } as React.CSSProperties}>I&apos;m Maurice Garcia. I work across AI, software, automation, interactive experiences, games, Android and experimental technology, and I ship what I build. Try it, then tell me what you&apos;d build.</p>
-            <div className="j-actions j-pop" style={{ "--i": 7 } as React.CSSProperties}>
-              <Link href="#products" className="btn btn-fill j-shine">See what I&apos;ve built</Link>
-              <Link href="/services" className="btn btn-ghost">Work with me</Link>
-              <Link href="/connect" className="j-link j-arrow">Say hello</Link>
+            <p className="eyebrow">Maurice Garcia / Experience Engineer</p>
+            <h1 className="display j-title home-title">Useful products.<br /><em>Unexpected worlds.</em></h1>
+            <p className="lede">I build software, AI tools and interactive experiences. From a better way to run a business to a world worth getting lost in.</p>
+            <div className="j-actions">
+              <Link href="#experiences" className="btn btn-fill j-shine">Explore the work <span aria-hidden="true">↘</span></Link>
+              <Link href="/connect?intent=paid-work" className="j-link j-arrow">Let&apos;s build something</Link>
             </div>
-            <div className="j-pop" style={{ "--i": 8 } as React.CSSProperties}><SurpriseMe demos={demos} /></div>
+            <div className="home-curiosity"><SurpriseMe demos={demos} /><SecretShelf /></div>
           </div>
-          <figure className="j-portrait j-pop" style={{ "--i": 4 } as React.CSSProperties}>
-            <Image src={site.photo} alt="Portrait of Maurice Garcia outdoors" width={600} height={750} sizes="(max-width:760px) 80vw, 30vw" priority />
-            <figcaption>Hi, I&apos;m Maurice. Most people call me Moe.</figcaption>
-          </figure>
+          <HomeShowcase projects={showcase} />
         </div>
       </section>
 
       <Ticker items={ticker} />
 
-      <section className="studio-wrap j-stats" aria-label="At a glance">
-        <Reveal><div><b><CountUp to={all.length} /></b><span>projects on the shelf, each labelled production, beta, prototype or concept</span></div></Reveal>
-        <Reveal delay={80}><div><b><CountUp to={withDemo.length} /></b><span>with a public demo you can open right now</span></div></Reveal>
-        <Reveal delay={160}><div><b><CountUp to={3} /></b><span>tracks: products, experiences and labs</span></div></Reveal>
-      </section>
+      <nav className="studio-wrap home-index" aria-label="Explore the portfolio">
+        <p><strong>{all.length} projects.</strong> {withDemo.length} doors you can open.</p>
+        <div><Link href="#experiences">01 / Experiences ↘</Link><Link href="#products">02 / Products ↘</Link><Link href="#labs">03 / Labs ↘</Link></div>
+      </nav>
+
+      <TrackSection track="experiences" lead="Step into something unexpected." projects={featuredByTrack("experiences").map(toCard)} total={projectsByTrack("experiences").length} />
+      <TrackSection track="products" lead="Built around real problems." projects={featuredByTrack("products").map(toCard)} total={projectsByTrack("products").length} />
+      <TrackSection track="labs" lead="Follow an interesting question." projects={featuredByTrack("labs").map(toCard)} total={projectsByTrack("labs").length} />
+      <div className="studio-wrap"><Reveal><p style={{ paddingBottom: 30 }}><Link href="/projects" className="btn btn-ghost j-shine">Browse all {all.length} projects</Link></p></Reveal></div>
 
       <section className="studio-wrap j-section" aria-labelledby="cap-h">
-        <Reveal><div className="j-head"><div><p className="eyebrow">What I build</p><h2 className="display" id="cap-h">Six kinds of work, each with something you can open</h2></div></div></Reveal>
+        <Reveal><div className="j-head"><div><p className="eyebrow">Behind the work</p><h2 className="display" id="cap-h">Creative range. Practical execution.</h2></div></div></Reveal>
         <ul className="j-caps">
           {capabilities.map((c, i) => (
             <Reveal as="li" key={c.id} delay={i * 60} className="j-cap-wrap"><div className="j-cap">
@@ -73,11 +70,6 @@ export default function HomePage() {
           ))}
         </ul>
       </section>
-
-      <TrackSection track="products" lead="Practical software built for real use and real business value" projects={featuredByTrack("products").map(toCard)} total={projectsByTrack("products").length} />
-      <TrackSection track="experiences" lead="Games and worlds that run in a browser tab" projects={featuredByTrack("experiences").map(toCard)} total={projectsByTrack("experiences").length} />
-      <TrackSection track="labs" lead="Experiments and tools that test what's possible" projects={featuredByTrack("labs").map(toCard)} total={projectsByTrack("labs").length} />
-      <div className="studio-wrap"><Reveal><p style={{ paddingBottom: 30 }}><Link href="/projects" className="btn btn-ghost j-shine">Browse all {all.length} projects</Link></p></Reveal></div>
 
       <section className="studio-wrap j-section" aria-labelledby="work-h">
         <Reveal><div className="j-head"><div><p className="eyebrow">Work together</p><h2 className="display" id="work-h">Five ways to start</h2></div><Link href="/services" className="j-link j-arrow">How each one works</Link></div></Reveal>
