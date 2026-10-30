@@ -22,6 +22,8 @@ export function GameWorld({ worlds }: { worlds: World[] }) {
   const [visited, setVisited] = useState<Set<string>>(new Set());
   const nodes = useRef<(HTMLButtonElement | null)[]>([]);
   const started = useRef(false);
+  const primary = useRef<HTMLAnchorElement | null>(null);
+  const [burst, setBurst] = useState(0);
 
   // Lay the levels out along a winding path, with a banner gap before each world.
   const layout = useMemo(() => {
@@ -55,11 +57,12 @@ export function GameWorld({ worlds }: { worlds: World[] }) {
 
   const go = useCallback((i: number, focus = true) => {
     const n = Math.max(0, Math.min(flat.length - 1, i));
+    if (n !== at) setBurst((b) => b + 1);
     setAt(n); started.current = true;
     if (focus) nodes.current[n]?.focus({ preventScroll: true });
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     nodes.current[n]?.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" });
-  }, [flat.length]);
+  }, [flat.length, at]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -74,17 +77,19 @@ export function GameWorld({ worlds }: { worlds: World[] }) {
   }, [at, go]);
 
   const cur = flat[at];
+  const world = cur?.world ?? "experiences";
+  const progress = flat.length > 1 ? at / (flat.length - 1) : 0;
   const pos = layout.pts[at];
   const count = flat.filter((l) => visited.has(l.slug)).length;
 
   return (
-    <div className="gv">
+    <div className={`gv gv-on-${world}`}>
       <div className="gv-sky" aria-hidden="true" />
       <header className="gv-hud">
         <div>
           <p className="gv-kicker">Maurice Garcia · Experience Engineer</p>
           <h1 className="gv-title">Choose your level</h1>
-          <p className="gv-sub">Every project is a level. Walk the map with <kbd>↑</kbd><kbd>↓</kbd> or <kbd>W</kbd><kbd>S</kbd>, or tap a level to see it.</p>
+          <p className="gv-sub">Every project is a level. Walk the map with <kbd>↑</kbd><kbd>↓</kbd> or <kbd>W</kbd><kbd>S</kbd>, or tap a level. Tap it again to jump in.</p>
         </div>
         <div className="gv-stats" aria-live="polite">
           <span className="gv-stat"><b>{count}</b>/{flat.length} explored</span>
@@ -96,6 +101,7 @@ export function GameWorld({ worlds }: { worlds: World[] }) {
         <div className="gv-map" style={{ height: layout.height }}>
           <svg className="gv-path" viewBox={`0 0 100 ${layout.height}`} preserveAspectRatio="none" aria-hidden="true">
             <path d={path} className="gv-path-bg" vectorEffect="non-scaling-stroke" />
+            <path d={path} className="gv-path-lit" pathLength={1} style={{ strokeDashoffset: 1 - progress }} vectorEffect="non-scaling-stroke" />
             <path d={path} className="gv-path-fg" vectorEffect="non-scaling-stroke" />
           </svg>
           {layout.banners.map(({ y, world }) => (
@@ -112,7 +118,7 @@ export function GameWorld({ worlds }: { worlds: World[] }) {
                   className={`gv-node gv-w-${l.world} ${l.featured ? "is-boss" : ""} ${visited.has(l.slug) ? "is-done" : ""} ${i === at ? "is-here" : ""}`}
                   aria-current={i === at ? "true" : undefined}
                   aria-label={`Level ${i + 1}: ${l.title}, ${l.stateLabel}${visited.has(l.slug) ? ", explored" : ""}`}
-                  onClick={() => go(i)}
+                  onClick={() => (i === at ? primary.current?.focus() : go(i))}
                   onFocus={() => setAt(i)}
                 >
                   <span className="gv-num">{i + 1}</span>
@@ -123,19 +129,25 @@ export function GameWorld({ worlds }: { worlds: World[] }) {
             ))}
           </ol>
           {pos && <div className="gv-player" style={{ top: pos.y, left: `${pos.x}%` }} aria-hidden="true"><span>mg</span></div>}
+          {pos && burst > 0 && (
+            <div key={burst} className="gv-burst" style={{ top: pos.y, left: `${pos.x}%` }} aria-hidden="true">
+              {Array.from({ length: 12 }, (_, k) => <i key={k} style={{ "--a": `${k * 30}deg`, "--d": `${38 + (k % 3) * 16}px` } as React.CSSProperties} />)}
+            </div>
+          )}
         </div>
 
         {cur && (
-          <aside className="gv-card" aria-live="polite" aria-label="Selected level">
+          <aside key={cur.slug} className="gv-card" aria-live="polite" aria-label="Selected level">
             {cur.image && <img src={cur.image} alt={cur.imageAlt} className="gv-shot" />}
             <p className="gv-card-kicker">Level {at + 1} · {worlds.find((w) => w.id === cur.world)?.title.split(": ")[1]}{cur.featured ? " · ★ Featured" : ""}</p>
             <h2 className="gv-card-title">{cur.title}</h2>
             <p className="gv-card-tag">{cur.tagline}</p>
             <p className={`gv-state gv-state-${cur.state}`} title={cur.stateHelp}><b>{cur.stateLabel}</b> {cur.stateHelp}</p>
             <div className="gv-actions">
-              {cur.demo && <a className="gv-btn gv-btn-go" href={cur.demo} rel="noopener noreferrer" onClick={() => markVisited(cur.slug)} data-track="demo_visit" data-track-project={cur.slug}>{cur.game ? "▶ Play" : "▶ Try it live"}</a>}
-              <Link className="gv-btn" href={`/projects/${cur.slug}`} onClick={() => markVisited(cur.slug)}>Enter level</Link>
+              {cur.demo && <a ref={primary} className="gv-btn gv-btn-go" href={cur.demo} rel="noopener noreferrer" onClick={() => markVisited(cur.slug)} data-track="demo_visit" data-track-project={cur.slug}>{cur.game ? "▶ Play" : "▶ Try it live"}</a>}
+              <Link ref={cur.demo ? undefined : primary} className={`gv-btn ${cur.demo ? "" : "gv-btn-go"}`} href={`/projects/${cur.slug}`} onClick={() => markVisited(cur.slug)}>Enter level</Link>
             </div>
+            <p className="gv-hint">Tap the glowing level again, or press <kbd>Enter</kbd>, to jump in.</p>
             <div className="gv-nav">
               <button type="button" onClick={() => go(at - 1)} disabled={at === 0} aria-label="Previous level">↑ Prev</button>
               <button type="button" onClick={() => go(at + 1)} disabled={at === flat.length - 1} aria-label="Next level">Next ↓</button>

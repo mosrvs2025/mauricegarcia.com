@@ -1,7 +1,7 @@
 /* Level-select version of the site. Self-contained: it does not depend on the site skins. */
 .gv { --gv-bg:#0b0f1f; --gv-ink:#f4f1ff; --gv-dim:#b9b4d6; --gv-card:#151a33; --gv-line:#2b3160; --gv-go:#ffcc33; --gv-go-ink:#1a1300;
   --w-experiences:#5be3a1; --w-products:#ff8a4c; --w-labs:#a98bff;
-  position:relative; background:var(--gv-bg); color:var(--gv-ink); overflow:hidden; font-family:var(--font-instrument),system-ui,sans-serif; }
+  position:relative; background:var(--gv-bg); color:var(--gv-ink); overflow-x:clip; --glow:var(--w-experiences); font-family:var(--font-instrument),system-ui,sans-serif; }
 .gv-sky { position:absolute; inset:0; pointer-events:none;
   background:
     radial-gradient(1px 1px at 12% 8%,#fff8 50%,transparent 51%), radial-gradient(1px 1px at 72% 14%,#fff6 50%,transparent 51%),
@@ -95,4 +95,30 @@
 @media (prefers-reduced-motion:reduce) {
   .gv-player, .gv-node, .gv-btn { transition:none; }
   .gv-player span { animation:none; }
+}
+
+/* Magic layer: world-tinted glow, lit trail, sparkle bursts and a card that arrives rather than swaps. */
+.gv-on-products { --glow:var(--w-products); }
+.gv-on-labs { --glow:var(--w-labs); }
+.gv::before { content:""; position:fixed; inset:0; pointer-events:none; background:radial-gradient(60% 50% at 30% 60%, color-mix(in srgb, var(--glow) 18%, transparent), transparent 70%); transition:background 1.2s ease; }
+.gv-path-lit { fill:none; stroke:var(--gv-go); stroke-width:6px; stroke-linecap:round; stroke-dasharray:1 1; filter:drop-shadow(0 0 6px #ffcc33aa); transition:stroke-dashoffset .8s cubic-bezier(.3,.9,.3,1); }
+.gv-node.is-here::before { content:""; position:absolute; inset:-14px; border-radius:50%; border:2px solid var(--gv-go); opacity:0; animation:gv-ring 1.8s ease-out infinite; }
+@keyframes gv-ring { 0% { transform:scale(.8); opacity:.9; } 100% { transform:scale(1.5); opacity:0; } }
+.gv-burst { position:absolute; width:0; height:0; z-index:3; pointer-events:none; }
+.gv-burst i { position:absolute; left:-4px; top:-4px; width:8px; height:8px; border-radius:50%; background:var(--gv-go); box-shadow:0 0 10px var(--gv-go), 0 0 2px #fff; animation:gv-spark .8s cubic-bezier(.2,.8,.3,1) forwards; }
+.gv-burst i:nth-child(3n) { background:var(--glow); box-shadow:0 0 10px var(--glow); width:6px; height:6px; }
+@keyframes gv-spark { 0% { transform:rotate(var(--a)) translateX(0) scale(1.2); opacity:1; } 100% { transform:rotate(var(--a)) translateX(var(--d)) scale(0); opacity:0; } }
+.gv-card { animation:gv-arrive .45s cubic-bezier(.2,1.2,.4,1); border-color:color-mix(in srgb, var(--glow) 45%, var(--gv-line)); box-shadow:0 8px 0 #0006, 0 0 60px color-mix(in srgb, var(--glow) 18%, transparent); transition:border-color .8s, box-shadow .8s; }
+@keyframes gv-arrive { from { opacity:0; transform:translateY(14px) scale(.97); } to { opacity:1; transform:none; } }
+.gv-card .gv-shot { animation:gv-shine .9s ease-out; }
+@keyframes gv-shine { from { filter:brightness(1.6) saturate(.6); } to { filter:none; } }
+.gv-btn-go { animation:gv-breathe 2.4s ease-in-out infinite; }
+@keyframes gv-breathe { 50% { box-shadow:0 4px 0 #0008, 0 0 24px #ffcc3366; } }
+.gv-hint { margin:12px 0 0; font-size:.82rem; color:var(--gv-dim); }
+@media (max-width:900px) { .gv-hint { display:none; } .gv-card { animation-name:gv-rise; } }
+@keyframes gv-rise { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:none; } }
+@media (prefers-reduced-motion:reduce) {
+  .gv-card, .gv-card .gv-shot, .gv-btn-go, .gv-node.is-here::before { animation:none; }
+  .gv-burst { display:none; }
+  .gv-path-lit, .gv::before { transition:none; }
 }
