@@ -59,6 +59,19 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <section className="j-block"><h2>Who it's for</h2><p>{p.audience}</p></section>
       <section className="j-block"><h2>My contribution</h2><div><p>{p.contribution}</p>{p.upstream && <p style={{ marginTop: 12 }}><strong>Upstream work:</strong> built on <a className="j-link" href={p.upstream.url} rel="noopener noreferrer">{p.upstream.name}</a>{p.upstream.license ? ` (${p.upstream.license})` : ""}. {p.upstream.note}</p>}</div></section>
       {p.worksToday.length > 0 && <section className="j-block"><h2>What works today</h2><ul>{p.worksToday.map((w) => <li key={w}>{w}</li>)}</ul></section>}
+      {p.caseStudy && (
+        <section className="j-callout j-case" aria-labelledby="case-h">
+          <p className="eyebrow">Case study</p>
+          <h2 className="display" id="case-h">How it was built</h2>
+          <ol className="j-case-steps">{p.caseStudy.approach.map((a) => <li key={a}>{a}</li>)}</ol>
+          {p.caseStudy.decisions.length > 0 && <>
+            <h3>Key decisions</h3>
+            <dl className="j-case-decisions">{p.caseStudy.decisions.map((d) => <div key={d.choice}><dt>{d.choice}</dt><dd>{d.why}</dd></div>)}</dl>
+          </>}
+          {p.caseStudy.outcome && <><h3>Outcome</h3><p>{p.caseStudy.outcome}</p></>}
+          <p className="j-muted" style={{ marginTop: 14, fontSize: ".85rem" }}>Source: {p.caseStudy.source}</p>
+        </section>
+      )}
       {p.limitations.length > 0 && <section className="j-block"><h2>Limitations</h2><ul>{p.limitations.map((w) => <li key={w}>{w}</li>)}</ul></section>}
       {p.evidence.length > 0 && <section className="j-block"><h2>Evidence</h2><ul>{p.evidence.map((e) => <li key={e.url}><a className="j-link" href={e.url} rel="noopener noreferrer">{e.label}</a>{e.verifiedAt ? <span className="j-muted"> · checked {formatDate(e.verifiedAt)}</span> : null}</li>)}</ul></section>}
 

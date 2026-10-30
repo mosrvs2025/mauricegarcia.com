@@ -26,6 +26,7 @@ export function Footer() {
           <ul>
             <li><Link href="/services">Services</Link></li>
             <li><Link href="/lab">Design lab</Link></li>
+            <li><Link href="/v/game">Game version</Link></li>
             <li><Link href="/coaching">AI tools coaching</Link></li>
             <li><Link href="/ai-receptionist">AI receptionist pilots</Link></li>
             <li><Link href="/shop">Shop</Link></li>

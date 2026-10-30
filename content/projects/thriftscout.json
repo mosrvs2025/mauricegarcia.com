@@ -90,5 +90,23 @@
     "basis": "owner-documented",
     "note": "The owner stated on 2026-10-29 that ThriftScout should have serious visibility. The source stays private; this page describes only the public site's behavior and its stated limits.",
     "documentedAt": "2026-10-29"
+  },
+  "caseStudy": {
+    "approach": [
+      "Built as a web app with Next.js and Supabase so buyers, scouts and stores share one system across devices.",
+      "Three entry points match the three sides of the marketplace: browse finds, post a wanted request, or post a find from a store.",
+      "Launched as a live pilot with real accounts before taking any money."
+    ],
+    "decisions": [
+      {
+        "choice": "No-card pilot first",
+        "why": "Real accounts and real use come before payments and payouts, so the marketplace can be tested without anyone's money at stake."
+      },
+      {
+        "choice": "Honest store labels",
+        "why": "A store a scout adds is shown as an unclaimed scout location, not presented as a verified partner."
+      }
+    ],
+    "source": "the project details above and the hosted build (checked 2026-10-29)."
   }
 }

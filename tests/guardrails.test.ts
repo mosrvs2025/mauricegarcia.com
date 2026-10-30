@@ -43,7 +43,7 @@ test("the portfolio structure the owner chose is intact", () => {
 });
 
 test("existing capabilities were not removed: studio, sync, learn, lab, skins, contact, demos check", () => {
-  for (const f of ["app/studio/page.tsx", "lib/sync/import.ts", "app/learn/page.tsx", "app/lab/page.tsx", "app/api/contact/route.ts", "scripts/check-demos.ts", "components/HeroField.tsx", "lib/content/schemas.ts", "AGENTS.md", ".github/CODEOWNERS", ".github/pull_request_template.md"]) assert.ok(fs.existsSync(f), `${f} was removed`);
+  for (const f of ["app/studio/page.tsx", "lib/sync/import.ts", "app/learn/page.tsx", "app/lab/page.tsx", "app/v/game/page.tsx", "app/api/contact/route.ts", "scripts/check-demos.ts", "components/HeroField.tsx", "lib/content/schemas.ts", "AGENTS.md", ".github/CODEOWNERS", ".github/pull_request_template.md"]) assert.ok(fs.existsSync(f), `${f} was removed`);
   assert.equal(SITE_SKINS.length, 7, "site styles were removed");
   assert.ok(fs.readdirSync("app/lab/[skin]").length > 0);
 });
@@ -80,4 +80,10 @@ test("private-name guard: matches hyphenated, embedded and path occurrences with
   const cfg = JSON.parse(read("scripts/private-names.json"));
   assert.ok(cfg.hashes.length >= 40 && cfg.hashes.every((h: string) => /^[0-9a-f]{64}$/.test(h)));
   assert.ok(!/[a-z]{6,}-[a-z]{4,}/.test(JSON.stringify(cfg).replace(/[0-9a-f]{64}/g, "")), "the names file must hold hashes only");
+});
+
+test("case studies stay factual: every one names its source, and featured products keep theirs", () => {
+  const shown = loadProjects().filter(isShown);
+  for (const p of shown.filter((x) => x.caseStudy)) assert.ok(p.caseStudy!.source.length > 10, `${p.slug} case study has no source`);
+  for (const slug of ["pipeline-crm", "thriftscout", "ultimate"]) assert.ok(shown.find((p) => p.slug === slug)?.caseStudy, `${slug} lost its case study`);
 });

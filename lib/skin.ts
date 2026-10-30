@@ -11,7 +11,7 @@ export const SITE_SKINS = [
 export type SkinKey = (typeof SITE_SKINS)[number]["id"];
 export const STORAGE_KEY = "mg-skin";
 /** Pages that carry their own older styles keep the default look. */
-export const LEGACY_PREFIXES = /^\/(coaching|ai-receptionist|shop|ads|studio|lab)(\/|$)/;
+export const LEGACY_PREFIXES = /^\/(coaching|ai-receptionist|shop|ads|studio|lab|v)(\/|$)/;
 
 /** Runs before first paint so there's no flash. Reads ?skin= (shareable) or the saved choice. */
 export const SKIN_BOOT_SCRIPT = `(function(){try{var ok=${JSON.stringify(SITE_SKINS.map((s) => s.id).filter((i) => i !== "workshop"))};var p=location.pathname;var q=new URLSearchParams(location.search).get("skin");if(q==="workshop"){localStorage.removeItem("${STORAGE_KEY}")}else if(q&&ok.indexOf(q)>-1){localStorage.setItem("${STORAGE_KEY}",q)}var s=localStorage.getItem("${STORAGE_KEY}");if(!${LEGACY_PREFIXES}.test(p)&&s&&ok.indexOf(s)>-1){document.documentElement.setAttribute("data-skin",s)}}catch(e){}})();`;

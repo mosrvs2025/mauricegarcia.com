@@ -416,3 +416,14 @@ main:focus { outline:none; }
 }
 @media (max-width:420px) { .home-hero .home-title { font-size:2.6rem; } .showcase-selector button { padding:12px 8px; font-size:.7rem; } .showcase-caption { padding:16px; } .secret-shelf { padding:20px; } }
 @media (prefers-reduced-motion:reduce) { .showcase-screen img, .curiosity-switch > span:first-child { transition:none; } }
+
+/* Case-study layer on project pages */
+.j-case { margin:36px 0; }
+.j-case h3 { margin:22px 0 10px; font-size:1rem; letter-spacing:.04em; text-transform:uppercase; color:var(--j-muted, inherit); }
+.j-case-steps { counter-reset:step; list-style:none; padding:0; margin:14px 0 0; display:grid; gap:12px; }
+.j-case-steps li { counter-increment:step; position:relative; padding-left:44px; line-height:1.6; }
+.j-case-steps li::before { content:counter(step); position:absolute; left:0; top:0; width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font-weight:700; font-size:.85rem; border:1px solid currentColor; opacity:.85; }
+.j-case-decisions { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin:0; }
+.j-case-decisions div { padding:14px 16px; border-radius:12px; border:1px solid var(--j-line, #ffffff22); }
+.j-case-decisions dt { font-weight:700; margin-bottom:6px; }
+.j-case-decisions dd { margin:0; line-height:1.55; opacity:.85; }
