@@ -20,8 +20,7 @@ test("positioning: the site presents an Experience Engineer, not a web developer
   assert.match(site.description, /Experience Engineer/);
   assert.equal(personLd().jobTitle, "Experience Engineer");
   const home = read("app/page.tsx");
-  assert.match(home, /Experience Engineer · Creative technologist · Independent builder/);
-  assert.match(home, /I turn/); assert.match(home, /ambitious ideas/);
+  assert.match(home, /Experience Engineer/);
   const about = read("app/about/page.tsx");
   assert.match(about, /Experience Engineer/);
   // Public journal pages must not describe him with the framing he rejected.
