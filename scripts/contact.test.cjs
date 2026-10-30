@@ -53,7 +53,10 @@ const request = (body, origin = 'https://www.mauricegarcia.com') => new Request(
   assert.match(sent.html, /Reply to Friend/);
   const escaped = emails.contactEmails({ ...hello, name: "<img>", body: "<script>alert(1)</script>" }, "Hello");
   assert.doesNotMatch(escaped.owner.html, /<script>|<img>/);
-  assert.match(escaped.visitor.html, /&lt;script&gt;/);
+  // The unverified address never receives anything the visitor typed: no name, no message text.
+  const echoed = emails.contactEmails({ ...hello, name: "ZZNAMEZZ", body: "ZZBODYZZ spam text" }, "Hello").visitor;
+  assert.doesNotMatch(echoed.html + echoed.text, /ZZNAMEZZ|ZZBODYZZ|spam text/);
+  assert.match(echoed.text, /ignore this email/);
   contact.resetSubmissions();
   confirmationError = true;
   const partial = await POST(request(hello));

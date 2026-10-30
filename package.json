@@ -13,7 +13,10 @@
     "sync": "tsx scripts/sync.ts",
     "leak-check": "tsx scripts/leak-check.ts",
     "test": "node scripts/contact.test.cjs && tsx --test tests/*.test.ts",
-    "demos:check": "tsx scripts/check-demos.ts"
+    "demos:check": "tsx scripts/check-demos.ts",
+    "guard:secrets": "tsx scripts/guard-secrets.ts",
+    "guard:names": "tsx scripts/guard-private-names.ts",
+    "verify": "npm run typecheck && npm run content:validate && npm test && npm run guard:secrets && npm run guard:names"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

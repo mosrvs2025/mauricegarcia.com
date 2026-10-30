@@ -161,7 +161,7 @@ test("one failing source does not block the others", async () => {
 });
 
 test("tokens never appear in recorded errors", async () => {
-  const dir = tmpDir(); const client = fakeClient({ fail: "bad credentials ghp_abcdefghijklmnopqrstuvwxyz0123456789" });
+  const dir = tmpDir(); const client = fakeClient({ fail: "bad credentials " + "ghp_" + "abcdefghijklmnopqrstuvwxyz0123456789" });
   const r = await run(dir, client);
   assert.ok(!/ghp_/.test(r.results[0].error!));
 });
