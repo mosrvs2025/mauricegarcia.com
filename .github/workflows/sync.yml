@@ -1,11 +1,13 @@
 name: Sync project updates
 
 # Collects meaningful completed work from allowlisted repositories into DRAFT updates.
-# Triggers: schedule and manual run only. There is deliberately no `push` trigger, so the
+# Triggers: hourly, explicit project notification, and manual run. There is deliberately no `push` trigger, so the
 # commits this job makes can never start another sync (no loops).
 on:
   schedule:
-    - cron: "17 */6 * * *"
+    - cron: "17 * * * *"
+  repository_dispatch:
+    types: [portfolio-update]
   workflow_dispatch:
 
 concurrency:
@@ -21,6 +23,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-node@v4
         with: { node-version: 22, cache: npm }
       - run: npm ci
@@ -33,6 +37,7 @@ jobs:
         continue-on-error: true   # keep what succeeded; the final step turns the run red if any source failed
         env:
           SYNC_READ_TOKEN: ${{ secrets.SYNC_READ_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: npm run sync
 
       - name: Validate what was written

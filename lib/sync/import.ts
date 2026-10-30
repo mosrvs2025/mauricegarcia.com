@@ -165,6 +165,8 @@ export async function runSync(opts: SyncOptions): Promise<SyncSummary> {
       continue;
     }
     try {
+      // Recheck upstream visibility each run: an allowlisted repo can become private.
+      if (!await client.isPublic(source.repo)) throw new Error("source is no longer public; content import stopped");
       const title = opts.projects.find((p) => p.id === source.projectId)?.title ?? source.projectId;
       const candidates = await collect(source, client, now, title, opts.lookbackDays ?? 30, r.rejected);
       const seen = new Set<string>();
@@ -195,7 +197,8 @@ export async function runSync(opts: SyncOptions): Promise<SyncSummary> {
   }
   if (results.length && results.every((r) => r.ok)) status.lastSuccessAt = nowIso;
 
-  const promoted = promoteAll(opts, now);
+  const successful = new Set(results.filter((r) => r.ok).map((r) => r.sourceId));
+  const promoted = promoteAll({ ...opts, sources: opts.sources.filter((s) => successful.has(s.id)) }, now);
 
   // Only touch the status file when something worth a commit changed, so a quiet sync makes no commit.
   const significant = results.some((r) => r.imported > 0) || JSON.stringify(errorsOf(prev)) !== JSON.stringify(errorsOf(status)) || !prev || promoted.created + promoted.refreshed > 0;

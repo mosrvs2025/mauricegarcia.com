@@ -6,6 +6,7 @@ export type DirEntry = { name: string; path: string; size: number };
 export class UpstreamError extends Error {}
 
 export interface GitHubClient {
+  isPublic(repo: string): Promise<boolean>;
   releases(repo: string): Promise<Release[]>;
   releaseByTag(repo: string, tag: string): Promise<Release | null>;
   mergedPulls(repo: string, branch: string, sinceIso: string): Promise<Pull[]>;
@@ -44,6 +45,7 @@ export function createGitHubClient(token: string | undefined, fetchImpl: typeof 
   const pull = (p: any): Pull => ({ number: p.number, title: String(p.title || ""), url: String(p.html_url), mergedAt: p.merged_at ?? null, author: String(p.user?.login || "") });
 
   return {
+    async isPublic(repo) { guard(repo); const r = await get(`/repos/${repo}`) as { private?: boolean; visibility?: string }; return r.private === false && r.visibility === "public"; },
     async releases(repo) { guard(repo); return ((await get(`/repos/${repo}/releases?per_page=30`)) as any[]).map(rel); },
     async releaseByTag(repo, tag) { guard(repo); const r = await get(`/repos/${repo}/releases/tags/${encodeURIComponent(tag)}`, true); return r ? rel(r) : null; },
     async mergedPulls(repo, branch, since) {
