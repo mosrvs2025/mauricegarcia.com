@@ -96,7 +96,7 @@ Local development: `STUDIO_STORAGE=fs npm run dev` edits files on disk and commi
 Flow: allowlisted repo → meaningful completed work → validated candidate → publication rule → canonical content → deploy and RSS.
 
 1. Add the repo to `content/sources.json` with its real default **branch** (several are not `main`). Private repos are never read into this public repository.
-2. The **Sync project updates** workflow runs every 6 hours and on demand (Actions tab, or "Sync now" in the studio). It reads releases, merged PRs (batched into one note per week), and any `.website/updates/*.json` files agents wrote. Commit digests are available per source but off by default.
+2. The **Sync project updates** workflow runs hourly and on demand (Actions tab, or "Sync now" in the studio). It reads releases, merged PRs (batched by the source’s configured window), and any `.website/updates/*.json` files agents wrote. The 21 newly connected public projects also collect daily commit digests, so direct pushes are noticed. These are review drafts, not claims that a feature shipped. Existing source settings are preserved.
 3. Everything becomes a **draft update** with a `[Needs review]` marker where wording was generated. The schema refuses to publish text that still has the marker.
 4. **The only automatic publication**: a source with `"autoPublish": true`, a public repo, a published release carrying the line `website-update: public-safe` in its notes, verified through the GitHub API, for a project whose page is already published. Everything else waits for you.
 5. Retries update the same entry (same event ID) and never create duplicates. Edits you make mark the entry `editedByOwner`, and syncs skip it forever.
@@ -104,7 +104,7 @@ Flow: allowlisted repo → meaningful completed work → validated candidate →
 If GitHub is down or a token expires, the failing source is recorded in `content/sync-status.json` (shown under Studio → Sync), already-written content is untouched, and the run goes red. Re-run it, or renew `SYNC_READ_TOKEN`. Visitors never trigger a GitHub request.
 
 ### Repository secrets
-- `SYNC_READ_TOKEN` (optional): fine-grained, **read-only** (Contents, Metadata) on the allowlisted repos. Public repos work without it, but anonymous rate limits are tight.
+- `SYNC_READ_TOKEN` (optional): fine-grained, **read-only** (Contents, Metadata) on the allowlisted repos. The workflow falls back to its built-in GITHUB_TOKEN for public repositories. A read token is optional.
 - The workflow uses the built-in `GITHUB_TOKEN` with `contents: write` only, to commit drafts here.
 - If `main` is protected, allow the Actions bot to push drafts, or switch the workflow to open a PR.
 
@@ -127,3 +127,11 @@ If Google Analytics is configured (it already was), the site sends only aggregat
 3. Confirm the contact flow on the preview with `RESEND_API_KEY` set (send yourself one).
 4. Set the studio variables; sign in and publish a test update, then roll it back.
 5. Merge to `main`; Vercel deploys. Redirects: `/contact`→`/connect`, `/work`→`/projects/pipeline-crm`. Do not touch DNS/MX.
+
+### Project notification and showcase follow-through
+
+All 26 portfolio projects with public repository links are allowlisted. Each run verifies upstream visibility before reading content; a source that became private fails closed. Private projects remain manually curated from their public demos.
+
+An authorized GitHub client can send `repository_dispatch` with `event_type: portfolio-update` to this website repository after completing work. This is an optional immediate wake-up; the hourly schedule needs no changes in source repos. The dispatch payload never supplies content or chooses arbitrary repositories.
+
+Sync collects update drafts. It does not rewrite project descriptions, replace screenshots/videos, change demo URLs, or verify a deployed feature. After a visitor-visible project change, follow `docs/AGENT_SNIPPET.md`: verify the deployed behavior, refresh the relevant curated project and media when needed, and distinguish branch work, merged work and deployed work.

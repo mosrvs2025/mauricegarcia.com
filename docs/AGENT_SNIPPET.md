@@ -6,6 +6,8 @@ Paste everything between the lines into each allowlisted repository's `AGENTS.md
 
 ## Website updates
 
+After visitor-visible work, also assess the matching page in `mosrvs2025/mauricegarcia.com`: demo URL, screenshots/preview video, capabilities, limitations and maturity. Update those only from verified behavior; preserve the existing interactive presentation and site styles. A new commit alone does not prove the live demo changed. If you cannot access the website repo or verify the deployment, explicitly report the remaining website follow-through. Never put private repo details into the public website repository.
+
 When you finish a **meaningful, completed** piece of work that a visitor to Maurice's website would care about (a shipped feature, a fix people would notice, a playable change, a release), leave one note for the website. Otherwise write nothing: ordinary attempts, refactors, chores, failed or partial work, and tool calls never produce a note.
 
 Write `.website/updates/<eventId>.json` (create the folder if needed) on the branch you are working on:

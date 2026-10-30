@@ -3,7 +3,7 @@ import vm from "node:vm";
 import { test } from "node:test";
 import { capabilities } from "../lib/capabilities";
 import { lessonFrontmatterSchema } from "../lib/content/schemas";
-import { loadProjects } from "../lib/content/load";
+import { loadProjects, loadSources } from "../lib/content/load";
 import { services } from "../lib/services";
 import { youtubeChannelUrl } from "../lib/site";
 import { LEGACY_PREFIXES, SITE_SKINS, SKIN_BOOT_SCRIPT } from "../lib/skin";
@@ -87,4 +87,13 @@ test("style switcher: boot script is valid, only applies known styles, and skips
   assert.ok(LEGACY_PREFIXES.test("/shop") && !LEGACY_PREFIXES.test("/shopping") && !LEGACY_PREFIXES.test("/projects"));
   assert.equal(SITE_SKINS[0].id, "workshop");
   assert.equal(new Set(SITE_SKINS.map((s) => s.id)).size, SITE_SKINS.length);
+});
+
+
+test("every public portfolio repository has an enabled matching update source", () => {
+  const sources = loadSources();
+  for (const p of projects.filter((p) => p.repoVisibility === "public" && p.links.repo)) {
+    const repo = p.links.repo!.replace("https://github.com/", "");
+    assert.ok(sources.some((s) => s.enabled && s.visibility === "public" && s.projectId === p.id && s.repo.toLowerCase() === repo.toLowerCase()), `${p.slug}: add a verified source when adding a public project`);
+  }
 });

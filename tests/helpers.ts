@@ -18,13 +18,14 @@ export const source = (over: Partial<Record<string, unknown>> = {}): Source => s
   include: { releases: true, mergedPullRequests: true, websiteUpdateFiles: true, commitDigest: false }, autoPublish: false, ...over,
 });
 
-export type FakeData = { releases: Release[]; pulls: Pull[]; commits: Commit[]; files: Record<string, string>; releaseTags: Record<string, Release>; mergedPulls: Record<number, Pull>; fail?: string };
+export type FakeData = { releases: Release[]; pulls: Pull[]; commits: Commit[]; files: Record<string, string>; releaseTags: Record<string, Release>; mergedPulls: Record<number, Pull>; fail?: string; isPublic?: boolean };
 export function fakeClient(d: Partial<FakeData> = {}): GitHubClient & { data: FakeData; calls: string[] } {
   const data: FakeData = { releases: [], pulls: [], commits: [], files: {}, releaseTags: {}, mergedPulls: {}, ...d };
   const calls: string[] = [];
   const guard = () => { if (data.fail) throw new Error(data.fail); };
   return {
     data, calls,
+    async isPublic() { calls.push("visibility"); guard(); return data.isPublic !== false; },
     async releases() { calls.push("releases"); guard(); return data.releases; },
     async releaseByTag(_r, tag) { guard(); return data.releaseTags[tag] ?? null; },
     async mergedPulls(_r, branch, since) { calls.push("pulls:" + branch); guard(); return data.pulls.filter((p) => p.mergedAt && p.mergedAt >= since); },

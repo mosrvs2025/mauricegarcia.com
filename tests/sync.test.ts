@@ -181,3 +181,14 @@ test("promotion is deterministic: same event id, same update id", () => {
   const a = promoteCandidate(c, source(), project(), [], NOW); const b = promoteCandidate(c, source(), project(), a.update ? [a.update] : [], NOW);
   assert.equal(a.update!.id, b.update!.id); assert.equal(b.action, "refresh"); assert.equal(a.update!.slug, b.update!.slug);
 });
+
+test("a repository made private is rejected before any content is read", async () => {
+  const dir = tmpDir();
+  const client = fakeClient({ isPublic: false, files: { ".website/updates/secret.json": file(cand()) } });
+  const result = await run(dir, client);
+  assert.equal(result.results[0].ok, false);
+  assert.match(result.results[0].error!, /no longer public/);
+  assert.deepEqual(client.calls, ["visibility"]);
+  assert.deepEqual(candFiles(dir), []);
+  assert.deepEqual(updates(dir), []);
+});
