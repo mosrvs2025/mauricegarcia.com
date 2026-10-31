@@ -4,7 +4,10 @@ import { Proposed, UpdateItem } from "@/components/ProjectParts";
 import { Reveal } from "@/components/Reveal";
 import { SurpriseMe } from "@/components/SurpriseMe";
 import { Ticker } from "@/components/Ticker";
-import { TrackSection } from "@/components/TrackSection";
+import { WorldDoors } from "@/components/WorldDoors";
+import { CountUp } from "@/components/CountUp";
+import { career, confirmedStats } from "@/lib/profile";
+import { site } from "@/lib/site";
 import { capabilities } from "@/lib/capabilities";
 import { toCard } from "@/lib/content/cards";
 import { featuredByTrack, formatDate, listedPosts, listedProjects, listedUpdates, projectById, projectBySlug, projectsByTrack, shownNow } from "@/lib/content/query";
@@ -35,7 +38,7 @@ export default function HomePage() {
             <h1 className="display j-title home-title">Useful products.<br /><em>Unexpected worlds.</em></h1>
             <p className="lede">I build software, AI tools and interactive experiences. From a better way to run a business to a world worth getting lost in.</p>
             <div className="j-actions">
-              <Link href="#experiences" className="btn btn-fill j-shine">Explore the work <span aria-hidden="true">↘</span></Link>
+              <Link href="#worlds-h" className="btn btn-fill j-shine">Explore the work <span aria-hidden="true">↘</span></Link>
               <Link href="/connect?intent=paid-work" className="j-link j-arrow">Let&apos;s build something</Link>
             </div>
             <div className="home-curiosity"><SurpriseMe demos={demos} /><Link href="/v/game" className="j-link" data-track="game_version">Play this site as a game</Link><SecretShelf /></div>
@@ -46,15 +49,40 @@ export default function HomePage() {
 
       <Ticker items={ticker} />
 
-      <nav className="studio-wrap home-index" aria-label="Explore the portfolio">
-        <p><strong>{all.length} projects.</strong> {withDemo.length} doors you can open.</p>
-        <div><Link href="#experiences">01 / Experiences ↘</Link><Link href="#products">02 / Products ↘</Link><Link href="#labs">03 / Labs ↘</Link></div>
-      </nav>
+      <section className="studio-wrap j-section tr" aria-labelledby="tr-h">
+        <Reveal><div className="tr-grid">
+          <div>
+            <p className="eyebrow">Track record</p>
+            <h2 className="display" id="tr-h">{career.headline}</h2>
+            {career.story.map((line) => <p key={line} className="tr-story">{line}</p>)}
+          </div>
+          <dl className="tr-stats">
+            {[...confirmedStats().map((s) => ({ value: s.value, label: s.label })),
+              { value: String(all.length), label: "projects built and shipped here" },
+              { value: String(withDemo.length), label: "live demos you can open today" },
+            ].map((s) => {
+              const n = parseInt(s.value, 10); const suffix = s.value.replace(/^\d+/, "");
+              return <div key={s.label}><dt>{Number.isFinite(n) ? <><CountUp to={n} />{suffix}</> : s.value}</dt><dd>{s.label}</dd></div>;
+            })}
+          </dl>
+        </div></Reveal>
+      </section>
 
-      <TrackSection track="experiences" lead="Step into something unexpected." projects={featuredByTrack("experiences").map(toCard)} total={projectsByTrack("experiences").length} />
-      <TrackSection track="products" lead="Built around real problems." projects={featuredByTrack("products").map(toCard)} total={projectsByTrack("products").length} />
-      <TrackSection track="labs" lead="Follow an interesting question." projects={featuredByTrack("labs").map(toCard)} total={projectsByTrack("labs").length} />
-      <div className="studio-wrap"><Reveal><p style={{ paddingBottom: 30 }}><Link href="/projects" className="btn btn-ghost j-shine">Browse all {all.length} projects</Link></p></Reveal></div>
+      <WorldDoors worlds={(["experiences", "products", "labs"] as const).map((track) => {
+        const shown = new Set(showcase.map((c) => c.slug));
+        const rest = [...featuredByTrack(track), ...projectsByTrack(track).filter((p) => p.tier !== "featured")].filter((p) => !shown.has(p.slug));
+        return { track, lead: { experiences: "Games and worlds built to be played.", products: "Software built around real problems.", labs: "Experiments that follow an interesting question." }[track], total: projectsByTrack(track).length, projects: rest.map(toCard) };
+      })} />
+
+      <section className="studio-wrap qc-band" aria-labelledby="talk-h">
+        <Reveal><div className="qc-band-inner">
+          <div><p className="eyebrow">Have something in mind?</p><h2 className="display" id="talk-h">Let&apos;s make it real.</h2></div>
+          <div className="qc-band-actions">
+            <Link href="/connect?intent=paid-work" className="btn btn-fill j-shine">Start a project</Link>
+            <a href={`mailto:${site.email}`} className="j-link j-arrow">{site.email}</a>
+          </div>
+        </div></Reveal>
+      </section>
 
       <section className="studio-wrap j-section" aria-labelledby="cap-h">
         <Reveal><div className="j-head"><div><p className="eyebrow">Behind the work</p><h2 className="display" id="cap-h">Creative range. Practical execution.</h2></div></div></Reveal>

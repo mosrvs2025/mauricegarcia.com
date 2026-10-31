@@ -87,3 +87,10 @@ test("case studies stay factual: every one names its source, and featured produc
   for (const p of shown.filter((x) => x.caseStudy)) assert.ok(p.caseStudy!.source.length > 10, `${p.slug} case study has no source`);
   for (const slug of ["pipeline-crm", "thriftscout", "ultimate"]) assert.ok(shown.find((p) => p.slug === slug)?.caseStudy, `${slug} lost its case study`);
 });
+
+test("career stats: only owner-confirmed figures reach the page", async () => {
+  const { careerStats, confirmedStats } = await import("../lib/profile");
+  assert.ok(confirmedStats().every((s) => s.status === "confirmed" && s.value));
+  for (const s of careerStats.filter((x) => x.status === "pending")) assert.ok(!confirmedStats().includes(s));
+  assert.doesNotMatch(read("app/page.tsx"), /\$\s?\d|billion|million/i, "dollar claims belong in lib/profile.ts behind confirmation");
+});
