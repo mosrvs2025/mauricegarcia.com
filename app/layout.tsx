@@ -4,6 +4,7 @@ import { ActionTracker } from "@/components/ActionTracker";
 import { Analytics } from "@/components/Analytics";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { QuickContact } from "@/components/QuickContact";
 import { isPreviewBuild } from "@/lib/content/visibility";
 import { SKIN_BOOT_SCRIPT } from "@/lib/skin";
 import { ldScript, personLd, websiteLd } from "@/lib/jsonld";
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main" tabIndex={-1}>{children}</main>
         <Footer />
+        <QuickContact email={site.email} />
       </body>
     </html>
   );
