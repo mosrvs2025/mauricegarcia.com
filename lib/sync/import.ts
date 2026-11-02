@@ -241,7 +241,9 @@ export function promoteAll(opts: Pick<SyncOptions, "contentDir" | "sources" | "p
   const candDir = path.join(opts.contentDir, "candidates"); const updDir = path.join(opts.contentDir, "updates");
   if (!fs.existsSync(candDir)) return tally;
   const existing: Update[] = fs.existsSync(updDir) ? fs.readdirSync(updDir).filter((f) => f.endsWith(".json")).map((f) => readJson<Update>(path.join(updDir, f))).filter((u): u is Update => !!u) : [];
-  for (const proj of fs.readdirSync(candDir)) {
+  for (const entry of fs.readdirSync(candDir, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue; // skip placeholders like .gitkeep
+    const proj = entry.name;
     for (const f of fs.readdirSync(path.join(candDir, proj)).filter((x) => x.endsWith(".json"))) {
       const c = candidateSchema.safeParse(readJson(path.join(candDir, proj, f)));
       if (!c.success) { tally.skipped++; continue; }

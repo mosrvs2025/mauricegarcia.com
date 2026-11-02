@@ -192,3 +192,14 @@ test("a repository made private is rejected before any content is read", async (
   assert.deepEqual(candFiles(dir), []);
   assert.deepEqual(updates(dir), []);
 });
+
+test("candidates/.gitkeep does not crash promoteAll during sync", async () => {
+  const dir = tmpDir();
+  fs.mkdirSync(path.join(dir, "candidates"), { recursive: true });
+  fs.writeFileSync(path.join(dir, "candidates", ".gitkeep"), "");
+  const client = fakeClient({ files: { ".website/updates/a.json": file(cand()) } });
+  const summary = await run(dir, client);
+  assert.equal(summary.results[0].ok, true);
+  assert.equal(summary.results[0].imported, 1);
+  assert.equal(updates(dir).length, 1);
+});
