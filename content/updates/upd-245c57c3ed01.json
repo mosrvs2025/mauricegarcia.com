@@ -1,0 +1,21 @@
+{
+  "id": "upd-245c57c3ed01",
+  "slug": "2026-10-07-observed-1-merged-pull-request-2026-10-07-to-2026-10-07",
+  "title": "OBSERVED: 1 merged pull request, 2026-10-07 to 2026-10-07",
+  "summary": "1 merged pull request was completed between 2026-10-07 and 2026-10-07.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "Fly.io Launch config files",
+  "kind": "progress",
+  "projectId": "prj-observed",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-10-07T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-observed",
+    "eventId": "digest:src-observed:2026-10-07",
+    "importedAt": "2026-11-02T23:04:06.851Z"
+  }
+}

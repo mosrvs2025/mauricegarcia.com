@@ -1,0 +1,21 @@
+{
+  "id": "upd-eecdbb7d1235",
+  "slug": "2026-10-16-lineage-2-merged-pull-requests-2026-10-16-to-2026-10-16",
+  "title": "Lineage: 2 merged pull requests, 2026-10-16 to 2026-10-16",
+  "summary": "2 merged pull requests were completed between 2026-10-16 and 2026-10-16.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "Fix mobile HUD tap friction and bottom docking; Upgrade the humanoid roster with authored character models and animation",
+  "kind": "progress",
+  "projectId": "prj-lineage",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-10-16T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-lineage",
+    "eventId": "digest:src-lineage:2026-10-16",
+    "importedAt": "2026-11-02T23:04:06.851Z"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "upd-a0a9e4d8823a",
+  "slug": "2026-10-11-thornwild-6-commits-2026-10-11-to-2026-10-11",
+  "title": "Thornwild: 6 commits, 2026-10-11 to 2026-10-11",
+  "summary": "6 commits were completed between 2026-10-11 and 2026-10-11.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "Compact layout for short landscape screens (folded phones); New Kiri/Pip portraits, redrawn shard/star/echo/glim icons, painted title-menu…; Painted HUD icons, hats, scarves, seed coin and seed pod from the Grok art;…; More painted art: ability medallions and charm, scarf and item icons; Painted UI art: portraits, coin, Starstep medallion and Lumen meter frame",
+  "kind": "progress",
+  "projectId": "prj-thornwild",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-10-11T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-thornwild",
+    "eventId": "digest:src-thornwild:2026-10-11",
+    "importedAt": "2026-11-02T23:04:06.851Z"
+  }
+}

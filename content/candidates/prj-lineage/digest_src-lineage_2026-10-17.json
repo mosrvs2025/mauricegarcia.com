@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-lineage",
+  "eventId": "digest:src-lineage:2026-10-17",
+  "eventAt": "2026-10-17T23:59:59.000Z",
+  "title": "Lineage: 14 commits, 2026-10-17 to 2026-10-17",
+  "summary": "14 commits were completed between 2026-10-17 and 2026-10-17.",
+  "changed": "test(hud): pass all 8 HUD tests with Glasswater map switch; test(hud): complete Warband Command Deck unit tests; test(hud): verify active clan dossier and live impact pills on command deck; feat(ui): redesign clan & map selection into zero-scroll responsive command…; test: align cmdBless knowledge assertion (+6) in hud.test.ts",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-02T23:04:06.851Z",
+    "contentHash": "801f21b3179d16c12f503e0e1e9e9750"
+  }
+}

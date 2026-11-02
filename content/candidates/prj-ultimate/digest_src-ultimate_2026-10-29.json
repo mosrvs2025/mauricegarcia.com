@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-ultimate",
+  "eventId": "digest:src-ultimate:2026-10-29",
+  "eventAt": "2026-10-29T23:59:59.000Z",
+  "title": "Ultimate: 1 merged pull request, 2026-10-29 to 2026-10-29",
+  "summary": "1 merged pull request was completed between 2026-10-29 and 2026-10-29.",
+  "changed": "feat: establish standalone Ultimate with terminal, orb and SSH/SFTP",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-02T23:04:06.851Z",
+    "contentHash": "1e56e969a673655e034e2a81864b8bf6"
+  }
+}

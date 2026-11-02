@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-lineage",
+  "eventId": "digest:src-lineage:2026-10-14",
+  "eventAt": "2026-10-14T23:59:59.000Z",
+  "title": "Lineage: 9 merged pull requests, 2026-10-14 to 2026-10-14",
+  "summary": "9 merged pull requests were completed between 2026-10-14 and 2026-10-14.",
+  "changed": "HUD window management from playtest feedback; Phone portrait UI: action bubble, floating selection card, construction…; Graphics: drifting cloud shadows and dawn/dusk sun shafts; Graphics: soft contact shadows; Rival AI fortifies and fields heavier units; bot uses upgrades",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-02T23:04:06.851Z",
+    "contentHash": "6b2c997c982f63e2519631a7445f8e75"
+  }
+}

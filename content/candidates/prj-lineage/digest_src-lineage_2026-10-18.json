@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-lineage",
+  "eventId": "digest:src-lineage:2026-10-18",
+  "eventAt": "2026-10-18T23:59:59.000Z",
+  "title": "Lineage: 1 commit, 2026-10-18 to 2026-10-18",
+  "summary": "1 commit was completed between 2026-10-18 and 2026-10-18.",
+  "changed": "feat: add 4-Epoch Evolutionary RTS progression, adaptive mutations, beast…",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-02T23:04:06.851Z",
+    "contentHash": "a03e327fa4b1ea6088e4813e2e3c8c1b"
+  }
+}

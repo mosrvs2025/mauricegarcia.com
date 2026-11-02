@@ -1,0 +1,21 @@
+{
+  "id": "upd-c929638a28ce",
+  "slug": "2026-10-17-lineage-14-commits-2026-10-17-to-2026-10-17",
+  "title": "Lineage: 14 commits, 2026-10-17 to 2026-10-17",
+  "summary": "14 commits were completed between 2026-10-17 and 2026-10-17.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "test(hud): pass all 8 HUD tests with Glasswater map switch; test(hud): complete Warband Command Deck unit tests; test(hud): verify active clan dossier and live impact pills on command deck; feat(ui): redesign clan & map selection into zero-scroll responsive command…; test: align cmdBless knowledge assertion (+6) in hud.test.ts",
+  "kind": "progress",
+  "projectId": "prj-lineage",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-10-17T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-lineage",
+    "eventId": "digest:src-lineage:2026-10-17",
+    "importedAt": "2026-11-02T23:04:06.851Z"
+  }
+}

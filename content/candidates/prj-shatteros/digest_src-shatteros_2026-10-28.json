@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-shatteros",
+  "eventId": "digest:src-shatteros:2026-10-28",
+  "eventAt": "2026-10-28T23:59:59.000Z",
+  "title": "ShatterOS: 2 commits, 2026-10-28 to 2026-10-28",
+  "summary": "2 commits were completed between 2026-10-28 and 2026-10-28.",
+  "changed": "Build ShatterOS multi-device physics prototype; Initial commit",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-02T23:04:06.851Z",
+    "contentHash": "f18172d9edc6e1e1c520b8594ce4e2ab"
+  }
+}

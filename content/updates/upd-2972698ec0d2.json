@@ -1,0 +1,21 @@
+{
+  "id": "upd-2972698ec0d2",
+  "slug": "2026-10-05-thornwild-10-commits-2026-10-05-to-2026-10-05",
+  "title": "Thornwild: 10 commits, 2026-10-05 to 2026-10-05",
+  "summary": "10 commits were completed between 2026-10-05 and 2026-10-05.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "Polish: hurt flash and hitstop, last-heart pulse and heartbeat, rumble,…; Polish: automatic graphics for smoother play, tips for dash and ground pound; Make the repo player-friendly: new README, docs, patch notes, issue forms,…; Combos and hero supers; Kiri's Grove: a home clearing that grows with the journey",
+  "kind": "progress",
+  "projectId": "prj-thornwild",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-10-05T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-thornwild",
+    "eventId": "digest:src-thornwild:2026-10-05",
+    "importedAt": "2026-11-02T23:04:06.851Z"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-thornwild",
+  "eventId": "digest:src-thornwild:2026-10-10",
+  "eventAt": "2026-10-10T23:59:59.000Z",
+  "title": "Thornwild: 4 commits, 2026-10-10 to 2026-10-10",
+  "summary": "4 commits were completed between 2026-10-10 and 2026-10-10.",
+  "changed": "Cinematic transitions and movement visuals; Title screen and atmosphere pass; Connected worlds: beacon warp, side branches, onward doorways; fix the cricket…; Portal back in: continue where you left off, or start from any lit beacon",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-02T23:04:06.851Z",
+    "contentHash": "293d26046ad48bf3ec3d15ee788b3ed9"
+  }
+}

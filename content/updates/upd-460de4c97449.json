@@ -1,0 +1,21 @@
+{
+  "id": "upd-460de4c97449",
+  "slug": "2026-10-10-thornwild-4-commits-2026-10-10-to-2026-10-10",
+  "title": "Thornwild: 4 commits, 2026-10-10 to 2026-10-10",
+  "summary": "4 commits were completed between 2026-10-10 and 2026-10-10.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "Cinematic transitions and movement visuals; Title screen and atmosphere pass; Connected worlds: beacon warp, side branches, onward doorways; fix the cricket…; Portal back in: continue where you left off, or start from any lit beacon",
+  "kind": "progress",
+  "projectId": "prj-thornwild",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-10-10T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-thornwild",
+    "eventId": "digest:src-thornwild:2026-10-10",
+    "importedAt": "2026-11-02T23:04:06.851Z"
+  }
+}

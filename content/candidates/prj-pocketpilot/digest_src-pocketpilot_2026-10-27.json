@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-pocketpilot",
+  "eventId": "digest:src-pocketpilot:2026-10-27",
+  "eventAt": "2026-10-27T23:59:59.000Z",
+  "title": "PocketPilot: 1 commit, 2026-10-27 to 2026-10-27",
+  "summary": "1 commit was completed between 2026-10-27 and 2026-10-27.",
+  "changed": "Initialize Android AI video assistant project",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-02T23:04:06.851Z",
+    "contentHash": "52441cac7a41e148005e7ad920dc27e7"
+  }
+}

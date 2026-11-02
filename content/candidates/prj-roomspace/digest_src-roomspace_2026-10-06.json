@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-roomspace",
+  "eventId": "digest:src-roomspace:2026-10-06",
+  "eventAt": "2026-10-06T23:59:59.000Z",
+  "title": "Roomspace: 2 commits, 2026-10-06 to 2026-10-06",
+  "summary": "2 commits were completed between 2026-10-06 and 2026-10-06.",
+  "changed": "Add depth occlusion, gloom moths, palm cradle, window dawn and ?debug overlay; Firefly Night: a 3-minute mixed-reality game for Quest Browser",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-02T23:04:06.851Z",
+    "contentHash": "f6747d661d8d4741f64e6739660fabef"
+  }
+}

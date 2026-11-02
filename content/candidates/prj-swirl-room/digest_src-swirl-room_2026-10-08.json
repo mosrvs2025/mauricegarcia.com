@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-swirl-room",
+  "eventId": "digest:src-swirl-room:2026-10-08",
+  "eventAt": "2026-10-14T23:59:59.000Z",
+  "title": "Swirl Room: 1 merged pull request, 2026-10-08 to 2026-10-14",
+  "summary": "1 merged pull request was completed between 2026-10-08 and 2026-10-14.",
+  "changed": "Terrarium: evolving life, landscape layout, crash hardening",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-02T23:04:06.851Z",
+    "contentHash": "5233fb69abfbe235d2d38ef1361f12a9"
+  }
+}

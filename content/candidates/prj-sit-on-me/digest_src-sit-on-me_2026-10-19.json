@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-sit-on-me",
+  "eventId": "digest:src-sit-on-me:2026-10-19",
+  "eventAt": "2026-10-19T23:59:59.000Z",
+  "title": "SIT ON ME: 6 commits, 2026-10-19 to 2026-10-19",
+  "summary": "6 commits were completed between 2026-10-19 and 2026-10-19.",
+  "changed": "Make campaign fully playable on phones with multitouch controls and mobile HUD; feat: SIT ON ME AAA 3D Campaign, Stealth, Intercepts, Sabotage & Chair…; chore: add vercel.json and remove workflow file; feat: build SIT ON ME 3D tactical sentient chair stealth & physics game; Restore pedestrians after rest and reset chair visibility between runs",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-02T23:04:06.851Z",
+    "contentHash": "aa15c5af4542129bc776f75b31e84550"
+  }
+}

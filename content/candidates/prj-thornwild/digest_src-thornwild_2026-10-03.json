@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-thornwild",
+  "eventId": "digest:src-thornwild:2026-10-03",
+  "eventAt": "2026-10-03T23:59:59.000Z",
+  "title": "Thornwild: 5 commits, 2026-10-03 to 2026-10-03",
+  "summary": "5 commits were completed between 2026-10-03 and 2026-10-03.",
+  "changed": "Companion redesigns: Grumbo and Oru; Companion redesigns: Boing, Sola and Nuu; Lumen Tree skills, more charms, wardrobe outfits in Seed Clash; Pim's wardrobe: 3D try-on preview, tabs, item grid, equip/unequip, charms; Unique kits: Pip acorn sling + swoop and Brom Quake in the adventure; six new…",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-02T23:04:06.851Z",
+    "contentHash": "9d02ee87a9f25d2de35427e3b1600960"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "upd-94fa1e435832",
+  "slug": "2026-10-29-ultimate-1-merged-pull-request-2026-10-29-to-2026-10-29",
+  "title": "Ultimate: 1 merged pull request, 2026-10-29 to 2026-10-29",
+  "summary": "1 merged pull request was completed between 2026-10-29 and 2026-10-29.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "feat: establish standalone Ultimate with terminal, orb and SSH/SFTP",
+  "kind": "progress",
+  "projectId": "prj-ultimate",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-10-29T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-ultimate",
+    "eventId": "digest:src-ultimate:2026-10-29",
+    "importedAt": "2026-11-02T23:04:06.851Z"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "upd-e32c047928bd",
+  "slug": "2026-10-07-roomspace-3-commits-2026-10-07-to-2026-10-07",
+  "title": "Roomspace: 3 commits, 2026-10-07 to 2026-10-07",
+  "summary": "3 commits were completed between 2026-10-07 and 2026-10-07.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "Turn the project into Roomspace, an app hub, and add a Piano app; Fix system-menu pinch conflict, palm-side catching, and soften depth culling; Keep fireflies within reach of the Quest boundary; make catching forgiving",
+  "kind": "progress",
+  "projectId": "prj-roomspace",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-10-07T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-roomspace",
+    "eventId": "digest:src-roomspace:2026-10-07",
+    "importedAt": "2026-11-02T23:04:06.851Z"
+  }
+}

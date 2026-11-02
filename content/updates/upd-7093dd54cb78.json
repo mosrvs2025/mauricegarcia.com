@@ -1,0 +1,21 @@
+{
+  "id": "upd-7093dd54cb78",
+  "slug": "2026-10-18-lineage-1-commit-2026-10-18-to-2026-10-18",
+  "title": "Lineage: 1 commit, 2026-10-18 to 2026-10-18",
+  "summary": "1 commit was completed between 2026-10-18 and 2026-10-18.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "feat: add 4-Epoch Evolutionary RTS progression, adaptive mutations, beast…",
+  "kind": "progress",
+  "projectId": "prj-lineage",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-10-18T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-lineage",
+    "eventId": "digest:src-lineage:2026-10-18",
+    "importedAt": "2026-11-02T23:04:06.851Z"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "upd-f99ff81aa930",
+  "slug": "2026-10-15-lineage-4-merged-pull-requests-2026-10-15-to-2026-10-15",
+  "title": "Lineage: 4 merged pull requests, 2026-10-15 to 2026-10-15",
+  "summary": "4 merged pull requests were completed between 2026-10-15 and 2026-10-15.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "Genuinely different maps: Glasswater, The Isles, Mammoth Canyon; Four maps and a third clan (Denisovans); Order queue, Patrol, Alt health bars, cooldown spirals, unit voices; Rally points, attack alerts, control-group centring",
+  "kind": "progress",
+  "projectId": "prj-lineage",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-10-15T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-lineage",
+    "eventId": "digest:src-lineage:2026-10-15",
+    "importedAt": "2026-11-02T23:04:06.851Z"
+  }
+}

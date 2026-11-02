@@ -1,0 +1,21 @@
+{
+  "id": "upd-4112bd00bdf8",
+  "slug": "2026-10-13-lineage-1-merged-pull-request-2026-10-13-to-2026-10-13",
+  "title": "Lineage: 1 merged pull request, 2026-10-13 to 2026-10-13",
+  "summary": "1 merged pull request was completed between 2026-10-13 and 2026-10-13.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "The First Winter: playable 3D RTS vertical slice (Vite + Three.js)",
+  "kind": "progress",
+  "projectId": "prj-lineage",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-10-13T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-lineage",
+    "eventId": "digest:src-lineage:2026-10-13",
+    "importedAt": "2026-11-02T23:04:06.851Z"
+  }
+}

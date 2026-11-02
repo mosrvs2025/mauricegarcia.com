@@ -1,0 +1,21 @@
+{
+  "id": "upd-ddb8a73cc214",
+  "slug": "2026-10-28-shatteros-2-commits-2026-10-28-to-2026-10-28",
+  "title": "ShatterOS: 2 commits, 2026-10-28 to 2026-10-28",
+  "summary": "2 commits were completed between 2026-10-28 and 2026-10-28.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "Build ShatterOS multi-device physics prototype; Initial commit",
+  "kind": "progress",
+  "projectId": "prj-shatteros",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-10-28T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-shatteros",
+    "eventId": "digest:src-shatteros:2026-10-28",
+    "importedAt": "2026-11-02T23:04:06.851Z"
+  }
+}
