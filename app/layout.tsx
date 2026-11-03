@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, Instrument_Sans } from "next/font/google";
 import { ActionTracker } from "@/components/ActionTracker";
 import { Analytics } from "@/components/Analytics";
+import { EngagementTracker } from "@/components/EngagementTracker";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { QuickContact } from "@/components/QuickContact";
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="skip-link">Skip to content</a>
         <Analytics />
         <ActionTracker />
+        <EngagementTracker />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldScript(personLd()) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldScript(websiteLd()) }} />
         {isPreviewBuild() && <div className="j-banner" role="status">Preview build: items marked “Proposed” await Maurice’s approval and are hidden on the live site.</div>}
