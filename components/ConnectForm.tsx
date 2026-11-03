@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { track } from "@/lib/analytics";
 import { contactEmail, INTENTS, type Intent } from "@/lib/contact";
 import { services } from "@/lib/services";
@@ -23,6 +23,9 @@ export function ConnectForm({ initialIntent, initialService, initialProject, pro
   const showService = intent === "paid-work" || intent === "coaching";
   const mailto = `mailto:${contactEmail}?subject=${encodeURIComponent(`Hello from the website (${COPY[intent].title})`)}&body=${encodeURIComponent(draft.body)}`;
 
+  const started = useRef(false);
+  function onStart() { if (!started.current) { started.current = true; track("connect_start", { intent }); } }
+
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
@@ -35,6 +38,7 @@ export function ConnectForm({ initialIntent, initialService, initialProject, pro
       track("connect_submit", { intent, project: String(payload.project || "") });
       form.reset(); setStatus("ok");
     } catch (error) {
+      track("connect_error", { intent });
       setStatus("err"); setMessage(error instanceof Error ? error.message : "Your message could not be sent.");
     }
   }
@@ -48,7 +52,7 @@ export function ConnectForm({ initialIntent, initialService, initialProject, pro
   );
 
   return (
-    <form onSubmit={onSubmit} className="j-form" noValidate={false}>
+    <form onSubmit={onSubmit} onFocus={onStart} className="j-form" noValidate={false}>
       <fieldset>
         <legend>What brings you here?</legend>
         <div className="j-intents">
