@@ -1,10 +1,10 @@
 {
   "id": "upd-b27d9416c1a1",
   "slug": "2026-10-04-thornwild-10-commits-2026-10-04-to-2026-10-04",
-  "title": "Thornwild: 8 commits, 2026-10-04 to 2026-10-04",
-  "summary": "8 commits were completed between 2026-10-04 and 2026-10-04.",
+  "title": "Thornwild: 3 commits, 2026-10-04 to 2026-10-04",
+  "summary": "3 commits were completed between 2026-10-04 and 2026-10-04.",
   "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
-  "body": "Ground pound on ↓ in mid-air for every hero; Animation pass: blended poses, run twist, skids, apex float; livelier enemies;…; Environment pass: Skyward islets, Glowdeep glow-worms, a living world map; Zelda-style Journal pause screen; Clear, contextual prompts for interactive objects; fix hints firing in the…",
+  "body": "Ground pound on ↓ in mid-air for every hero; Animation pass: blended poses, run twist, skids, apex float; livelier enemies;…; Environment pass: Skyward islets, Glowdeep glow-worms, a living world map",
   "kind": "progress",
   "projectId": "prj-thornwild",
   "status": "draft",
@@ -16,6 +16,6 @@
     "origin": "sync",
     "sourceId": "src-thornwild",
     "eventId": "digest:src-thornwild:2026-10-04",
-    "importedAt": "2026-11-03T02:54:11.176Z"
+    "importedAt": "2026-11-03T18:24:53.769Z"
   }
 }
