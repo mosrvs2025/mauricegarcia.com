@@ -3,9 +3,9 @@
   "projectId": "prj-thornwild",
   "eventId": "digest:src-thornwild:2026-10-04",
   "eventAt": "2026-10-04T23:59:59.000Z",
-  "title": "Thornwild: 3 commits, 2026-10-04 to 2026-10-04",
-  "summary": "3 commits were completed between 2026-10-04 and 2026-10-04.",
-  "changed": "Ground pound on ↓ in mid-air for every hero; Animation pass: blended poses, run twist, skids, apex float; livelier enemies;…; Environment pass: Skyward islets, Glowdeep glow-worms, a living world map",
+  "title": "Thornwild: 1 commit, 2026-10-04 to 2026-10-04",
+  "summary": "1 commit was completed between 2026-10-04 and 2026-10-04.",
+  "changed": "Ground pound on ↓ in mid-air for every hero",
   "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
   "status": "in-progress",
   "state": "draft",
@@ -16,7 +16,7 @@
   },
   "provenance": {
     "origin": "sync",
-    "importedAt": "2026-11-03T18:24:53.769Z",
-    "contentHash": "315c8583c7b5b79ac065ca513f5b842d"
+    "importedAt": "2026-11-03T23:57:46.093Z",
+    "contentHash": "32d1f9891f7af66ec9538c90bd4076ae"
   }
 }
