@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-ultimate",
+  "eventId": "digest:src-ultimate:2026-11-04",
+  "eventAt": "2026-11-04T23:59:59.000Z",
+  "title": "Ultimate: 6 commits, 2026-11-04 to 2026-11-04",
+  "summary": "6 commits were completed between 2026-11-04 and 2026-11-04.",
+  "changed": "fix: keep the offline Ultimate edition without internet permission…; feat(echo): camera-assisted calibration with on-device hand tracking…; fix(echo): restore hand detection (judge interference by far distances, no…; fix(echo): ignore voice/hiss interference in both modes, reliable Stop; feat:…; feat(echo): per-phone calibration from the bench, hand-over-bottom-edge…",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-05T17:59:16.994Z",
+    "contentHash": "a919fc47e2fb8950aa5289e1a1d69431"
+  }
+}

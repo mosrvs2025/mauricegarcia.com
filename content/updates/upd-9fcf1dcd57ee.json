@@ -1,0 +1,21 @@
+{
+  "id": "upd-9fcf1dcd57ee",
+  "slug": "2026-11-02-ultimate-10-commits-2026-11-02-to-2026-11-02",
+  "title": "Ultimate: 10 commits, 2026-11-02 to 2026-11-02",
+  "summary": "10 commits were completed between 2026-11-02 and 2026-11-02.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "feat: Octopus Mesh - signed peer-to-peer task sharing for Ultimate+; feat(focus): Focus tool with a blueberry companion, gentle drift nudges and a…; feat: searchable watch history dashboard; orb fans out without merging (1.43.0); feat(nav): liquid bottom-bar highlight that stretches between tabs; drop the…; feat(motion): noticeable gooey everywhere: tap splash, squishy tabs, swelling…",
+  "kind": "progress",
+  "projectId": "prj-ultimate",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-11-02T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-ultimate",
+    "eventId": "digest:src-ultimate:2026-11-02",
+    "importedAt": "2026-11-05T17:59:16.994Z"
+  }
+}

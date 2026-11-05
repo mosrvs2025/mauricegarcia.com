@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-ultimate",
+  "eventId": "digest:src-ultimate:2026-10-30",
+  "eventAt": "2026-10-30T23:59:59.000Z",
+  "title": "Ultimate: 9 commits, 2026-10-30 to 2026-10-30",
+  "summary": "9 commits were completed between 2026-10-30 and 2026-10-30.",
+  "changed": "docs+ci: README with downloads and screenshots, release workflow; fix: clearer…; feat(about): About and settings screen with version, what's new, setup…; fix(terminal): set the text size before anything else so the terminal opens…; fix: render-check orbit and package an independent preview; fix(ci): avoid removed Android tools package in terminal smoke setup",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-05T17:59:16.994Z",
+    "contentHash": "bfc92240b3274f5fd96f9b20177e4443"
+  }
+}

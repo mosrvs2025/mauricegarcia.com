@@ -1,0 +1,21 @@
+{
+  "id": "upd-93b6a067b170",
+  "slug": "2026-11-04-ultimate-6-commits-2026-11-04-to-2026-11-04",
+  "title": "Ultimate: 6 commits, 2026-11-04 to 2026-11-04",
+  "summary": "6 commits were completed between 2026-11-04 and 2026-11-04.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "fix: keep the offline Ultimate edition without internet permission…; feat(echo): camera-assisted calibration with on-device hand tracking…; fix(echo): restore hand detection (judge interference by far distances, no…; fix(echo): ignore voice/hiss interference in both modes, reliable Stop; feat:…; feat(echo): per-phone calibration from the bench, hand-over-bottom-edge…",
+  "kind": "progress",
+  "projectId": "prj-ultimate",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-11-04T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-ultimate",
+    "eventId": "digest:src-ultimate:2026-11-04",
+    "importedAt": "2026-11-05T17:59:16.994Z"
+  }
+}

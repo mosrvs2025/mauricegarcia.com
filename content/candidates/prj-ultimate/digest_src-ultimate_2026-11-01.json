@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-ultimate",
+  "eventId": "digest:src-ultimate:2026-11-01",
+  "eventAt": "2026-11-01T23:59:59.000Z",
+  "title": "Ultimate: 4 commits, 2026-11-01 to 2026-11-01",
+  "summary": "4 commits were completed between 2026-11-01 and 2026-11-01.",
+  "changed": "feat(footprint): interactive page: section nav, app sheets, gauge breakdown,…; feat(footprint): gooey effect on header blobs and photo-places map (1.37.0); feat(footprint): exposure gauge, parallax header, shimmer, haptics, live map…; feat(footprint): animated charts and effects (1.35.0)",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-05T17:59:16.994Z",
+    "contentHash": "3d509f8788641537dfeefa43121b7377"
+  }
+}
