@@ -3,9 +3,9 @@
   "projectId": "prj-observed",
   "eventId": "digest:src-observed:2026-10-07",
   "eventAt": "2026-10-07T23:59:59.000Z",
-  "title": "OBSERVED: 1 merged pull request, 2026-10-07 to 2026-10-07",
-  "summary": "1 merged pull request was completed between 2026-10-07 and 2026-10-07.",
-  "changed": "Fly.io Launch config files",
+  "title": "OBSERVED: 1 commit, 2026-10-07 to 2026-10-07",
+  "summary": "1 commit was completed between 2026-10-07 and 2026-10-07.",
+  "changed": "Add Ask-a-question FAQ, Pattern Finder and tappable sticks to Shadow Detectives",
   "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
   "status": "in-progress",
   "state": "draft",
@@ -16,7 +16,7 @@
   },
   "provenance": {
     "origin": "sync",
-    "importedAt": "2026-11-02T23:04:06.851Z",
-    "contentHash": "53f1016049305fb4335373c2c63cc8d0"
+    "importedAt": "2026-11-06T06:34:59.657Z",
+    "contentHash": "1101c492fd084fb8cd6a5788767df0cd"
   }
 }

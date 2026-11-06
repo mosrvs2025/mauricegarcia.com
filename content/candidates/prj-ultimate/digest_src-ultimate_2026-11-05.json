@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-ultimate",
+  "eventId": "digest:src-ultimate:2026-11-05",
+  "eventAt": "2026-11-05T23:59:59.000Z",
+  "title": "Ultimate: 4 merged pull requests, 2026-11-05 to 2026-11-05",
+  "summary": "4 merged pull requests were completed between 2026-11-05 and 2026-11-05.",
+  "changed": "Claude/orb fix fast scans; Make Home and tool switching a living command surface; Fix terminal launch crash and improve navigation; Consolidate all development branches into one Ultimate app (1.63.0)",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-06T06:34:59.657Z",
+    "contentHash": "2f075a2f3d3260063d601c4fe1fde7b5"
+  }
+}
