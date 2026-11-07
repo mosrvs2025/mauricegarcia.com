@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-ultimate",
+  "eventId": "digest:src-ultimate:2026-11-06",
+  "eventAt": "2026-11-06T23:59:59.000Z",
+  "title": "Ultimate: 10 merged pull requests, 2026-11-06 to 2026-11-06",
+  "summary": "10 merged pull requests were completed between 2026-11-06 and 2026-11-06.",
+  "changed": "1.76: intent engine, watch-confirmed pinch, voice commands with follow-ups,…; Air mode 1.75: practice, opt-in held shortcuts, cursor tips, learns your hand; Air mode: a hand-driven cursor in any app (1.74.0); Gesture Studio: every sense on one screen, taught together (1.73.0); Health hub, live heart rate from the watch, one-scroll Watch screens (1.72.0,…",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-07T00:54:10.541Z",
+    "contentHash": "790db1977bf26b51eeb25d2e84fa5b93"
+  }
+}
