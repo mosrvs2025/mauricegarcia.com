@@ -3,9 +3,9 @@
   "projectId": "prj-thornwild",
   "eventId": "digest:src-thornwild:2026-10-09",
   "eventAt": "2026-10-09T23:59:59.000Z",
-  "title": "Thornwild: 2 commits, 2026-10-09 to 2026-10-09",
-  "summary": "2 commits were completed between 2026-10-09 and 2026-10-09.",
-  "changed": "Fix lost progress: save when the app is hidden/closed, autosave, save at key…; Touch controls you can see on any phone and background",
+  "title": "Thornwild: 1 commit, 2026-10-09 to 2026-10-09",
+  "summary": "1 commit was completed between 2026-10-09 and 2026-10-09.",
+  "changed": "Fix lost progress: save when the app is hidden/closed, autosave, save at key…",
   "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
   "status": "in-progress",
   "state": "draft",
@@ -16,7 +16,7 @@
   },
   "provenance": {
     "origin": "sync",
-    "importedAt": "2026-11-02T23:04:06.851Z",
-    "contentHash": "a058536f440706d5fcaaccd4936c7360"
+    "importedAt": "2026-11-08T21:07:18.637Z",
+    "contentHash": "31e5ee3c2ec50b36000eefc86170d0ac"
   }
 }
