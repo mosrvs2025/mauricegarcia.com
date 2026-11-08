@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-ultimate",
+  "eventId": "digest:src-ultimate:2026-11-07",
+  "eventAt": "2026-11-07T23:59:59.000Z",
+  "title": "Ultimate: 8 merged pull requests, 2026-11-07 to 2026-11-07",
+  "summary": "8 merged pull requests were completed between 2026-11-07 and 2026-11-07.",
+  "changed": "1.86: phone controls, notification money/health facts, battery-friendly watch…; 1.84: body pulse on Home, body rules; 1.83: You → Today, calibration coach, Echo voice gate, search hand-off, wrist…; 1.81–1.82: tongue detection, search verbs, Both mode, finger-pad piano,…; 1.80: tablet layouts, Record for training",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-08T02:25:05.104Z",
+    "contentHash": "cf17caf9eb008cc44cb0221a811c9a6b"
+  }
+}

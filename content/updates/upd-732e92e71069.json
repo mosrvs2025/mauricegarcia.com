@@ -1,0 +1,21 @@
+{
+  "id": "upd-732e92e71069",
+  "slug": "2026-11-07-ultimate-8-merged-pull-requests-2026-11-07-to-2026-11-07",
+  "title": "Ultimate: 8 merged pull requests, 2026-11-07 to 2026-11-07",
+  "summary": "8 merged pull requests were completed between 2026-11-07 and 2026-11-07.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "1.86: phone controls, notification money/health facts, battery-friendly watch…; 1.84: body pulse on Home, body rules; 1.83: You → Today, calibration coach, Echo voice gate, search hand-off, wrist…; 1.81–1.82: tongue detection, search verbs, Both mode, finger-pad piano,…; 1.80: tablet layouts, Record for training",
+  "kind": "progress",
+  "projectId": "prj-ultimate",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-11-07T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-ultimate",
+    "eventId": "digest:src-ultimate:2026-11-07",
+    "importedAt": "2026-11-08T02:25:05.104Z"
+  }
+}
