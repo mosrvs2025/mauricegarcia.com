@@ -3,9 +3,9 @@
   "projectId": "prj-ultimate",
   "eventId": "digest:src-ultimate:2026-11-03",
   "eventAt": "2026-11-03T23:59:59.000Z",
-  "title": "Ultimate: 8 commits, 2026-11-03 to 2026-11-03",
-  "summary": "8 commits were completed between 2026-11-03 and 2026-11-03.",
-  "changed": "chore: stop tracking native build intermediates (app/.cxx), ignore them; feat: local AI with Cactus Needle (on-device tool calling via JNI),…; feat(echo): model direct path and room separately (fixes edge readings on a…; feat(echo): nearest-return targeting, guided full-screen bench, session logs,…; fix(echo): lock each frame to the direct path and use per-bin CFAR, fixing…",
+  "title": "Ultimate: 1 commit, 2026-11-03 to 2026-11-03",
+  "summary": "1 commit was completed between 2026-11-03 and 2026-11-03.",
+  "changed": "chore: stop tracking native build intermediates (app/.cxx), ignore them",
   "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
   "status": "in-progress",
   "state": "draft",
@@ -16,7 +16,7 @@
   },
   "provenance": {
     "origin": "sync",
-    "importedAt": "2026-11-09T07:55:04.579Z",
-    "contentHash": "c4c77f3cc2ad5acb98efbe7202191d2c"
+    "importedAt": "2026-11-09T18:43:35.508Z",
+    "contentHash": "57b950ba22468ff0f67a9c228550618a"
   }
 }
