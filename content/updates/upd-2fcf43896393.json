@@ -1,0 +1,21 @@
+{
+  "id": "upd-2fcf43896393",
+  "slug": "2026-11-09-ultimate-2-merged-pull-requests-2026-11-09-to-2026-11-09",
+  "title": "Ultimate: 2 merged pull requests, 2026-11-09 to 2026-11-09",
+  "summary": "2 merged pull requests were completed between 2026-11-09 and 2026-11-09.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "1.90.0 (build 104): Rename everywhere, Adaptive Home (opt-in), Timeline crash…; Sync main to Ultimate+ 1.89.0 (build 103): spatial, watch, Echo, Air, release…",
+  "kind": "progress",
+  "projectId": "prj-ultimate",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-11-09T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-ultimate",
+    "eventId": "digest:src-ultimate:2026-11-09",
+    "importedAt": "2026-11-10T02:02:09.143Z"
+  }
+}
