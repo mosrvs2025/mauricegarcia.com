@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-ultimate",
+  "eventId": "digest:src-ultimate:2026-11-10",
+  "eventAt": "2026-11-10T23:59:59.000Z",
+  "title": "Ultimate: 4 merged pull requests, 2026-11-10 to 2026-11-10",
+  "summary": "4 merged pull requests were completed between 2026-11-10 and 2026-11-10.",
+  "changed": "1.98.0 (build 115): fixes from the screen recording feedback; 1.97.1 (build 114): deeper Health screen, orb upgrades, in-app update install…; 1.95.0 (build 111): AR camera, Studio fixes, suggestions you can turn down; 1.90.2 (build 106): installer session fix, stricter money parsing, health…",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-11T02:47:57.097Z",
+    "contentHash": "e3690ddfbe777634d4a2b645e28717c2"
+  }
+}
