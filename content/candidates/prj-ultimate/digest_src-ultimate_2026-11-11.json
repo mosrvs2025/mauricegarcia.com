@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-ultimate",
+  "eventId": "digest:src-ultimate:2026-11-11",
+  "eventAt": "2026-11-11T23:59:59.000Z",
+  "title": "Ultimate: 3 merged pull requests, 2026-11-11 to 2026-11-11",
+  "summary": "3 merged pull requests were completed between 2026-11-11 and 2026-11-11.",
+  "changed": "Room scan: 3D room scanning, measuring, object labels and room memory…; 2.0.0 (build 118): fix Studio preview not playing right after import; 1.100.0 (build 117): Studio layers and cut pauses, tappable Days chips",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-12T01:29:59.519Z",
+    "contentHash": "db82013e5eac59862eb919137bee397f"
+  }
+}
