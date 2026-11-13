@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-ultimate",
+  "eventId": "digest:src-ultimate:2026-11-12",
+  "eventAt": "2026-11-12T23:59:59.000Z",
+  "title": "Ultimate: 6 merged pull requests, 2026-11-12 to 2026-11-12",
+  "summary": "6 merged pull requests were completed between 2026-11-12 and 2026-11-12.",
+  "changed": "2.6.0: Mark wall and wall surfaces, safer merging, fewer wall labels, Checkup…; 2.5.0: room scan sees plain walls and keeps sizes; Home cards route correctly;…; Workouts in the Health screen: camera rep counting and a log, 2.4.0; Room scan 2.3.1: fixes from the fourth device recording; Room scan 2.3.0: no wipe on Add, tighter merging, kept ceiling height, new…",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-13T06:35:25.667Z",
+    "contentHash": "cb5ed0c76aed7e43b16948e26b4dccdd"
+  }
+}

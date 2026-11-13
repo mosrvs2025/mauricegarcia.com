@@ -1,10 +1,10 @@
 {
   "id": "upd-ef237f961cd9",
   "slug": "2026-10-14-lineage-9-merged-pull-requests-2026-10-14-to-2026-10-14",
-  "title": "Lineage: 9 merged pull requests, 2026-10-14 to 2026-10-14",
-  "summary": "9 merged pull requests were completed between 2026-10-14 and 2026-10-14.",
+  "title": "Lineage: 2 merged pull requests, 2026-10-14 to 2026-10-14",
+  "summary": "2 merged pull requests were completed between 2026-10-14 and 2026-10-14.",
   "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
-  "body": "HUD window management from playtest feedback; Phone portrait UI: action bubble, floating selection card, construction…; Graphics: drifting cloud shadows and dawn/dusk sun shafts; Graphics: soft contact shadows; Rival AI fortifies and fields heavier units; bot uses upgrades",
+  "body": "HUD window management from playtest feedback; Phone portrait UI: action bubble, floating selection card, construction…",
   "kind": "progress",
   "projectId": "prj-lineage",
   "status": "draft",
@@ -16,6 +16,6 @@
     "origin": "sync",
     "sourceId": "src-lineage",
     "eventId": "digest:src-lineage:2026-10-14",
-    "importedAt": "2026-11-02T23:04:06.851Z"
+    "importedAt": "2026-11-13T06:35:25.667Z"
   }
 }
