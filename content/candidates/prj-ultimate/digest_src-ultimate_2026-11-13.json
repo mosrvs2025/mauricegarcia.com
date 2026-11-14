@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-ultimate",
+  "eventId": "digest:src-ultimate:2026-11-13",
+  "eventAt": "2026-11-13T23:59:59.000Z",
+  "title": "Ultimate: 7 merged pull requests, 2026-11-13 to 2026-11-13",
+  "summary": "7 merged pull requests were completed between 2026-11-13 and 2026-11-13.",
+  "changed": "2.10.0: Octopus Mesh devices help each other; Apps you could drop; update-flow…; 2.12.0: consolidated platform release (mesh 2.10, Movement and fusion 2.11,…; 2.8.1: the usage report stops reporting what is already fixed; 2.8.0: fix rotation closing World Scan; GPS drift correction; flat-memory long…; 2.7.1: Squeeze delete-original, World Scan combined placement, calibrated GPS…",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-14T02:23:48.053Z",
+    "contentHash": "eaa1704ed45ddb05fc9a441e62f194c3"
+  }
+}
