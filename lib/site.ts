@@ -9,6 +9,7 @@ export const site = {
   githubHandle: "mosrvs2025",
   instagram: "https://instagram.com/itstherealmoe",
   instagramHandle: "itstherealmoe",
+  instagramPhoto: "/images/maurice-instagram.jpg",
   photo: "/images/maurice.jpg",
   pipelineUrl: "https://pl.donhowardconstruction.com/",
 } as const;

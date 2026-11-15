@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import { InstagramPortrait } from "./InstagramPortrait";
 import { SkinPicker } from "./SkinPicker";
 
 const links = [
@@ -28,10 +29,13 @@ export function Header() {
   return (
     <header className="site-header">
       <div className="studio-wrap nav-bar">
-        <Link href="/" className="brand" aria-label="Maurice Garcia, home">
-          <span className="brand-mark" aria-hidden="true">mg<span>✳</span></span>
-          <span className="brand-name">MAURICE<br />GARCIA</span>
-        </Link>
+        <div className="brand-cluster">
+          <InstagramPortrait size="nav" />
+          <Link href="/" className="brand" aria-label="Maurice Garcia, home">
+            <span className="brand-mark" aria-hidden="true">mg<span>✳</span></span>
+            <span className="brand-name">MAURICE<br />GARCIA</span>
+          </Link>
+        </div>
         <nav className="desktop-nav" aria-label="Main">
           {links.map((l) => <Link key={l.href} href={l.href} aria-current={current(l.href)}>{l.label}</Link>)}
         </nav>

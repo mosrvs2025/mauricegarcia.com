@@ -13,6 +13,7 @@ import { toCard } from "@/lib/content/cards";
 import { featuredByTrack, formatDate, listedPosts, listedProjects, listedUpdates, projectById, projectBySlug, projectsByTrack, shownNow } from "@/lib/content/query";
 import { isProposed } from "@/lib/content/visibility";
 import { HomeShowcase } from "@/components/HomeShowcase";
+import { InstagramPortrait } from "@/components/InstagramPortrait";
 import { SecretShelf } from "@/components/SecretShelf";
 
 // The animated grid is decorative: load it after the page is interactive so it never delays first paint.
@@ -34,7 +35,13 @@ export default function HomePage() {
         <HeroField />
         <div className="studio-wrap j-hero home-hero">
           <div>
-            <p className="eyebrow">Maurice Garcia / Experience Engineer</p>
+            <div className="home-byline">
+              <InstagramPortrait size="hero" />
+              <div>
+                <p className="eyebrow">Maurice Garcia / Experience Engineer</p>
+                <a className="home-ig-handle" href={site.instagram} target="_blank" rel="noopener noreferrer">@{site.instagramHandle}</a>
+              </div>
+            </div>
             <h1 className="display j-title home-title">Useful products.<br /><em>Unexpected worlds.</em></h1>
             <p className="lede">I build software, AI tools and interactive experiences. From a better way to run a business to a world worth getting lost in.</p>
             <div className="j-actions">
