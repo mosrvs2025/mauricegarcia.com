@@ -135,7 +135,7 @@ html { scroll-behavior:smooth; scroll-padding-top:95px; }
 .display em { font-style:normal; color:var(--color-rust); }
 .site-header { position:sticky; top:0; z-index:40; background:rgba(9,9,9,.9); backdrop-filter:blur(20px); border-bottom:1px solid var(--color-rule); }
 .nav-bar { height:88px; display:flex; align-items:center; gap:36px; }
-.brand { display:flex; align-items:center; gap:14px; margin-right:auto; }
+.brand-cluster { display:flex; align-items:center; gap:14px; margin-right:auto; } .brand { display:flex; align-items:center; gap:14px; }
 .brand-mark { font-family:var(--font-display); font-weight:800; font-size:2.7rem; letter-spacing:-.11em; line-height:1; }
 .brand-mark span { color:var(--color-rust); font-size:1.2rem; vertical-align:top; margin-left:5px; }
 .brand-name { font-size:.68rem; letter-spacing:.13em; line-height:1.3; }
