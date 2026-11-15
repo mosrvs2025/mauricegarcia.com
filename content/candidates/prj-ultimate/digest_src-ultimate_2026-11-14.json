@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-ultimate",
+  "eventId": "digest:src-ultimate:2026-11-14",
+  "eventAt": "2026-11-14T23:59:59.000Z",
+  "title": "Ultimate: 1 merged pull request, 2026-11-14 to 2026-11-14",
+  "summary": "1 merged pull request was completed between 2026-11-14 and 2026-11-14.",
+  "changed": "2.13.0: watch and phone sync for walks; liquid look for narrow screens",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-15T01:51:13.740Z",
+    "contentHash": "ea4e3bfb6b9d29c0b577d4c34ab21ba9"
+  }
+}

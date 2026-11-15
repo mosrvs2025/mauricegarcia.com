@@ -1,0 +1,21 @@
+{
+  "id": "upd-f74f35b7a17a",
+  "slug": "2026-11-14-ultimate-1-merged-pull-request-2026-11-14-to-2026-11-14",
+  "title": "Ultimate: 1 merged pull request, 2026-11-14 to 2026-11-14",
+  "summary": "1 merged pull request was completed between 2026-11-14 and 2026-11-14.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "2.13.0: watch and phone sync for walks; liquid look for narrow screens",
+  "kind": "progress",
+  "projectId": "prj-ultimate",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-11-14T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-ultimate",
+    "eventId": "digest:src-ultimate:2026-11-14",
+    "importedAt": "2026-11-15T01:51:13.740Z"
+  }
+}
