@@ -40,7 +40,7 @@ If a demo breaks, remove `links.demo`; the schema then requires the project to d
 **Products**
 - **Pipeline CRM** (production): the strongest proof of real-world use, a system a real business runs on. High business value. No screenshots, because it is a client's private system.
 - **ThriftScout** (beta): a live no-card pilot on its own domain with real accounts; the clearest example of a product with a market. Payments are not live, and the page says so.
-- **Ultimate** (prototype): the broadest piece of engineering here, an offline Android toolkit with several tools in one codebase and clear licensing potential. Labelled prototype because it has not been independently built and run for this site; promote it once there's a verified build.
+- **Ultimate+** (prototype): the broadest piece of engineering here, one Android app with a growing set of on-device tools (video, storage, notification history, rules, terminal and SSH, privacy insights, a watch app, local AI), no ads, no analytics, no accounts, and an offline edition with no internet permission. It leads the featured grid and has a spotlight on the home page because it is the owner's current top priority (`order: 5`; change that one number to reorder). Still labelled prototype because it has not been independently built and run for this site; promote it once there's a verified build. Its screenshots are the repository's own simulated renders with sample data, and every caption says so.
 
 **Experiences**
 - **Thornwild**, **Lineage**, **Mosslight**: the most ambitious playable work. All have public demos that load.
