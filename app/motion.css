@@ -1,0 +1,24 @@
+/*
+ * Page-transition curtain (components/PageTransition.tsx). The intro's own CSS is inline in <head> (lib/motion.ts)
+ * so it can paint before this stylesheet; only the navigation curtain lives here.
+ * Track colours are the portfolio's existing ones (home "doors", /v/game and share cards use the same values).
+ */
+:root { --track-experiences:#5be3a1; --track-products:#ff8a4c; --track-labs:#a98bff; }
+
+#mg-pt { position:fixed; inset:0; z-index:2147482000; pointer-events:none; visibility:hidden; display:grid; place-items:center;
+  --pt:var(--j-accent,#ff6535); --pt-ink:var(--j-accent-ink,#12100d); background:var(--pt); clip-path:inset(100% 0 0 0); }
+#mg-pt[data-track="experiences"] { --pt:var(--track-experiences); --pt-ink:#12100d; }
+#mg-pt[data-track="products"] { --pt:var(--track-products); --pt-ink:#12100d; }
+#mg-pt[data-track="labs"] { --pt:var(--track-labs); --pt-ink:#12100d; }
+#mg-pt span { font-size:2.4rem; line-height:1; color:var(--pt-ink); animation:mgpt-spin .9s linear infinite; }
+#mg-pt[data-s="cover"] { visibility:visible; clip-path:inset(0); transition:clip-path .22s cubic-bezier(.76,0,.18,1); }
+#mg-pt[data-s="reveal"] { visibility:visible; clip-path:inset(0 0 100% 0); transition:clip-path .24s cubic-bezier(.76,0,.18,1); }
+@keyframes mgpt-spin { to { rotate:360deg; } }
+
+/* Reduced motion: no movement, just a quick 0.3s fade (0.15s in, 0.15s out). */
+@media (prefers-reduced-motion:reduce) {
+  #mg-pt { clip-path:none; opacity:0; }
+  #mg-pt span { display:none; }
+  #mg-pt[data-s="cover"] { clip-path:none; opacity:1; transition:opacity .15s linear !important; }
+  #mg-pt[data-s="reveal"] { clip-path:none; opacity:0; transition:opacity .15s linear !important; }
+}

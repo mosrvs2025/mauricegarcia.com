@@ -440,7 +440,7 @@ main:focus { outline:none; }
 /* Home: three world doors */
 .wd-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
 .wd-door { --c:var(--j-accent); height:100%; }
-.wd-experiences { --c:#5be3a1; } .wd-products { --c:#ff8a4c; } .wd-labs { --c:#a98bff; }
+.wd-experiences { --c:var(--track-experiences); } .wd-products { --c:var(--track-products); } .wd-labs { --c:var(--track-labs); }
 .wd-link { position:relative; display:flex; flex-direction:column; height:100%; border:1px solid var(--j-line); border-radius:18px; background:var(--j-surface); overflow:hidden; transition:transform .35s cubic-bezier(.2,.8,.3,1), border-color .35s, box-shadow .35s; }
 .wd-link:hover, .wd-link:focus-visible { transform:translateY(-6px); border-color:var(--c); box-shadow:0 24px 60px -20px color-mix(in srgb, var(--c) 45%, transparent); }
 .wd-link:focus-visible { outline:2px solid var(--c); outline-offset:3px; }
