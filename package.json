@@ -19,6 +19,7 @@
     "verify": "npm run typecheck && npm run content:validate && npm test && npm run guard:secrets && npm run guard:names"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "gray-matter": "^4.0.3",
     "marked": "^15.0.12",
     "next": "^16.3.4",
