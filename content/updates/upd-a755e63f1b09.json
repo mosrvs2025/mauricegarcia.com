@@ -1,7 +1,7 @@
 {
   "id": "upd-a755e63f1b09",
   "slug": "2026-11-10-ultimate-4-merged-pull-requests-2026-11-10-to-2026-11-10",
-  "title": "Ultimate: 4 merged pull requests, 2026-11-10 to 2026-11-10",
+  "title": "Ultimate+: 4 merged pull requests, 2026-11-10 to 2026-11-10",
   "summary": "4 merged pull requests were completed between 2026-11-10 and 2026-11-10.",
   "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
   "body": "1.98.0 (build 115): fixes from the screen recording feedback; 1.97.1 (build 114): deeper Health screen, orb upgrades, in-app update install…; 1.95.0 (build 111): AR camera, Studio fixes, suggestions you can turn down; 1.90.2 (build 106): installer session fix, stricter money parsing, health…",
@@ -16,6 +16,6 @@
     "origin": "sync",
     "sourceId": "src-ultimate",
     "eventId": "digest:src-ultimate:2026-11-10",
-    "importedAt": "2026-11-11T02:47:57.097Z"
+    "importedAt": "2026-11-16T09:33:57.562Z"
   }
 }

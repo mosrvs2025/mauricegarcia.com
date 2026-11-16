@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-ultimate",
+  "eventId": "release:mosrvs2025_ultimate-android:446528213",
+  "eventAt": "2026-11-16T02:03:32.000Z",
+  "title": "Ultimate 2.23.0",
+  "summary": "d2143ab20357ef4678fe3e4f87197860b3e6121fc1342591993bf7b8086bfd7d",
+  "changed": "d2143ab20357ef4678fe3e4f87197860b3e6121fc1342591993bf7b8086bfd7d",
+  "whyCare": "[Needs review] Say why this release matters to a visitor.",
+  "status": "shipped",
+  "evidenceUrl": "https://github.com/mosrvs2025/ultimate-android/releases/tag/v2.23.0",
+  "state": "draft",
+  "publicSafe": false,
+  "completion": {
+    "kind": "release",
+    "verified": true
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-16T09:33:57.562Z",
+    "contentHash": "42e9e6b6ff60ccce5efee6e55a2c7a76"
+  }
+}
