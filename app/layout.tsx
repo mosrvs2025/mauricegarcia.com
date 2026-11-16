@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Instrument_Sans } from "next/font/google";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 import { ActionTracker } from "@/components/ActionTracker";
 import { Analytics } from "@/components/Analytics";
 import { EngagementTracker } from "@/components/EngagementTracker";
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <IntroOverlay />
         <a href="#main" className="skip-link">Skip to content</a>
         <Analytics />
+        <VercelAnalytics />
         <ActionTracker />
         <EngagementTracker />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldScript(personLd()) }} />
