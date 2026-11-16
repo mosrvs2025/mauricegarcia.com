@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     canonical: "./",
     types: { "application/rss+xml": [{ url: "/writing/rss.xml", title: "Maurice Garcia: writing" }, { url: "/updates/rss.xml", title: "Maurice Garcia: updates" }] },
   },
-  openGraph: { title: site.title, description: site.description, siteName: site.name, locale: "en_US", type: "website" },
+  openGraph: { title: site.title, description: site.description, url: "./", siteName: site.name, locale: "en_US", type: "website" },
   twitter: { card: "summary_large_image", title: site.title, description: site.description },
   icons: { icon: "/favicon.svg" },
 };

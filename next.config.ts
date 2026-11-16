@@ -24,6 +24,8 @@ const nextConfig: NextConfig = {
       // Moved URLs. Query strings (for example ?service=) are carried through.
       { source: "/contact", destination: "/connect", permanent: true },
       { source: "/work", destination: "/projects/pipeline-crm", permanent: true },
+      // Short link for the mixed-reality game; its playable hub lives on mr.mauricegarcia.com.
+      { source: "/realmbreak", destination: "/projects/realmbreak", permanent: true },
       ...projectRedirects(),
     ];
   },
