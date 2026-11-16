@@ -15,7 +15,7 @@
   "audience": "Meta Quest 3 and Pro owners who want to try a browser-based mixed-reality game, and anyone curious about WebXR. Desktop and phone visitors get the same scenes in regular 3D.",
   "contribution": "It is my project. Vite, TypeScript and Three.js, with no backend. The README says every character, model, texture and sound is generated at runtime, and the repository is MIT licensed.",
   "worksToday": [
-    "A hosted build at mr.mauricegarcia.com with an Enter AR on Quest button and a Play on this screen fallback.",
+    "A hosted build at mr.mauricegarcia.com/realmbreak, with an Enter AR on Quest button and a Play on this screen fallback. The mixed-reality hub itself is at mr.mauricegarcia.com.",
     "The README describes four scenes: the villain arrives on your floor, you charge a blast, the room cracks and shatters into an arena, and the beams clash.",
     "Hand tracking, controllers and mouse or touch are all supported inputs, with an auto-fire assist and gaze-dwell Replay so the game does not soft-lock."
   ],
@@ -25,9 +25,14 @@
     "Floor lock needs the headset to have seen the floor; otherwise it falls back to the reference-space floor."
   ],
   "links": {
-    "demo": "https://mr.mauricegarcia.com",
+    "demo": "https://mr.mauricegarcia.com/realmbreak",
     "repo": "https://github.com/mosrvs2025/realmbreak",
-    "other": []
+    "other": [
+      {
+        "label": "Mixed-reality hub",
+        "url": "https://mr.mauricegarcia.com"
+      }
+    ]
   },
   "repoVisibility": "public",
   "ai": {
@@ -48,8 +53,8 @@
   },
   "evidence": [
     {
-      "label": "Hosted build at mr.mauricegarcia.com (loads, checked 2026-11-16)",
-      "url": "https://mr.mauricegarcia.com",
+      "label": "Hosted build at mr.mauricegarcia.com/realmbreak (loads, checked 2026-11-16)",
+      "url": "https://mr.mauricegarcia.com/realmbreak",
       "kind": "demo",
       "verifiedAt": "2026-11-16"
     },

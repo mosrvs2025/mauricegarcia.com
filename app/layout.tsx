@@ -10,7 +10,7 @@ import { PageTransition } from "@/components/PageTransition";
 import { QuickContact } from "@/components/QuickContact";
 import { isPreviewBuild } from "@/lib/content/visibility";
 import { INTRO_BOOT_SCRIPT, INTRO_CSS } from "@/lib/motion";
-import { shownProjects } from "@/lib/content/query";
+import { listedProjects } from "@/lib/content/query";
 import { SKIN_BOOT_SCRIPT } from "@/lib/skin";
 import { ldScript, personLd, websiteLd } from "@/lib/jsonld";
 import { site } from "@/lib/site";
@@ -38,7 +38,8 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const projectTracks = Object.fromEntries(shownProjects().map((p) => [p.slug, p.track]));
+  // Listed projects only: unlisted pages stay reachable, but their slugs must not appear in the shared layout payload.
+  const projectTracks = Object.fromEntries(listedProjects().map((p) => [p.slug, p.track]));
   return (
     <html lang="en" className={`${fraunces.variable} ${instrument.variable}`} suppressHydrationWarning>
       <head>

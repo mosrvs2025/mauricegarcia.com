@@ -29,6 +29,7 @@ export default function HomePage() {
   const demos = withDemo.map((p) => ({ title: p.title, url: p.links.demo!, slug: p.slug }));
   const ticker = all.map((p) => ({ slug: p.slug, title: p.title, theme: p.themes[0], playable: !!p.links.demo }));
   const spotlight = projectBySlug("ultimate");
+  const hub = projectBySlug("realmbreak");
   const showcase = ["thornwild", "thriftscout", "lumen"].flatMap((slug) => { const p = all.find((p) => p.slug === slug); return p ? [toCard(p)] : []; });
   return (
     <>
@@ -66,6 +67,24 @@ export default function HomePage() {
           inside={["Video editor and shrinker", "Storage map", "Notification and clipboard history", "Rules automation", "Terminal", "SSH client and server", "Footprint privacy insights", "Focus companion", "Air control", "Galaxy Watch app", "Local AI"]}
           privacyNote="No ads, no analytics, no accounts. The offline edition has no internet permission. Screens are rendered on a simulated phone with sample data."
         />
+      )}
+
+
+      {hub && (
+        <section className="studio-wrap qc-band" aria-labelledby="hub-h">
+          <Reveal><div className="qc-band-inner">
+            <div>
+              <p className="eyebrow">Also live</p>
+              <h2 className="display" id="hub-h">A mixed-reality hub.</h2>
+              <p>REALMBREAK now has its own page at mr.mauricegarcia.com, with a desktop and phone fallback. It has not yet been tested on a physical headset.</p>
+            </div>
+            <div className="qc-band-actions">
+              <a href={site.hubUrl} className="btn btn-fill j-shine" rel="noopener noreferrer">Open the hub <span aria-hidden="true">↗</span></a>
+              <a href={`${site.hubUrl}/realmbreak`} className="j-link j-arrow" rel="noopener noreferrer">Play REALMBREAK</a>
+              <Link href="/projects/realmbreak" className="j-link">The project page</Link>
+            </div>
+          </div></Reveal>
+        </section>
       )}
 
       <section className="studio-wrap j-section tr" aria-labelledby="tr-h">

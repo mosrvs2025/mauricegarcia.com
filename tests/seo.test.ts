@@ -116,3 +116,12 @@ test("REALMBREAK: project page, public-repo source entry and the short link all 
 test("analytics are untouched: Google Analytics keeps its measurement id (Vercel Analytics is enabled on the platform, not in code)", () => {
   assert.match(read("components/Analytics.tsx"), /G-J4KMZHQTSP/);
 });
+
+test("SIT ON ME is unlisted: its page exists, but it is absent from lists, the sitemap and llms.txt", () => {
+  const p = loadProjects().find((x) => x.slug === "sit-on-me");
+  assert.ok(p, "sit-on-me project file is missing");
+  assert.equal(p.visibility, "unlisted");
+  assert.ok(isShown(p), "unlisted projects must still have a page");
+  assert.ok(!sitemap().some((e) => e.url.endsWith("/projects/sit-on-me")));
+  assert.doesNotMatch(llmsTxt() + llmsFullTxt(), /SIT ON ME/);
+});

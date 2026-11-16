@@ -2,11 +2,15 @@
   "id": "now",
   "status": "published",
   "visibility": "public",
-  "focus": "Keeping Ultimate, my offline Android toolkit, moving, and giving this site a home for my projects and for short notes on how they're going, so people can try them and tell me what's wrong.",
+  "focus": "Shipping new Ultimate+ builds \u2014 the latest is 2.26.0, with live video between your own devices still waiting on a two-phone test \u2014 and opening the mixed-reality hub at mr.mauricegarcia.com, where REALMBREAK now has its own page.",
   "building": [
     {
-      "text": "Ultimate, an offline Android toolkit that keeps growing.",
+      "text": "Ultimate+ 2.26.0: live video and sound between your devices over Octopus Mesh. Unit tests are in; it has not yet been tried on two real phones.",
       "projectId": "prj-ultimate"
+    },
+    {
+      "text": "The mixed-reality hub at mr.mauricegarcia.com, with REALMBREAK on its own page under it.",
+      "projectId": "prj-realmbreak"
     },
     {
       "text": "Keeping the playable projects working in the browser and writing down what changed.",
@@ -36,6 +40,6 @@
       "intent": "hello"
     }
   ],
-  "reviewedAt": "2026-10-29",
-  "reviewedBy": "owner"
+  "reviewedAt": "2026-11-16",
+  "reviewedBy": "pending"
 }

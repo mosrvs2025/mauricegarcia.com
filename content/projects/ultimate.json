@@ -11,7 +11,7 @@
     "practical",
     "creative-tools"
   ],
-  "stateNote": "Current source version: Ultimate+ 2.24.0 (build 146). Signed APKs are published on the repository's Releases page. This page is written from the repository's README and docs, not from a build run for this site.",
+  "stateNote": "Current source version: Ultimate+ 2.26.0 (build 148). Signed APKs are published on the repository's Releases page. This page is written from the repository's README and docs, not from a build run for this site.",
   "problem": "Phone utilities tend to be a pile of separate apps, many of them full of ads and trackers. Ultimate+ keeps a growing set of tools for your own phone in one app, with no ads, no analytics and no accounts. The offline edition, Ultimate, has no internet permission at all, so it cannot send anything anywhere.",
   "audience": "Android users (Android 10 or newer) who want useful tools that stay on their own phone, and anyone curious what their phone already knows about them.",
   "contribution": "It is my project. One Kotlin codebase builds the all-in-one Ultimate+ (with SSH and network tools), the offline Ultimate, single-purpose editions (Studio, Squeeze, Video to Audio, Pluck, Traffic Inspector) and a Galaxy Watch / Wear OS app that installs from the phone.",
@@ -19,8 +19,8 @@
     "Create: Studio, an offline video editor (timeline, trim and split, speed, titles, music, H.264/AAC export), and Squeeze, which shrinks video with the phone's hardware encoders and a before-and-after player. Also video to audio, a recorder and a teleprompter.",
     "Storage: a map of what fills the phone by kind, folder, file and app, plus Clean up for duplicates and similar shots.",
     "Notification and clipboard history that keeps deleted messages, with Insights on which apps are signal and which are noise by how often you actually open them.",
-    "Rules: when something happens, do something and undo it afterwards, built by hand or from a plain sentence such as “silence at night”.",
-    "Terminal with phone commands, and (Ultimate+ only) an SSH client with saved hosts, keys and snippets, plus an SSH and SFTP server.",
+    "Rules: when something happens, do something and undo it afterwards, built by hand or from a plain sentence such as \u201csilence at night\u201d.",
+    "Terminal with phone commands, and (Ultimate+ only) an SSH client and server plus Octopus Mesh. In 2.26.0, Watch camera can make a live video and sound call between your devices, with a fallback to still pictures.",
     "Footprint and Timeline: what the phone already knows about you (unlocks, app use, which apps can see location or microphone, data sent), and a searchable day-by-day timeline of what the app keeps.",
     "Focus: a companion that checks which app is in front and nudges you when you drift from the task you named. Air control: your hand or face as a cursor in any app, from the camera.",
     "A Galaxy Watch / Wear OS app (wrist gestures, heart rate, proximity) and Local AI, a small on-phone model that proposes an action for what you type, which you then tap."
@@ -30,7 +30,8 @@
     "The repository's own state document says some features are not validated on real hardware by automated tests, including the watch beacon, Air mode and Playground tracking quality, and Echo accuracy on different phones.",
     "Local AI is a small model that only proposes actions; you confirm each one.",
     "Ultimate+ and Traffic Inspector use the internet permission (SSH, sending files, network tools); only the offline Ultimate edition has none. The traffic relay has not been run against a real phone's VPN tunnel in the repository.",
-    "Android 10 or newer, and meant for sideloading from GitHub Releases: listing every installed app needs a permission that Google Play restricts."
+    "Android 10 or newer, and meant for sideloading from GitHub Releases: listing every installed app needs a permission that Google Play restricts.",
+    "The 2.26.0 live video and sound path is covered by unit tests and release lint. The changelog says it has not yet been tried with two real devices (smoothness, delay, battery, heat, or connecting across networks)."
   ],
   "links": {
     "repo": "https://github.com/mosrvs2025/ultimate-android",
@@ -119,12 +120,12 @@
   ],
   "dates": {
     "lastChange": "2026-11-15",
-    "lastChangeSource": "latest commit on main (merge of pull request #57)",
+    "lastChangeSource": "latest commit on main (merge of pull request #59)",
     "reviewed": "2026-11-16"
   },
   "evidence": [
     {
-      "label": "README and source (source version 2.24.0, build 146)",
+      "label": "README and source (source version 2.26.0, build 148)",
       "url": "https://github.com/mosrvs2025/ultimate-android",
       "kind": "source",
       "verifiedAt": "2026-11-16"
@@ -204,6 +205,6 @@
         "why": "Each release lists the signing key's SHA-256 and a SHA256SUMS.txt. An update over an older build keeps your data only when both were signed by the project's key."
       }
     ],
-    "source": "the repository's README, docs/CURRENT_STATE.md and CHANGELOG.md (checked 2026-11-16, source version 2.24.0 build 146)."
+    "source": "the repository's README, docs/CURRENT_STATE.md and CHANGELOG.md (checked 2026-11-16, source version 2.26.0 build 148)."
   }
 }
