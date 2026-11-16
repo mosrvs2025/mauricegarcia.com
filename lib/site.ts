@@ -3,7 +3,10 @@ export const site = {
   title: "Maurice Garcia: Experience Engineer, creative technologist, independent builder",
   description:
     "Maurice Garcia is an Experience Engineer and independent builder working across AI, software, automation, interactive experiences, games, Android and experimental technology. See what he has built, learn to build with AI, or work with him.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://mauricegarcia.com",
+  // The single canonical origin. Production serves www (the apex 308-redirects to it), so every canonical tag,
+  // OG/Twitter URL, sitemap entry, JSON-LD id and llms.txt link is built from this constant. It is deliberately
+  // not overridable by an environment variable: a stale NEXT_PUBLIC_SITE_URL must never reintroduce the apex.
+  url: "https://www.mauricegarcia.com",
   email: "hello@mauricegarcia.com",
   github: "https://github.com/mosrvs2025",
   githubHandle: "mosrvs2025",
@@ -11,6 +14,8 @@ export const site = {
   instagramHandle: "itstherealmoe",
   instagramPhoto: "/images/maurice-instagram.jpg",
   photo: "/images/maurice.jpg",
+  /** The mixed-reality hub (REALMBREAK) on its own subdomain. Linked from the site, never mixed into this host's sitemap. */
+  hubUrl: "https://mr.mauricegarcia.com",
   pipelineUrl: "https://pl.donhowardconstruction.com/",
 } as const;
 // Location is intentionally omitted until the owner resolves the California / Salt Lake City conflict.

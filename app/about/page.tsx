@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { capabilities } from "@/lib/capabilities";
+import { aboutPageLd, ldScript } from "@/lib/jsonld";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ const photos = [
 export default function AboutPage() {
   return (
     <div className="studio-wrap">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldScript(aboutPageLd()) }} />
       <header className="j-page-head"><p className="eyebrow">About</p><h1 className="display">An Experience Engineer, building across the stack of ideas</h1></header>
       <section className="j-section" style={{ paddingTop: 24 }}>
         <div className="j-about">

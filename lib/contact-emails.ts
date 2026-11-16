@@ -1,4 +1,5 @@
 import { contactEmail } from "./contact";
+import { abs } from "./site";
 
 const escape = (value: string) => value.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
 const paragraph = (text: string) => `<p style="line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere">${escape(text)}</p>`;
@@ -10,7 +11,7 @@ export function contactEmails(inquiry: Record<string, string>, label: string, se
   const received = now.toLocaleString("en-US", { timeZone: "America/Los_Angeles", dateStyle: "medium", timeStyle: "short" }) + " Pacific";
   const details = [
     ["Name", inquiry.name], ["Email", inquiry.email], ["Intent", intent], ["Service", service],
-    ["Project", inquiry.project ? `${inquiry.project} (https://mauricegarcia.com/projects/${inquiry.project})` : ""],
+    ["Project", inquiry.project ? `${inquiry.project} (${abs(`/projects/${inquiry.project}`)})` : ""],
     ["Business", inquiry.business], ["Website", inquiry.website], ["Budget", inquiry.budget], ["Timeline", inquiry.timeline],
     ["Received", received], ["Source", "mauricegarcia.com contact form"],
   ].filter((row): row is [string, string] => Boolean(row[1]));

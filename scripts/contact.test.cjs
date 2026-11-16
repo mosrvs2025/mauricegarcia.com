@@ -14,7 +14,8 @@ function load(file, mocks = {}) {
 }
 const contact = load('lib/contact.ts');
 const services = load('lib/services.ts');
-const emails = load('lib/contact-emails.ts', { './contact': contact });
+const site = load('lib/site.ts');
+const emails = load('lib/contact-emails.ts', { './contact': contact, './site': site });
 const { POST } = load('app/api/contact/route.ts', {
   '@/lib/contact-emails': emails, '@/lib/contact': contact, '@/lib/services': services,
   'next/server': { NextResponse: { json: (body, init) => Response.json(body, init) } },
@@ -45,7 +46,7 @@ const request = (body, origin = 'https://www.mauricegarcia.com') => new Request(
   const hello = { name: 'Friend', email: 'friend@example.com', body: 'Played Gridheart, loved it.', intent: 'collaborate', project: 'gridheart' };
   assert.equal((await POST(request(hello))).status, 200);
   assert.match(sent.text, /Intent: Collaboration/);
-  assert.match(sent.text, /Project: gridheart \(https:\/\/mauricegarcia.com\/projects\/gridheart\)/);
+  assert.match(sent.text, /Project: gridheart \(https:\/\/www\.mauricegarcia\.com\/projects\/gridheart\)/);
   assert.doesNotMatch(sent.text, /Not provided|Service: None/);
   assert.equal(deliveries.at(-1).to, hello.email);
   assert.equal(deliveries.at(-1).replyTo, contact.contactEmail);

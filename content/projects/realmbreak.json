@@ -1,0 +1,78 @@
+{
+  "id": "prj-realmbreak",
+  "slug": "realmbreak",
+  "title": "REALMBREAK",
+  "tagline": "A WebXR mixed-reality fight for Meta Quest: a villain lands on your real floor, your room shatters into an arena, and the beams clash. Plays in the browser, with a desktop and phone fallback.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "archive",
+  "order": 20,
+  "themes": [
+    "games"
+  ],
+  "stateNote": "Per its README it has not yet been tested on a physical headset. It was checked with unit tests, a headless-browser desktop fallback and Meta's WebXR emulator. This page is written from the README and the public site, not from a headset run for this site.",
+  "problem": "Mixed-reality demos usually need an app store install and a lot of floor space explained in a menu. REALMBREAK runs from a link in the Quest Browser: it finds your floor, a villain teleports onto it, you charge a blast with your bare hands, the room cracks open into a sunlit arena, and you win or lose a beam clash.",
+  "audience": "Meta Quest 3 and Pro owners who want to try a browser-based mixed-reality game, and anyone curious about WebXR. Desktop and phone visitors get the same scenes in regular 3D.",
+  "contribution": "It is my project. Vite, TypeScript and Three.js, with no backend. The README says every character, model, texture and sound is generated at runtime, and the repository is MIT licensed.",
+  "worksToday": [
+    "A hosted build at mr.mauricegarcia.com with an Enter AR on Quest button and a Play on this screen fallback.",
+    "The README describes four scenes: the villain arrives on your floor, you charge a blast, the room cracks and shatters into an arena, and the beams clash.",
+    "Hand tracking, controllers and mouse or touch are all supported inputs, with an auto-fire assist and gaze-dwell Replay so the game does not soft-lock."
+  ],
+  "limitations": [
+    "The README says it is not yet tested on a physical headset; hand-gesture and plane-detection behaviour is covered only by unit tests.",
+    "The automated XR smoke test is not part of CI and its final Replay step does not pass yet, per the README.",
+    "Floor lock needs the headset to have seen the floor; otherwise it falls back to the reference-space floor."
+  ],
+  "links": {
+    "demo": "https://mr.mauricegarcia.com",
+    "repo": "https://github.com/mosrvs2025/realmbreak",
+    "other": []
+  },
+  "repoVisibility": "public",
+  "ai": {
+    "assisted": "unknown"
+  },
+  "media": [
+    {
+      "src": "/projects/realmbreak.webp",
+      "alt": "REALMBREAK beam clash on the desktop fallback: two beams meet mid-screen in a sunlit arena.",
+      "caption": "The beam clash scene on the desktop fallback, from the project README.",
+      "capturedAt": "2026-11-16",
+      "width": 1280,
+      "height": 720
+    }
+  ],
+  "dates": {
+    "reviewed": "2026-11-16"
+  },
+  "evidence": [
+    {
+      "label": "Hosted build at mr.mauricegarcia.com (loads, checked 2026-11-16)",
+      "url": "https://mr.mauricegarcia.com",
+      "kind": "demo",
+      "verifiedAt": "2026-11-16"
+    },
+    {
+      "label": "README and source",
+      "url": "https://github.com/mosrvs2025/realmbreak",
+      "kind": "source",
+      "verifiedAt": "2026-11-16"
+    }
+  ],
+  "involve": {
+    "headline": "Own a Quest?",
+    "asks": [
+      "If you own a Quest, tell me how the hand gestures and floor lock feel on a real headset."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": [],
+  "maturity": "prototype",
+  "track": "experiences",
+  "openTo": [],
+  "disclosure": {
+    "basis": "public-source",
+    "note": "Public repository. This page is written from its README and the public build."
+  }
+}
