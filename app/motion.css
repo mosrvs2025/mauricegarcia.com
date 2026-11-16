@@ -1,0 +1,46 @@
+/*
+ * Page-transition curtain (components/PageTransition.tsx). The intro's own CSS is inline in <head> (lib/motion.ts)
+ * so it can paint before this stylesheet; only the navigation curtain lives here.
+ * Track colours are the portfolio's existing ones (home "doors", /v/game and share cards use the same values).
+ */
+:root { --track-experiences:#5be3a1; --track-products:#ff8a4c; --track-labs:#a98bff; }
+
+/*
+ * Black hole (components/BlackHole.tsx), shared by the intro and the curtain. Everything scales from --s and takes
+ * its colour from --b (accent) and --hot (highlight) on the containing layer. CSS only: no canvas, no images.
+ */
+.bh { position:relative; display:block; width:var(--s,140px); height:var(--s,140px); } /* --s comes from the containing layer */
+.bh > * { position:absolute; display:block; }
+.bh-halo { inset:6%; border-radius:50%; background:radial-gradient(circle, #000 0 36%, color-mix(in srgb,var(--hot) 75%,transparent) 40%, color-mix(in srgb,var(--b) 45%,transparent) 50%, transparent 70%); animation:bh-pulse 2.4s ease-in-out infinite; }
+.bh-ring { inset:17%; border-radius:50%; border:calc(var(--s) * .008 + .5px) solid color-mix(in srgb,var(--hot) 60%,transparent); box-shadow:0 0 calc(var(--s) * .05) color-mix(in srgb,var(--b) 70%,transparent); animation:bh-pulse 2.4s ease-in-out -1.2s infinite; }
+.bh-core { inset:33%; border-radius:50%; background:#000; box-shadow:0 0 0 1px color-mix(in srgb,var(--hot) 85%,transparent), 0 0 calc(var(--s) * .07) color-mix(in srgb,var(--b) 85%,transparent); }
+.bh-disk { inset:0; transform:rotate(-16deg) scaleY(.3); }
+.bh-back { z-index:1; clip-path:inset(-50% -50% 50% -50%); } .bh-core { z-index:2; } .bh-front { z-index:3; clip-path:inset(50% -50% -50% -50%); }
+.bh-disk i { position:absolute; inset:0; border-radius:50%; animation:bh-spin 2.2s linear infinite;
+  background:conic-gradient(transparent 0, var(--b) 10%, var(--hot) 26%, var(--b) 40%, transparent 52%, var(--b) 66%, var(--hot) 80%, transparent 100%);
+  -webkit-mask:radial-gradient(circle, transparent 0 31%, #000 37% 60%, transparent 70%); mask:radial-gradient(circle, transparent 0 31%, #000 37% 60%, transparent 70%); }
+.bh-p { z-index:4; left:50%; top:50%; width:calc(var(--s) * .035); height:calc(var(--s) * .035); margin:calc(var(--s) * -.0175) 0 0 calc(var(--s) * -.0175); border-radius:50%; background:var(--hot); box-shadow:0 0 calc(var(--s) * .04) var(--b); opacity:0; animation:bh-fall var(--d) cubic-bezier(.45,0,.9,.6) var(--t) infinite; }
+@keyframes bh-spin { to { rotate:360deg; } }
+@keyframes bh-pulse { 50% { opacity:.62; scale:1.06; } }
+@keyframes bh-fall {
+  0% { opacity:0; transform:rotate(var(--a)) translateX(calc(var(--s) * .56)) scale(.6); }
+  18% { opacity:1; }
+  100% { opacity:0; transform:rotate(calc(var(--a) + 320deg)) translateX(calc(var(--s) * .1)) scale(.3); }
+}
+
+#mg-pt { position:fixed; inset:0; z-index:2147482000; pointer-events:none; visibility:hidden; display:grid; place-items:center;
+  --pt:var(--j-accent,#ff6535); --pt-ink:var(--j-accent-ink,#12100d); --b:var(--pt-ink); --hot:#fff; --s:clamp(96px,16vmin,132px); background:var(--pt); clip-path:inset(100% 0 0 0); }
+#mg-pt[data-track="experiences"] { --pt:var(--track-experiences); --pt-ink:#12100d; }
+#mg-pt[data-track="products"] { --pt:var(--track-products); --pt-ink:#12100d; }
+#mg-pt[data-track="labs"] { --pt:var(--track-labs); --pt-ink:#12100d; }
+#mg-pt[data-s="idle"] * { animation-play-state:paused; }
+#mg-pt[data-s="cover"] { visibility:visible; clip-path:inset(0); transition:clip-path .22s cubic-bezier(.76,0,.18,1); }
+#mg-pt[data-s="reveal"] { visibility:visible; clip-path:inset(0 0 100% 0); transition:clip-path .24s cubic-bezier(.76,0,.18,1); }
+
+/* Reduced motion: no movement, just a quick 0.3s fade (0.15s in, 0.15s out). */
+@media (prefers-reduced-motion:reduce) {
+  #mg-pt { clip-path:none; opacity:0; }
+  #mg-pt .bh { display:none; }
+  #mg-pt[data-s="cover"] { clip-path:none; opacity:1; transition:opacity .15s linear !important; }
+  #mg-pt[data-s="reveal"] { clip-path:none; opacity:0; transition:opacity .15s linear !important; }
+}
