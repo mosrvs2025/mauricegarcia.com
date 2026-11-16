@@ -312,6 +312,9 @@ main:focus { outline:none; }
 .j-thumbs button:hover, .j-thumbs button:focus-visible { border-color:var(--j-accent); transform:translateY(-2px); }
 .j-thumbs img { width:100%; height:auto; display:block; }
 .j-lightbox { width:min(1200px, 94vw); max-height:94vh; padding:16px; border:1px solid var(--j-line); border-radius:14px; background:var(--j-surface); color:var(--j-text); }
+/* Portrait (phone) screenshots: keep them to a sensible height instead of stretching to the column. */
+.j-thumbs li.is-portrait button { width:96px; } .j-thumbs li.is-portrait img { aspect-ratio:616/1336; object-fit:cover; }
+.j-shot-btn img.is-portrait, .j-lightbox img.is-portrait { width:auto !important; max-height:min(78vh,720px); margin-inline:auto; }
 .j-lightbox::backdrop { background:rgba(8,7,6,.82); }
 .j-lightbox figcaption { margin-top:10px; font-size:.92rem; }
 .j-lightbox-nav { display:flex; justify-content:center; gap:12px; margin-top:12px; }
@@ -564,3 +567,21 @@ main:focus { outline:none; }
     transform: none !important;
   }
 }
+
+/* Home: project spotlight (Ultimate+). Phone screenshots scroll sideways in their own strip. */
+.us-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:clamp(28px,4vw,56px); align-items:center; padding:clamp(22px,4vw,48px); border:var(--j-bw,1px) solid var(--j-line); border-radius:calc(var(--j-radius,12px) * 1.5); box-shadow:var(--j-shadow,none);
+  background:radial-gradient(70% 90% at 100% 0%, color-mix(in srgb, var(--j-accent) 16%, transparent), transparent 70%), var(--j-surface); }
+.us-copy h2 { font-size:clamp(1.9rem,3.6vw,3rem); line-height:1.05; margin:8px 0 14px; }
+.us-copy .lede { max-width:34em; }
+.us-chips { list-style:none; display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 14px; padding:0; }
+.us-chips li { border:1px solid var(--j-line-strong); border-radius:100px; padding:5px 12px; font-size:.8rem; color:var(--j-muted); }
+.us-note { color:var(--j-muted); font-size:.88rem; line-height:1.55; max-width:36em; margin-bottom:6px; } .us-note .j-tag { margin-right:6px; }
+.us-shots { overflow-x:auto; scroll-snap-type:x proximity; padding:6px 4px 20px; margin-inline:-4px; }
+.us-shots:focus-visible { outline:2px solid var(--j-accent); outline-offset:4px; border-radius:8px; }
+.us-shots ul { display:flex; gap:16px; list-style:none; margin:0; padding:0 4px; width:max-content; }
+.us-shots li { flex:none; width:clamp(150px,17vw,206px); scroll-snap-align:start; }
+.us-shots li:nth-child(even) { margin-top:26px; }
+.us-shots figure { margin:0; }
+.us-shots img { display:block; width:100%; height:auto; border-radius:20px; border:2px solid var(--j-line-strong); box-shadow:0 22px 40px -20px rgba(0,0,0,.65); background:var(--j-bg); }
+.us-shots figcaption { padding-top:8px; font-size:.74rem; letter-spacing:.04em; text-transform:uppercase; color:var(--j-muted); text-align:center; }
+@media (max-width:900px) { .us-grid { grid-template-columns:1fr; } .us-shots li { width:clamp(140px,40vw,190px); } }

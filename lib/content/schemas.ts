@@ -99,7 +99,10 @@ export const projectSchema = z.object({
     alt: z.string().min(1).max(300),
     caption: z.string().max(300).optional(),
     capturedAt: dateSchema.optional(),
-  })).max(6).default([]),
+    /** Pixel size of the file. Set it for anything that is not 16:9 (phone screenshots are portrait) so the gallery can lay it out. */
+    width: z.number().int().min(100).max(4000).optional(),
+    height: z.number().int().min(100).max(4000).optional(),
+  })).max(12).default([]),
   /** A short muted loop recorded from the live site. Plays on hover or when in view; never under reduced motion. */
   preview: z.object({
     webm: z.string().regex(/^\/[A-Za-z0-9/_.-]+\.webm$/, "must be a /public .webm path"),

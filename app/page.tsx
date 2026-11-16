@@ -13,6 +13,7 @@ import { toCard } from "@/lib/content/cards";
 import { featuredByTrack, formatDate, listedPosts, listedProjects, listedUpdates, projectById, projectBySlug, projectsByTrack, shownNow } from "@/lib/content/query";
 import { isProposed } from "@/lib/content/visibility";
 import { HomeShowcase } from "@/components/HomeShowcase";
+import { ProjectSpotlight } from "@/components/ProjectSpotlight";
 import { InstagramPortrait } from "@/components/InstagramPortrait";
 import { SecretShelf } from "@/components/SecretShelf";
 
@@ -27,6 +28,7 @@ export default function HomePage() {
   const withDemo = all.filter((p) => p.links.demo);
   const demos = withDemo.map((p) => ({ title: p.title, url: p.links.demo!, slug: p.slug }));
   const ticker = all.map((p) => ({ slug: p.slug, title: p.title, theme: p.themes[0], playable: !!p.links.demo }));
+  const spotlight = projectBySlug("ultimate");
   const showcase = ["thornwild", "thriftscout", "lumen"].flatMap((slug) => { const p = all.find((p) => p.slug === slug); return p ? [toCard(p)] : []; });
   return (
     <>
@@ -56,6 +58,16 @@ export default function HomePage() {
 
       <Ticker items={ticker} />
 
+      {spotlight && (
+        <ProjectSpotlight
+          project={spotlight}
+          eyebrow="Newest build"
+          headline="Ultimate+: the toolkit for your own phone"
+          inside={["Video editor and shrinker", "Storage map", "Notification and clipboard history", "Rules automation", "Terminal", "SSH client and server", "Footprint privacy insights", "Focus companion", "Air control", "Galaxy Watch app", "Local AI"]}
+          privacyNote="No ads, no analytics, no accounts. The offline edition has no internet permission. Screens are rendered on a simulated phone with sample data."
+        />
+      )}
+
       <section className="studio-wrap j-section tr" aria-labelledby="tr-h">
         <Reveal><div className="tr-grid">
           <div>
@@ -76,7 +88,7 @@ export default function HomePage() {
       </section>
 
       <WorldDoors worlds={(["experiences", "products", "labs"] as const).map((track) => {
-        const shown = new Set(showcase.map((c) => c.slug));
+        const shown = new Set([...showcase.map((c) => c.slug), ...(spotlight ? [spotlight.slug] : [])]);
         const rest = [...featuredByTrack(track), ...projectsByTrack(track).filter((p) => p.tier !== "featured")].filter((p) => !shown.has(p.slug));
         return { track, lead: { experiences: "Games and worlds built to be played.", products: "Software built around real problems.", labs: "Experiments that follow an interesting question." }[track], total: projectsByTrack(track).length, projects: rest.map(toCard) };
       })} />
