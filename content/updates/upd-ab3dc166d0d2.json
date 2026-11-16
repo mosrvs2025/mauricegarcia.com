@@ -1,0 +1,21 @@
+{
+  "id": "upd-ab3dc166d0d2",
+  "slug": "2026-11-15-ultimate-9-merged-pull-requests-2026-11-15-to-2026-11-15",
+  "title": "Ultimate: 9 merged pull requests, 2026-11-15 to 2026-11-15",
+  "summary": "9 merged pull requests were completed between 2026-11-15 and 2026-11-15.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "2.22.0: Walk with friends; 2.21.0: every touch answers with a faint ring of water and the lightest tick; 2.20.0: Step inside (360° places), watch-corrected step distance, GPS no…; 2.19.0: straight walks stay straight, a steady recording screen, a living map…; 2.18.0: any screen joins by QR; the phone as a Bluetooth keyboard and mouse",
+  "kind": "progress",
+  "projectId": "prj-ultimate",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-11-15T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-ultimate",
+    "eventId": "digest:src-ultimate:2026-11-15",
+    "importedAt": "2026-11-16T01:59:23.896Z"
+  }
+}
