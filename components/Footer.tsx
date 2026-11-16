@@ -15,6 +15,7 @@ export function Footer() {
           <p className="eyebrow">Read &amp; follow</p>
           <ul>
             <li><Link href="/projects">Projects</Link></li>
+            <li><a href={site.hubUrl} rel="noopener noreferrer">Mixed-reality hub</a></li>
             <li><Link href="/learn">Learn</Link> · <a href="/learn/rss.xml" data-track="feed_click" data-track-feed="learn">RSS</a></li>
             <li><Link href="/writing">Writing</Link> · <a href="/writing/rss.xml" data-track="feed_click" data-track-feed="writing">RSS</a></li>
             <li><Link href="/updates">Updates</Link> · <a href="/updates/rss.xml" data-track="feed_click" data-track-feed="updates">RSS</a></li>

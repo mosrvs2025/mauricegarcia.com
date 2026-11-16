@@ -30,7 +30,7 @@ test("Ultimate+ is featured, honestly labelled, and its screenshots are real fil
 
 test("Ultimate+ copy sticks to what the repository says", () => {
   const text = JSON.stringify(ultimate());
-  assert.match(text, /2\.24\.0 \(build 146\)/);
+  assert.match(text, /2\.26\.0 \(build 148\)/);
   assert.match(text, /no ads, no analytics and no accounts/i);
   assert.match(text, /no internet permission/i);
   assert.doesNotMatch(text, /owner[- ]approved|testimonial|\d+\s*(downloads|users|installs)/i);
