@@ -38,47 +38,50 @@ export function animatesTo(url: URL, from: Location | URL): boolean {
 }
 
 /**
- * Intro timeline (seconds): spinner 0–1.0, iris into the wordmark 1.0–1.65, hold to 2.15, then three bands
- * retract upward 0.72s each, 0.14s apart, finishing at 3.31s. Reduced motion: a static mark that fades in 0.3s.
+ * Intro timeline (seconds): a black hole fades in at centre and swirls 0–1.2, then expands and swallows the screen
+ * 1.2–1.9 (a growing void circle), the "mg" wordmark irises out of it 1.65–2.2, hold to 2.4, then three bands
+ * retract upward 0.72s each, 0.14s apart, finishing at 3.4s. Reduced motion: a static mark that fades in 0.3s.
  *
  * Palette comes from the active skin's own variables (--j-bg, --j-accent, --j-text, --j-surface), set before
  * first paint by SKIN_BOOT_SCRIPT, so each skin gets its own intro. Workshop (no data-skin) is #12100D with the
- * brand rust #ff6535. Band a is the boot colour and carries the logo; b and c are revealed as it lifts.
+ * brand rust #ff6535, and a rust-to-gold disk (--b to --hot; other skins derive --hot from their accent). Band a is the
+ * boot colour and carries the black hole and wordmark; b and c are revealed as it lifts.
  * Bands must be opaque (never the translucent Glass --j-surface), or the page would show through.
  */
 export const INTRO_CSS = `
 #mg-intro{display:none}
 html.mg-intro-on{overflow:hidden}
-html.mg-intro-on #mg-intro{display:block;position:fixed;inset:0;z-index:2147483000;overscroll-behavior:contain;touch-action:none;animation:mgi-failsafe 0s ${INTRO_FAILSAFE_MS / 1000}s forwards;--a:var(--j-bg,#12100D);--b:var(--j-accent,#ff6535);--c:color-mix(in srgb,var(--b) 24%,var(--a));--ink:var(--j-text,#f3ede3);--star:var(--b)}
-html:not([data-skin]) #mg-intro{--a:#12100D;--b:#ff6535;--star:#ff6535;--ink:#f3ede3}
+html.mg-intro-on #mg-intro{display:block;position:fixed;inset:0;z-index:2147483000;overscroll-behavior:contain;touch-action:none;animation:mgi-failsafe 0s ${INTRO_FAILSAFE_MS / 1000}s forwards;--s:clamp(150px,28vmin,240px);--a:var(--j-bg,#12100D);--b:var(--j-accent,#ff6535);--c:color-mix(in srgb,var(--b) 24%,var(--a));--ink:var(--j-text,#f3ede3);--hot:color-mix(in srgb,var(--b) 45%,#fff);--void:color-mix(in srgb,var(--a) 10%,#000);--wm:#f3ede3}
+html:not([data-skin]) #mg-intro{--a:#12100D;--b:#ff6535;--hot:#ffc857;--ink:#f3ede3}
 html[data-skin="paper"] #mg-intro{--c:var(--j-text)}
 html[data-skin="pop"] #mg-intro{--c:var(--j-text)}
 html[data-skin="swiss"] #mg-intro{--c:var(--j-text)}
-html[data-skin="arcade"] #mg-intro{--c:#2ff3ff}
-html[data-skin="glass"] #mg-intro{--c:color-mix(in srgb,var(--b) 32%,var(--a))}
+html[data-skin="terminal"] #mg-intro{--wm:var(--j-text)}
+html[data-skin="arcade"] #mg-intro{--c:#2ff3ff;--hot:#2ff3ff;--wm:var(--j-text)}
+html[data-skin="glass"] #mg-intro{--c:color-mix(in srgb,var(--b) 32%,var(--a));--hot:#2fd6a1;--wm:var(--j-text)}
 #mg-intro .b{position:absolute;inset:0;clip-path:inset(0 0 0 0);will-change:clip-path;animation:mgi-up .72s cubic-bezier(.76,0,.18,1) both}
-#mg-intro .b3{background:var(--c);animation-delay:2.43s}
-#mg-intro .b2{background:var(--b);animation-delay:2.29s}
-#mg-intro .b1{background:var(--a);animation-delay:2.15s;display:grid;place-items:center}
-#mg-intro .star{grid-area:1/1;font-size:clamp(2rem,6vw,2.75rem);line-height:1;color:var(--star);animation:mgi-in .3s ease-out backwards,mgi-spin 1.1s linear infinite,mgi-out .45s ease-in 1s forwards}
-#mg-intro .word{grid-area:1/1;font-family:var(--j-font-display,var(--font-display,Georgia,serif));font-weight:800;font-size:clamp(4.5rem,17vw,9.5rem);letter-spacing:-.11em;line-height:1;color:var(--ink);clip-path:circle(0% at 50% 50%);animation:mgi-iris .65s cubic-bezier(.6,0,.2,1) 1s forwards}
-#mg-intro .word b{display:inline-block;font-weight:inherit;font-size:.42em;vertical-align:top;margin-left:.14em;color:var(--star);animation:mgi-settle 1.1s cubic-bezier(.2,.7,.2,1) 1.05s backwards}
+#mg-intro .b3{background:var(--c);animation-delay:2.68s}
+#mg-intro .b2{background:var(--b);animation-delay:2.54s}
+#mg-intro .b1{background:var(--a);animation-delay:2.4s;display:grid;place-items:center}
+#mg-intro .swallow{position:absolute;inset:0;background:var(--void);clip-path:circle(calc(var(--s) * .17) at 50% 50%);animation:mgi-swallow .7s cubic-bezier(.7,0,.95,.45) 1.2s both}
+#mg-intro .bh{grid-area:1/1;z-index:2;animation:mgi-bh-in .35s ease-out backwards,mgi-bh-out .7s cubic-bezier(.7,0,.95,.45) 1.2s forwards}
+#mg-intro .word{grid-area:1/1;z-index:3;font-family:var(--j-font-display,var(--font-display,Georgia,serif));font-weight:800;font-size:clamp(4.5rem,17vw,9.5rem);letter-spacing:-.11em;line-height:1;color:var(--wm);clip-path:circle(0% at 50% 50%);animation:mgi-iris .55s cubic-bezier(.6,0,.2,1) 1.65s forwards}
+#mg-intro .word b{display:inline-block;font-weight:inherit;font-size:.42em;vertical-align:top;margin-left:.14em;color:var(--b);animation:mgi-settle 1.1s cubic-bezier(.2,.7,.2,1) 1.7s backwards}
 html[data-skin="terminal"] #mg-intro .word,html[data-skin="arcade"] #mg-intro .word{letter-spacing:-.04em}
 html.mg-intro-skip #mg-intro{animation:mgi-skip .25s ease forwards}
 @keyframes mgi-up{from{clip-path:inset(0 0 0 0)}to{clip-path:inset(0 0 100% 0)}}
-@keyframes mgi-in{from{opacity:0;scale:.4}}
-@keyframes mgi-spin{to{rotate:360deg}}
-@keyframes mgi-out{to{opacity:0;scale:.3}}
+@keyframes mgi-bh-in{from{opacity:0;scale:.5}}
+@keyframes mgi-bh-out{to{opacity:0;scale:1.9}}
+@keyframes mgi-swallow{to{clip-path:circle(110% at 50% 50%)}}
 @keyframes mgi-iris{to{clip-path:circle(120% at 50% 50%)}}
 @keyframes mgi-settle{from{rotate:-300deg}}
 @keyframes mgi-skip{to{opacity:0}}
 @keyframes mgi-fade{to{opacity:0}}
 @keyframes mgi-failsafe{to{visibility:hidden;pointer-events:none}}
 @media (prefers-reduced-motion:reduce){
-html.mg-intro-on #mg-intro .b2,html.mg-intro-on #mg-intro .b3{display:none}
+html.mg-intro-on #mg-intro .b2,html.mg-intro-on #mg-intro .b3,html.mg-intro-on #mg-intro .bh,html.mg-intro-on #mg-intro .swallow{display:none}
 html.mg-intro-on #mg-intro .b1{animation:mgi-fade .3s ease .45s both!important;clip-path:none}
-html.mg-intro-on #mg-intro .star{display:none}
-html.mg-intro-on #mg-intro .word{animation:none!important;clip-path:none}
+html.mg-intro-on #mg-intro .word{animation:none!important;clip-path:none;color:var(--ink)}
 html.mg-intro-on #mg-intro .word b{animation:none!important}
 }
 `.replace(/\n/g, "");

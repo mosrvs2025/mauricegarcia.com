@@ -2,6 +2,7 @@
 import { Suspense, useEffect, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { animatesTo, trackForUrl } from "@/lib/motion";
+import { BlackHole } from "./BlackHole";
 
 const COVER_MS = 220;   // curtain rises
 const MIN_HOLD_MS = 40; // never lift before the spinner has been seen
@@ -9,7 +10,7 @@ const REVEAL_MS = 240;  // curtain lifts
 const STALL_MS = 1800;  // navigation cancelled or very slow: lift anyway, never leave the visitor behind a curtain
 
 /**
- * A short curtain on internal navigation (about half a second end to end). It rises when a same-origin link is
+ * A short curtain with a small black hole on internal navigation (about half a second end to end). It rises when a same-origin link is
  * clicked and lifts once the new route has rendered, so the page swap happens behind it. Destinations in a
  * portfolio track (Experiences, Products, Labs, including project pages) wear that track's colour; every other
  * destination uses the active skin's accent. It never blocks input (pointer-events:none) and plain/back-forward
@@ -66,7 +67,7 @@ function Curtain({ projectTracks }: { projectTracks: Record<string, string> }) {
     st.timer = window.setTimeout(lift, wait);
   }, [key]);
 
-  return <div id="mg-pt" ref={el} data-s="idle" aria-hidden="true"><span>✳</span></div>;
+  return <div id="mg-pt" ref={el} data-s="idle" aria-hidden="true"><BlackHole /></div>;
 }
 
 export function PageTransition({ projectTracks }: { projectTracks: Record<string, string> }) {

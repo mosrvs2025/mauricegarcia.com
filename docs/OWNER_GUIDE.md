@@ -56,7 +56,7 @@ Visitors can switch the whole site between seven styles (Workshop, Paper & Ink, 
 
 ## Intro and page transitions
 
-Each browser tab plays a ~3 second "mg ✳" intro once, then three coloured bands lift to reveal the page. The band colours come from the active style (see `INTRO_CSS` in `lib/motion.ts`), so a new style needs `--j-bg` and `--j-accent` in `app/skins.css` and gets an intro palette automatically. Clicking an internal link plays a half-second curtain, coloured mint, orange or lavender when it leads into Experiences, Products or Labs (the same colours as the home page doors). Both honour reduced-motion settings (a 0.3s fade instead). Click or press Escape to skip the intro. Add `?intro=1` to any URL to replay it, or `?intro=0` to suppress it. `/studio` and `/api` never get either.
+Each browser tab plays a ~3.4 second intro once: a black hole swirls, swallows the screen, and the "mg ✳" wordmark appears before three coloured bands lift to reveal the page (the disk uses the active style's accent colours; rust to gold in Workshop). The band colours come from the active style (see `INTRO_CSS` in `lib/motion.ts`), so a new style needs `--j-bg` and `--j-accent` in `app/skins.css` and gets an intro palette automatically. Clicking an internal link plays a half-second curtain with a small black hole, coloured mint, orange or lavender when it leads into Experiences, Products or Labs (the same colours as the home page doors). Both honour reduced-motion settings (a 0.3s fade instead). Click or press Escape to skip the intro. Add `?intro=1` to any URL to replay it, or `?intro=0` to suppress it. `/studio` and `/api` never get either.
 
 ## States and visibility
 

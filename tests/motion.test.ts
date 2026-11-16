@@ -44,11 +44,21 @@ test("intro CSS: Workshop boot colours, curtain timing, every skin, reduced moti
   assert.match(INTRO_CSS, /#ff6535/);
   assert.match(INTRO_CSS, /\.72s/);
   // three bands, 0.14s apart
-  assert.match(INTRO_CSS, /\.b1\{[^}]*animation-delay:2\.15s/);
-  assert.match(INTRO_CSS, /\.b2\{[^}]*animation-delay:2\.29s/);
-  assert.match(INTRO_CSS, /\.b3\{[^}]*animation-delay:2\.43s/);
+  assert.match(INTRO_CSS, /\.b1\{[^}]*animation-delay:2\.4s/);
+  assert.match(INTRO_CSS, /\.b2\{[^}]*animation-delay:2\.54s/);
+  assert.match(INTRO_CSS, /\.b3\{[^}]*animation-delay:2\.68s/);
   assert.match(INTRO_CSS, /clip-path:inset\(0 0 100% 0\)/);
   assert.match(INTRO_CSS, /prefers-reduced-motion:reduce/);
+  // Black hole: appears, then expands to swallow the screen before the bands lift; hidden under reduced motion.
+  assert.match(INTRO_CSS, /mgi-bh-out/);
+  assert.match(INTRO_CSS, /mgi-swallow/);
+  assert.match(INTRO_CSS, /#ffc857/); // Workshop gold highlight
+  assert.match(INTRO_CSS, /\.bh,html\.mg-intro-on #mg-intro \.swallow\{display:none\}/);
+  const bh = fs.readFileSync("app/motion.css", "utf8");
+  for (const part of ["bh-halo", "bh-ring", "bh-core", "bh-disk", "bh-p", "bh-fall", "bh-spin"]) assert.ok(bh.includes(part), `${part} missing from black hole CSS`);
+  assert.match(bh, /#mg-pt \.bh \{ display:none; \}/);
+  assert.doesNotMatch(fs.readFileSync("components/PageTransition.tsx", "utf8"), /✳/);
+  assert.doesNotMatch(fs.readFileSync("components/IntroOverlay.tsx", "utf8"), /className="star"/);
   assert.match(INTRO_CSS, /html\.mg-intro-on\{overflow:hidden\}/);
   // Bands are painted from the active skin's own variables, never a fixed colour per skin.
   assert.match(INTRO_CSS, /--a:var\(--j-bg/);
