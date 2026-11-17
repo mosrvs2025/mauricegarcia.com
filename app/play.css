@@ -1,0 +1,45 @@
+/* Live playground: a fixed canvas over the page (never blocks anything unless weapons mode is on) and a small dock. */
+.play-canvas { position:fixed; inset:0; width:100%; height:100%; z-index:85; pointer-events:none; background:transparent; }
+.play-canvas.is-armed { pointer-events:auto; cursor:crosshair; touch-action:pan-x pan-y pinch-zoom; -webkit-tap-highlight-color:transparent; user-select:none; -webkit-user-select:none; }
+.play-dock { position:fixed; left:16px; bottom:16px; z-index:95; display:flex; flex-direction:column; align-items:flex-start; gap:8px; max-width:calc(100vw - 32px); font-size:.85rem; color:var(--j-text,#f3ede3); }
+.play-sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; margin:0; }
+.play-hint { margin:0 0 8px; font-size:.74rem; color:var(--j-muted,#b9b0a2); }
+.play-bar, .play-picker, .play-fab { background:var(--j-surface,#1a1713); border:1px solid var(--j-line-strong,#4a4238); box-shadow:0 14px 40px -14px #000; }
+.play-bar { position:relative; display:flex; align-items:center; gap:6px; padding:5px 6px 5px 12px; border-radius:999px; }
+.play-who { display:inline-flex; align-items:center; gap:7px; min-width:0; padding-right:4px; }
+.play-dot { width:10px; height:10px; border-radius:50%; flex:none; box-shadow:0 0 0 2px rgba(255,255,255,.14); }
+.play-name { font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.play-count { color:var(--j-muted,#b9b0a2); white-space:nowrap; }
+.play-btn, .play-fab { font:inherit; color:inherit; cursor:pointer; }
+.play-btn { min-height:36px; padding:0 14px; border-radius:999px; border:1px solid var(--j-line-strong,#4a4238); background:transparent; display:inline-flex; align-items:center; gap:6px; }
+.play-btn:hover { border-color:var(--j-accent,#ff7a4d); }
+.play-btn.armed { background:var(--j-accent,#ff7a4d); color:var(--j-accent-ink,#1a0f08); border-color:transparent; font-weight:700; }
+.play-btn:focus-visible, .play-fab:focus-visible, .play-weapon:has(input:focus-visible) { outline:3px solid var(--j-text,#f3ede3); outline-offset:2px; }
+.play-fab { display:inline-flex; align-items:center; gap:7px; min-height:40px; padding:0 14px; border-radius:999px; opacity:.8; }
+.play-fab:hover { opacity:1; }
+.play-picker { position:absolute; left:0; bottom:calc(100% + 8px); margin:0; padding:10px; border-radius:16px; width:max-content; max-width:calc(100vw - 32px); min-width:0; }
+.play-weapons { display:flex; flex-wrap:wrap; gap:6px; }
+.play-weapon { position:relative; overflow:hidden; display:inline-flex; align-items:center; gap:6px; min-height:40px; padding:0 12px; border-radius:12px; border:1px solid var(--j-line,#2f2a23); cursor:pointer; }
+.play-weapon input { position:absolute; opacity:0; inset:0; margin:0; cursor:pointer; }
+.play-weapon.on { border-color:var(--j-accent,#ff7a4d); background:rgba(var(--j-accent-rgb,255,122,77),.16); font-weight:700; }
+.play-cd { position:absolute; left:0; right:0; bottom:0; height:3px; background:var(--j-accent,#ff7a4d); transform-origin:left; animation:play-cd linear forwards; }
+@keyframes play-cd { from { transform:scaleX(1); } to { transform:scaleX(0); } }
+@media (max-width:560px) { .play-dock { bottom:84px; } .play-name, .play-sep { display:none; } .play-who { padding-right:0; } .play-entry { max-width:min(270px,calc(100vw - 32px)); } }
+@media (pointer:coarse) { .play-btn, .play-fab, .play-weapon { min-height:44px; } .play-bar { padding-left:12px; } }
+@media (prefers-reduced-motion:reduce) { .play-cd { animation:none; display:none; } }
+@media print { .play-canvas, .play-dock { display:none; } }
+
+/* Opt-in entry card: the playful button, with the privacy notice always next to it. */
+.play-entry { max-width:min(310px,calc(100vw - 32px)); padding:10px 12px 12px; border-radius:18px; background:var(--j-surface,#1a1713); border:1px solid var(--j-line-strong,#4a4238); box-shadow:0 14px 40px -14px #000; }
+.play-entry-row { display:flex; align-items:center; gap:6px; }
+.play-enter { flex:1; min-height:44px; padding:0 16px; border:0; border-radius:999px; cursor:pointer; font:inherit; font-weight:700; color:var(--j-accent-ink,#1a0f08); background:linear-gradient(110deg,var(--j-accent,#ff7a4d),#ffb36b 55%,var(--j-accent,#ff7a4d)); background-size:200% 100%; display:inline-flex; align-items:center; justify-content:center; gap:8px; animation:play-wiggle 7s ease-in-out infinite, play-shimmer 5s linear infinite; }
+.play-enter:hover { filter:brightness(1.08); transform:translateY(-1px); }
+.play-enter:focus-visible, .play-x:focus-visible { outline:3px solid var(--j-text,#f3ede3); outline-offset:3px; }
+.play-spark { display:inline-block; animation:play-spin 6s linear infinite; }
+.play-x { width:32px; height:32px; flex:none; border-radius:50%; border:1px solid var(--j-line,#2f2a23); background:transparent; color:var(--j-muted,#b9b0a2); cursor:pointer; font:inherit; font-size:1.1rem; line-height:1; }
+.play-privacy { margin:9px 2px 0; font-size:.74rem; line-height:1.45; color:var(--j-muted,#b9b0a2); }
+@keyframes play-wiggle { 0%,88%,100% { transform:none; } 91% { transform:rotate(-2.2deg) scale(1.03); } 94% { transform:rotate(2.2deg) scale(1.03); } 97% { transform:rotate(-1deg); } }
+@keyframes play-shimmer { to { background-position:-200% 0; } }
+@keyframes play-spin { to { transform:rotate(360deg); } }
+@media (pointer:coarse) { .play-x { width:44px; height:44px; } }
+@media (prefers-reduced-motion:reduce) { .play-enter, .play-spark { animation:none; } .play-enter:hover { transform:none; } }
