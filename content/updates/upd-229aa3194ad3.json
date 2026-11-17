@@ -1,0 +1,21 @@
+{
+  "id": "upd-229aa3194ad3",
+  "slug": "2026-11-16-ultimate-4-merged-pull-requests-2026-11-16-to-2026-11-16",
+  "title": "Ultimate+: 4 merged pull requests, 2026-11-16 to 2026-11-16",
+  "summary": "4 merged pull requests were completed between 2026-11-16 and 2026-11-16.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "2.26.0: live video and sound between your devices (WebRTC); 2.25.0: see through your other devices' cameras with Octopus Mesh; 2.24.0: launcher, honest uncertainty, camera window and Cameras page; 2.23.0: dashboard and Movement upgrades",
+  "kind": "progress",
+  "projectId": "prj-ultimate",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-11-16T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-ultimate",
+    "eventId": "digest:src-ultimate:2026-11-16",
+    "importedAt": "2026-11-17T03:47:14.924Z"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "upd-22f18098d0d5",
+  "slug": "2026-11-16-realmbreak-2-merged-pull-requests-2026-11-16-to-2026-11",
+  "title": "REALMBREAK: 2 merged pull requests, 2026-11-16 to 2026-11-16",
+  "summary": "2 merged pull requests were completed between 2026-11-16 and 2026-11-16.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "MR hub at mr.mauricegarcia.com; REALMBREAK moves to /realmbreak; Build REALMBREAK: original WebXR mixed-reality fight (v1)",
+  "kind": "progress",
+  "projectId": "prj-realmbreak",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-11-16T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-realmbreak",
+    "eventId": "digest:src-realmbreak:2026-11-16",
+    "importedAt": "2026-11-17T03:47:14.924Z"
+  }
+}
