@@ -19,12 +19,27 @@ export type Msg =
   | { k: "t"; id: string; x: number; y: number }
   | { k: "b"; id: string; x: number; y: number; w: WeaponId; s: number };
 
+/** Valid messages are a handful of primitives. Anything bigger or nested is junk and is dropped unparsed. */
+export const MAX_PAYLOAD_BYTES = 1024;
+export function withinBudget(payload: object): boolean {
+  const keys = Object.keys(payload);
+  if (keys.length > 8) return false;
+  let n = 0;
+  for (const k of keys) {
+    const v = (payload as Record<string, unknown>)[k];
+    n += k.length;
+    if (typeof v === "string") n += v.length; else if (typeof v === "number" || typeof v === "boolean") n += 8; else return false;
+    if (n > MAX_PAYLOAD_BYTES) return false;
+  }
+  return true;
+}
+
 const num = (v: unknown): v is number => typeof v === "number" && Number.isFinite(v);
 
 /** Validates an untrusted inbound broadcast. Anything off-spec returns null; extra fields are dropped. */
 export function parseInbound(event: unknown, payload: unknown): Msg | null {
   if (event !== "c" && event !== "t" && event !== "b") return null;
-  if (!payload || typeof payload !== "object") return null;
+  if (!payload || typeof payload !== "object" || Array.isArray(payload) || !withinBudget(payload)) return null;
   const p = payload as Record<string, unknown>;
   if (typeof p.i !== "string" || !ID_PATTERN.test(p.i)) return null;
   if (!num(p.x) || !num(p.y) || p.x < -0.05 || p.x > 1.05 || p.y < 0 || p.y > MAX_Y) return null;

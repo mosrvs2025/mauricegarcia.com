@@ -61,7 +61,9 @@ export function holeBounds(h: Hole, margin = 0) {
 }
 
 export type Shard = {
-  sx: number; sy: number; size: number; // source square inside the snapshot, in CSS px
+  sx: number; sy: number; size: number; // source square inside the capture, in CSS px
+  proc: boolean; ci: number; // procedural chip (no capture available) and its palette index
+  placed: boolean; carried: boolean; // set by repair crews
   ox: number; oy: number; // home (document) position of the centre
   x: number; y: number; vx: number; vy: number; rot: number; vr: number;
   rest: boolean; hx: number; hy: number; hr: number; delay: number; // delay in 0..1 of the heal window
@@ -95,15 +97,28 @@ export function planShards(spec: WeaponSpec, hole: Hole, seed: number, maxShards
         vx = (dx / dist) * spec.power * (0.2 + rand() * 0.5); vy = -spec.lift * (0.2 + rand() * 0.8);
       }
       const delay = Math.min(1, (dist / reach) * 0.75 + rand() * 0.25);
-      shards.push({ sx: cx - tile / 2 - b.left, sy: cy - tile / 2 - b.top, size: tile, ox: cx, oy: cy, x: cx, y: cy, vx, vy, rot: 0, vr: (rand() - 0.5) * 10, rest: false, hx: cx, hy: cy, hr: 0, delay });
+      shards.push({ sx: cx - tile / 2 - b.left, sy: cy - tile / 2 - b.top, size: tile, proc: false, ci: (() => { const c = rand(); return c < 0.45 ? 0 : c < 0.75 ? 1 : c < 0.9 ? 2 : 3; })(), placed: false, carried: false, ox: cx, oy: cy, x: cx, y: cy, vx, vy, rot: 0, vr: (rand() - 0.5) * 10, rest: false, hx: cx, hy: cy, hr: 0, delay });
     }
   }
   return { shards, tile, b };
 }
 
+/**
+ * Point every shard at its source square in a capture of the page (document coordinates). Chunks that fall outside
+ * the capture, or all of them when there is none, become procedural chips instead, so a blast always looks like
+ * a blast even when the snapshot failed, is partial, or was skipped to save work.
+ */
+export function assignSources(shards: Shard[], cap: { left: number; top: number; width: number; height: number } | null) {
+  for (const s of shards) {
+    if (!cap) { s.proc = true; continue; }
+    s.sx = s.ox - s.size / 2 - cap.left; s.sy = s.oy - s.size / 2 - cap.top;
+    s.proc = s.sx < -0.5 || s.sy < -0.5 || s.sx + s.size > cap.width + 0.5 || s.sy + s.size > cap.height + 0.5;
+  }
+}
+
 /** Advance one shard by dt seconds (dt is clamped by the caller). The floor is a document y. */
 export function stepShard(s: Shard, dt: number, floorY: number) {
-  if (s.rest) return;
+  if (s.rest || s.placed) return;
   s.vy += GRAVITY * dt;
   const drag = Math.max(0, 1 - 0.7 * dt);
   s.vx *= drag;
@@ -119,7 +134,7 @@ export function stepShard(s: Shard, dt: number, floorY: number) {
 const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
 /** Remember where a shard ended up so it can fly home. */
-export function beginHeal(s: Shard) { s.hx = s.x; s.hy = s.y; s.hr = s.rot; s.rest = true; }
+export function beginHeal(s: Shard) { s.hx = s.x; s.hy = s.y; s.hr = s.rot; s.rest = true; s.carried = false; }
 
 /** Staggered rebuild: p runs 0..1 over the heal window; each shard starts after its own delay. Returns true when home. */
 export function healShard(s: Shard, p: number): boolean {

@@ -1,9 +1,10 @@
-import { identityFromId, type Identity } from "./identity";
+import { crewSize, crewVisible, spawnCrew, stepCrew, CREW_ARRIVE_MS, type Crew } from "./crew";
+import { ANIMALS, identityFromId, type Identity } from "./identity";
 import type { WeaponId } from "./protocol";
 import { PlaySession } from "./session";
-import { snapshotRegion } from "./snapshot";
+import { captureRegion, pagePalette, warmBackgrounds, type Capture } from "./snapshot";
 import type { LinkStatus, Transport } from "./transport";
-import { beginHeal, healShard, HEAL_AT_MS, holeBounds, insideHole, LIFETIME_MS, HEAL_MS, makeHole, mulberry32, planShards, stepShard, WEAPONS, type Hole, type Shard, type WeaponSpec } from "./weapons";
+import { assignSources, beginHeal, healShard, HEAL_AT_MS, holeBounds, insideHole, LIFETIME_MS, HEAL_MS, makeHole, mulberry32, planShards, stepShard, WEAPONS, type Hole, type Shard, type WeaponSpec } from "./weapons";
 
 /**
  * The canvas side of the playground: remote cursors, tap ripples and blasts. Everything is drawn on one fixed
@@ -15,8 +16,12 @@ export type StageOptions = {
   canvas: HTMLCanvasElement;
   transport: Transport | null;
   id: string;
+  /** prefers-reduced-motion: no shake, flash or crews, fewer sparks. */
   reduced: boolean;
+  /** Data Saver: procedural debris only (no page capture) and a small particle budget. */
+  saver: boolean;
   onPeers(n: number): void;
+  onPause?(paused: boolean): void;
   onStatus(s: LinkStatus): void;
   /** Called when a local shot goes off, with that weapon's cooldown in ms. */
   onFire(w: WeaponId, cooldown: number): void;
@@ -31,7 +36,7 @@ export type Stage = {
 };
 
 type Blast = {
-  spec: WeaponSpec; hole: Hole; shards: Shard[]; snap: HTMLCanvasElement | null; scale: number;
+  spec: WeaponSpec; hole: Hole; shards: Shard[]; cap: Capture | null; palette: string[]; crew: Crew[] | null; seed: number;
   b: { left: number; top: number; width: number; height: number }; crater: HTMLCanvasElement;
   t0: number; floor: number; healing: boolean; label: { name: string; emoji: string; color: string } | null;
 };
@@ -41,18 +46,22 @@ type Cursor = { who: Identity; x: number; y: number; dx: number; dy: number; see
 
 const MAX_BLASTS = 12, MAX_SPARKS = 320, MAX_CURSORS = 40;
 const CURSOR_FADE_MS = 3500, CURSOR_GONE_MS = 6000, RIPPLE_MS = 700;
-const HIDDEN_LEAVE_MS = 20000, IDLE_LEAVE_MS = 120000;
+const HIDDEN_LEAVE_MS = 15000, IDLE_LEAVE_MS = 120000;
+const CREW_EMOJI = ANIMALS.map((a) => a.emoji);
 
 export function createStage(opts: StageOptions): Stage {
   const canvas = opts.canvas;
   const ctx = canvas.getContext("2d")!;
   const coarse = matchMedia("(pointer: coarse)").matches;
-  const MAX_SHARDS = coarse ? 700 : 1400;
+  // Phones get a lower pixel ratio and 300 to 500 chunks; Data Saver gets a small budget and no page capture at all.
+  let dprCap = coarse ? 1.5 : 2;
+  let shardCap = opts.saver ? 250 : coarse ? 400 : 900;
+  let proceduralOnly = opts.saver;
   let reduced = opts.reduced;
   let dpr = 1, vw = 0, vh = 0;
   let weapon: WeaponId | null = null;
   let path = "";
-  let raf = 0, timer = 0, last = 0, destroyed = false;
+  let raf = 0, timer = 0, last = 0, last2 = 0, destroyed = false;
   const blasts: Blast[] = []; const sparks: Spark[] = []; const ripples: Ripple[] = []; const cursors = new Map<string, Cursor>();
   const lastFire: Partial<Record<WeaponId, number>> = {};
   let lastInput = Date.now(), paused = false, hiddenTimer = 0, cursorTimer = 0;
@@ -74,14 +83,14 @@ export function createStage(opts: StageOptions): Stage {
     onTap: (who, fx, y) => { if (!document.hidden) { addRipple(fx * docWidth(), y, who.color); schedule(); } },
     onBlast: (who, w, fx, y, seed) => { if (!document.hidden) addBlast(WEAPONS[w], fx * docWidth(), y, seed, who); },
     onPeers: (n) => { if (n <= 1) cursors.clear(); opts.onPeers(n); schedule(); },
-    onStatus: opts.onStatus,
+    onStatus: (st) => { if (st !== "online") { cursors.clear(); schedule(); } opts.onStatus(st); }, // drop stale remote state on any disconnect
   }) : null;
   const me = session?.me ?? { id: opts.id, ...identityFromId(opts.id) };
   if (!session) opts.onStatus("offline");
 
   // ---- sizing -------------------------------------------------------------------------------------------------
   const size = () => {
-    dpr = Math.min(window.devicePixelRatio || 1, coarse ? 2 : 2);
+    dpr = Math.min(window.devicePixelRatio || 1, dprCap);
     vw = canvas.clientWidth || window.innerWidth; vh = canvas.clientHeight || window.innerHeight;
     canvas.width = Math.round(vw * dpr); canvas.height = Math.round(vh * dpr);
     schedule();
@@ -147,14 +156,18 @@ export function createStage(opts: StageOptions): Stage {
     const hole = makeHole(spec, x, y, seed);
     const active = blasts.reduce((n, b) => n + (b.healing ? 0 : b.shards.length), 0);
     const live = blasts.filter((b) => !b.healing);
-    const plan = planShards(spec, hole, seed, Math.max(0, MAX_SHARDS - active), (sx, sy) => live.some((b) => insideHole(b.hole, sx, sy)));
-    const scale = Math.min(dpr, 2);
-    let snap: HTMLCanvasElement | null = null;
-    if (plan.shards.length) { try { snap = snapshotRegion(plan.b.left, plan.b.top, plan.b.width, plan.b.height, scale); } catch { snap = null; } }
-    const shards = snap ? plan.shards : [];
+    const plan = planShards(spec, hole, seed, Math.max(0, shardCap - active), (sx, sy) => live.some((b) => insideHole(b.hole, sx, sy)));
+    // Capture only the part of the blast that is on screen. Any failure, or a device that is struggling, means
+    // procedural debris (themed chips) instead: the blast still happens and nothing waits on the page.
+    let cap: Capture | null = null;
+    if (plan.shards.length && !proceduralOnly) {
+      try { cap = captureRegion(plan.b.left, plan.b.top, plan.b.width, plan.b.height, dpr); } catch { cap = null; }
+      if (cap && cap.ms > 40 && ++slowCaptures >= 2) proceduralOnly = true; else if (cap && cap.ms <= 40) slowCaptures = 0;
+    }
+    assignSources(plan.shards, cap);
     const b = holeBounds(hole);
     const floor = Math.max(window.scrollY + vh - 6, y + spec.ry * 0.5);
-    blasts.push({ spec, hole, shards, snap, scale, b, crater: craterFor(spec, hole, b, scale, seed), t0: performance.now(), floor, healing: false, label: who ? { name: who.name, emoji: who.emoji, color: who.color } : null });
+    blasts.push({ spec, hole, shards: plan.shards, cap, palette: pagePalette(), crew: null, seed, b, crater: craterFor(spec, hole, b, dpr, seed), t0: performance.now(), floor, healing: false, label: who ? { name: who.name, emoji: who.emoji, color: who.color } : null });
     const r = mulberry32(seed ^ 0x5a5a);
     const count = Math.min(MAX_SPARKS - sparks.length, reduced ? Math.round(spec.sparks / 3) : spec.sparks);
     for (let i = 0; i < count; i++) {
@@ -171,6 +184,7 @@ export function createStage(opts: StageOptions): Stage {
     if (destroyed) return;
     const dt = Math.min(0.033, Math.max(0.001, (now - (last || now - 16)) / 1000)); last = now;
     const sx = window.scrollX, sy = window.scrollY;
+    governor(now - (last2 || now), blasts.reduce((n, b) => n + b.shards.length, 0)); last2 = now;
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.imageSmoothingEnabled = false;
     let busy = false;
@@ -186,18 +200,23 @@ export function createStage(opts: StageOptions): Stage {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.globalAlpha = bl.healing ? Math.max(0, 1 - Math.max(0, p - 0.45) / 0.55) : Math.min(1, age / 60);
       ctx.drawImage(bl.crater, Math.round(bl.b.left - sx), Math.round(bl.b.top - sy), bl.b.width, bl.b.height);
-      // chunks
-      if (bl.snap) {
-        const sc = bl.scale; const sz = bl.shards.length ? bl.shards[0].size : 0;
+      // repair crew: arrives once the debris has settled, fetches chunks and carries them home, leaves before the heal
+      if (!reduced && !bl.crew && !bl.healing && age > CREW_ARRIVE_MS) bl.crew = spawnCrew(bl.hole, bl.seed, crewSize(bl.shards.length, reduced), CREW_EMOJI);
+      if (bl.crew) for (const c of bl.crew) stepCrew(c, bl.shards, dt, bl.healing || age > HEAL_AT_MS - 700);
+      // chunks (captured page pieces, or themed chips where there is no capture)
+      {
+        const sz = bl.shards.length ? bl.shards[0].size : 0; const cap = bl.cap; const sc = cap ? cap.scale : 1;
         for (const s of bl.shards) {
           if (bl.healing) healShard(s, p);
           const px = Math.round(s.x - sx), py = Math.round(s.y - sy);
           if (px < -sz - 4 || px > vw + sz + 4 || py < -sz - 4 || py > vh + sz + 4) continue;
           const cs = Math.cos(s.rot), sn = Math.sin(s.rot);
           ctx.setTransform(dpr * cs, dpr * sn, -dpr * sn, dpr * cs, px * dpr, py * dpr);
-          ctx.drawImage(bl.snap, s.sx * sc, s.sy * sc, s.size * sc, s.size * sc, -s.size / 2, -s.size / 2, s.size, s.size);
+          if (!s.proc && cap) ctx.drawImage(cap.canvas, (s.sx) * sc, (s.sy) * sc, s.size * sc, s.size * sc, -s.size / 2, -s.size / 2, s.size, s.size);
+          else { ctx.globalAlpha = s.ci === 3 ? 0.55 : 0.95; ctx.fillStyle = bl.palette[s.ci]; ctx.fillRect(-s.size / 2, -s.size / 2, s.size, s.size); ctx.globalAlpha = 1; }
         }
       }
+      if (bl.crew) for (const c of bl.crew) if (crewVisible(c)) drawCrew(c, sx, sy);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.globalAlpha = 1;
       // fire, flash, shockwave
       if (age < 1800 && !bl.healing) drawGlow(bl, age, sx, sy);
@@ -232,7 +251,7 @@ export function createStage(opts: StageOptions): Stage {
     for (const [id, c] of cursors) {
       const age = now - c.seen;
       if (age > CURSOR_GONE_MS) { cursors.delete(id); continue; }
-      const k = 1 - Math.exp(-dt * 18);
+      const k = 1 - Math.exp(-dt / (Math.hypot(c.x - c.dx, c.y - c.dy) > 400 ? 0.04 : 0.11)); // glide toward the last known spot (updates arrive about 4 times a second)
       if (Math.abs(c.x - c.dx) > 0.3 || Math.abs(c.y - c.dy) > 0.3) { c.dx += (c.x - c.dx) * k; c.dy += (c.y - c.dy) * k; busy = true; } else { c.dx = c.x; c.dy = c.y; }
       if (age > CURSOR_FADE_MS) busy = true;
       const a = age > CURSOR_FADE_MS ? 1 - (age - CURSOR_FADE_MS) / (CURSOR_GONE_MS - CURSOR_FADE_MS) : 1;
@@ -240,6 +259,36 @@ export function createStage(opts: StageOptions): Stage {
     }
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     if (busy) schedule(); else if (cursors.size) timer = window.setTimeout(() => { timer = 0; schedule(); }, 500);
+  }
+
+  function drawCrew(c: Crew, sx: number, sy: number) {
+    const x = c.x - sx, y = c.y - sy;
+    if (x < -30 || x > vw + 30 || y < -30 || y > vh + 30) return;
+    const moving = c.state === "fetch" || c.state === "carry" || c.state === "arrive" ? 1 : 0;
+    const hop = moving ? Math.abs(Math.sin(c.hop)) * 6 : 0;
+    const k = c.state === "leave" ? Math.max(0, 1 - c.t / 0.5) : Math.min(1, c.t / 0.25 + 0.2);
+    ctx.setTransform(dpr * c.face * k, 0, 0, dpr * k, x * dpr, (y - hop) * dpr);
+    ctx.font = "18px system-ui, 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.fillText(c.emoji, 0, 0);
+    ctx.fillStyle = "#ffb020"; ctx.beginPath(); ctx.arc(0, -8, 7, Math.PI, 0); ctx.fill(); ctx.fillRect(-8, -8, 16, 2); // tiny hard hat
+    if (c.state === "work") { ctx.save(); ctx.rotate(Math.sin(c.t * 22) * 0.7 - 0.3); ctx.font = "11px system-ui, 'Apple Color Emoji', sans-serif"; ctx.fillText("🔨", 12, -2); ctx.restore(); }
+    ctx.textAlign = "start";
+  }
+
+  /**
+   * If frames stay slow while debris is flying, quietly spend less, in steps: a lower pixel ratio and fewer chunks,
+   * then no more page captures (procedural chips), then a much smaller budget. Frame time includes the browser's
+   * own compositing, so this reacts to what the visitor actually feels, not just to our own code.
+   */
+  let slowFrames = 0, slowCaptures = 0, degraded = 0;
+  function governor(dtMs: number, chunks: number) {
+    if (chunks < 100 || dtMs > 500) { slowFrames = Math.max(0, slowFrames - 1); return; } // idle gaps and tab switches are not jank
+    slowFrames = dtMs > 40 ? slowFrames + 1 : Math.max(0, slowFrames - 2);
+    if (slowFrames < 20 || degraded >= 3) return;
+    degraded++; slowFrames = 0;
+    shardCap = Math.max(120, Math.round(shardCap * 0.6));
+    if (degraded === 1) { dprCap = Math.min(dprCap, 1.25); size(); }
+    else if (degraded === 2) { dprCap = 1; proceduralOnly = true; size(); }
   }
 
   function drawGlow(bl: Blast, age: number, sx: number, sy: number) {
@@ -296,17 +345,24 @@ export function createStage(opts: StageOptions): Stage {
   // ---- input --------------------------------------------------------------------------------------------------
   const touch = (e: Event) => { lastInput = Date.now(); if (paused) resume(); void e; };
 
+  // Cursors go out at 4 per second while moving (fewer as the room fills: see cursorInterval), always ending on the latest position.
+  let lastFlush = -Infinity;
   function flushCursor() {
     cursorTimer = 0;
     if (!pending || !session) return;
-    const p = pending; pending = null;
-    if (!session.cursor(Math.min(1, Math.max(0, p.x / docWidth())), p.y)) { /* rate limited or unchanged: the next move retries */ }
+    const p = pending; pending = null; lastFlush = performance.now();
+    session.cursor(Math.min(1, Math.max(0, p.x / docWidth())), p.y);
+  }
+  function queueCursor(minDelay = 0) {
+    const every = session?.cursorEvery;
+    if (cursorTimer || !every) return;
+    cursorTimer = window.setTimeout(flushCursor, Math.max(minDelay, every - (performance.now() - lastFlush)));
   }
   const onMove = (e: PointerEvent) => {
     touch(e);
     if (!session || (e.pointerType === "touch" && e.buttons === 0)) return;
     pending = toDoc(e.clientX, e.clientY);
-    if (!cursorTimer) cursorTimer = window.setTimeout(flushCursor, 85); // ~12 per second at most, always ending on the latest position
+    queueCursor();
   };
   const onDown = (e: PointerEvent) => {
     touch(e);
@@ -314,7 +370,7 @@ export function createStage(opts: StageOptions): Stage {
     const p = toDoc(e.clientX, e.clientY);
     addRipple(p.x, p.y, me.color); schedule();
     session?.tap(Math.min(1, Math.max(0, p.x / docWidth())), p.y);
-    if (e.pointerType === "touch") { pending = p; if (!cursorTimer) cursorTimer = window.setTimeout(flushCursor, 40); }
+    if (e.pointerType === "touch") { pending = p; queueCursor(40); }
   };
 
   function fire(clientX: number, clientY: number) {
@@ -323,7 +379,7 @@ export function createStage(opts: StageOptions): Stage {
     if (now - (lastFire[weapon] ?? -1e9) < spec.cooldown || blasts.length >= MAX_BLASTS) return;
     const p = toDoc(clientX, clientY);
     const seed = (crypto.getRandomValues(new Uint32Array(1))[0]) >>> 0;
-    const listening = !!session && session.online && session.peerCount > 1;
+    const listening = !!session?.listening;
     const sent = session?.blast(spec.id, Math.min(1, Math.max(0, p.x / docWidth())), p.y, seed) ?? false;
     if (listening && !sent) return; // over the send budget: nobody would see it, so it does not happen
     lastFire[weapon] = now;
@@ -342,17 +398,27 @@ export function createStage(opts: StageOptions): Stage {
     if (s && Math.hypot(e.clientX - s.x, e.clientY - s.y) < 12 && performance.now() - s.t < 600) fire(e.clientX, e.clientY);
   };
   const cCancel = () => { touchStart = null; };
-  const onScroll = () => { if (blasts.length || cursors.size || ripples.length) schedule(); };
+  const onScroll = () => { if (blasts.length || cursors.size || ripples.length) schedule(); clearTimeout(scrollTimer); scrollTimer = window.setTimeout(warm, 600); };
   const onKey = (e: Event) => touch(e);
 
   // ---- connection hygiene: leave when hidden or idle so idle tabs never hold a connection slot -----------------
-  function pause() { if (paused) return; paused = true; session?.leave(); cursors.clear(); }
-  function resume() { if (!paused) return; paused = false; lastInput = Date.now(); if (path) session?.join(path); }
+  function pause() { if (paused) return; paused = true; session?.leave(); cursors.clear(); opts.onPause?.(true); schedule(); }
+  function resume() { if (!paused) return; paused = false; lastInput = Date.now(); opts.onPause?.(false); if (path) session?.join(path); }
+  // Background tabs stop sending and drop everything they receive at once, and leave the room after a short while.
   const onVisibility = () => {
-    if (document.hidden) { hiddenTimer = window.setTimeout(pause, HIDDEN_LEAVE_MS); }
-    else { clearTimeout(hiddenTimer); resume(); schedule(); }
+    if (document.hidden) { session?.suspend(true); cursors.clear(); hiddenTimer = window.setTimeout(pause, HIDDEN_LEAVE_MS); }
+    else { clearTimeout(hiddenTimer); session?.suspend(false); resume(); schedule(); }
   };
   const idleTimer = window.setInterval(() => { if (!document.hidden && Date.now() - lastInput > IDLE_LEAVE_MS) pause(); }, 15000);
+
+  // Warm the cache of CSS background images while the browser is idle, so the first blast already has them.
+  let warmTimer = 0;
+  const warm = () => {
+    if (proceduralOnly || document.hidden) return;
+    const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number };
+    if (typeof w.requestIdleCallback === "function") w.requestIdleCallback(() => { try { warmBackgrounds(); } catch { /* optional */ } }, { timeout: 3000 }); else warmTimer = window.setTimeout(() => { try { warmBackgrounds(); } catch { /* optional */ } }, 1500);
+  };
+  let scrollTimer = 0;
 
   window.addEventListener("pointermove", onMove, { passive: true });
   window.addEventListener("pointerdown", onDown, { passive: true, capture: true });
@@ -361,20 +427,20 @@ export function createStage(opts: StageOptions): Stage {
   window.addEventListener("resize", size, { passive: true });
   document.addEventListener("visibilitychange", onVisibility);
   canvas.addEventListener("pointerdown", cDown); canvas.addEventListener("pointerup", cUp); canvas.addEventListener("pointercancel", cCancel);
-  size();
+  size(); warm();
 
   return {
     me,
     setPath(p) {
       if (p === path) return; path = p;
-      for (const b of blasts.splice(0)) b.snap = null;
-      sparks.length = 0; ripples.length = 0; cursors.clear(); schedule();
+      blasts.length = 0;
+      sparks.length = 0; ripples.length = 0; cursors.clear(); schedule(); warm();
       if (!paused) session?.join(p);
     },
     setWeapon(w) { weapon = w; },
     setReduced(r) { reduced = r; },
     destroy() {
-      destroyed = true; cancelAnimationFrame(raf); clearTimeout(timer); clearTimeout(cursorTimer); clearTimeout(hiddenTimer); clearInterval(idleTimer);
+      destroyed = true; cancelAnimationFrame(raf); clearTimeout(timer); clearTimeout(cursorTimer); clearTimeout(hiddenTimer); clearInterval(idleTimer); clearTimeout(warmTimer); clearTimeout(scrollTimer);
       session?.leave();
       window.removeEventListener("pointermove", onMove); window.removeEventListener("pointerdown", onDown, { capture: true } as EventListenerOptions);
       window.removeEventListener("keydown", onKey); window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", size);

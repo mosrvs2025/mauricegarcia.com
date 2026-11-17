@@ -1,6 +1,7 @@
 import type { PlayConfig } from "./config";
 
-export type LinkStatus = "connecting" | "online" | "offline";
+/** failed: gave up after repeated errors, the playground carries on with local effects only. */
+export type LinkStatus = "connecting" | "online" | "offline" | "failed";
 export type RoomEvents = {
   onMessage(event: string, payload: unknown): void;
   /** The ids currently present in the room, including this client. */
@@ -21,7 +22,7 @@ export function supabaseTransport(config: PlayConfig): Transport {
   type Client = import("@supabase/realtime-js").RealtimeClient;
   let clientPromise: Promise<Client> | null = null;
   const getClient = () => (clientPromise ??= import("@supabase/realtime-js").then(({ RealtimeClient }) =>
-    new RealtimeClient(`${config.url}/realtime/v1`, { params: { apikey: config.key, eventsPerSecond: 20 }, heartbeatIntervalMs: 25000 })));
+    new RealtimeClient(`${config.url}/realtime/v1`, { params: { apikey: config.key, eventsPerSecond: 10 }, heartbeatIntervalMs: 25000 })));
 
   return {
     join(room, id, events) {
@@ -40,11 +41,11 @@ export function supabaseTransport(config: PlayConfig): Transport {
             if (closed) return;
             if (status === "SUBSCRIBED") { failures = 0; events.onStatus("online"); void ch.track({ v: 1 }); }
             else if (status === "CHANNEL_ERROR" || status === "TIMED_OUT") {
-              events.onStatus("offline");
-              if (++failures >= MAX_FAILURES) { closed = true; void c.removeChannel(ch); }
+              if (++failures >= MAX_FAILURES) { closed = true; void c.removeChannel(ch); events.onStatus("failed"); }
+              else events.onStatus("offline");
             } else if (status === "CLOSED") events.onStatus("offline");
           });
-      }).catch(() => { if (!closed) events.onStatus("offline"); });
+      }).catch(() => { if (!closed) { closed = true; events.onStatus("failed"); } });
       return {
         send(event, payload) { if (!closed && channel) void channel.send({ type: "broadcast", event, payload }); },
         leave() {

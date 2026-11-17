@@ -10,7 +10,8 @@ import { LEGACY_PREFIXES } from "@/lib/skin";
 import { MOTION_EXEMPT } from "@/lib/motion";
 
 const CONFIG = readConfig();
-const STORE = "mg-play";
+const IN_KEY = "mg-play-in"; // sessionStorage: this tab chose to enter (a new visit starts out, and must opt in again)
+const MIN_KEY = "mg-play-min"; // localStorage: the entry card was minimised (a UI preference, nothing identifying)
 const ID_KEY = "mg-play-id";
 const ICONS: Record<WeaponId, string> = { blaster: "💥", bomb: "💣", laser: "⚡", hammer: "🔨" };
 const ORDER: WeaponId[] = ["blaster", "bomb", "laser", "hammer"];
@@ -19,17 +20,22 @@ type StageHandle = import("@/lib/play/stage").Stage;
 
 /**
  * Anonymous live playground: other visitors' cursors and taps, and a weapons mode that blasts the page with
- * canvas debris. The real page is never modified. Off by default for visitors who prefer reduced motion or have
- * Data Saver on, one click to turn off, and nothing loads until it is on and the page is idle.
+ * canvas debris. The real page is never modified.
+ *
+ * Opt-in: nothing loads and no connection is made until the visitor clicks "Enter the Playground", whose card
+ * carries the privacy notice. Exit disconnects and goes back to the card. The canvas engine and the realtime
+ * library are separate lazy chunks.
  */
 export function Playground() {
   const path = usePathname() || "/";
   const [ready, setReady] = useState(false);
-  const [enabled, setEnabled] = useState(false);
+  const [entered, setEntered] = useState(false);
+  const [min, setMin] = useState(false);
   const [armed, setArmed] = useState(false);
   const [weapon, setWeapon] = useState<WeaponId>("blaster");
   const [peers, setPeers] = useState(1);
   const [status, setStatus] = useState<LinkStatus>("connecting");
+  const [paused, setPaused] = useState(false);
   const [shots, setShots] = useState<{ n: number; w: WeaponId; ms: number }>({ n: 0, w: "blaster", ms: 0 });
   const [note, setNote] = useState("");
   const [id, setId] = useState("");
@@ -37,25 +43,20 @@ export function Playground() {
   const stage = useRef<StageHandle | null>(null);
   const pathRef = useRef(path); pathRef.current = path;
   const toggle = useRef<HTMLButtonElement>(null);
+  const enterBtn = useRef<HTMLButtonElement>(null);
+  const focusNext = useRef<"bar" | "entry" | null>(null);
   const hidden = MOTION_EXEMPT.test(path) || LEGACY_PREFIXES.test(path);
-  const active = ready && enabled && !hidden && CONFIG.enabled;
+  const active = ready && entered && !hidden && CONFIG.enabled;
 
-  // First run: decide the default (off for reduced motion or Data Saver unless the visitor chose), then remember it.
   useEffect(() => {
-    let stored: string | null = null;
-    try { stored = localStorage.getItem(STORE); } catch { /* storage may be blocked */ }
-    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const saver = !!(navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
-    setEnabled(stored === "on" || (stored !== "off" && !reduce && !saver));
+    try { setEntered(sessionStorage.getItem(IN_KEY) === "1"); setMin(localStorage.getItem(MIN_KEY) === "1"); } catch { /* storage may be blocked */ }
     let sid = "";
     try { sid = sessionStorage.getItem(ID_KEY) || ""; } catch { /* ignore */ }
     if (!/^[a-z0-9]{8}$/.test(sid)) { sid = randomId(); try { sessionStorage.setItem(ID_KEY, sid); } catch { /* ignore */ } }
     setId(sid); setReady(true);
   }, []);
 
-  const remember = (v: "on" | "off") => { try { localStorage.setItem(STORE, v); } catch { /* ignore */ } };
-
-  // Start the canvas engine when the page is idle, so it never competes with first paint.
+  // Nothing at all happens until the visitor has entered. Then the engine starts when the page is idle.
   useEffect(() => {
     if (!active || !id) return;
     let cancelled = false; let handle: StageHandle | null = null;
@@ -69,20 +70,25 @@ export function Playground() {
       handle = createStage({
         canvas: canvas.current, transport, id,
         reduced: matchMedia("(prefers-reduced-motion: reduce)").matches,
-        onPeers: setPeers, onStatus: setStatus,
+        saver: !!(navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData,
+        onPeers: setPeers, onStatus: setStatus, onPause: setPaused,
         onFire: (w, ms) => setShots((s) => ({ n: s.n + 1, w, ms })),
       });
       stage.current = handle; handle.setPath(pathRef.current);
     };
     const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number; cancelIdleCallback?: (n: number) => void };
     const useIdle = typeof w.requestIdleCallback === "function";
-    const t = useIdle ? w.requestIdleCallback!(() => void start(), { timeout: 2500 }) : window.setTimeout(() => void start(), 1200);
-    return () => { cancelled = true; if (useIdle) w.cancelIdleCallback?.(t); else clearTimeout(t); handle?.destroy(); stage.current = null; setPeers(1); };
+    const t = useIdle ? w.requestIdleCallback!(() => void start(), { timeout: 1500 }) : window.setTimeout(() => void start(), 600);
+    return () => { cancelled = true; if (useIdle) w.cancelIdleCallback?.(t); else clearTimeout(t); handle?.destroy(); stage.current = null; setPeers(1); setStatus("connecting"); setPaused(false); };
   }, [active, id]);
 
   useEffect(() => { const t = setTimeout(() => stage.current?.setPath(path), 250); return () => clearTimeout(t); }, [path]);
   useEffect(() => { stage.current?.setWeapon(armed && active ? weapon : null); }, [armed, weapon, active]);
   useEffect(() => { if (!active) setArmed(false); }, [active]);
+  useEffect(() => { // keep keyboard focus somewhere sensible when the controls swap
+    if (focusNext.current === "bar") toggle.current?.focus(); else if (focusNext.current === "entry") enterBtn.current?.focus();
+    focusNext.current = null;
+  }, [entered]);
 
   // Keyboard: Escape leaves weapons mode; 1 to 4 pick a weapon while armed.
   useEffect(() => {
@@ -98,25 +104,50 @@ export function Playground() {
     return () => document.removeEventListener("keydown", onKey);
   }, [armed]);
 
-  const turnOn = useCallback(() => { setEnabled(true); remember("on"); setNote("Live playground on."); }, []);
-  const turnOff = useCallback(() => { setEnabled(false); setArmed(false); remember("off"); setNote("Live playground off."); }, []);
+  const enter = useCallback(() => { setEntered(true); try { sessionStorage.setItem(IN_KEY, "1"); } catch { /* ignore */ } focusNext.current = "bar"; setNote("You are in the playground. Anonymous and temporary."); }, []);
+  const exit = useCallback(() => { setEntered(false); setArmed(false); try { sessionStorage.removeItem(IN_KEY); } catch { /* ignore */ } focusNext.current = "entry"; setNote("Left the playground. Disconnected."); }, []);
+  const minimise = (v: boolean) => { setMin(v); try { if (v) localStorage.setItem(MIN_KEY, "1"); else localStorage.removeItem(MIN_KEY); } catch { /* ignore */ } };
   const arm = () => { const next = !armed; setArmed(next); setNote(next ? `Weapons mode on, ${WEAPONS[weapon].label}. Click or tap the page to fire. Escape to stop.` : "Weapons mode off."); };
 
   if (!ready || hidden || !CONFIG.enabled) return null;
   const me = id ? identityFromId(id) : null;
   const lonely = peers <= 1;
-  const link = !CONFIG.realtime ? "solo" : status === "online" ? (lonely ? "just you" : `${peers} here`) : status === "connecting" ? "connecting" : "offline";
+  const link = !CONFIG.realtime ? "solo" : paused ? "paused" : status === "online" ? (lonely ? "just you" : `${peers} here`) : status === "connecting" ? "connecting…" : status === "failed" ? "local only" : "reconnecting…";
+  const privacy = CONFIG.realtime
+    ? "Anonymous: a random animal name, no accounts, nothing stored. Live play uses Supabase Realtime, which sees your IP address while you are in."
+    : "Runs on this device only. Nothing is sent anywhere.";
 
   return (
     <>
-      {enabled && <canvas ref={canvas} className={`play-canvas${armed ? " is-armed" : ""}`} aria-hidden="true" data-play />}
-      <div className="play-dock" data-play role="group" aria-label="Live playground">
-        {!enabled ? (
-          <button type="button" className="play-fab" onClick={turnOn} aria-label="Turn on the live playground: see other visitors and blast the page">
-            <span aria-hidden="true">✦</span><span className="play-fab-text">Play</span>
-          </button>
+      {entered && <canvas ref={canvas} className={`play-canvas${armed ? " is-armed" : ""}`} aria-hidden="true" data-play />}
+      <div className="play-dock" data-play role="group" aria-label="Playground">
+        {!entered ? (
+          min ? (
+            <button type="button" className="play-fab" onClick={() => minimise(false)} aria-label="Show the Enter the Playground card">
+              <span className="play-spark" aria-hidden="true">✦</span><span className="play-fab-text">Playground</span>
+            </button>
+          ) : (
+            <div className="play-entry">
+              <div className="play-entry-row">
+                <button ref={enterBtn} type="button" className="play-enter" onClick={enter} aria-describedby="play-privacy">
+                  <span className="play-spark" aria-hidden="true">✦</span> Enter the Playground
+                </button>
+                <button type="button" className="play-x" onClick={() => minimise(true)} aria-label="Minimise this card">×</button>
+              </div>
+              <p id="play-privacy" className="play-privacy">{privacy}</p>
+            </div>
+          )
         ) : (
           <>
+            <div className="play-bar">
+              <span className="play-who" title={me ? `You are ${me.name}. ${privacy}` : undefined}>
+                <i className="play-dot" style={{ background: me?.color }} aria-hidden="true" />
+                <span className="play-name">{me ? `${me.emoji} ${me.name}` : ""}</span>
+                <span className="play-count"><span className="play-sep" aria-hidden="true"> · </span>{link}</span>
+              </span>
+              <button ref={toggle} type="button" className={`play-btn${armed ? " armed" : ""}`} aria-pressed={armed} onClick={arm}>
+                <span aria-hidden="true">{armed ? ICONS[weapon] : "🎯"}</span> Weapons
+              </button>
             {armed && (
               <fieldset className="play-picker">
                 <legend className="play-sr">Weapon</legend>
@@ -133,16 +164,7 @@ export function Playground() {
                 </div>
               </fieldset>
             )}
-            <div className="play-bar">
-              <span className="play-who" title={me ? `You are ${me.name}. Anonymous and temporary.` : undefined}>
-                <i className="play-dot" style={{ background: me?.color }} aria-hidden="true" />
-                <span className="play-name">{me ? `${me.emoji} ${me.name}` : ""}</span>
-                <span className="play-count"><span className="play-sep" aria-hidden="true"> · </span>{link}</span>
-              </span>
-              <button ref={toggle} type="button" className={`play-btn${armed ? " armed" : ""}`} aria-pressed={armed} onClick={arm}>
-                <span aria-hidden="true">{armed ? ICONS[weapon] : "🎯"}</span> Weapons
-              </button>
-              <button type="button" className="play-btn play-off" onClick={turnOff} aria-label="Turn the live playground off">Off</button>
+              <button type="button" className="play-btn play-off" onClick={exit} aria-label="Exit the playground and disconnect">Exit</button>
             </div>
           </>
         )}

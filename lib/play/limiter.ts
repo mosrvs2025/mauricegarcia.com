@@ -28,8 +28,23 @@ export class KeyedLimiter {
   forget(key: string) { this.buckets.delete(key); }
 }
 
-/** Outbound and inbound budgets, per message kind. Receivers enforce theirs too: there is no server in the middle. */
+/**
+ * Outbound and inbound budgets, per message kind: [tokens per second, burst].
+ * Receivers enforce theirs too, per sender and in total: there is no server in the middle, and these client-side
+ * limits are a courtesy and a defence in depth, not an authority (see docs/PLAYGROUND.md).
+ */
 export const LIMITS = {
-  out: { c: [12, 3], t: [3, 4], b: [2.5, 3] },
-  in: { c: [20, 6], t: [6, 6], b: [4, 4] },
+  out: { c: [5, 2], t: [3, 4], b: [2.5, 3] },
+  in: { c: [8, 4], t: [6, 6], b: [4, 4] },
+  /** Across all senders, so rotating fake ids cannot get around the per-sender buckets. */
+  total: { all: [120, 60], c: [60, 30], t: [25, 15], b: [8, 6] },
 } as const;
+
+/** Milliseconds between cursor messages while moving, by how many visitors are in the room. null: stop sending cursors. */
+export function cursorInterval(peers: number): number | null {
+  if (peers <= 4) return 250;
+  if (peers <= 10) return 400;
+  if (peers <= 25) return 800;
+  if (peers <= 60) return 1500;
+  return null;
+}
