@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { IntroOverlay } from "@/components/IntroOverlay";
 import { PageTransition } from "@/components/PageTransition";
+import { Playground } from "@/components/play/Playground";
 import { QuickContact } from "@/components/QuickContact";
 import { isPreviewBuild } from "@/lib/content/visibility";
 import { INTRO_BOOT_SCRIPT, INTRO_CSS } from "@/lib/motion";
@@ -18,6 +19,7 @@ import "./globals.css";
 import "./journal.css";
 import "./skins.css";
 import "./motion.css";
+import "./play.css";
 
 const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces", display: "swap", axes: ["opsz"] });
 const instrument = Instrument_Sans({ subsets: ["latin"], variable: "--font-instrument", display: "swap" });
@@ -60,6 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main" tabIndex={-1}>{children}</main>
         <Footer />
         <QuickContact email={site.email} />
+        <Playground />
         <PageTransition projectTracks={projectTracks} />
       </body>
     </html>

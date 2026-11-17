@@ -111,6 +111,7 @@ node scripts/capture-screenshots.cjs   # terminal 2; needs Playwright with Chrom
 | `content/` | Projects, updates, posts, `now.json`, `sources.json`, machine candidates |
 | `lib/content/` | Schemas, loader, visibility rules (`visibility.ts` is the one gate), safe Markdown |
 | `lib/motion.ts`, `components/IntroOverlay.tsx`, `components/PageTransition.tsx`, `components/BlackHole.tsx` | The intro and page transitions |
+| `lib/play/`, `components/play/`, `app/play.css` | The anonymous live playground (cursors, weapons mode); see `docs/PLAYGROUND.md` |
 | `components/ProjectSpotlight.tsx` | The home page feature for one project (Ultimate+) |
 | `lib/sync/`, `scripts/sync.ts` | GitHub to candidates to drafts; publication rule |
 | `lib/studio/`, `app/studio/`, `app/api/studio/` | Owner editor: auth, Git-backed store, save, publish, rollback |
