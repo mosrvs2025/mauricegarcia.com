@@ -18,7 +18,7 @@ import { PlaygroundTrigger } from "@/components/PlaygroundTrigger";
 import { ProjectSpotlight } from "@/components/ProjectSpotlight";
 import Image from "next/image";
 import { InstagramPortrait } from "@/components/InstagramPortrait";
-import { SecretShelf } from "@/components/SecretShelf";
+import { SecretShelf, SecretShelfTrigger } from "@/components/SecretShelf";
 
 // The animated grid is decorative: load it after the page is interactive so it never delays first paint.
 const HeroField = dynamic(() => import("@/components/HeroField").then((m) => m.HeroField));
@@ -46,6 +46,7 @@ export default function HomePage() {
               <div>
                 <p className="eyebrow">Maurice Garcia / Experience Engineer</p>
                 <a className="home-ig-handle" href={site.instagram} target="_blank" rel="noopener noreferrer">@{site.instagramHandle}</a>
+                <SecretShelfTrigger />
               </div>
             </div>
             <div className="hero-note">
@@ -71,7 +72,7 @@ export default function HomePage() {
               <Link href="#case-files" className="btn btn-fill j-shine">Explore the work <span aria-hidden="true">↘</span></Link>
               <Link href="/connect?intent=paid-work" className="j-link j-arrow">Let&apos;s build something</Link>
             </div>
-            <div className="home-curiosity"><SurpriseMe demos={demos} /><Link href="/v/game" className="j-link" data-track="game_version">Play this site as a game</Link><SecretShelf /></div>
+            <div className="home-curiosity" data-float-clear><SurpriseMe demos={demos} /><Link href="/v/game" className="j-link" data-track="game_version">Play this site as a game</Link><SecretShelf /></div>
           </div>
           <HomeShowcase projects={showcase} />
           <ol className="hero-verbs" aria-label="How to use this site">

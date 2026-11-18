@@ -12,8 +12,8 @@ export function PlaygroundTrigger({ children }: { children: ReactNode }) {
     const target = document.querySelector<HTMLElement>(".play-dock .play-enter, .play-dock .play-fab, .play-dock .play-btn:not(.play-off)");
     if (!target) { setMissing(true); return; }
     setMissing(false);
+    target.setAttribute("data-nudge", ""); // first, so the floating controls do not step aside (and become unfocusable) as it gains focus
     target.focus();
-    target.setAttribute("data-nudge", "");
     window.setTimeout(() => target.removeAttribute("data-nudge"), 2400);
   };
   return (

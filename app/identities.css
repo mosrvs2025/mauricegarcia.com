@@ -182,7 +182,12 @@ html[data-kind="identity"] .showcase-selector button[aria-pressed="true"] { box-
 html[data-kind="identity"] .showcase-selector button { color:var(--j-muted); }
 html[data-kind="identity"] .showcase-note, html[data-kind="identity"] .showcase-caption .eyebrow { color:var(--j-muted); }
 html[data-kind="identity"] .showcase-caption h2 { font-size:1.9rem; text-transform:none; }
-html[data-kind="identity"] .home-curiosity .j-surprise button { color:var(--j-link); }
+html[data-kind="identity"] .home-curiosity .j-surprise button { color:var(--j-link); font-size:1rem; font-weight:500; }
+/* Counters (01 / 03, File 01, 01 / Unwind, section numbers): one numeric face, lining and tabular, a plain zero. */
+html[data-kind="identity"] :is(.j-num, .cf-no, .secret-doors span, .hero-verbs a b, .hero-verb-btn b) { font-family:var(--font-num); font-weight:700; font-variant-numeric:tabular-nums lining-nums; letter-spacing:.06em; }
+html[data-kind="identity"] .showcase-selector button > span:first-child { font-size:.72rem; opacity:1; }
+html[data-skin="rogue-instrument"] :is(.j-num, .cf-no) { font-size:1.15em; }
+html[data-kind="identity"] .home-page .j-head .eyebrow::before { font-family:var(--font-num); font-variant-numeric:tabular-nums lining-nums; }
 html[data-kind="identity"] .curiosity-switch { color:var(--j-link); }
 html[data-kind="identity"] .home-index a:hover { color:var(--j-link); }
 @media (max-width:1050px) { html[data-kind="identity"] .hero-copy { grid-column:1 / span 6; } html[data-kind="identity"] .home-showcase { grid-column:7 / -1; } }

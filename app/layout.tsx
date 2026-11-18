@@ -9,6 +9,7 @@ import { IntroOverlay } from "@/components/IntroOverlay";
 import { PageTransition } from "@/components/PageTransition";
 import { Playground } from "@/components/play/Playground";
 import { QuickContact } from "@/components/QuickContact";
+import { FloatGuard } from "@/components/FloatGuard";
 import { isPreviewBuild } from "@/lib/content/visibility";
 import { INTRO_BOOT_SCRIPT, INTRO_CSS } from "@/lib/motion";
 import { listedProjects } from "@/lib/content/query";
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <QuickContact email={site.email} />
         <Playground />
+        <FloatGuard />
         <PageTransition projectTracks={projectTracks} />
       </body>
     </html>
