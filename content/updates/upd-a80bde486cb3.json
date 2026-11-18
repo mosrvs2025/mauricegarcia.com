@@ -1,0 +1,21 @@
+{
+  "id": "upd-a80bde486cb3",
+  "slug": "2026-11-17-ultimate-1-merged-pull-request-2026-11-17-to-2026-11-17",
+  "title": "Ultimate+: 1 merged pull request, 2026-11-17 to 2026-11-17",
+  "summary": "1 merged pull request was completed between 2026-11-17 and 2026-11-17.",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "body": "Squeeze: play the clip through as a flipbook while compressing",
+  "kind": "progress",
+  "projectId": "prj-ultimate",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-11-17T23:59:59.000Z",
+  "tags": [],
+  "evidence": [],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-ultimate",
+    "eventId": "digest:src-ultimate:2026-11-17",
+    "importedAt": "2026-11-18T03:41:47.721Z"
+  }
+}

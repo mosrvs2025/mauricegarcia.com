@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-ultimate",
+  "eventId": "digest:src-ultimate:2026-11-17",
+  "eventAt": "2026-11-17T23:59:59.000Z",
+  "title": "Ultimate+: 1 merged pull request, 2026-11-17 to 2026-11-17",
+  "summary": "1 merged pull request was completed between 2026-11-17 and 2026-11-17.",
+  "changed": "Squeeze: play the clip through as a flipbook while compressing",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-18T03:41:47.721Z",
+    "contentHash": "110dc571677662d76cfc7ce3dd9d4346"
+  }
+}
