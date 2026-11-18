@@ -16,7 +16,7 @@ const path = require("node:path");
 const BASE = process.env.BASE_URL || "http://localhost:3000";
 const OUT = path.join(__dirname, "..", "docs", "screenshots");
 const RAW = fs.mkdtempSync(path.join(os.tmpdir(), "mg-shots-"));
-const SKINS = ["paper", "terminal", "pop", "glass", "swiss", "arcade"];
+const SKINS = ["open-case", "rogue-instrument", "unauthorized-manual", "workshop", "paper", "terminal", "pop", "glass", "swiss", "arcade"];
 
 async function context(browser, { skin, w = 1440, h = 900, skipIntro = true, ...rest } = {}) {
   const ctx = await browser.newContext({ viewport: { width: w, height: h }, ...rest });

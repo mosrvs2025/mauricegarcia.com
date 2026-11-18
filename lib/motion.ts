@@ -43,7 +43,7 @@ export function animatesTo(url: URL, from: Location | URL): boolean {
  * retract upward 0.72s each, 0.14s apart, finishing at 3.4s. Reduced motion: a static mark that fades in 0.3s.
  *
  * Palette comes from the active skin's own variables (--j-bg, --j-accent, --j-text, --j-surface), set before
- * first paint by SKIN_BOOT_SCRIPT, so each skin gets its own intro. Workshop (no data-skin) is #12100D with the
+ * first paint by SKIN_BOOT_SCRIPT, so each skin gets its own intro. Workshop is #12100D with the
  * brand rust #ff6535, and a rust-to-gold disk (--b to --hot; other skins derive --hot from their accent). Band a is the
  * boot colour and carries the black hole and wordmark; b and c are revealed as it lifts.
  * Bands must be opaque (never the translucent Glass --j-surface), or the page would show through.
@@ -52,7 +52,10 @@ export const INTRO_CSS = `
 #mg-intro{display:none}
 html.mg-intro-on{overflow:hidden}
 html.mg-intro-on #mg-intro{display:block;position:fixed;inset:0;z-index:2147483000;overscroll-behavior:contain;touch-action:none;animation:mgi-failsafe 0s ${INTRO_FAILSAFE_MS / 1000}s forwards;--s:clamp(150px,28vmin,240px);--a:var(--j-bg,#12100D);--b:var(--j-accent,#ff6535);--c:color-mix(in srgb,var(--b) 24%,var(--a));--ink:var(--j-text,#f3ede3);--hot:color-mix(in srgb,var(--b) 45%,#fff);--void:color-mix(in srgb,var(--a) 10%,#000);--wm:#f3ede3}
-html:not([data-skin]) #mg-intro{--a:#12100D;--b:#ff6535;--hot:#ffc857;--ink:#f3ede3}
+html[data-skin="workshop"] #mg-intro{--a:#12100D;--b:#ff6535;--hot:#ffc857;--ink:#f3ede3}
+html[data-skin="open-case"] #mg-intro{--a:#181B1C;--b:#C73723;--c:#F2F0EA;--hot:#D5F067;--ink:#F2F0EA;--wm:#F2F0EA;--void:#0B0C0C}
+html[data-skin="rogue-instrument"] #mg-intro{--a:#0D1214;--b:#D6F24D;--c:#141B1E;--hot:#5FC4C8;--ink:#E7EAE4;--wm:#E7EAE4;--void:#05080A}
+html[data-skin="unauthorized-manual"] #mg-intro{--a:#11100F;--b:#174CDB;--c:#EFD967;--hot:#FF6E45;--ink:#F6EDE2;--wm:#F6EDE2;--void:#050505}
 html[data-skin="paper"] #mg-intro{--c:var(--j-text)}
 html[data-skin="pop"] #mg-intro{--c:var(--j-text)}
 html[data-skin="swiss"] #mg-intro{--c:var(--j-text)}
@@ -68,6 +71,9 @@ html[data-skin="glass"] #mg-intro{--c:color-mix(in srgb,var(--b) 32%,var(--a));-
 #mg-intro .word{grid-area:1/1;z-index:3;font-family:var(--j-font-display,var(--font-display,Georgia,serif));font-weight:800;font-size:clamp(4.5rem,17vw,9.5rem);letter-spacing:-.11em;line-height:1;color:var(--wm);clip-path:circle(0% at 50% 50%);animation:mgi-iris .55s cubic-bezier(.6,0,.2,1) 1.65s forwards}
 #mg-intro .word b{display:inline-block;font-weight:inherit;font-size:.42em;vertical-align:top;margin-left:.14em;color:var(--b);animation:mgi-settle 1.1s cubic-bezier(.2,.7,.2,1) 1.7s backwards}
 html[data-skin="terminal"] #mg-intro .word,html[data-skin="arcade"] #mg-intro .word{letter-spacing:-.04em}
+html[data-kind="identity"] #mg-intro .word{font-weight:var(--j-display-weight,800);font-stretch:var(--j-stretch,100%);letter-spacing:-.05em;text-transform:lowercase}
+html[data-kind="identity"] #mg-intro .word b{font-size:inherit;display:inline-block;width:.2em;height:.2em;margin-left:.07em;vertical-align:baseline;border-radius:0;background:var(--b);color:transparent;overflow:hidden;animation:none}
+html[data-skin="open-case"] #mg-intro .word b{border-radius:50%}
 html.mg-intro-skip #mg-intro{animation:mgi-skip .25s ease forwards}
 @keyframes mgi-up{from{clip-path:inset(0 0 0 0)}to{clip-path:inset(0 0 100% 0)}}
 @keyframes mgi-bh-in{from{opacity:0;scale:.5}}
@@ -100,5 +106,5 @@ function onS(e){if(e.target.closest&&e.target.closest("#mg-intro"))skip()}
 function onK(e){if(e.key==="Escape")skip()}
 document.addEventListener("animationend",onA,true);document.addEventListener("click",onS,true);document.addEventListener("keydown",onK,true);t=setTimeout(end,${INTRO_FAILSAFE_MS})})();`;
 
-/** Every skin id the picker offers must have an intro palette (default tokens cover Workshop). Used by tests. */
+/** Every skin id the switcher offers must have an intro palette (its own override above, or the variable-driven default). Used by tests. */
 export const INTRO_SKIN_IDS = SITE_SKINS.map((s) => s.id);

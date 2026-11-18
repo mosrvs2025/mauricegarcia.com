@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import vm from "node:vm";
 import { test } from "node:test";
 import { capabilities } from "../lib/capabilities";
@@ -6,7 +7,7 @@ import { lessonFrontmatterSchema } from "../lib/content/schemas";
 import { loadProjects, loadSources } from "../lib/content/load";
 import { services } from "../lib/services";
 import { youtubeChannelUrl } from "../lib/site";
-import { LEGACY_PREFIXES, SITE_SKINS, SKIN_BOOT_SCRIPT } from "../lib/skin";
+import { CLASSIC_SKINS, DEFAULT_SKIN, IDENTITY_SKINS, LEGACY_PREFIXES, SITE_SKINS, SKIN_BOOT_SCRIPT, skinMeta } from "../lib/skin";
 import { isShown } from "../lib/content/visibility";
 
 // These run against the real content in this repository.
@@ -69,26 +70,64 @@ test("Learn: lessons need real YouTube ids, the channel link is never invented, 
   delete process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_URL;
 });
 
-test("style switcher: boot script is valid, only applies known styles, and skips legacy pages", () => {
-  const run = (path: string, search: string, saved: string | null) => {
+test("style switcher: boot script is valid, always sets data-skin, only applies known styles, and sends legacy pages to the classic look", () => {
+  const run = (path: string, search: string, saved: string | null, blocked = false) => {
     const store: Record<string, string> = saved ? { "mg-skin": saved } : {};
     const attrs: Record<string, string> = {};
-    const ctx = { location: { pathname: path, search }, URLSearchParams, localStorage: { getItem: (k: string) => store[k] ?? null, setItem: (k: string, v: string) => { store[k] = v; }, removeItem: (k: string) => { delete store[k]; } }, document: { documentElement: { setAttribute: (k: string, v: string) => { attrs[k] = v; }, removeAttribute: (k: string) => { delete attrs[k]; } } } };
+    const blockedStorage = () => { throw new Error("storage blocked"); };
+    const localStorage = blocked
+      ? { getItem: blockedStorage, setItem: blockedStorage, removeItem: blockedStorage }
+      : { getItem: (k: string) => store[k] ?? null, setItem: (k: string, v: string) => { store[k] = v; }, removeItem: (k: string) => { delete store[k]; } };
+    const ctx = { location: { pathname: path, search }, URLSearchParams, localStorage, document: { documentElement: { setAttribute: (k: string, v: string) => { attrs[k] = v; }, removeAttribute: (k: string) => { delete attrs[k]; } } } };
     vm.runInNewContext(SKIN_BOOT_SCRIPT, ctx);
     return { attrs, store };
   };
-  assert.equal(run("/projects", "", "paper").attrs["data-skin"], "paper");
-  assert.equal(run("/projects", "?skin=terminal", null).attrs["data-skin"], "terminal", "shareable ?skin= link");
-  assert.equal(run("/projects", "?skin=terminal", null).store["mg-skin"], "terminal");
-  assert.equal(run("/projects", "?skin=workshop", "paper").attrs["data-skin"], undefined, "workshop clears the choice");
-  assert.equal(run("/projects", "?skin=<script>", null).attrs["data-skin"], undefined, "unknown values are ignored");
-  assert.equal(run("/projects", "", "evil\"quote").attrs["data-skin"], undefined);
-  for (const legacy of ["/coaching", "/shop/success", "/studio", "/lab/arcade", "/ai-receptionist", "/ads"]) assert.equal(run(legacy, "", "paper").attrs["data-skin"], undefined, legacy);
+  // The default identity is Open Case, and the attribute is always present (so there is never a flash of the wrong skin).
+  assert.equal(DEFAULT_SKIN, "open-case");
+  assert.equal(run("/projects", "", null).attrs["data-skin"], "open-case", "first-time visitors see Open Case");
+  assert.equal(run("/projects", "", null).attrs["data-kind"], "identity");
+  assert.equal(run("/projects", "", "paper").attrs["data-skin"], "paper", "remembered choice");
+  assert.equal(run("/projects", "", "paper").attrs["data-kind"], "classic");
+  for (const id of ["open-case", "rogue-instrument", "unauthorized-manual", "workshop", "paper", "terminal", "pop", "glass", "swiss", "arcade"]) {
+    assert.equal(run("/projects", `?skin=${id}`, null).attrs["data-skin"], id, `shareable ?skin=${id} link`);
+    assert.equal(run("/projects", `?skin=${id}`, null).store["mg-skin"], id, `?skin=${id} is remembered`);
+  }
+  assert.equal(run("/projects", "?skin=rogue-instrument", "paper").attrs["data-skin"], "rogue-instrument", "a shared link beats the saved choice");
+  const reset = run("/projects", "?skin=default", "paper");
+  assert.equal(reset.attrs["data-skin"], "open-case", "?skin=default returns to the default identity");
+  assert.equal(reset.store["mg-skin"], undefined, "...and forgets the saved choice");
+  assert.equal(run("/projects", "?skin=<script>", null).attrs["data-skin"], "open-case", "unknown values are ignored");
+  assert.equal(run("/projects", "", "evil\"quote").attrs["data-skin"], "open-case");
+  assert.equal(run("/projects", "?skin=terminal", null, true).attrs["data-skin"], "terminal", "blocked storage still honours a shared link for the page");
+  assert.equal(run("/projects", "", null, true).attrs["data-skin"], "open-case", "blocked storage falls back to the default");
+  for (const legacy of ["/coaching", "/shop/success", "/studio", "/lab/arcade", "/ai-receptionist", "/ads"]) assert.equal(run(legacy, "", "paper").attrs["data-skin"], "workshop", `${legacy} keeps the classic Workshop look`);
   assert.ok(LEGACY_PREFIXES.test("/shop") && !LEGACY_PREFIXES.test("/shopping") && !LEGACY_PREFIXES.test("/projects"));
-  assert.equal(SITE_SKINS[0].id, "workshop");
+  // The three identities lead, the seven older skins follow (all kept), ids are unique, and every skin has what the switcher needs.
+  assert.deepEqual(SITE_SKINS.slice(0, 3).map((s) => s.id), ["open-case", "rogue-instrument", "unauthorized-manual"]);
+  assert.deepEqual(IDENTITY_SKINS.map((s) => s.id), ["open-case", "rogue-instrument", "unauthorized-manual"]);
+  assert.deepEqual(CLASSIC_SKINS.map((s) => s.id), ["workshop", "paper", "terminal", "pop", "glass", "swiss", "arcade"]);
   assert.equal(new Set(SITE_SKINS.map((s) => s.id)).size, SITE_SKINS.length);
+  for (const s of SITE_SKINS) assert.ok(s.name && s.note && s.swatch.length === 3 && /^#[0-9a-f]{6}$/i.test(s.themeColor), `${s.id} is missing switcher data`);
+  assert.equal(skinMeta("workshop").name, "Workshop (classic)");
 });
 
+test("identity design system: fonts, palettes and signature pieces are in place and old faces are not the default", () => {
+  const layout = fs.readFileSync("app/layout.tsx", "utf8");
+  for (const f of ["Anybody", "Atkinson_Hyperlegible_Next", "Saira_Condensed", "IBM_Plex_Sans", "Archivo_Black", "Public_Sans"]) assert.match(layout, new RegExp(`\\b${f}\\(`), `${f} must be loaded through next/font`);
+  // Only the default identity's faces are preloaded; the rest are fetched when a visitor switches to that skin.
+  for (const f of ["saira", "plex", "archivoBlack", "publicSans", "fraunces", "instrument"]) assert.match(layout, new RegExp(`const ${f} = [^\\n]*preload: false`), `${f} must not be preloaded`);
+  assert.doesNotMatch(layout.match(/const anybody = [^\n]*/)![0] + layout.match(/const atkinson = [^\n]*/)![0], /preload: false/);
+  const globals = fs.readFileSync("app/globals.css", "utf8");
+  assert.match(globals, /--font-display: var\(--font-anybody\)/);
+  assert.match(globals, /--font-sans: var\(--font-atkinson\)/);
+  assert.doesNotMatch(globals + fs.readFileSync("app/journal.css", "utf8"), /font-variation-settings:\s*"opsz" 96;?\s*\}?\s*$/m, "the Fraunces-only optical size override must stay scoped to the skins that use Fraunces");
+  const tokens = fs.readFileSync("app/tokens.css", "utf8");
+  for (const [name, value] of [["--brand-paper", "#F2F0EA"], ["--brand-ink", "#181B1C"], ["--brand-red", "#C73723"], ["--brand-blue", "#255E79"], ["--brand-play", "#D5F067"], ["--brand-rule", "#C8CAC5"]]) assert.match(tokens, new RegExp(`${name}: ${value}`), `${name}`);
+  for (const hex of ["#0D1214", "#E7EAE4", "#D6F24D", "#F26D46", "#5FC4C8", "#F6EDE2", "#11100F", "#174CDB", "#FF6E45", "#EFD967"]) assert.ok(tokens.toUpperCase().includes(hex.toUpperCase()), `${hex} missing from tokens`);
+  const annotation = fs.readFileSync("components/CaseAnnotation.tsx", "utf8");
+  assert.match(annotation, /aria-expanded/); assert.match(annotation, /aria-controls/); assert.match(annotation, /Source:/);
+  assert.match(fs.readFileSync("app/page.tsx", "utf8"), /<CaseAnnotation/);
+});
 
 test("every public portfolio repository has an enabled matching update source", () => {
   const sources = loadSources();

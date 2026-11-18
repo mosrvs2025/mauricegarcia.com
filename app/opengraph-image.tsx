@@ -5,5 +5,5 @@ export const size = ogSize;
 export const contentType = "image/png";
 
 export default function Image() {
-  return ogImage({ kicker: "Experience Engineer", title: "Useful products. Unexpected worlds.", subtitle: "Software, AI tools and interactive experiences, built to work.", seed: "home" });
+  return ogImage({ kicker: "Experience Engineer", title: "I build things. Then I break them.", subtitle: "Software, AI tools and interactive experiences, built to work.", seed: "home" });
 }

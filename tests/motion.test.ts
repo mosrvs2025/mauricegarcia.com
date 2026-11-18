@@ -64,12 +64,18 @@ test("intro CSS: Workshop boot colours, curtain timing, every skin, reduced moti
   assert.match(INTRO_CSS, /--a:var\(--j-bg/);
   assert.match(INTRO_CSS, /--b:var\(--j-accent/);
   // Every skin the picker offers still has an intro palette: either its own override or the variable-driven default.
-  assert.deepEqual(INTRO_SKIN_IDS.sort(), ["arcade", "glass", "paper", "pop", "swiss", "terminal", "workshop"]);
-  const skins = fs.readFileSync("app/skins.css", "utf8");
-  for (const id of INTRO_SKIN_IDS.filter((i) => i !== "workshop")) {
+  assert.deepEqual([...INTRO_SKIN_IDS].sort(), ["arcade", "glass", "open-case", "paper", "pop", "rogue-instrument", "swiss", "terminal", "unauthorized-manual", "workshop"]);
+  // Tokens live in app/tokens.css (Open Case, Rogue Instrument, Unauthorized Manual, Workshop) and app/skins.css (the older skins).
+  const skins = fs.readFileSync("app/skins.css", "utf8") + fs.readFileSync("app/tokens.css", "utf8");
+  for (const id of INTRO_SKIN_IDS) {
     assert.match(skins, new RegExp(`html\\[data-skin="${id}"\\]\\s*\\{[^}]*--j-bg:`), `${id} must define --j-bg for the intro bands`);
     assert.match(skins, new RegExp(`html\\[data-skin="${id}"\\]\\s*\\{[^}]*--j-accent:`), `${id} must define --j-accent for the intro bands`);
   }
+  // The three identities and Workshop each carry their own intro palette; their wordmark takes the identity's display face.
+  for (const [id, bg, accent] of [["open-case", "#181B1C", "#C73723"], ["rogue-instrument", "#0D1214", "#D6F24D"], ["unauthorized-manual", "#11100F", "#174CDB"], ["workshop", "#12100D", "#ff6535"]]) {
+    assert.match(INTRO_CSS, new RegExp(`html\\[data-skin="${id}"\\] #mg-intro\\{--a:${bg};--b:${accent}`), `${id} intro palette`);
+  }
+  assert.match(INTRO_CSS, /font-family:var\(--j-font-display,var\(--font-display/);
 });
 
 test("intro and curtain are wired into the layout without hiding the hero content", () => {

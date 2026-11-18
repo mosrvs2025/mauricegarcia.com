@@ -24,9 +24,17 @@ Each browser tab plays a short intro once (about 3.4 seconds). A black hole fade
 
 The black hole itself is a small CSS-only component (`components/BlackHole.tsx`, styles in `app/motion.css`). The timeline and palettes live in `lib/motion.ts`.
 
+### Three switchable identities
+
+Open Case (the default), Rogue Instrument and Unauthorized Manual restyle the whole site from one component tree. Switch from the header, the footer or with Alt+Shift+S; share one with `?skin=open-case`, `?skin=rogue-instrument` or `?skin=unauthorized-manual`. The seven older skins stay under "More skins". See [docs/DESIGN.md](docs/DESIGN.md).
+
+| Open Case | Rogue Instrument | Unauthorized Manual |
+| --- | --- | --- |
+| ![Open Case](docs/screenshots/identity/open-case/home-desktop.webp) | ![Rogue Instrument](docs/screenshots/identity/rogue-instrument/home-desktop.webp) | ![Unauthorized Manual](docs/screenshots/identity/unauthorized-manual/home-desktop.webp) |
+
 ### Styles
 
-A Style button switches the whole site between Workshop (the default), Paper & Ink, Terminal, Neo-Pop, Glass Aurora, Swiss Grid and Arcade. The choice is remembered per browser and `?skin=terminal` links straight to one. `/lab` shows the same content as full-page design demos.
+Under "More skins" in the identity switcher: Workshop (classic, the previous default), Paper & Ink, Terminal, Neo-Pop, Glass Aurora, Swiss Grid and Arcade. The choice is remembered per browser and `?skin=terminal` links straight to one. `/lab` shows the same content as full-page design demos.
 
 | Paper & Ink | Terminal | Neo-Pop |
 | --- | --- | --- |

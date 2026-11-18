@@ -1,0 +1,108 @@
+/*
+ * Design tokens for the whole-site identities. One source of truth: components and stylesheets read the semantic
+ * --j-* tokens only, never a raw colour, so changing <html data-skin> restyles everything at once.
+ *
+ *   Brand source values  --brand-*   Open Case's own palette (the default identity)
+ *   Semantic tokens      --j-*       bg, surface, line, text, muted, accent, link, play, status colours
+ *   Type tokens          --j-display-* / --j-stretch / --font-display / --font-sans
+ *
+ * Open Case is the default: it is on :root as well as on html[data-skin="open-case"], so it also applies before the
+ * boot script has run and with JavaScript off. Rogue Instrument and Unauthorized Manual are defined here; the seven
+ * older skins (Paper, Terminal, Neo-Pop, Glass, Swiss, Arcade) are in app/skins.css and "workshop" keeps the previous
+ * default tokens below. Rules that use these tokens live in app/identities.css and app/journal.css.
+ */
+
+:root {
+  /* Open Case brand source values */
+  --brand-paper: #F2F0EA;
+  --brand-ink: #181B1C;
+  --brand-red: #C73723;
+  --brand-blue: #255E79;
+  --brand-play: #D5F067;
+  --brand-rule: #C8CAC5;
+  /* Darker states, so hovers keep their contrast without opacity tricks */
+  --brand-red-deep: #A12C1B;
+  --brand-blue-deep: #1A4A60;
+  --brand-paper-raised: #FAF9F5;
+  --brand-ink-soft: #4B5254;
+  --brand-rule-strong: #767B7A;
+}
+
+/* Open Case. The default. Paper and ink, red for emphasis, blue for functional links, lime for play. */
+:root,
+html[data-skin="open-case"] {
+  color-scheme: light;
+  --j-bg: var(--brand-paper); --j-surface: var(--brand-paper-raised);
+  --j-line: var(--brand-rule); --j-line-strong: var(--brand-rule-strong);
+  --j-text: var(--brand-ink); --j-muted: var(--brand-ink-soft);
+  --j-accent: var(--brand-red); --j-accent-hover: var(--brand-red-deep); --j-accent-ink: #ffffff;
+  --j-link: var(--brand-blue); --j-link-hover: var(--brand-blue-deep);
+  --j-play: var(--brand-play); --j-play-ink: var(--brand-ink);
+  --j-accent-rgb: 199,55,35; --j-text-rgb: 24,27,28;
+  --j-ok: #1D6B2B; --j-warn: #7A4B00; --j-warn-bg: #F3E6C4; --j-warn-line: #C9A44A; --j-danger-bg: #F6DDD6; --j-danger-line: #C73723;
+  --j-radius: 2px; --j-bw: 1px; --j-shadow: none; --j-aurora: 0;
+  /* Type: Anybody is variable in width and weight. Heavy and slightly condensed reads as a signature, still comfortable. */
+  --font-display: var(--font-anybody), "Arial Narrow", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-atkinson), ui-sans-serif, system-ui, sans-serif;
+  --j-stretch: 88%; --j-display-weight: 800; --j-display-track: -.012em; --j-display-case: uppercase; --j-display-leading: .94;
+  --j-hero-size: clamp(2.7rem, calc((100vw - 96px) / 9.3), 8.4rem); --j-hero-size-m: 12.2vw; --j-h1: clamp(2.2rem, 6.4vw, 4.6rem); --j-h2: clamp(1.7rem, 3.8vw, 3rem); --j-h3: clamp(1.25rem, 2.2vw, 1.6rem);
+  --j-kicker-track: .14em; --j-body-size: 1.0625rem; --j-body-leading: 1.7;
+}
+
+/* Rogue Instrument. A hardware control panel: graphite, porcelain, volt lime, with orange for warnings and cyan for links. */
+html[data-skin="rogue-instrument"] {
+  color-scheme: dark;
+  --j-bg: #0D1214; --j-surface: #141B1E; --j-line: #273237; --j-line-strong: #5A6C72;
+  --j-text: #E7EAE4; --j-muted: #A9B4B1;
+  --j-accent: #D6F24D; --j-accent-hover: #E6FF70; --j-accent-ink: #0D1214;
+  --j-link: #5FC4C8; --j-link-hover: #8FDDE0;
+  --j-play: #D6F24D; --j-play-ink: #0D1214; --j-signal: #F26D46;
+  --j-accent-rgb: 214,242,77; --j-text-rgb: 231,234,228;
+  --j-ok: #D6F24D; --j-warn: #F26D46; --j-warn-bg: #2A1912; --j-warn-line: #8E4630; --j-danger-bg: #2A1510; --j-danger-line: #F26D46;
+  --j-radius: 2px; --j-bw: 1px; --j-shadow: none; --j-aurora: 0;
+  --font-display: var(--font-saira), "Arial Narrow", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
+  --j-stretch: 100%; --j-display-weight: 700; --j-display-track: .005em; --j-display-case: uppercase; --j-display-leading: .92;
+  --j-hero-size: clamp(3rem, calc((100vw - 96px) / 6.4), 10.4rem); --j-hero-size-m: 17vw; --j-h1: clamp(2.4rem, 6.8vw, 5rem); --j-h2: clamp(1.8rem, 4vw, 3.2rem); --j-h3: clamp(1.3rem, 2.3vw, 1.75rem);
+  --j-kicker-track: .16em; --j-body-size: 1.0625rem; --j-body-leading: 1.65;
+}
+
+/* Unauthorized Manual. A rebellious instruction manual: parchment, black, cobalt, with coral and yellow as loud fills. */
+html[data-skin="unauthorized-manual"] {
+  color-scheme: light;
+  --j-bg: #F6EDE2; --j-surface: #FFFAF2; --j-line: #11100F; --j-line-strong: #11100F;
+  --j-text: #11100F; --j-muted: #4A443E;
+  --j-accent: #174CDB; --j-accent-hover: #0F3AAE; --j-accent-ink: #ffffff;
+  --j-link: #174CDB; --j-link-hover: #0F3AAE;
+  --j-play: #EFD967; --j-play-ink: #11100F; --j-signal: #FF6E45;
+  --j-accent-rgb: 23,76,219; --j-text-rgb: 17,16,15;
+  --j-ok: #1B6B2A; --j-warn: #7A3B00; --j-warn-bg: #EFD967; --j-warn-line: #11100F; --j-danger-bg: #FFD9CC; --j-danger-line: #11100F;
+  --j-radius: 0px; --j-bw: 2px; --j-shadow: 4px 4px 0 #11100F; --j-aurora: 0;
+  --font-display: var(--font-archivo-black), "Arial Black", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif;
+  --j-stretch: 100%; --j-display-weight: 400; --j-display-track: -.02em; --j-display-case: uppercase; --j-display-leading: .95;
+  --j-hero-size: clamp(2.5rem, calc((100vw - 96px) / 9.8), 7.8rem); --j-hero-size-m: 9.4vw; --j-h1: clamp(2.1rem, 6vw, 4.4rem); --j-h2: clamp(1.6rem, 3.6vw, 2.8rem); --j-h3: clamp(1.2rem, 2.1vw, 1.5rem);
+  --j-kicker-track: .1em; --j-body-size: 1.0625rem; --j-body-leading: 1.7;
+}
+
+/*
+ * Workshop (classic). The previous default, unchanged: dark and warm, Fraunces and Instrument Sans. Also what the older
+ * standalone pages (coaching, shop, ads, studio, lab, v) always show.
+ */
+html[data-skin="workshop"] {
+  color-scheme: dark;
+  --j-line-strong: #4a4238; --j-accent-ink: #1a0f08; --j-accent-rgb: 255,122,77; --j-text-rgb: 243,237,227; --j-radius: 12px; --j-bw: 1px; --j-shadow: none; --j-aurora: .55;
+  --j-bg: #12100d; --j-surface: #1a1713; --j-line: #2f2a23; --j-text: #f3ede3; --j-muted: #b9b0a2; --j-accent: #ff7a4d; --j-accent-hover: #ff7a4d; --j-link: #f3ede3; --j-link-hover: #ff7a4d;
+  --j-play: #6ee7a0; --j-play-ink: #0e1f15; --j-ok: #9fd3a0; --j-warn: #f0c36a; --j-warn-bg: #3a2b12; --j-warn-line: #6b4f1c; --j-danger-bg: #2a130e; --j-danger-line: #8a3b2a;
+}
+
+/* Skins that keep the previous typography (terminal and arcade then override with monospace): Fraunces for display, Instrument Sans for text. */
+html[data-skin="workshop"], html[data-skin="paper"], html[data-skin="pop"], html[data-skin="glass"], html[data-skin="terminal"], html[data-skin="swiss"], html[data-skin="arcade"] {
+  --font-display: var(--font-classic-display); --font-sans: var(--font-classic-sans);
+  /* the previous defaults, for any token a classic skin does not set itself */
+  --j-radius: 12px; --j-bw: 1px; --j-shadow: none; --j-aurora: .55; --j-ok: #9fd3a0; --j-warn: #f0c36a;
+  --j-stretch: 100%; --j-display-weight: 500; --j-display-track: -.018em; --j-display-case: none; --j-display-leading: 1.06;
+  --j-hero-size: clamp(2.7rem, 4.4vw, 4.3rem); --j-h1: clamp(2.3rem, 5vw, 4rem); --j-h2: clamp(1.9rem, 3.4vw, 2.8rem); --j-h3: 1.45rem;
+  --j-kicker-track: .14em; --j-body-size: 1.0625rem; --j-body-leading: 1.7;
+}
+html[data-skin="workshop"] .display, html[data-skin="paper"] .display, html[data-skin="pop"] .display, html[data-skin="glass"] .display { font-optical-sizing: auto; font-variation-settings: "opsz" 96; }

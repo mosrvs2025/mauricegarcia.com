@@ -121,3 +121,9 @@ body:has(.lab-skin) .site-header, body:has(.lab-skin) .j-footer, body:has(.lab-s
 @media (max-width:900px) { .ar-select ul { grid-template-columns:1fr 1fr; } } @media (max-width:640px) { .ar-select ul { grid-template-columns:1fr; } }
 
 @media (prefers-reduced-motion:reduce) { .po-marquee div, .tm-cursor, .ar-start, .ar-crt, .po-sticker { animation:none !important; } .tm-out.type { width:auto; border-right:0; } .lab-card:hover, .po-card:hover, .gl-card:hover, .ar-cart:hover { transform:none; } }
+
+/* Live identities strip on the lab index */
+.lab-live { margin-block:8px 28px; } .lab-live h2 { font-size:clamp(1.6rem,3vw,2.2rem); } .lab-live .lede { color:var(--j-muted); max-width:44em; margin-top:10px; }
+.lab-live-grid { list-style:none; padding:0; margin:22px 0 0; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.lab-more-h { margin-top:44px; }
+@media (max-width:760px) { .lab-live-grid { grid-template-columns:1fr; } }
