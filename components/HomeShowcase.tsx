@@ -28,7 +28,7 @@ export function HomeShowcase({ projects }: { projects: ProjectCard[] }) {
       <div className="showcase-selector" data-float-clear role="group" aria-label="Choose a project preview">
         {projects.map((project, i) => <button key={project.slug} type="button" aria-pressed={selected === i} onClick={() => setSelected(i)}><span className="j-num">{pad(i + 1)}</span>{project.title}<span aria-hidden="true">↗</span></button>)}
       </div>
-      <p className="showcase-note">Actual project captures. Hover or focus to preview.</p>
+      <p className="showcase-note">Actual project captures.</p>
     </div>
   );
 }

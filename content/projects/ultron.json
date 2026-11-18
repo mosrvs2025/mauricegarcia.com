@@ -1,0 +1,124 @@
+{
+  "id": "prj-ultron",
+  "slug": "ultron",
+  "title": "Ultron",
+  "tagline": "A Discord bot and dashboard that turns community operations, pull requests and deploys into one clear story.",
+  "status": "published",
+  "visibility": "public",
+  "tier": "featured",
+  "order": 1,
+  "themes": [
+    "practical",
+    "creative-tools"
+  ],
+  "stateNote": "A working bot and dashboard, built for Mo's Lab, the owner's private builder server. There is no public demo you can open yet, so it is labelled a prototype.",
+  "problem": "Running a Discord community usually means stacking several single-purpose bots, while build, pull request and deploy noise lives somewhere else. Ultron puts moderation, support, events and what actually shipped into one workspace, and tells short stories about the work instead of dumping raw logs.",
+  "audience": "Server owners and small teams who want calmer Discord operations, and builders who want their GitHub and Vercel activity to show up as readable progress.",
+  "contribution": "It is my project: a Discord gateway bot and a Next.js dashboard that share a database, so the web app never holds the bot token. I built it for Mo's Lab, and I am not publishing a public server invite or a hosted dashboard URL yet.",
+  "worksToday": [
+    "Guided setup, explainable moderation with a review queue, onboarding and roles, support tickets, and events with RSVP.",
+    "An append-only audit log for people, the bot and optional AI, kept in a staff-only area of the dashboard.",
+    "ShipPulse turns signed GitHub and Vercel events into one evolving story per pull request, once those webhooks are connected.",
+    "Project Constellation maps projects as stars you can inspect, with builds, deploys and incidents in orbit.",
+    "Ship Questlines awards achievements for verified shipped work, such as a first pull request or a first production deploy, not for time spent chatting.",
+    "The Forge can turn a milestone into a collectible card or sticker. /council is an AI design review. Incident Time Machine replays a failed deploy.",
+    "Optional AI can draft channel summaries and help triage reports. It is advisory: a human approves every consequential moderation action."
+  ],
+  "limitations": [
+    "There is no public hosted dashboard or demo link on this page.",
+    "The screenshots are from a development run that uses synthetic project data (labelled as such in the interface), not a public production deployment.",
+    "ShipPulse cannot tell live build stories until a project has signed GitHub and Vercel webhooks.",
+    "This page is written from my description of the build and those screenshots, not from a public repository."
+  ],
+  "links": {
+    "other": []
+  },
+  "repoVisibility": "private",
+  "ai": {
+    "assisted": "yes",
+    "note": "I documented that Claude and ChatGPT assisted with the build."
+  },
+  "media": [
+    {
+      "src": "/projects/ultron-constellation.webp",
+      "alt": "Ultron's Project Constellation dashboard: two project stars labelled E2E Lab and Demo Lab (synthetic), with a timeline of builds, deploys and incidents.",
+      "caption": "Project Constellation, from a development dashboard using synthetic project data.",
+      "capturedAt": "2026-11-17",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "src": "/projects/ultron-overview.webp",
+      "alt": "Ultron's Overview screen for a test community, showing an attention list, moderation outcomes, support tickets and upcoming events.",
+      "caption": "The Overview attention screen, from a development dashboard using test data.",
+      "capturedAt": "2026-11-17",
+      "width": 1360,
+      "height": 860
+    },
+    {
+      "src": "/projects/ultron-quests.webp",
+      "alt": "Ultron's Ship Questlines screen, with achievements for a first pull request, a first green build and a public launch, some marked not yet earned.",
+      "caption": "Ship Questlines, from a development dashboard using synthetic project data.",
+      "capturedAt": "2026-11-17",
+      "width": 1360,
+      "height": 860
+    },
+    {
+      "src": "/projects/ultron-forge-card.webp",
+      "alt": "A Forge milestone card stamped SYNTHETIC DEMO, titled Add dark mode to the Lab dashboard, credited to Mo's Lab.",
+      "caption": "A Forge milestone card. The SYNTHETIC DEMO stamp is in the original image.",
+      "capturedAt": "2026-11-17",
+      "width": 1000,
+      "height": 560
+    }
+  ],
+  "dates": {
+    "lastChange": "2026-11-17",
+    "lastChangeSource": "documented by the owner",
+    "reviewed": "2026-11-17"
+  },
+  "evidence": [
+    {
+      "label": "Dashboard screenshots on this project page (synthetic test data, captured 2026-11-17)",
+      "url": "https://www.mauricegarcia.com/projects/ultron",
+      "kind": "screenshot",
+      "verifiedAt": "2026-11-17"
+    }
+  ],
+  "involve": {
+    "headline": "Running a Discord server, or shipping a lot of side projects?",
+    "asks": [
+      "If a calmer ops bot or a clearer view of what shipped would help your community, tell me.",
+      "If you have a Questline or Forge idea that should exist, I want to hear it."
+    ],
+    "intent": "collaborate"
+  },
+  "formerSlugs": [],
+  "maturity": "prototype",
+  "track": "products",
+  "openTo": [],
+  "disclosure": {
+    "basis": "owner-documented",
+    "note": "The owner asked on 2026-11-17 to feature Ultron and Mo's Lab on the homepage. The source repository is private and is not linked. This page is written from that request, the owner's description of the build, and dashboard screenshots taken for this site.",
+    "documentedAt": "2026-11-17"
+  },
+  "caseStudy": {
+    "approach": [
+      "Replaced a stack of single-purpose Discord bots with one guided workspace for setup, moderation, onboarding, tickets and events.",
+      "Split the Next.js dashboard and the Discord worker so they share a database, and so the bot token never lives in the web app.",
+      "Added build intelligence on top of that: signed deploy stories, a constellation map of projects, quests for real shipped work, and milestone cards."
+    ],
+    "decisions": [
+      {
+        "choice": "AI is advisory, never in charge",
+        "why": "Optional AI can draft summaries and help triage reports, but a human approves every consequential moderation action."
+      },
+      {
+        "choice": "No public demo yet",
+        "why": "The bot and dashboard are real, but they still need an always-on host and a hosted database before a public URL would be honest."
+      }
+    ],
+    "outcome": "Ultron is the first project in Selected work on this site. A public hosted dashboard is not available yet.",
+    "source": "the project details above, as documented by the owner on 2026-11-17, plus the screenshots on this page."
+  }
+}
