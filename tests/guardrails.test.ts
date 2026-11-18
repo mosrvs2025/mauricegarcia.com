@@ -44,7 +44,10 @@ test("the portfolio structure the owner chose is intact", () => {
 
 test("existing capabilities were not removed: studio, sync, learn, lab, skins, contact, demos check", () => {
   for (const f of ["app/studio/page.tsx", "lib/sync/import.ts", "app/learn/page.tsx", "app/lab/page.tsx", "app/v/game/page.tsx", "app/api/contact/route.ts", "scripts/check-demos.ts", "components/HeroField.tsx", "lib/content/schemas.ts", "AGENTS.md", ".github/CODEOWNERS", ".github/pull_request_template.md"]) assert.ok(fs.existsSync(f), `${f} was removed`);
-  assert.equal(SITE_SKINS.length, 7, "site styles were removed");
+  // The seven older skins must stay; the three identities (Open Case, Rogue Instrument, Unauthorized Manual) lead the list.
+  for (const id of ["workshop", "paper", "terminal", "pop", "glass", "swiss", "arcade"]) assert.ok(SITE_SKINS.some((s) => s.id === id), `skin ${id} was removed`);
+  for (const id of ["open-case", "rogue-instrument", "unauthorized-manual"]) assert.ok(SITE_SKINS.some((s) => s.id === id), `identity ${id} was removed`);
+  assert.equal(SITE_SKINS.length, 10, "site styles were removed or added without updating the guardrail");
   assert.ok(fs.readdirSync("app/lab/[skin]").length > 0);
 });
 

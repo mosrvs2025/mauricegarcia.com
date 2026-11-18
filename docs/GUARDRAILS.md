@@ -10,6 +10,7 @@ Automated checks that stop careless edits, by any agent or person, from undoing 
 | No secrets in tracked files | `npm run guard:secrets` |
 | No private repo or client names | `npm run guard:names` (salted hashes in `scripts/private-names.json`) |
 | Contact flow and email safety | `scripts/contact.test.cjs` |
+| Identity switcher, default skin, boot script, fonts and tokens | `tests/portfolio.test.ts`, `tests/motion.test.ts`, `docs/DESIGN.md` |
 | Owner review of every change | `.github/CODEOWNERS` plus branch protection |
 
 Run everything locally with `npm run verify`. CI runs the same checks on every PR.

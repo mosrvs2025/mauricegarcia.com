@@ -10,10 +10,13 @@ import { career, confirmedStats } from "@/lib/profile";
 import { site } from "@/lib/site";
 import { capabilities } from "@/lib/capabilities";
 import { toCard } from "@/lib/content/cards";
-import { featuredByTrack, formatDate, listedPosts, listedProjects, listedUpdates, projectById, projectBySlug, projectsByTrack, shownNow } from "@/lib/content/query";
+import { MATURITY_LABELS, TRACK_LABELS, featuredByTrack, formatDate, listedPosts, listedProjects, listedUpdates, projectById, projectBySlug, projectsByTrack, shownNow } from "@/lib/content/query";
 import { isProposed } from "@/lib/content/visibility";
+import { CaseAnnotation } from "@/components/CaseAnnotation";
 import { HomeShowcase } from "@/components/HomeShowcase";
+import { PlaygroundTrigger } from "@/components/PlaygroundTrigger";
 import { ProjectSpotlight } from "@/components/ProjectSpotlight";
+import Image from "next/image";
 import { InstagramPortrait } from "@/components/InstagramPortrait";
 import { SecretShelf } from "@/components/SecretShelf";
 
@@ -32,12 +35,12 @@ export default function HomePage() {
   const hub = projectBySlug("realmbreak");
   const showcase = ["thornwild", "thriftscout", "lumen"].flatMap((slug) => { const p = all.find((p) => p.slug === slug); return p ? [toCard(p)] : []; });
   return (
-    <>
-      <section className="j-hero-wrap home-opening">
+    <div className="home-page">
+      <section className="j-hero-wrap home-opening" aria-labelledby="home-title">
         <div className="j-aurora" aria-hidden="true"><i /><i /><i /></div>
         <HeroField />
         <div className="studio-wrap j-hero home-hero">
-          <div>
+          <div className="hero-meta">
             <div className="home-byline">
               <InstagramPortrait size="hero" />
               <div>
@@ -45,43 +48,100 @@ export default function HomePage() {
                 <a className="home-ig-handle" href={site.instagram} target="_blank" rel="noopener noreferrer">@{site.instagramHandle}</a>
               </div>
             </div>
-            <h1 className="display j-title home-title">Useful products.<br /><em>Unexpected worlds.</em></h1>
-            <p className="lede">I build software, AI tools and interactive experiences. From a better way to run a business to a world worth getting lost in.</p>
+            <div className="hero-note">
+              <CaseAnnotation n={1} kind="experiment" label="What “break” means here" source="the Playground's own entry card and docs" align="start">
+                Breaking is experimenting. The Playground is an opt-in mode that blasts this page with canvas debris and then repairs it. The page itself is never modified, and nothing connects to anyone until you choose to enter.
+              </CaseAnnotation>
+            </div>
+            {/* One line per identity; CSS shows the one that matches the active skin (see app/identities.css). */}
+            <p className="hero-tag">
+              <span className="hv hv-case">Build / Test / Play</span>
+              <span className="hv hv-rogue">Build / Test / Play · Mode: experiment</span>
+              <span className="hv hv-manual">Unauthorized user manual · Rev. 001</span>
+            </p>
+          </div>
+          <h1 id="home-title" className="display j-title home-title">
+            <span className="hv hv-case">I build things.<br /><em>Then I break them.</em></span>
+            <span className="hv hv-rogue">Systems should<br /><em>do more.</em></span>
+            <span className="hv hv-manual">Do not build<br /><em>normal.</em></span>
+          </h1>
+          <div className="hero-copy">
+            <p className="lede">I&apos;m Maurice Garcia, an experience engineer. After a decade in fraud prevention, I now build practical software, strange digital worlds, and experiments you can actually try.</p>
             <div className="j-actions">
-              <Link href="#worlds-h" className="btn btn-fill j-shine">Explore the work <span aria-hidden="true">↘</span></Link>
+              <Link href="#case-files" className="btn btn-fill j-shine">Explore the work <span aria-hidden="true">↘</span></Link>
               <Link href="/connect?intent=paid-work" className="j-link j-arrow">Let&apos;s build something</Link>
             </div>
             <div className="home-curiosity"><SurpriseMe demos={demos} /><Link href="/v/game" className="j-link" data-track="game_version">Play this site as a game</Link><SecretShelf /></div>
           </div>
           <HomeShowcase projects={showcase} />
+          <ol className="hero-verbs" aria-label="How to use this site">
+            <li><a href="#case-files"><b>01</b> Try it<span>Open a live demo</span></a></li>
+            <li><PlaygroundTrigger><b>02</b> Break it<span>Open the Playground</span></PlaygroundTrigger></li>
+            <li><Link href="/projects/ultimate"><b>03</b> Understand it<span>Read a case study</span></Link></li>
+          </ol>
         </div>
       </section>
 
       <Ticker items={ticker} />
 
+      <section id="case-files" className="studio-wrap j-section cases-head" aria-labelledby="cases-h">
+        <Reveal><div className="j-head">
+          <div><p className="eyebrow">Case files</p><h2 className="display" id="cases-h">Two projects, shown honestly.</h2></div>
+          <Link href="/projects" className="j-link j-arrow">All {all.length} projects</Link>
+        </div></Reveal>
+        <p className="cases-intro">Each file shows what the project is, how finished it really is, and what it can&apos;t do yet. Tap a numbered note to read one real engineering decision or limitation.</p>
+      </section>
+
       {spotlight && (
         <ProjectSpotlight
           project={spotlight}
+          number="01"
           eyebrow="Newest build"
           headline="Ultimate+: the toolkit for your own phone"
           inside={["Video editor and shrinker", "Storage map", "Notification and clipboard history", "Rules automation", "Terminal", "SSH client and server", "Footprint privacy insights", "Focus companion", "Air control", "Galaxy Watch app", "Local AI"]}
           privacyNote="No ads, no analytics, no accounts. The offline edition has no internet permission. Screens are rendered on a simulated phone with sample data."
+          notes={<>
+            <CaseAnnotation n={2} kind="decision" label="One interface, many tools" source="Ultimate+ case study (repository README and docs)">
+              Every tool implements one small interface: an id, a screen, a library of what it made, and how to remove one. Home, the Library, the Activity tab and share routing pick up a new tool with no other changes.
+            </CaseAnnotation>
+            <CaseAnnotation n={3} kind="decision" label="An offline edition" source="repository README, via the project page">
+              The offline edition, Ultimate, has no internet permission, so it cannot send anything anywhere. Ultimate+ does use the internet permission, for SSH, sending files and network tools.
+            </CaseAnnotation>
+            <CaseAnnotation n={4} kind="limitation" label="Screens are simulated" source="project page, limitations">
+              The screenshots are the app&apos;s own screens rendered on a simulated phone with sample data, not photos of a real device.
+            </CaseAnnotation>
+          </>}
         />
       )}
 
-
       {hub && (
-        <section className="studio-wrap qc-band" aria-labelledby="hub-h">
-          <Reveal><div className="qc-band-inner">
-            <div>
-              <p className="eyebrow">Also live</p>
-              <h2 className="display" id="hub-h">A mixed-reality hub.</h2>
-              <p>REALMBREAK now has its own page at mr.mauricegarcia.com, with a desktop and phone fallback. It has not yet been tested on a physical headset.</p>
-            </div>
-            <div className="qc-band-actions">
-              <a href={site.hubUrl} className="btn btn-fill j-shine" rel="noopener noreferrer">Open the hub <span aria-hidden="true">↗</span></a>
-              <a href={`${site.hubUrl}/realmbreak`} className="j-link j-arrow" rel="noopener noreferrer">Play REALMBREAK</a>
-              <Link href="/projects/realmbreak" className="j-link">The project page</Link>
+        <section className="studio-wrap j-section cf cf-spread cf-hub" aria-labelledby="hub-h">
+          <Reveal><div className="cf-hub-grid">
+            <figure className="cf-media" data-measure={hub.media[0] ? `${hub.media[0].width} × ${hub.media[0].height}` : undefined}>
+              {hub.media[0] && <Image src={hub.media[0].src} alt={hub.media[0].alt} width={hub.media[0].width ?? 1280} height={hub.media[0].height ?? 720} sizes="(max-width:900px) 100vw, 58vw" loading="lazy" />}
+              {hub.media[0]?.caption && <figcaption className="cf-cap">{hub.media[0].caption}</figcaption>}
+            </figure>
+            <div className="cf-copy">
+              <p className="eyebrow"><span className="cf-no">File 02</span>Also live · {TRACK_LABELS[hub.track].title}</p>
+              <h2 className="display" id="hub-h">REALMBREAK, in a mixed-reality hub.</h2>
+              <p className="lede">{hub.tagline}</p>
+              <p className="us-note"><span className="j-tag state">{MATURITY_LABELS[hub.maturity]}</span> It has its own page at mr.mauricegarcia.com, with a desktop and phone fallback. It has not yet been tested on a physical headset.</p>
+              <div className="cf-notes" role="group" aria-label="Notes on REALMBREAK">
+                <CaseAnnotation n={5} kind="limitation" label="Not yet tested on a headset" source="the REALMBREAK README, via the project page">
+                  The README says it has not yet been tested on a physical headset. Hand-gesture and plane-detection behaviour is covered only by unit tests, and the automated XR smoke test is not part of CI.
+                </CaseAnnotation>
+                <CaseAnnotation n={6} kind="decision" label="It can't soft-lock" source="the REALMBREAK README, via the project page">
+                  Hand tracking, controllers and mouse or touch are all supported, with an auto-fire assist and a gaze-dwell Replay, so the game does not get stuck waiting for an input you cannot give.
+                </CaseAnnotation>
+                <CaseAnnotation n={7} kind="decision" label="No backend" source="the REALMBREAK README, via the project page">
+                  Vite, TypeScript and Three.js, with no backend. The README says every character, model, texture and sound is generated at runtime.
+                </CaseAnnotation>
+              </div>
+              <div className="j-actions">
+                <a href={site.hubUrl} className="btn btn-fill j-shine" rel="noopener noreferrer" data-verb="Try it">Open the hub <span aria-hidden="true">↗</span></a>
+                <a href={`${site.hubUrl}/realmbreak`} className="j-link j-arrow" rel="noopener noreferrer" data-verb="Try it">Play REALMBREAK</a>
+                <Link href="/projects/realmbreak" className="j-link" data-verb="Understand it">The project page</Link>
+              </div>
             </div>
           </div></Reveal>
         </section>
@@ -188,6 +248,6 @@ export default function HomePage() {
           </div>
         </section></Reveal>
       )}
-    </>
+    </div>
   );
 }

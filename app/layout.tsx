@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Instrument_Sans } from "next/font/google";
+import { Anybody, Archivo_Black, Atkinson_Hyperlegible_Next, Fraunces, IBM_Plex_Sans, Instrument_Sans, Public_Sans, Saira_Condensed } from "next/font/google";
 import { ActionTracker } from "@/components/ActionTracker";
 import { Analytics } from "@/components/Analytics";
 import { EngagementTracker } from "@/components/EngagementTracker";
@@ -12,19 +12,34 @@ import { QuickContact } from "@/components/QuickContact";
 import { isPreviewBuild } from "@/lib/content/visibility";
 import { INTRO_BOOT_SCRIPT, INTRO_CSS } from "@/lib/motion";
 import { listedProjects } from "@/lib/content/query";
-import { SKIN_BOOT_SCRIPT } from "@/lib/skin";
+import { DEFAULT_SKIN, SKIN_BOOT_SCRIPT, kindOf, skinMeta } from "@/lib/skin";
 import { ldScript, personLd, websiteLd } from "@/lib/jsonld";
 import { site } from "@/lib/site";
 import "./globals.css";
+import "./tokens.css";
 import "./journal.css";
 import "./skins.css";
+import "./identities.css";
 import "./motion.css";
 import "./play.css";
 
-const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces", display: "swap", axes: ["opsz"] });
-const instrument = Instrument_Sans({ subsets: ["latin"], variable: "--font-instrument", display: "swap" });
+/*
+ * Fonts, all self-hosted by next/font. Only the default identity's two faces (Open Case: Anybody + Atkinson Hyperlegible
+ * Next) are preloaded; every other face is declared but preload:false, so the browser fetches it only when a
+ * visitor actually switches to a skin that uses it. Semantic tokens (--font-display, --font-sans) are set in app/globals.css.
+ */
+const anybody = Anybody({ subsets: ["latin"], variable: "--font-anybody", display: "swap", weight: "variable", axes: ["wdth"] });
+const atkinson = Atkinson_Hyperlegible_Next({ subsets: ["latin"], variable: "--font-atkinson", display: "swap", weight: "variable" });
+const saira = Saira_Condensed({ subsets: ["latin"], variable: "--font-saira", display: "swap", weight: ["500", "600", "700", "800"], preload: false });
+const plex = IBM_Plex_Sans({ subsets: ["latin"], variable: "--font-plex", display: "swap", weight: "variable", preload: false });
+const archivoBlack = Archivo_Black({ subsets: ["latin"], variable: "--font-archivo-black", display: "swap", weight: "400", preload: false });
+const publicSans = Public_Sans({ subsets: ["latin"], variable: "--font-public-sans", display: "swap", weight: "variable", preload: false });
+// The previous default's faces, kept for the Workshop, Paper, Neo-Pop and Glass skins.
+const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces", display: "swap", axes: ["opsz"], preload: false });
+const instrument = Instrument_Sans({ subsets: ["latin"], variable: "--font-instrument", display: "swap", preload: false });
+const fontVars = [anybody, atkinson, saira, plex, archivoBlack, publicSans, fraunces, instrument].map((f) => f.variable).join(" ");
 
-export const viewport: Viewport = { themeColor: "#12100d", colorScheme: "dark" };
+export const viewport: Viewport = { themeColor: skinMeta(DEFAULT_SKIN).themeColor, colorScheme: "light dark" };
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -43,7 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   // Listed projects only: unlisted pages stay reachable, but their slugs must not appear in the shared layout payload.
   const projectTracks = Object.fromEntries(listedProjects().map((p) => [p.slug, p.track]));
   return (
-    <html lang="en" className={`${fraunces.variable} ${instrument.variable}`} suppressHydrationWarning>
+    <html lang="en" className={fontVars} data-skin={DEFAULT_SKIN} data-kind={kindOf(DEFAULT_SKIN)} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: SKIN_BOOT_SCRIPT }} />
         <style dangerouslySetInnerHTML={{ __html: INTRO_CSS }} />

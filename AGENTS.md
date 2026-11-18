@@ -12,6 +12,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 Preserve the live demos, interactive project presentation, media previews and site styles. When adding a public-repository project, also add its verified repository and branch to `content/sources.json`; the portfolio test checks coverage. Do not infer deployed functionality from commits. After a visitor-visible feature ships, check the matching project's demo link, capabilities, limitations and screenshots/video, following `docs/AGENT_SNIPPET.md`. Private source repositories remain excluded from automated imports.
 
+## Design system
+
+The site has three switchable identities (Open Case is the default, plus Rogue Instrument and Unauthorized Manual) and seven older skins, all driven by tokens. Read `docs/DESIGN.md` before changing any styling, and extend the tokens or shared rules instead of adding one-off overrides. Annotations must be true and sourced.
+
 ## Non-negotiables (any agent or contributor)
 
 These are the owner's standing decisions. Do not change them without the owner saying so in their own words.

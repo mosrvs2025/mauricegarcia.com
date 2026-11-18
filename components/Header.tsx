@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { InstagramPortrait } from "./InstagramPortrait";
-import { SkinPicker } from "./SkinPicker";
+import { SkinPicker, SkinRuntime } from "./SkinPicker";
 
 const links = [
   { href: "/projects", label: "Projects" },
@@ -28,11 +28,12 @@ export function Header() {
   const current = (href: string) => (pathname === href || pathname.startsWith(href + "/") ? "page" : undefined);
   return (
     <header className="site-header">
+      <SkinRuntime />
       <div className="studio-wrap nav-bar">
         <div className="brand-cluster">
           <InstagramPortrait size="nav" />
           <Link href="/" className="brand" aria-label="Maurice Garcia, home">
-            <span className="brand-mark" aria-hidden="true">mg<span>✳</span></span>
+            <span className="brand-mark" aria-hidden="true">mg<span className="bm-star">✳</span><i className="bm-dot" /></span>
             <span className="brand-name">MAURICE<br />GARCIA</span>
           </Link>
         </div>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { linkedInUrl, site } from "@/lib/site";
+import { FooterIdentity } from "./SkinPicker";
 
 export function Footer() {
   const linkedin = linkedInUrl();
@@ -44,6 +45,7 @@ export function Footer() {
           </ul>
         </nav>
       </div>
+      <div className="studio-wrap"><FooterIdentity /></div>
     </footer>
   );
 }
