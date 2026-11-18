@@ -33,7 +33,7 @@ export default function HomePage() {
   const ticker = all.map((p) => ({ slug: p.slug, title: p.title, theme: p.themes[0], playable: !!p.links.demo }));
   const spotlight = projectBySlug("ultimate");
   const hub = projectBySlug("realmbreak");
-  const showcase = ["thornwild", "thriftscout", "lumen"].flatMap((slug) => { const p = all.find((p) => p.slug === slug); return p ? [toCard(p)] : []; });
+  const showcase = ["ultron", "realmbreak", "ultimate"].flatMap((slug) => { const p = all.find((p) => p.slug === slug); return p ? [toCard(p)] : []; });
   return (
     <div className="home-page">
       <section className="j-hero-wrap home-opening" aria-labelledby="home-title">

@@ -38,12 +38,14 @@ If a demo breaks, remove `links.demo`; the schema then requires the project to d
 ## The featured set, and why
 
 **Products**
+- **Ultron** (prototype, `order: 1`): a Discord bot and Next.js dashboard for community operations and build intelligence (ShipPulse, Constellation, Questlines, Forge, `/council`, incident replay). It leads Selected work on the home page. The source repository is private and is not linked. There is no public demo, so it stays a prototype. Its screenshots are from a development dashboard that uses synthetic project data, and every caption says so.
+- **Ultimate+** (prototype, `order: 5`): the broadest piece of engineering here, one Android app with a growing set of on-device tools (video, storage, notification history, rules, terminal and SSH, privacy insights, a watch app, local AI), no ads, no analytics, no accounts, and an offline edition with no internet permission. It remains the home-page case-file spotlight. Still labelled prototype because it has not been independently built and run for this site; promote it once there's a verified build. Its screenshots are the repository's own simulated renders with sample data, and every caption says so.
 - **Pipeline CRM** (production): the strongest proof of real-world use, a system a real business runs on. High business value. No screenshots, because it is a client's private system.
 - **ThriftScout** (beta): a live no-card pilot on its own domain with real accounts; the clearest example of a product with a market. Payments are not live, and the page says so.
-- **Ultimate+** (prototype): the broadest piece of engineering here, one Android app with a growing set of on-device tools (video, storage, notification history, rules, terminal and SSH, privacy insights, a watch app, local AI), no ads, no analytics, no accounts, and an offline edition with no internet permission. It leads the featured grid and has a spotlight on the home page because it is the owner's current top priority (`order: 5`; change that one number to reorder). Still labelled prototype because it has not been independently built and run for this site; promote it once there's a verified build. Its screenshots are the repository's own simulated renders with sample data, and every caption says so.
 
 **Experiences**
-- **Thornwild**, **Lineage**, **Mosslight**: the most ambitious playable work. All have public demos that load.
+- **REALMBREAK** (prototype, featured): a WebXR mixed-reality fight with a hosted build at mr.mauricegarcia.com/realmbreak, plus the mixed-reality hub. Second in Selected work. Still a prototype because it has not yet been tested on a physical headset.
+- **Thornwild**, **Lineage**, **Mosslight**: ambitious playable work with public demos that load. Thornwild stays featured, but no longer leads the home-page reel.
 
 **Labs**
 - **Lumen**: an AI-native canvas (built on Excalidraw, credited) that shows applied AI. Public demo; works without an API key.
