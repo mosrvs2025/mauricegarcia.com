@@ -49,7 +49,9 @@ export function Playground() {
   const active = ready && entered && !hidden && CONFIG.enabled;
 
   useEffect(() => {
-    try { setEntered(sessionStorage.getItem(IN_KEY) === "1"); setMin(localStorage.getItem(MIN_KEY) === "1"); } catch { /* storage may be blocked */ }
+    try { setEntered(sessionStorage.getItem(IN_KEY) === "1"); const saved = localStorage.getItem(MIN_KEY);
+      // The card is open by default on wide screens. On phones it starts as the small pill so it never sits over the hero, until the visitor opens it.
+      setMin(saved === "1" || (saved === null && matchMedia("(max-width: 900px)").matches)); } catch { /* storage may be blocked */ }
     let sid = "";
     try { sid = sessionStorage.getItem(ID_KEY) || ""; } catch { /* ignore */ }
     if (!/^[a-z0-9]{8}$/.test(sid)) { sid = randomId(); try { sessionStorage.setItem(ID_KEY, sid); } catch { /* ignore */ } }
@@ -106,7 +108,7 @@ export function Playground() {
 
   const enter = useCallback(() => { setEntered(true); try { sessionStorage.setItem(IN_KEY, "1"); } catch { /* ignore */ } focusNext.current = "bar"; setNote("You are in the playground. Anonymous and temporary."); }, []);
   const exit = useCallback(() => { setEntered(false); setArmed(false); try { sessionStorage.removeItem(IN_KEY); } catch { /* ignore */ } focusNext.current = "entry"; setNote("Left the playground. Disconnected."); }, []);
-  const minimise = (v: boolean) => { setMin(v); try { if (v) localStorage.setItem(MIN_KEY, "1"); else localStorage.removeItem(MIN_KEY); } catch { /* ignore */ } };
+  const minimise = (v: boolean) => { setMin(v); try { if (v) localStorage.setItem(MIN_KEY, "1"); else localStorage.setItem(MIN_KEY, "0"); } catch { /* ignore */ } };
   const arm = () => { const next = !armed; setArmed(next); setNote(next ? `Weapons mode on, ${WEAPONS[weapon].label}. Click or tap the page to fire. Escape to stop.` : "Weapons mode off."); };
 
   if (!ready || hidden || !CONFIG.enabled) return null;

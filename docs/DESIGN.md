@@ -50,6 +50,15 @@ Older skins: `workshop` (the previous default, shown as "Workshop (classic)"), `
 
 Tokens only: components and stylesheets use the semantic `--j-*` tokens, never a raw colour. Never invent a second set of overrides for the same thing; extend the token or the shared rule.
 
+## Floating controls and numerals
+
+- **Floating controls.** "Let's talk" (`.qc`) and the Playground (`.play-dock`) share one bottom baseline on phones (`--float-bottom`, safe-area aware) and never stack. On screens up to 900px the Playground starts as the small ✦ Playground pill (the visitor can open the card; that choice is remembered). `FloatGuard` fades both out while anything marked `data-float-clear` (the hero curiosity row, the Selected work header and selector) is in the bottom 88px of the screen. A control with focus, an open panel or an active Playground never hides. To protect new content from being covered, add `data-float-clear` to it; do not add per-skin offsets.
+- **"Stay curious."** has two triggers for one dialog: inline in the hero curiosity row on wide screens, and under the byline (top of the page) at 900px and below, where the inline one would sit under the fold. Both are `.curiosity-switch`; the byline one adds `.curiosity-switch--top`.
+- **Numerals.** Atkinson's zero is slashed, which at counter sizes reads like 6 or 8. Counters (`.j-num`, `.cf-no`, section numbers, secret-shelf doors) use `--font-num` (the display face) with `tabular-nums lining-nums`. Put new counters on `.j-num` instead of styling digits one by one.
+- **Contrast.** `tests/polish.test.ts` asserts that link, muted and body text meet 4.5:1 on each identity's background and surface.
+
 ## Screenshots
 
 `node scripts/capture-identities.cjs` writes the homepage, a project page and a writing page at 1440×900 and 390×844 (reduced motion, `?intro=0`, stable data). The committed set is in `docs/screenshots/identity/{before,open-case,rogue-instrument,unauthorized-manual}`; `before` is the Workshop look prior to this change.
+
+`docs/screenshots/polish/{before,after}` holds the mobile polish set (390×844, first screen and the Selected work block, all three identities; the resting state with the floating pill; and the expanded card).

@@ -44,6 +44,8 @@ html[data-skin="open-case"] {
   /* Type: Anybody is variable in width and weight. Heavy and slightly condensed reads as a signature, still comfortable. */
   --font-display: var(--font-anybody), "Arial Narrow", ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-atkinson), ui-sans-serif, system-ui, sans-serif;
+  /* Counters: Atkinson's zero is slashed, which at 10px with tracking reads like 6 or 8, so numbers use the display face. */
+  --font-num: var(--font-display);
   --j-stretch: 88%; --j-display-weight: 800; --j-display-track: -.012em; --j-display-case: uppercase; --j-display-leading: .94;
   --j-hero-size: clamp(2.7rem, calc((100vw - 96px) / 9.3), 8.4rem); --j-hero-size-m: 12.2vw; --j-h1: clamp(2.2rem, 6.4vw, 4.6rem); --j-h2: clamp(1.7rem, 3.8vw, 3rem); --j-h3: clamp(1.25rem, 2.2vw, 1.6rem);
   --j-kicker-track: .14em; --j-body-size: 1.0625rem; --j-body-leading: 1.7;
@@ -62,6 +64,7 @@ html[data-skin="rogue-instrument"] {
   --j-radius: 2px; --j-bw: 1px; --j-shadow: none; --j-aurora: 0;
   --font-display: var(--font-saira), "Arial Narrow", ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
+  --font-num: var(--font-display);
   --j-stretch: 100%; --j-display-weight: 700; --j-display-track: .005em; --j-display-case: uppercase; --j-display-leading: .92;
   --j-hero-size: clamp(3rem, calc((100vw - 96px) / 6.4), 10.4rem); --j-hero-size-m: 17vw; --j-h1: clamp(2.4rem, 6.8vw, 5rem); --j-h2: clamp(1.8rem, 4vw, 3.2rem); --j-h3: clamp(1.3rem, 2.3vw, 1.75rem);
   --j-kicker-track: .16em; --j-body-size: 1.0625rem; --j-body-leading: 1.65;
@@ -80,6 +83,7 @@ html[data-skin="unauthorized-manual"] {
   --j-radius: 0px; --j-bw: 2px; --j-shadow: 4px 4px 0 #11100F; --j-aurora: 0;
   --font-display: var(--font-archivo-black), "Arial Black", ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-num: var(--font-display);
   --j-stretch: 100%; --j-display-weight: 400; --j-display-track: -.02em; --j-display-case: uppercase; --j-display-leading: .95;
   --j-hero-size: clamp(2.5rem, calc((100vw - 96px) / 9.8), 7.8rem); --j-hero-size-m: 9.4vw; --j-h1: clamp(2.1rem, 6vw, 4.4rem); --j-h2: clamp(1.6rem, 3.6vw, 2.8rem); --j-h3: clamp(1.2rem, 2.1vw, 1.5rem);
   --j-kicker-track: .1em; --j-body-size: 1.0625rem; --j-body-leading: 1.7;

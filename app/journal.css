@@ -362,6 +362,7 @@ main:focus { outline:none; }
 .home-curiosity .j-surprise button { padding:0; border:0; font-size:.85rem; color:var(--j-muted); text-decoration:underline; text-underline-offset:4px; }
 .home-curiosity .j-surprise > span { display:none !important; }
 .home-showcase { min-width:0; border:1px solid var(--j-line-strong); border-radius:var(--j-radius); background:var(--j-surface); box-shadow:0 30px 90px -40px #000a; overflow:hidden; }
+.j-num, .cf-no { font-variant-numeric:tabular-nums lining-nums; }
 .showcase-chrome { display:flex; justify-content:space-between; align-items:center; padding:14px 18px; font-size:.68rem; text-transform:uppercase; letter-spacing:.12em; color:var(--j-muted); }
 .showcase-chrome > span:first-child { display:flex; align-items:center; gap:8px; }
 .showcase-chrome i { display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--j-accent); }
@@ -390,7 +391,9 @@ main:focus { outline:none; }
 .curiosity-switch { display:flex; align-items:center; gap:7px; background:none; color:var(--j-muted); border:0; font:inherit; cursor:pointer; min-height:36px; }
 .curiosity-switch > span:first-child { font-size:1.45rem; color:var(--j-accent); transition:transform .5s; }
 .curiosity-switch:hover > span:first-child { transform:rotate(90deg); }
-.curiosity-hint { font-size:.72rem; }
+.curiosity-hint { font-size:.8rem; }
+/* The same secret-shelf trigger, repeated in the byline for phones. Wide screens use the one in the curiosity row. */
+.curiosity-switch--top { display:none; margin-top:6px; min-height:32px; }
 .secret-shelf { position:fixed; inset:0; width:min(600px,calc(100% - 32px)); max-height:calc(100dvh - 32px); overflow:auto; margin:auto; border:1px solid var(--j-line-strong); border-radius:var(--j-radius); background:var(--j-surface); color:var(--j-text); padding:28px; box-shadow:0 40px 140px #0008; }
 .secret-shelf::backdrop { background:#000b; backdrop-filter:blur(8px); }
 .secret-top { display:flex; align-items:center; justify-content:space-between; gap:16px; }
@@ -485,6 +488,24 @@ main:focus { outline:none; }
 .qc-mail { flex:1; font-size:.9rem; overflow:hidden; text-overflow:ellipsis; }
 .qc-copy { border:1px solid var(--j-line-strong); background:transparent; color:var(--j-text); border-radius:8px; padding:4px 10px; cursor:pointer; font-size:.8rem; }
 .qc-hello { display:inline-block; margin-top:12px; font-size:.9rem; }
+
+/*
+ * Floating controls ("Let's talk" and the Playground pill/card). On phones they share one baseline at the bottom edge
+ * and never stack, the Playground starts as the small pill, and FloatGuard fades both out while content marked
+ * data-float-clear (the hero curiosity row, the Selected work header and selector) is in the bottom band of the screen.
+ * Anything with focus, an open panel or an active Playground stays visible.
+ */
+:root { --float-inset: 16px; --float-bottom: max(var(--float-inset), env(safe-area-inset-bottom)); }
+.qc, .play-dock { transition:opacity .18s ease, transform .18s ease; }
+html[data-float-clear] .qc:not(:focus-within):not(:has(.qc-panel)),
+html[data-float-clear] .play-dock:not(:focus-within):not(:has(.play-bar, [data-nudge])) { opacity:0; visibility:hidden; transform:translateY(12px); pointer-events:none; transition:opacity .18s ease, transform .18s ease, visibility 0s linear .18s; }
+@media (max-width:900px) {
+  .qc { right:var(--float-inset); bottom:var(--float-bottom); }
+  .qc-btn { min-height:44px; padding:0 16px; }
+  .curiosity-switch--top { display:flex; }
+  .home-curiosity .curiosity-switch:not(.curiosity-switch--top) { display:none; }
+}
+@media (prefers-reduced-motion:reduce) { .qc, .play-dock, html[data-float-clear] .qc, html[data-float-clear] .play-dock { transition:none; } }
 @media (prefers-reduced-motion:reduce) { .qc-dot, .qc-panel { animation:none; } .wd-link, .wd-shot { transition:none; } }
 .tr h2 { font-size:clamp(2.2rem,4.4vw,3.6rem); line-height:1.05; margin-top:10px; letter-spacing:-.02em; }
 
