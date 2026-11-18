@@ -42,7 +42,7 @@
     {
       "src": "/projects/ultron-constellation.webp",
       "alt": "Ultron's Project Constellation dashboard: two project stars labelled E2E Lab and Demo Lab (synthetic), with a timeline of builds, deploys and incidents.",
-      "caption": "Project Constellation, from a development dashboard using synthetic project data. Captured 17 Nov 2026.",
+      "caption": "Project Constellation, from a development dashboard using synthetic project data.",
       "capturedAt": "2026-11-17",
       "width": 1280,
       "height": 720
@@ -50,7 +50,7 @@
     {
       "src": "/projects/ultron-overview.webp",
       "alt": "Ultron's Overview screen for a test community, showing an attention list, moderation outcomes, support tickets and upcoming events.",
-      "caption": "The Overview attention screen, from a development dashboard using test data. Captured 17 Nov 2026.",
+      "caption": "The Overview attention screen, from a development dashboard using test data.",
       "capturedAt": "2026-11-17",
       "width": 1360,
       "height": 860
@@ -58,7 +58,7 @@
     {
       "src": "/projects/ultron-quests.webp",
       "alt": "Ultron's Ship Questlines screen, with achievements for a first pull request, a first green build and a public launch, some marked not yet earned.",
-      "caption": "Ship Questlines, from a development dashboard using synthetic project data. Captured 17 Nov 2026.",
+      "caption": "Ship Questlines, from a development dashboard using synthetic project data.",
       "capturedAt": "2026-11-17",
       "width": 1360,
       "height": 860
@@ -66,7 +66,7 @@
     {
       "src": "/projects/ultron-forge-card.webp",
       "alt": "A Forge milestone card stamped SYNTHETIC DEMO, titled Add dark mode to the Lab dashboard, credited to Mo's Lab.",
-      "caption": "A Forge milestone card. The SYNTHETIC DEMO stamp is in the original image. Captured 17 Nov 2026.",
+      "caption": "A Forge milestone card. The SYNTHETIC DEMO stamp is in the original image.",
       "capturedAt": "2026-11-17",
       "width": 1000,
       "height": 560
@@ -74,7 +74,7 @@
   ],
   "dates": {
     "lastChange": "2026-11-17",
-    "lastChangeSource": "owner-documented work",
+    "lastChangeSource": "documented by the owner",
     "reviewed": "2026-11-17"
   },
   "evidence": [
