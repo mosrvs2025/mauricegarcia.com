@@ -89,3 +89,15 @@ test("classic skins keep their own hero and get none of the identity-only layers
   assert.match(css, /html\[data-kind="classic"\] :is\(\.hero-statement, \.nav-contact\) \{ display:contents; \}/);
   assert.match(read("app/page.tsx"), /<HomeShowcase projects=\{showcase\} \/>/);
 });
+
+test("the homepage headline is the same in all three identities, and in the home OG image", () => {
+  const home = read("app/page.tsx");
+  const headline = /Software, AI, and worlds<br \/><em>you can step into\.<\/em>/;
+  assert.match(home, new RegExp(String.raw`className="hv hv-case">${headline.source}`));
+  assert.match(home, new RegExp(String.raw`className="hv hv-rogue">${headline.source}`));
+  assert.match(home, new RegExp(String.raw`className="hv hv-manual">${headline.source}`));
+  assert.doesNotMatch(home, /I build things\.|Then I break them\.|Systems should<br|Do not build<br/);
+  const og = read("app/opengraph-image.tsx");
+  assert.match(og, /title: "Software, AI, and worlds you can step into\."/);
+  assert.doesNotMatch(og, /I build things\./);
+});

@@ -79,9 +79,9 @@ export default function HomePage() {
           </div>
           <div className="hero-statement">
             <h1 id="home-title" className="display j-title home-title">
-              <span className="hv hv-case">I build things.<br /><em>Then I break them.</em></span>
-              <span className="hv hv-rogue">Systems should<br /><em>do more.</em></span>
-              <span className="hv hv-manual">Do not build<br /><em>normal.</em></span>
+              <span className="hv hv-case">Software, AI, and worlds<br /><em>you can step into.</em></span>
+              <span className="hv hv-rogue">Software, AI, and worlds<br /><em>you can step into.</em></span>
+              <span className="hv hv-manual">Software, AI, and worlds<br /><em>you can step into.</em></span>
             </h1>
             <div className="hero-copy">
               <p className="lede">I&apos;m Maurice Garcia, an experience engineer. After a decade in fraud prevention, I now build practical software, strange digital worlds, and experiments you can actually try.</p>
