@@ -5,7 +5,7 @@ export type AnnotationKind = "decision" | "experiment" | "limitation";
 const KIND_LABEL: Record<AnnotationKind, string> = { decision: "Engineering decision", experiment: "Experiment", limitation: "Limitation" };
 
 /**
- * The signature detail of the Open Case identity: a small numbered marker that reveals one real note about a project,
+ * A case-file annotation (kept from the earlier Open Case identity, used in every skin): a small numbered marker that reveals one real note about a project,
  * an engineering decision, an experiment or an honest limitation. It is a disclosure button (aria-expanded), so it works
  * the same with a mouse, a finger or the keyboard (Enter and Space toggle it, Escape closes it, a click elsewhere closes it).
  * A mouse hovering over it previews the note, but nothing depends on hover.

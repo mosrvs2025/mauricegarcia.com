@@ -20,7 +20,7 @@ export default async function SkinPage({ params }: { params: Promise<{ skin: str
     <div className={`lab-skin lab-${skin.id}`}>
       <SkinNav current={skin.id} />
       <Skin id={skin.id} data={labData()} />
-      <p className="lab-note">Design demo using the real projects and updates from this site. <a href="/lab">See the other styles</a> or <a href="/connect?intent=paid-work">talk to me about a site like this</a>.</p>
+      <p className="lab-note">Design demo using the real projects and updates from this site. <a href="/lab">See the other styles</a> or <a href="/connect">talk to me about a site like this</a>.</p>
     </div>
   );
 }

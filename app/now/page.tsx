@@ -26,7 +26,7 @@ export default function NowPage() {
           <p style={{ fontSize: "1.3rem" }} className="display">{now.focus}</p>
           {now.building.length > 0 && <><h2>Building</h2><ul>{now.building.map((b) => { const p = projectById(b.projectId); return <li key={b.text}>{b.text}{p && <> <Link href={`/projects/${p.slug}`}>({p.title})</Link></>}</li>; })}</ul></>}
           {now.exploring.length > 0 && <><h2>Exploring</h2><ul>{now.exploring.map((e) => <li key={e}>{e}</li>)}</ul></>}
-          {now.welcome.length > 0 && <><h2>Opportunities and connections I'd welcome</h2><ul>{now.welcome.map((w) => <li key={w.text}>{w.text} <Link href={`/connect?intent=${w.intent}`}>Write to me</Link></li>)}</ul></>}
+          {now.welcome.length > 0 && <><h2>Opportunities and connections I'd welcome</h2><ul>{now.welcome.map((w) => <li key={w.text}>{w.text} <Link href="/connect">Write to me</Link></li>)}</ul></>}
         </div>
       )}
     </div>

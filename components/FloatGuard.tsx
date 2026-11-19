@@ -2,7 +2,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-/** How much of the bottom of the viewport the floating controls (Playground pill, "Let's talk") can occupy, plus a margin. */
+/** How much of the bottom of the viewport the floating Playground pill can occupy, plus a margin. */
 const BAND = 88;
 
 /**

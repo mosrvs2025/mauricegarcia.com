@@ -26,11 +26,11 @@ The black hole itself is a small CSS-only component (`components/BlackHole.tsx`,
 
 ### Three switchable identities
 
-Open Case (the default), Rogue Instrument and Unauthorized Manual restyle the whole site from one component tree. Switch from the header, the footer or with Alt+Shift+S; share one with `?skin=open-case`, `?skin=rogue-instrument` or `?skin=unauthorized-manual`. The seven older skins stay under "More skins". See [docs/DESIGN.md](docs/DESIGN.md).
+SOFTWORKS (the default, architectural neumorphism), MERCURY (liquid chrome) and PARALLAX (layered glass) restyle the whole site from one component tree, each with its own navigation, hero and project layout. Switch from the header, the footer or with Alt+Shift+S; share one with `?skin=open-case`, `?skin=rogue-instrument` or `?skin=unauthorized-manual`. The seven older skins stay under "More skins". See [docs/DESIGN.md](docs/DESIGN.md).
 
-| Open Case | Rogue Instrument | Unauthorized Manual |
+| SOFTWORKS | MERCURY | PARALLAX |
 | --- | --- | --- |
-| ![Open Case](docs/screenshots/identity/open-case/home-desktop.webp) | ![Rogue Instrument](docs/screenshots/identity/rogue-instrument/home-desktop.webp) | ![Unauthorized Manual](docs/screenshots/identity/unauthorized-manual/home-desktop.webp) |
+| ![SOFTWORKS](docs/screenshots/identity/open-case/home-desktop.webp) | ![MERCURY](docs/screenshots/identity/rogue-instrument/home-desktop.webp) | ![PARALLAX](docs/screenshots/identity/unauthorized-manual/home-desktop.webp) |
 
 ### Styles
 

@@ -19,6 +19,8 @@ import { ProjectSpotlight } from "@/components/ProjectSpotlight";
 import Image from "next/image";
 import { InstagramPortrait } from "@/components/InstagramPortrait";
 import { SecretShelf, SecretShelfTrigger } from "@/components/SecretShelf";
+import { HeroWork } from "@/components/HeroWork";
+import { DepthDrift } from "@/components/DepthDrift";
 
 // The animated grid is decorative: load it after the page is interactive so it never delays first paint.
 const HeroField = dynamic(() => import("@/components/HeroField").then((m) => m.HeroField));
@@ -34,12 +36,26 @@ export default function HomePage() {
   const spotlight = projectBySlug("ultimate");
   const hub = projectBySlug("realmbreak");
   const showcase = ["ultron", "realmbreak", "ultimate"].flatMap((slug) => { const p = all.find((p) => p.slug === slug); return p ? [toCard(p)] : []; });
+  const lead = showcase[0];
   return (
     <div className="home-page">
-      <section className="j-hero-wrap home-opening" aria-labelledby="home-title">
+      {/*
+        One hero, three compositions (app/identities.css). The same children are arranged per identity:
+        SOFTWORKS a 7/5 split with raised project modules, MERCURY a 70/30 cinematic poster with a liquid-metal form and
+        the work below, PARALLAX a stage of three overlapping depth planes. Classic skins keep the older two-column hero.
+        Decorative layers (aurora, field, atmosphere, back plane, liquid form) are aria-hidden and never take pointer input.
+      */}
+      <section className="j-hero-wrap home-opening j-scene" aria-labelledby="home-title">
         <div className="j-aurora" aria-hidden="true"><i /><i /><i /></div>
         <HeroField />
+        <div className="hero-atmos" aria-hidden="true"><i /><i /></div>
         <div className="studio-wrap j-hero home-hero">
+          {lead?.image && (
+            <div className="hero-backplane" aria-hidden="true">
+              <Image src={lead.image.src} alt="" fill sizes="(max-width:900px) 100vw, 64vw" loading="lazy" />
+            </div>
+          )}
+          <div className="hero-liquid" aria-hidden="true"><i /><i /><i /></div>
           <div className="hero-meta">
             <div className="home-byline">
               <InstagramPortrait size="hero" />
@@ -58,22 +74,25 @@ export default function HomePage() {
             <p className="hero-tag">
               <span className="hv hv-case">Build / Test / Play</span>
               <span className="hv hv-rogue">Build / Test / Play · Mode: experiment</span>
-              <span className="hv hv-manual">Unauthorized user manual · Rev. 001</span>
+              <span className="hv hv-manual">Try it / Break it / Understand it</span>
             </p>
           </div>
-          <h1 id="home-title" className="display j-title home-title">
-            <span className="hv hv-case">I build things.<br /><em>Then I break them.</em></span>
-            <span className="hv hv-rogue">Systems should<br /><em>do more.</em></span>
-            <span className="hv hv-manual">Do not build<br /><em>normal.</em></span>
-          </h1>
-          <div className="hero-copy">
-            <p className="lede">I&apos;m Maurice Garcia, an experience engineer. After a decade in fraud prevention, I now build practical software, strange digital worlds, and experiments you can actually try.</p>
-            <div className="j-actions">
-              <Link href="#case-files" className="btn btn-fill j-shine">Explore the work <span aria-hidden="true">↘</span></Link>
-              <Link href="/connect?intent=paid-work" className="j-link j-arrow">Let&apos;s build something</Link>
+          <div className="hero-statement">
+            <h1 id="home-title" className="display j-title home-title">
+              <span className="hv hv-case">I build things.<br /><em>Then I break them.</em></span>
+              <span className="hv hv-rogue">Systems should<br /><em>do more.</em></span>
+              <span className="hv hv-manual">Do not build<br /><em>normal.</em></span>
+            </h1>
+            <div className="hero-copy">
+              <p className="lede">I&apos;m Maurice Garcia, an experience engineer. After a decade in fraud prevention, I now build practical software, strange digital worlds, and experiments you can actually try.</p>
+              <div className="j-actions">
+                <Link href="#case-files" className="btn btn-fill j-shine j-pressable">Explore the work <span aria-hidden="true">↘</span></Link>
+                <Link href="/connect" className="j-link j-arrow">Let&apos;s build something</Link>
+              </div>
+              <div className="home-curiosity" data-float-clear><SurpriseMe demos={demos} /><Link href="/v/game" className="j-link" data-track="game_version">Play this site as a game</Link><SecretShelf /></div>
             </div>
-            <div className="home-curiosity" data-float-clear><SurpriseMe demos={demos} /><Link href="/v/game" className="j-link" data-track="game_version">Play this site as a game</Link><SecretShelf /></div>
           </div>
+          <HeroWork projects={showcase} />
           <HomeShowcase projects={showcase} />
           <ol className="hero-verbs" aria-label="How to use this site">
             <li><a href="#case-files"><b>01</b> Try it<span>Open a live demo</span></a></li>
@@ -81,6 +100,7 @@ export default function HomePage() {
             <li><Link href="/projects/ultimate"><b>03</b> Understand it<span>Read a case study</span></Link></li>
           </ol>
         </div>
+        <DepthDrift target=".home-opening" />
       </section>
 
       <Ticker items={ticker} />
@@ -173,16 +193,6 @@ export default function HomePage() {
         return { track, lead: { experiences: "Games and worlds built to be played.", products: "Software built around real problems.", labs: "Experiments that follow an interesting question." }[track], total: projectsByTrack(track).length, projects: rest.map(toCard) };
       })} />
 
-      <section className="studio-wrap qc-band" aria-labelledby="talk-h">
-        <Reveal><div className="qc-band-inner">
-          <div><p className="eyebrow">Have something in mind?</p><h2 className="display" id="talk-h">Let&apos;s make it real.</h2></div>
-          <div className="qc-band-actions">
-            <Link href="/connect?intent=paid-work" className="btn btn-fill j-shine">Start a project</Link>
-            <a href={`mailto:${site.email}`} className="j-link j-arrow">{site.email}</a>
-          </div>
-        </div></Reveal>
-      </section>
-
       <section className="studio-wrap j-section" aria-labelledby="cap-h">
         <Reveal><div className="j-head"><div><p className="eyebrow">Behind the work</p><h2 className="display" id="cap-h">Creative range. Practical execution.</h2></div></div></Reveal>
         <ul className="j-caps">
@@ -196,21 +206,6 @@ export default function HomePage() {
             </div></Reveal>
           ))}
         </ul>
-      </section>
-
-      <section className="studio-wrap j-section" aria-labelledby="work-h">
-        <Reveal><div className="j-head"><div><p className="eyebrow">Work together</p><h2 className="display" id="work-h">Five ways to start</h2></div><Link href="/services" className="j-link j-arrow">How each one works</Link></div></Reveal>
-        <div className="j-ways">
-          {[
-            ["Build something with me", "You have an ambitious idea, or a system that needs custom software, automation or AI. We scope it together and I quote it to the work.", "Start a build", "/connect?intent=paid-work"],
-            ["License, invest or partner", "Several of my products are early. If one fits your company or your portfolio, let's talk about licensing, partnership or backing it.", "Talk partnership", "/connect?intent=partner"],
-            ["Learn to build with AI", "Free tutorials and walkthroughs, and hands-on sessions if you want to move faster. Any AI tool, any experience level.", "Start learning", "/learn"],
-            ["Hire me", "Recruiters and teams: I'm a creative engineer who builds across AI, software, games and mobile. Tell me about the role.", "Tell me about the role", "/connect?intent=hire"],
-            ["Just say hello", "Played a demo, found a bug, or have an odd idea? Write to me. No agenda and no budget needed.", "Say hello", "/connect"],
-          ].map(([t, p, cta, href], i) => (
-            <Reveal key={t} delay={i * 60}><div className="j-panel"><h3 className="display">{t}</h3><p>{p}</p><div className="actions"><Link className={i === 0 ? "btn btn-fill j-shine" : "btn btn-ghost"} href={href}>{cta}</Link></div></div></Reveal>
-          ))}
-        </div>
       </section>
 
       {updates.length > 0 && (

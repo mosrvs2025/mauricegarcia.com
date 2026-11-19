@@ -40,7 +40,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           {p.links.demo && <a className="btn btn-fill" href={p.links.demo} rel="noopener noreferrer" data-track="demo_visit" data-track-project={p.slug}>{p.themes.includes("games") ? "▶ Play now" : "Live site"}</a>}
           {p.links.repo && <a className="btn btn-ghost" href={p.links.repo} rel="noopener noreferrer" data-track="source_click" data-track-project={p.slug}>See the source</a>}
           {p.links.other.map((l) => <a key={l.url} className="j-link j-arrow" href={l.url} rel="noopener noreferrer">{l.label}</a>)}
-          <Link className="j-link j-arrow" href={`/connect?project=${p.slug}&intent=${p.involve.intent}`} data-track="project_to_contact" data-track-project={p.slug}>Talk to me about this</Link>
+          <Link className="j-link j-arrow" href="/connect" data-track="project_to_contact" data-track-project={p.slug}>Talk to me about this</Link>
         </div>
       </header>
 
@@ -84,7 +84,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <h2 className="display" id="involve">How you can get involved</h2>
         <p className="j-muted" style={{ marginBottom: 12 }}>{p.involve.headline}</p>
         <ul>{p.involve.asks.map((a) => <li key={a}>{a}</li>)}</ul>
-        <Link className="btn btn-fill" href={`/connect?project=${p.slug}&intent=${p.involve.intent}`} data-track="project_to_contact" data-track-project={p.slug}>Write to me about {p.title}</Link>
+        <Link className="btn btn-fill" href="/connect" data-track="project_to_contact" data-track-project={p.slug}>Write to me about {p.title}</Link>
       </section>
     </article>
   );

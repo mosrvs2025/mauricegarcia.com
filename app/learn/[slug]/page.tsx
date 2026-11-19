@@ -43,7 +43,7 @@ export default async function LessonPage({ params }: { params: Promise<{ slug: s
       <aside className="j-callout" style={{ marginTop: 44 }}>
         <h2 className="display">Want a hand with this?</h2>
         <ul><li>Learn it live, on your own idea, at your level.</li><li>Or have me build it for you.</li></ul>
-        <p className="j-actions" style={{ marginTop: 0 }}><Link className="btn btn-fill" href="/connect?intent=coaching">Learn with me</Link><Link className="btn btn-ghost" href="/connect?intent=paid-work">Have it built</Link></p>
+        <p className="j-actions" style={{ marginTop: 0 }}><Link className="btn btn-fill" href="/connect">Learn with me</Link><Link className="btn btn-ghost" href="/connect">Have it built</Link></p>
       </aside>
     </article>
   );

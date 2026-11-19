@@ -13,68 +13,90 @@ function load(file, mocks = {}) {
   return exports;
 }
 const contact = load('lib/contact.ts');
-const services = load('lib/services.ts');
-const site = load('lib/site.ts');
-const emails = load('lib/contact-emails.ts', { './contact': contact, './site': site });
+const emails = load('lib/contact-emails.ts', { './contact': contact });
 const { POST } = load('app/api/contact/route.ts', {
-  '@/lib/contact-emails': emails, '@/lib/contact': contact, '@/lib/services': services,
+  '@/lib/contact-emails': emails, '@/lib/contact': contact,
   'next/server': { NextResponse: { json: (body, init) => Response.json(body, init) } },
   resend: { Resend: class { emails = { send: async payload => { deliveries.push(payload); if (payload.to === contact.contactEmail) sent = payload; return { error: providerError || (confirmationError && payload.to !== contact.contactEmail ? { message: "Confirmation rejected" } : null) }; } }; } },
 });
-const valid = { name: 'Test Client', email: 'client@example.com', body: 'I need booking inquiries.', service: 'business-website', budget: '$1,000–$3,000', timeline: 'Within a month', business: 'Example Co' };
+// The whole contract: a message (10 to 3,000 characters) and an email are required; a name is optional.
+// Objects from the vm sandbox have another realm's prototype; compare plain copies.
+const plain = (v) => JSON.parse(JSON.stringify(v));
+const valid = { message: 'Played REALMBREAK, loved the beam clash.', email: 'friend@example.com' };
 const request = (body, origin = 'https://www.mauricegarcia.com') => new Request('https://www.mauricegarcia.com/api/contact', { method: 'POST', headers: { origin }, body: JSON.stringify(body) });
 (async () => {
+  // Server-side validation and trimming.
+  assert.deepEqual(plain(contact.parseInquiry({ ...valid, message: '  ' + valid.message + '  ', email: ' friend@example.com ' })), { message: valid.message, email: valid.email, name: '', companyFax: '' });
   assert.equal(contact.parseInquiry({ ...valid, email: {} }), null);
   assert.equal(contact.parseInquiry({ ...valid, email: 'invalid' }), null);
-  assert.equal(contact.parseInquiry({ ...valid, body: 'a'.repeat(5001) }), null);
+  assert.equal(contact.parseInquiry({ ...valid, email: '' }), null, 'email is required');
+  assert.equal(contact.parseInquiry({ email: valid.email }), null, 'message is required');
+  assert.equal(contact.parseInquiry({ ...valid, message: 'too short' }), null, 'under 10 characters');
+  assert.ok(contact.parseInquiry({ ...valid, message: 'a'.repeat(3000) }), '3,000 characters is fine');
+  assert.equal(contact.parseInquiry({ ...valid, message: 'a'.repeat(3001) }), null, 'over 3,000 characters');
+  assert.ok(contact.parseInquiry({ ...valid, name: 'N'.repeat(80) }), 'an 80-character name is fine');
+  assert.equal(contact.parseInquiry({ ...valid, name: 'N'.repeat(81) }), null, 'names stop at 80 characters');
+  assert.equal(contact.parseInquiry({ ...valid, name: 'Line\nBreak' }), null, 'no line breaks in a name');
+  assert.equal(contact.parseInquiry({ ...valid, email: 'a@b.co\nBcc: x@y.z' }), null, 'no header injection through the address');
+  // Older clients and stray fields: `body` still works as the message, and intent, budget, timeline or service are neither required nor used.
+  assert.equal(contact.parseInquiry({ body: valid.message, email: valid.email }).message, valid.message);
+  assert.deepEqual(Object.keys(contact.parseInquiry({ ...valid, intent: 'paid-work', budget: '$50,000+', timeline: 'ASAP', service: 'x' })).sort(), ['companyFax', 'email', 'message', 'name']);
+  // Origin, honeypot and missing configuration.
   assert.equal((await POST(request(valid, 'https://elsewhere.example'))).status, 403);
   assert.equal((await POST(request({ ...valid, companyFax: 'spam' }))).status, 400);
+  assert.equal((await POST(request({ ...valid, message: 'short' }))).status, 400);
   const oldKey = process.env.RESEND_API_KEY;
   delete process.env.RESEND_API_KEY;
   assert.equal((await POST(request(valid))).status, 503);
   process.env.RESEND_API_KEY = 'test-mocked';
-  assert.equal((await POST(request(valid))).status, 200);
+  // Delivery: fixed recipient, the visitor only ever as a validated replyTo; no name needed.
+  const ok = await POST(request(valid));
+  assert.equal(ok.status, 200);
+  assert.equal((await ok.json()).ok, true);
   assert.equal(sent.to, 'hello@mauricegarcia.com');
   assert.equal(sent.replyTo, valid.email);
-  assert.match(sent.text, /Budget: \$1,000/);
-  assert.match(sent.text, /Business: Example Co/);
-  providerError = { message: 'Rejected' };
-  assert.equal((await POST(request(valid))).status, 502);
-  // New connect-form fields: intent and project carry through; budget stays optional.
+  assert.match(sent.subject, /Website message from friend@example\.com/);
+  assert.match(sent.text, /Played REALMBREAK/);
+  assert.doesNotMatch(sent.text, /Name:|Intent|Budget|Timeline|Service/);
   contact.resetSubmissions();
-  providerError = null;
-  const hello = { name: 'Friend', email: 'friend@example.com', body: 'Played Gridheart, loved it.', intent: 'collaborate', project: 'gridheart' };
-  assert.equal((await POST(request(hello))).status, 200);
-  assert.match(sent.text, /Intent: Collaboration/);
-  assert.match(sent.text, /Project: gridheart \(https:\/\/www\.mauricegarcia\.com\/projects\/gridheart\)/);
-  assert.doesNotMatch(sent.text, /Not provided|Service: None/);
-  assert.equal(deliveries.at(-1).to, hello.email);
+  assert.equal((await POST(request({ ...valid, name: 'Friend' }))).status, 200);
+  assert.match(sent.subject, /from Friend/);
+  assert.match(sent.text, /Name: Friend/);
+  assert.match(sent.html, /Reply to Friend/);
+  assert.equal(deliveries.at(-1).to, valid.email);
   assert.equal(deliveries.at(-1).replyTo, contact.contactEmail);
   assert.match(deliveries.at(-1).html, /automatic confirmation/);
-  assert.match(sent.html, /Reply to Friend/);
-  const escaped = emails.contactEmails({ ...hello, name: "<img>", body: "<script>alert(1)</script>" }, "Hello");
+  // Untrusted text is escaped in the owner email.
+  const escaped = emails.contactEmails({ ...valid, name: "<img>", message: "<script>alert(1)</script>", companyFax: '' });
   assert.doesNotMatch(escaped.owner.html, /<script>|<img>/);
   // The unverified address never receives anything the visitor typed: no name, no message text.
-  const echoed = emails.contactEmails({ ...hello, name: "ZZNAMEZZ", body: "ZZBODYZZ spam text" }, "Hello").visitor;
+  const echoed = emails.contactEmails({ ...valid, name: "ZZNAMEZZ", message: "ZZBODYZZ spam text", companyFax: '' }).visitor;
   assert.doesNotMatch(echoed.html + echoed.text, /ZZNAMEZZ|ZZBODYZZ|spam text/);
   assert.match(echoed.text, /ignore this email/);
+  // Provider failure: no success is reported.
+  contact.resetSubmissions();
+  providerError = { message: 'Rejected' };
+  const failed = await POST(request(valid));
+  assert.equal(failed.status, 502);
+  assert.equal((await failed.json()).ok, undefined);
+  providerError = null;
+  // A rejected confirmation does not undo a delivered message.
   contact.resetSubmissions();
   confirmationError = true;
-  const partial = await POST(request(hello));
+  const partial = await POST(request(valid));
   assert.equal(partial.status, 200);
   assert.equal((await partial.json()).confirmationSent, false);
   confirmationError = false;
-  assert.match(sent.subject, /Collaboration/);
-  assert.equal(contact.parseInquiry({ ...hello, intent: 'sell-me-things' }), null);
-  assert.equal(contact.parseInquiry({ ...hello, project: '../../etc' }), null);
   // Proportionate spam protection: link floods and bursts from one client are refused with honest messages.
-  assert.equal((await POST(request({ ...hello, body: 'http://a.example http://b.example http://c.example http://d.example' }))).status, 400);
+  assert.equal((await POST(request({ ...valid, message: 'http://a.example http://b.example http://c.example http://d.example' }))).status, 400);
   contact.resetSubmissions();
-  const burst = () => new Request('https://www.mauricegarcia.com/api/contact', { method: 'POST', headers: { origin: 'https://www.mauricegarcia.com', 'x-forwarded-for': '203.0.113.9' }, body: JSON.stringify(hello) });
+  const burst = () => new Request('https://www.mauricegarcia.com/api/contact', { method: 'POST', headers: { origin: 'https://www.mauricegarcia.com', 'x-forwarded-for': '203.0.113.9' }, body: JSON.stringify(valid) });
   const codes = []; for (let i = 0; i < 7; i++) codes.push((await POST(burst())).status);
-  assert.deepEqual(codes, [200, 200, 200, 200, 200, 429, 429]);
+  assert.deepEqual(plain(codes), [200, 200, 200, 200, 200, 429, 429]);
   contact.resetSubmissions();
+  // Message bodies are never logged by the route.
+  assert.doesNotMatch(fs.readFileSync('app/api/contact/route.ts', 'utf8'), /console\.\w+\([^)]*(message|inquiry)/);
   if (oldKey === undefined) delete process.env.RESEND_API_KEY; else process.env.RESEND_API_KEY = oldKey;
-  console.log('Contact checks passed: validation, spam field, link flood, rate limit, origin, missing configuration, recipient, reply-to, intent/project context, and provider failure. No real email sent.');
+  console.log('Contact checks passed: message and email required, optional name, length limits, trimming, header-injection, honeypot, link flood, rate limit, origin, missing configuration, recipient, reply-to, escaping, no echo to visitors, and provider failure. No real email sent.');
 })().catch(error => { console.error(error); process.exitCode = 1; });
 
