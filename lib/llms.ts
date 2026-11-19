@@ -31,6 +31,7 @@ const mainPages = (): [string, string, string][] => [
   ["Home", "/", "Overview and featured work."],
   ["About", "/about", "Who Maurice is, how he works and who he would like to hear from."],
   ["Projects", "/projects", "Every project, each with an honest maturity label (production, beta, prototype or concept)."],
+  ["Products", "/products", "Live fraud-prevention demos (RiskReplay, LeadFirewall, DisputeDeck, RefundRadar, Is This Bullshit?) and upcoming tools."],
   ["Now", "/now", "What he is focused on at the moment."],
   ["Updates", "/updates", "Short notes on how the projects are going."],
   ["Writing", "/writing", "Essays, tutorials and reflections."],

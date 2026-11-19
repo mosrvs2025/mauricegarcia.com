@@ -6,9 +6,10 @@ import { ContactActions } from "./ContactActions";
 import { InstagramPortrait } from "./InstagramPortrait";
 import { SkinPicker, SkinRuntime } from "./SkinPicker";
 
-type Icon = "projects" | "learn" | "updates" | "writing" | "about" | "work" | "hello";
+type Icon = "projects" | "products" | "learn" | "updates" | "writing" | "about" | "work" | "hello";
 const links: { href: string; label: string; icon: Icon }[] = [
   { href: "/projects", label: "Projects", icon: "projects" },
+  { href: "/products", label: "Products", icon: "products" },
   { href: "/learn", label: "Learn", icon: "learn" },
   { href: "/updates", label: "Updates", icon: "updates" },
   { href: "/writing", label: "Writing", icon: "writing" },
@@ -18,6 +19,7 @@ const links: { href: string; label: string; icon: Icon }[] = [
 
 const PATHS: Record<Icon, string> = {
   projects: "M4 4h7v7H4z M13 4h7v7h-7z M4 13h7v7H4z M13 13h7v7h-7z",
+  products: "M6 8.5 12 5l6 3.5v7L12 19l-6-3.5z M12 19V12 M6 8.5 12 12l6-3.5",
   learn: "M3 6.5 12 3l9 3.5-9 3.5z M7 8.6v5.2c0 1.6 2.2 3.2 5 3.2s5-1.6 5-3.2V8.6 M21 6.5V12",
   updates: "M3 12h4l2.5-6 5 12 2.5-6h4",
   writing: "M4 20h4L19 9l-4-4L4 16z M13.5 6.5l4 4",
