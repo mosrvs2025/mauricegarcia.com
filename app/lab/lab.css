@@ -59,7 +59,7 @@ body:has(.lab-skin) .site-header, body:has(.lab-skin) .j-footer, body:has(.lab-s
 @media (max-width:760px) { .tm-ls a { grid-template-columns:1fr; gap:0; padding-block:8px; } .tm-ls .perm { display:none; } .tm-ls .ds { white-space:normal; } }
 
 /* ================= Neo-Pop ================= */
-.lab-pop { background:#ffe14d; color:#111; font-family:var(--f-grotesk), system-ui, sans-serif; background-image:radial-gradient(#11111122 1.5px,transparent 1.6px); background-size:22px 22px; }
+.lab-pop { background:#ffe14d; color:#111; font-family:var(--font-space-grotesk), system-ui, sans-serif; background-image:radial-gradient(#11111122 1.5px,transparent 1.6px); background-size:22px 22px; }
 .sk-pop { max-width:1200px; margin:0 auto; padding:34px 24px 10px; }
 .po-hero { position:relative; padding-block:40px 30px; } .po-hero h1 { font-family:var(--f-black), sans-serif; font-size:clamp(2.7rem,8vw,6.6rem); line-height:.98; text-transform:uppercase; letter-spacing:-.02em; } .po-hero h1 span { display:inline-block; background:var(--c); padding:0 .12em; border:4px solid #111; box-shadow:6px 6px 0 #111; margin:0 .1em .12em 0; transform:rotate(-1.2deg); transition:transform .25s cubic-bezier(.3,1.6,.5,1); } .po-hero h1 span:nth-child(even) { transform:rotate(1.4deg); } .po-hero h1 span:hover { transform:rotate(0) scale(1.07) translateY(-4px); }
 .po-lede { font-size:1.35rem; font-weight:500; max-width:32em; margin-top:26px; line-height:1.5; } .po-cta { margin-top:26px; display:flex; flex-wrap:wrap; gap:14px; }
