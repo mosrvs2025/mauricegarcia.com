@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import vm from "node:vm";
 import { test } from "node:test";
 import { INTRO_BOOT_SCRIPT, INTRO_CSS, INTRO_FAILSAFE_MS, INTRO_KEY, INTRO_SKIN_IDS, animatesTo, trackForUrl } from "../lib/motion";
 
@@ -31,12 +32,52 @@ test("curtain only plays for real same-origin page navigations", () => {
   assert.equal(animatesTo(u("/api/connect"), here), false);
 });
 
-test("intro boot script is valid JS, plays once per tab, and has the 8s failsafe", () => {
+function runIntro(path: string, search: string, opts: { iframe?: boolean; seen?: boolean } = {}) {
+  const classes = new Set<string>();
+  const store: Record<string, string> = opts.seen ? { [INTRO_KEY]: "1" } : {};
+  const sessionStorage = {
+    getItem: (k: string) => store[k] ?? null,
+    setItem: (k: string, v: string) => { store[k] = v; },
+    removeItem: (k: string) => { delete store[k]; },
+  };
+  const ctx = {
+    window: { top: opts.iframe ? {} : undefined },
+    location: { pathname: path, search },
+    sessionStorage,
+    innerWidth: 1440,
+    document: {
+      documentElement: {
+        clientWidth: 1440,
+        style: { paddingRight: "" },
+        classList: { add: (c: string) => classes.add(c), remove: (...cs: string[]) => { for (const c of cs) classes.delete(c); }, contains: (c: string) => classes.has(c) },
+      },
+      addEventListener() {},
+      removeEventListener() {},
+    },
+    setTimeout(fn: () => void, ms: number) { return 1; },
+    clearTimeout() {},
+  };
+  // window.top !== window: in the real script, top is window unless iframed. Mirror that.
+  ctx.window.top = opts.iframe ? {} : ctx.window;
+  vm.runInNewContext(INTRO_BOOT_SCRIPT, ctx);
+  return { classes, store };
+}
+
+test("intro boot script is valid JS, stays off unless ?intro=1, and has the 8s failsafe", () => {
   assert.doesNotThrow(() => new Function(INTRO_BOOT_SCRIPT));
   assert.equal(INTRO_FAILSAFE_MS, 8000);
-  assert.ok(INTRO_BOOT_SCRIPT.includes(`sessionStorage.getItem("${INTRO_KEY}")`));
   assert.ok(INTRO_BOOT_SCRIPT.includes(`setTimeout(end,${INTRO_FAILSAFE_MS})`));
   assert.ok(INTRO_BOOT_SCRIPT.includes("mg-intro-on"));
+  // First visits and ordinary repeat views must not be blocked by the overlay.
+  for (const [path, search] of [["/", ""], ["/", "?intro=0"], ["/projects", ""], ["/connect", ""], ["/about", ""]]) {
+    const r = runIntro(path, search);
+    assert.equal(r.classes.has("mg-intro-on"), false, `${path}${search} must not auto-play the intro`);
+  }
+  const play = runIntro("/", "?intro=1");
+  assert.equal(play.classes.has("mg-intro-on"), true, "?intro=1 still plays the intro");
+  assert.equal(play.store[INTRO_KEY], "1");
+  assert.equal(runIntro("/studio", "?intro=1").classes.has("mg-intro-on"), false, "/studio never gets the intro");
+  assert.equal(runIntro("/", "?intro=1", { iframe: true }).classes.has("mg-intro-on"), false, "iframes never get the intro");
 });
 
 test("intro CSS: Workshop boot colours, curtain timing, every skin, reduced motion", () => {
