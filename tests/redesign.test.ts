@@ -101,3 +101,19 @@ test("the homepage headline is the same in all three identities, and in the home
   assert.match(og, /title: "Software, AI, and worlds you can step into\."/);
   assert.doesNotMatch(og, /I build things\./);
 });
+
+test("the Mercury homepage headline wraps on word boundaries and scales so the longest word fits", () => {
+  const css = read("app/identities.css");
+  const titleRules = css.split("}").filter((b) => b.includes('data-skin="rogue-instrument"') && b.includes(".home-hero .home-title")).join("}");
+  assert.match(titleRules, /overflow-wrap:\s*normal/);
+  assert.match(titleRules, /word-break:\s*normal/);
+  assert.match(titleRules, /text-wrap:\s*balance/);
+  assert.match(titleRules, /hyphens:\s*none/);
+  assert.doesNotMatch(titleRules, /overflow-wrap:\s*anywhere|word-break:\s*break-all/);
+  assert.match(titleRules, /font-size:\s*min\(var\(--j-hero-size\), 13\.6cqw\)/);
+  assert.match(titleRules, /font-size:\s*min\(var\(--j-hero-size-m\), 13\.6cqw\)/);
+  assert.match(css, /html\[data-skin="rogue-instrument"\] \.hero-statement \{[^}]*container-type:\s*inline-size/);
+  const shared = css.split("}").filter((b) => b.includes('data-kind="identity"') && b.includes(".home-hero .home-title")).join("}");
+  assert.match(shared, /overflow-wrap:\s*normal/);
+  assert.match(shared, /text-wrap:\s*balance/);
+});
