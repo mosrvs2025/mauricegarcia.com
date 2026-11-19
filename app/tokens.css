@@ -1,92 +1,102 @@
 /*
  * Design tokens for the whole-site identities. One source of truth: components and stylesheets read the semantic
- * --j-* tokens only, never a raw colour, so changing <html data-skin> restyles everything at once.
+ * --j-* tokens only, never a raw colour, so changing <html data-skin> restyles everything at once. Hex values live
+ * here (and in app/skins.css for the older skins) and nowhere else.
  *
- *   Brand source values  --brand-*   Open Case's own palette (the default identity)
- *   Semantic tokens      --j-*       bg, surface, line, text, muted, accent, link, play, status colours
+ *   Brand source values  --brand-*   SOFTWORKS' own palette (the default identity)
+ *   Semantic tokens      --j-*       bg, surface, ink/text, muted, accent, link, light/shadow (material), status colours
  *   Type tokens          --j-display-* / --j-stretch / --font-display / --font-sans
  *
- * Open Case is the default: it is on :root as well as on html[data-skin="open-case"], so it also applies before the
- * boot script has run and with JavaScript off. Rogue Instrument and Unauthorized Manual are defined here; the seven
- * older skins (Paper, Terminal, Neo-Pop, Glass, Swiss, Arcade) are in app/skins.css and "workshop" keeps the previous
- * default tokens below. Rules that use these tokens live in app/identities.css and app/journal.css.
+ * SOFTWORKS (open-case) is the default: it is on :root as well as on html[data-skin="open-case"], so it also applies
+ * before the boot script has run and with JavaScript off. MERCURY (rogue-instrument) and PARALLAX (unauthorized-manual)
+ * are defined here too; the skin ids are kept so existing ?skin= links and saved choices still work. The seven older
+ * skins are in app/skins.css and "workshop" keeps the previous default tokens below. Material recipes and compositions
+ * that use these tokens live in app/identities.css. The full spec is docs/redesign/spec.md.
+ *
+ * --j-text is the working name every stylesheet uses for body ink; --j-ink is the spec's name for the same value.
+ * --j-shadow and --j-light are colours here (the two halves of a lit material), not box-shadow values.
  */
 
 :root {
-  /* Open Case brand source values */
-  --brand-paper: #F2F0EA;
-  --brand-ink: #181B1C;
-  --brand-red: #C73723;
-  --brand-blue: #255E79;
-  --brand-play: #D5F067;
-  --brand-rule: #C8CAC5;
-  /* Darker states, so hovers keep their contrast without opacity tricks */
-  --brand-red-deep: #A12C1B;
-  --brand-blue-deep: #1A4A60;
-  --brand-paper-raised: #FAF9F5;
-  --brand-ink-soft: #4B5254;
-  --brand-rule-strong: #767B7A;
+  /* SOFTWORKS brand source values: matte ceramic, ink-blue type, one deep-sea accent */
+  --brand-ceramic: #E8EEF2;
+  --brand-ink: #1B2B3A;
+  --brand-ink-soft: #4C6070;
+  --brand-sea: #155E8A;
+  --brand-sea-deep: #0F4A6E;
+  --brand-highlight: #FFFFFF;
+  --brand-shade: #B6C6D1;
+  --brand-outline: #849BAA;
+  --brand-mist: #D0E4F1;
+  --brand-rule: #C5D2DB;
+  --brand-rule-strong: #6A7F8F;
 }
 
-/* Open Case. The default. Paper and ink, red for emphasis, blue for functional links, lime for play. */
+/* SOFTWORKS. Architectural neumorphism: one matte surface, lit from the top left, controls pressed into it. */
 :root,
 html[data-skin="open-case"] {
   color-scheme: light;
-  --j-bg: var(--brand-paper); --j-surface: var(--brand-paper-raised);
+  --j-bg: var(--brand-ceramic); --j-surface: var(--brand-ceramic);
+  --j-ink: var(--brand-ink); --j-text: var(--brand-ink); --j-muted: var(--brand-ink-soft);
   --j-line: var(--brand-rule); --j-line-strong: var(--brand-rule-strong);
-  --j-text: var(--brand-ink); --j-muted: var(--brand-ink-soft);
-  --j-accent: var(--brand-red); --j-accent-hover: var(--brand-red-deep); --j-accent-ink: #ffffff;
-  --j-link: var(--brand-blue); --j-link-hover: var(--brand-blue-deep);
-  --j-play: var(--brand-play); --j-play-ink: var(--brand-ink);
-  --j-accent-rgb: 199,55,35; --j-text-rgb: 24,27,28;
-  --j-ok: #1D6B2B; --j-warn: #7A4B00; --j-warn-bg: #F3E6C4; --j-warn-line: #C9A44A; --j-danger-bg: #F6DDD6; --j-danger-line: #C73723;
-  --j-radius: 2px; --j-bw: 1px; --j-shadow: none; --j-aurora: 0;
-  /* Type: Anybody is variable in width and weight. Heavy and slightly condensed reads as a signature, still comfortable. */
-  --font-display: var(--font-anybody), "Arial Narrow", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-atkinson), ui-sans-serif, system-ui, sans-serif;
-  /* Counters: Atkinson's zero is slashed, which at 10px with tracking reads like 6 or 8, so numbers use the display face. */
+  --j-accent: var(--brand-sea); --j-accent-hover: var(--brand-sea-deep); --j-accent-ink: var(--brand-highlight);
+  --j-link: var(--brand-sea); --j-link-hover: var(--brand-sea-deep);
+  --j-light: var(--brand-highlight); --j-shadow: var(--brand-shade); --j-outline: var(--brand-outline); --j-soft-accent: var(--brand-mist);
+  --j-play: var(--brand-mist); --j-play-ink: var(--brand-ink);
+  --j-accent-rgb: 21,94,138; --j-text-rgb: 27,43,58;
+  --j-ok: #1D6B2B; --j-warn: #7A4B00; --j-warn-bg: #F3E6C4; --j-warn-line: #C9A44A; --j-danger-bg: #F6DDD6; --j-danger-line: #B4321F;
+  --j-radius: 28px; --j-radius-sm: 18px; --j-bw: 1px; --j-aurora: 0;
+  --j-ease: cubic-bezier(.2,.8,.2,1);
+  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   --font-num: var(--font-display);
-  --j-stretch: 88%; --j-display-weight: 800; --j-display-track: -.012em; --j-display-case: uppercase; --j-display-leading: .94;
-  --j-hero-size: clamp(2.7rem, calc((100vw - 96px) / 9.3), 8.4rem); --j-hero-size-m: 12.2vw; --j-h1: clamp(2.2rem, 6.4vw, 4.6rem); --j-h2: clamp(1.7rem, 3.8vw, 3rem); --j-h3: clamp(1.25rem, 2.2vw, 1.6rem);
-  --j-kicker-track: .14em; --j-body-size: 1.0625rem; --j-body-leading: 1.7;
+  --j-stretch: 100%; --j-display-weight: 800; --j-display-track: -.055em; --j-display-case: none; --j-display-leading: .96;
+  --j-hero-size: clamp(3.5rem, 8vw, 7.5rem); --j-hero-size-m: clamp(2.6rem, 13vw, 3.6rem); --j-h1: clamp(2.4rem, 6vw, 4.6rem); --j-h2: clamp(1.9rem, 4vw, 3.1rem); --j-h3: clamp(1.25rem, 2.2vw, 1.6rem);
+  --j-kicker-track: .14em; --j-body-size: 1.0625rem; --j-body-leading: 1.65;
 }
 
-/* Rogue Instrument. A hardware control panel: graphite, porcelain, volt lime, with orange for warnings and cyan for links. */
+/* MERCURY. Liquid chrome on dark enamel: reflective highlights, a cyan sheen and one hot pink signal. */
 html[data-skin="rogue-instrument"] {
   color-scheme: dark;
-  --j-bg: #0D1214; --j-surface: #141B1E; --j-line: #273237; --j-line-strong: #5A6C72;
-  --j-text: #E7EAE4; --j-muted: #A9B4B1;
-  --j-accent: #D6F24D; --j-accent-hover: #E6FF70; --j-accent-ink: #0D1214;
-  --j-link: #5FC4C8; --j-link-hover: #8FDDE0;
-  --j-play: #D6F24D; --j-play-ink: #0D1214; --j-signal: #F26D46;
-  --j-accent-rgb: 214,242,77; --j-text-rgb: 231,234,228;
-  --j-ok: #D6F24D; --j-warn: #F26D46; --j-warn-bg: #2A1912; --j-warn-line: #8E4630; --j-danger-bg: #2A1510; --j-danger-line: #F26D46;
-  --j-radius: 2px; --j-bw: 1px; --j-shadow: none; --j-aurora: 0;
-  --font-display: var(--font-saira), "Arial Narrow", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
-  --font-num: var(--font-display);
-  --j-stretch: 100%; --j-display-weight: 700; --j-display-track: .005em; --j-display-case: uppercase; --j-display-leading: .92;
-  --j-hero-size: clamp(3rem, calc((100vw - 96px) / 6.4), 10.4rem); --j-hero-size-m: 17vw; --j-h1: clamp(2.4rem, 6.8vw, 5rem); --j-h2: clamp(1.8rem, 4vw, 3.2rem); --j-h3: clamp(1.3rem, 2.3vw, 1.75rem);
-  --j-kicker-track: .16em; --j-body-size: 1.0625rem; --j-body-leading: 1.65;
+  --j-bg: #090D15; --j-surface: #172233;
+  --j-ink: #F8FAFF; --j-text: #F8FAFF; --j-muted: #B8C6D6;
+  --j-line: #26344A; --j-line-strong: #68819C;
+  --j-accent: #72E4FF; --j-accent-hover: #A5EEFF; --j-accent-ink: #09121F;
+  --j-link: #72E4FF; --j-link-hover: #A5EEFF;
+  --j-hot: #FF5C9B; --j-light: #FFFFFF; --j-shadow: #000000; --j-outline: #68819C;
+  --j-play: #FF5C9B; --j-play-ink: #09121F; --j-signal: #FF5C9B;
+  --j-accent-rgb: 114,228,255; --j-text-rgb: 248,250,255;
+  --j-ok: #72E4FF; --j-warn: #FFB86B; --j-warn-bg: #2A1D10; --j-warn-line: #8E6630; --j-danger-bg: #2A1220; --j-danger-line: #FF5C9B;
+  --j-radius: 20px; --j-radius-sm: 12px; --j-bw: 1px; --j-aurora: 0;
+  --j-ease: cubic-bezier(.16,1,.3,1);
+  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-num: var(--font-sans);
+  --j-stretch: 100%; --j-display-weight: 800; --j-display-track: -.065em; --j-display-case: none; --j-display-leading: .84;
+  --j-hero-size: clamp(4rem, 10vw, 10rem); --j-hero-size-m: clamp(2.2rem, 12.8vw, 4.6rem); --j-h1: clamp(2.2rem, 7vw, 5.4rem); --j-h2: clamp(1.65rem, 4.6vw, 3.6rem); --j-h3: clamp(1.3rem, 2.3vw, 1.75rem);
+  --j-kicker-track: .18em; --j-body-size: 1.0625rem; --j-body-leading: 1.65;
 }
 
-/* Unauthorized Manual. A rebellious instruction manual: parchment, black, cobalt, with coral and yellow as loud fills. */
+/* PARALLAX. Spatial glass: translucent planes over an atmospheric field, lit by an aqua edge. */
 html[data-skin="unauthorized-manual"] {
-  color-scheme: light;
-  --j-bg: #F6EDE2; --j-surface: #FFFAF2; --j-line: #11100F; --j-line-strong: #11100F;
-  --j-text: #11100F; --j-muted: #4A443E;
-  --j-accent: #174CDB; --j-accent-hover: #0F3AAE; --j-accent-ink: #ffffff;
-  --j-link: #174CDB; --j-link-hover: #0F3AAE;
-  --j-play: #EFD967; --j-play-ink: #11100F; --j-signal: #FF6E45;
-  --j-accent-rgb: 23,76,219; --j-text-rgb: 17,16,15;
-  --j-ok: #1B6B2A; --j-warn: #7A3B00; --j-warn-bg: #EFD967; --j-warn-line: #11100F; --j-danger-bg: #FFD9CC; --j-danger-line: #11100F;
-  --j-radius: 0px; --j-bw: 2px; --j-shadow: 4px 4px 0 #11100F; --j-aurora: 0;
-  --font-display: var(--font-archivo-black), "Arial Black", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif;
+  color-scheme: dark;
+  --j-bg: #0B1423; --j-surface: #142A3C;
+  --j-ink: #F8FBFF; --j-text: #F8FBFF; --j-muted: #D0DEE9;
+  --j-line: #2C455C; --j-line-strong: #7895AE;
+  --j-accent: #9EF3DC; --j-accent-hover: #C4F8EA; --j-accent-ink: #09211C;
+  --j-link: #9EF3DC; --j-link-hover: #C4F8EA;
+  --j-ambient: #43599C; --j-glow: #2CB4B1; --j-light: #FFFFFF; --j-shadow: #000000; --j-outline: #A8D7E3;
+  --j-play: #9EF3DC; --j-play-ink: #09211C; --j-signal: #A8D7E3;
+  --j-accent-rgb: 158,243,220; --j-text-rgb: 248,251,255;
+  --j-ok: #9EF3DC; --j-warn: #FFD27A; --j-warn-bg: #2B2414; --j-warn-line: #8A7440; --j-danger-bg: #2B1520; --j-danger-line: #FF8FA3;
+  --j-radius: 24px; --j-radius-sm: 14px; --j-bw: 1px; --j-aurora: 0;
+  --j-ease: cubic-bezier(.22,.9,.24,1);
+  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
   --font-num: var(--font-display);
-  --j-stretch: 100%; --j-display-weight: 400; --j-display-track: -.02em; --j-display-case: uppercase; --j-display-leading: .95;
-  --j-hero-size: clamp(2.5rem, calc((100vw - 96px) / 9.8), 7.8rem); --j-hero-size-m: 9.4vw; --j-h1: clamp(2.1rem, 6vw, 4.4rem); --j-h2: clamp(1.6rem, 3.6vw, 2.8rem); --j-h3: clamp(1.2rem, 2.1vw, 1.5rem);
-  --j-kicker-track: .1em; --j-body-size: 1.0625rem; --j-body-leading: 1.7;
+  --j-stretch: 100%; --j-display-weight: 700; --j-display-track: -.045em; --j-display-case: none; --j-display-leading: .98;
+  --j-hero-size: clamp(3.5rem, 7vw, 7rem); --j-hero-size-m: clamp(2.6rem, 12.5vw, 3.6rem); --j-h1: clamp(2.4rem, 6vw, 4.6rem); --j-h2: clamp(1.9rem, 4vw, 3.2rem); --j-h3: clamp(1.25rem, 2.2vw, 1.6rem);
+  --j-kicker-track: .16em; --j-body-size: 1.0625rem; --j-body-leading: 1.7;
 }
 
 /*

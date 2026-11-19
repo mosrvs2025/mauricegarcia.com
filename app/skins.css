@@ -1,6 +1,6 @@
 /*
- * Whole-site skins, part 1 of 2. The tokens for every skin are defined once: Open Case, Rogue Instrument, Unauthorized
- * Manual and Workshop in app/tokens.css, the older skins below. Setting data-skin on <html> swaps them, so every journal
+ * Whole-site skins, part 1 of 2. The tokens for every skin are defined once: SOFTWORKS, MERCURY, PARALLAX and Workshop in
+ * app/tokens.css, the older skins below. Setting data-skin on <html> swaps them, so every journal
  * page (home, projects, learn, updates, writing, now, about, work with me, connect) changes at once.
  * Part 2 (app/identities.css) holds the shared editorial system and the signature details of the three new identities.
  * Older pages (coaching, AI receptionist, shop, ads, lab, studio) always show Workshop, since they carry their own styles.

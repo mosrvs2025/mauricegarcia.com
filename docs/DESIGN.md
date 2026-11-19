@@ -1,14 +1,18 @@
-# Design system: three switchable identities
+# Design system: three identities, three compositions
 
-The site has one component tree and ten skins. Three of them are first-class **identities** and lead the switcher; seven older skins stay available under "More skins". Everything is driven by CSS variables on `<html data-skin="…" data-kind="identity|classic">`. Nothing is cloned per skin.
+The site has one component tree and ten skins. Three of them are first-class **identities** and lead the switcher; seven older skins stay available under "More skins". Everything is driven by `<html data-skin="…" data-kind="identity|classic">`. Nothing is cloned per skin.
 
-| Identity (`data-skin`) | Feel | Fonts (next/font) | Palette | Signature detail |
-| --- | --- | --- | --- | --- |
-| `open-case` (default) | Investigative editorial meets experimental engineering | Anybody (display, variable width and weight) + Atkinson Hyperlegible Next | paper `#F2F0EA`, ink `#181B1C`, red `#C73723`, blue `#255E79`, lime `#D5F067`, rule `#C8CAC5` | Numbered case files and `CaseAnnotation` notes |
-| `rogue-instrument` | A hardware control panel for software that misbehaves | Saira Condensed + IBM Plex Sans | graphite `#0D1214`, porcelain `#E7EAE4`, volt lime `#D6F24D`, orange `#F26D46`, cyan `#5FC4C8` | Focus brackets and measurement labels around real demo media |
-| `unauthorized-manual` | A rebellious instruction manual | Archivo Black + Public Sans | parchment `#F6EDE2`, black `#11100F`, cobalt `#174CDB`, coral `#FF6E45`, yellow `#EFD967` | "Try it / Break it / Understand it" |
+The three identities are **different interface compositions, not token swaps**: each has its own navigation geometry, hero arrangement, project layout, material and motion. The approved spec is [`docs/redesign/spec.md`](redesign/spec.md); the before screenshots are in `docs/redesign/before/` and the after set in `docs/redesign/after/`.
 
-Older skins: `workshop` (the previous default, shown as "Workshop (classic)"), `paper`, `terminal`, `pop`, `glass`, `swiss`, `arcade`. They keep their own looks and typography.
+| Identity (`data-skin`) | Design system | Fonts (next/font) | Navigation | Hero | Work |
+| --- | --- | --- | --- | --- | --- |
+| **SOFTWORKS** `open-case` (default) | Architectural neumorphism: one matte ceramic surface lit from the top left | Manrope 700/800 + DM Sans 400/600 | Docked vertical instrument rail (left) with raised icon-label controls; the current page is pressed in. Rounded top dock below 1100px | 7/5 split: statement and one raised CTA left, three raised project modules stacked right (a sideways rail on phones) | Raised tiles, screenshots in recessed frames, labels engraved in inset channels, 96px rhythm |
+| **MERCURY** `rogue-instrument` | Liquid chrome / glossy UI on dark enamel | Syne 700/800 + Space Grotesk 400/500 | Floating horizontal chrome capsule with a liquid indicator that slides to the hovered or current link | Full-bleed 70/30 poster: massive headline with chrome emphasis, a CSS liquid-metal form, intro below | Near full-width chrome showcase, then an asymmetric editorial grid with alternating image/text; reflective horizon rules |
+| **PARALLAX** `unauthorized-manual` | Spatial glass architecture | Outfit 600/700 + IBM Plex Sans 400/500 | Slim floating glass rail (right) with a bright internal bar on the current page. Frosted top bar below 1100px | A stage of three overlapping depth planes: dimmed featured visual (back), frosted selected-work panel (middle), headline on a translucent surface (front) | Staggered bento with controlled overlap and varied elevation; cards are an image plane plus a separate frosted metadata plane |
+
+The ids are older than the names. They are kept so shared `?skin=` links and saved choices keep working.
+
+Older skins: `workshop` (the previous default, shown as "Workshop (classic)"), `paper`, `terminal`, `pop`, `glass`, `swiss`, `arcade`. They keep their own looks, typography and the older two-column hero with the `HomeShowcase` reel.
 
 ## Where things live
 
@@ -16,49 +20,59 @@ Older skins: `workshop` (the previous default, shown as "Workshop (classic)"), `
 | --- | --- |
 | `lib/skin.ts` | Skin registry (ids, names, swatches, fonts, theme colours), default, legacy rules, and `SKIN_BOOT_SCRIPT` |
 | `lib/skin-client.ts` | `applySkin` (cross-fade via View Transitions, instant under reduced motion), font warm-up, `useSkin` |
-| `app/layout.tsx` | next/font setup. Only Anybody and Atkinson are preloaded; every other face is `preload: false`, so it costs nothing until a visitor switches to a skin that uses it |
-| `app/globals.css` | Foundation and semantic font tokens `--font-display`, `--font-sans` |
-| `app/tokens.css` | `--brand-*` source values, the semantic `--j-*` tokens, and the type scale per identity |
+| `app/layout.tsx` | next/font setup. Only Manrope and DM Sans are preloaded; every other face is `preload: false` and only the weights the spec names are requested |
+| `app/tokens.css` | `--brand-*` source values and the semantic `--j-*` tokens for each identity (the only place identity colours are written) |
+| `app/identities.css` | Material primitives and the three compositions. Sections: shared pieces, shared identity base, SOFTWORKS, MERCURY, PARALLAX, motion and fallbacks |
 | `app/skins.css` | Switcher UI and the seven older skins' overrides |
-| `app/identities.css` | The shared identity system and each identity's signature |
-| `components/SkinPicker.tsx` | Header switcher, mobile menu, footer row, Alt+Shift+S, 1 to 3 |
-| `components/CaseAnnotation.tsx` | The annotation component |
+| `components/Header.tsx` | One navigation tree; the identities give it different geometry. Also drives MERCURY's liquid indicator |
+| `components/HeroWork.tsx` | The three lead projects as one list, arranged per identity |
+| `components/DepthDrift.tsx` | PARALLAX pointer drift (fine pointers only, up to 12px, off under reduced motion) |
+| `components/ContactActions.tsx` | Email me / Copy email, used in the navigation, the phone rail and `/connect` |
+| `components/ConnectForm.tsx` | The contact form |
+
+### Material primitives
+
+`.j-surface`, `.j-inset`, `.j-pressable` and `.j-scene` are shared class names with a recipe per identity (and no effect in the classic skins). The same recipes are applied to the existing card classes (`.j-panel`, `.j-cap`, `.j-tile-link`, `.wd-link` …) so every page picks up the material.
+
+- SOFTWORKS: `--sw-raise` (12px shade down-right, 12px light up-left), `--sw-inset`, `--sw-press`. Hover lifts 2px over 180ms; press drops 2px and inverts the shadow over 120ms.
+- MERCURY: `--mc-chrome` (specular highlight over a surface-to-accent gradient), `--mc-edge`, `--mc-drop`, `--mc-horizon`. A narrow specular sweep crosses prominent surfaces on hover (380ms). Images scale at most 1.025.
+- PARALLAX: `--px-glass` with `backdrop-filter: blur(24px) saturate(140%)` on bounded surfaces only, an optical edge highlight on `::before`, and three elevations (`--px-edge-far`, `--px-edge`, `--px-edge-near`). Text is never blurred.
 
 ### How a skin is chosen
 
-`SKIN_BOOT_SCRIPT` runs in `<head>` before first paint and always sets `data-skin` (and `data-kind`), from the shareable `?skin=<id>` link, then the saved choice (`localStorage["mg-skin"]`), then the default. `?skin=default` forgets the saved choice. Legacy routes (`coaching`, `ai-receptionist`, `shop`, `ads`, `studio`, `lab`, `v`) always show `workshop`; on those pages the switcher saves the choice and takes the visitor home to see it. The server also renders `data-skin="open-case"`, so with JavaScript off the site is Open Case.
+`SKIN_BOOT_SCRIPT` runs in `<head>` before first paint and always sets `data-skin` (and `data-kind`), from the shareable `?skin=<id>` link, then the saved choice (`localStorage["mg-skin"]`), then the default. `?skin=default` forgets the saved choice. Legacy routes (`coaching`, `ai-receptionist`, `shop`, `ads`, `studio`, `lab`, `v`) always show `workshop`; on those pages the switcher saves the choice and takes the visitor home to see it. Alt+Shift+S opens the switcher; 1 to 3 pick an identity while it is open. The server renders `data-skin="open-case"`, so with JavaScript off the site is SOFTWORKS.
 
 ### Adding or changing a skin
 
 1. Add it to `SITE_SKINS` in `lib/skin.ts` (and to the expected lists in `tests/portfolio.test.ts`, `tests/motion.test.ts` and `tests/guardrails.test.ts`).
-2. Define its tokens (`--j-bg`, `--j-surface`, `--j-line`, `--j-line-strong`, `--j-text`, `--j-muted`, `--j-accent`, `--j-accent-ink`, and for identities `--j-link`, `--j-play`, the warn/danger tokens and the type tokens) in `app/tokens.css` or `app/skins.css`.
+2. Define its tokens in `app/tokens.css` or `app/skins.css`: `--j-bg`, `--j-surface`, `--j-text`, `--j-muted`, `--j-line`, `--j-line-strong`, `--j-accent`, `--j-accent-ink`, `--j-link`, `--j-play`, the status tokens and, for identities, `--j-light`, `--j-shadow` (colours, not shadow values) and the type tokens.
 3. Give it an intro palette in `lib/motion.ts` (`INTRO_CSS`).
-4. Add it to `scripts/capture-screenshots.cjs` and run `scripts/capture-identities.cjs` for the before/after set.
+4. For an identity, build its composition first (navigation geometry, hero slots, work arrangement), then its material. `tests/redesign.test.ts` checks that the three keep distinct geometry.
+
+## Contact
+
+One flow. Every "Say hello" or contact link opens `/connect`: "Say hello.", the two shortcuts (Email me, Copy email), and a form with a required message (10 to 3,000 characters), a required email and an optional name behind a small disclosure. It posts to `/api/contact` (Resend, fixed sender, the visitor only as a validated `replyTo`, honeypot, origin check, link-flood and rate limits, no message bodies in logs). Success is shown only after the server confirms; failure keeps the message and offers a direct email link.
+
+Shortcuts elsewhere: on wide screens the Email/Copy pair sits in the navigation; on phones a fixed two-button rail sits above the safe area, and pages get bottom padding so nothing hides behind it. The rail and the Playground are not shown on `/connect`.
 
 ## Permanent design rules
 
-1. **Two brand typefaces** in the default identity: Anybody for expressive display type, Atkinson Hyperlegible Next for readable content. Other skins may keep their established typography.
-2. **No ambient gradients** by default. Flat colour, contrast, spacing and composition. Real project imagery and purposeful effects (the black-hole intro, the Playground) stay.
-3. **No generic card grids for featured work.** Large visuals, documentary captions, numbered case files and honest maturity labels.
-4. **Colour has a job.** Red is brand emphasis, blue is a functional link or selected state, lime is playful or experimental. No rainbow gradient statistics.
-5. **Motion reveals, demonstrates or responds.** Nothing animates merely for entering the viewport.
-6. **Every annotation says something true.** No fake telemetry, fabricated metrics, implied endorsements or invented evidence. A `CaseAnnotation` must state its `source` (the project's own content file or README) and must not present unverified information as verified.
-7. **One dominant action per screen.** Secondary paths stay discoverable.
-8. **Keep the weird stuff weird.** The Playground, black hole, alternate skins and games keep their surprises; do not flatten them into the editorial look.
-9. **Accessibility is part of the visual system.** Contrast of 4.5:1 for text and 3:1 for large text and UI graphics, visible keyboard focus (3px, `--j-link`), responsive type, tap support (44px targets), and a plain, non-animated equivalent under `prefers-reduced-motion`.
-10. **Judge identity, not just polish.** With the name and screenshots removed, the layout, type and visual language should still be recognisably this site.
-
-Tokens only: components and stylesheets use the semantic `--j-*` tokens, never a raw colour. Never invent a second set of overrides for the same thing; extend the token or the shared rule.
+1. **Composition before surface.** If two identities share hero proportions, card arrangement and navigation geometry, the work is not done, however good the materials look.
+2. **Tokens only.** Components and stylesheets use the `--j-*` tokens; hex values live in `app/tokens.css` and `app/skins.css`. `tests/redesign.test.ts` fails on a raw colour in `app/identities.css`.
+3. **Colour, shadow, transparency and highlight never carry state alone.** Current pages are also bold, underlined, pressed or barred; copied states change their label; errors have text.
+4. **Motion reveals, demonstrates or responds.** SOFTWORKS 8px/320ms reveals, MERCURY 480–650ms staggered entrances, PARALLAX far-to-near scale. No loops, bounces or glow pulses. Reduced motion removes depth and nonessential transforms.
+5. **Decorative layers are decoration.** The liquid form, back plane, atmosphere and indicators are `aria-hidden`, take no pointer input, and are hidden in forced-colours mode.
+6. **Keep the weird stuff weird.** The Playground, black hole, alternate skins and games keep their surprises.
+7. **Every annotation says something true.** A `CaseAnnotation` must state its `source` and must not present unverified information as verified.
+8. **Accessibility is part of the visual system.** 4.5:1 text, 3:1 large text and component boundaries, a visible 3px `:focus-visible` ring in every identity, 44px targets, logical focus order whatever the visual arrangement, no horizontal scroll at 320px or 200% zoom.
 
 ## Floating controls and numerals
 
-- **Floating controls.** "Let's talk" (`.qc`) and the Playground (`.play-dock`) share one bottom baseline on phones (`--float-bottom`, safe-area aware) and never stack. On screens up to 900px the Playground starts as the small ✦ Playground pill (the visitor can open the card; that choice is remembered). `FloatGuard` fades both out while anything marked `data-float-clear` (the hero curiosity row, the Selected work header and selector) is in the bottom 88px of the screen. A control with focus, an open panel or an active Playground never hides. To protect new content from being covered, add `data-float-clear` to it; do not add per-skin offsets.
-- **"Stay curious."** has two triggers for one dialog: inline in the hero curiosity row on wide screens, and under the byline (top of the page) at 900px and below, where the inline one would sit under the fold. Both are `.curiosity-switch`; the byline one adds `.curiosity-switch--top`.
-- **Numerals.** Atkinson's zero is slashed, which at counter sizes reads like 6 or 8. Counters (`.j-num`, `.cf-no`, section numbers, secret-shelf doors) use `--font-num` (the display face) with `tabular-nums lining-nums`. Put new counters on `.j-num` instead of styling digits one by one.
+- **Floating controls.** The Playground (`.play-dock`) is the only floating control. On phones it rides above the contact rail (`--float-bottom` is lifted while `.cx-rail` is present). `FloatGuard` fades it out while anything marked `data-float-clear` is in the bottom 88px of the screen. To protect new content from being covered, add `data-float-clear` to it.
+- **"Stay curious."** has two triggers for one dialog: inline in the hero curiosity row on wide screens, and under the byline at 900px and below.
+- **Numerals.** Counters (`.j-num`, `.cf-no`, section numbers) use `--font-num` with `tabular-nums lining-nums`.
 - **Contrast.** `tests/polish.test.ts` asserts that link, muted and body text meet 4.5:1 on each identity's background and surface.
 
 ## Screenshots
 
-`node scripts/capture-identities.cjs` writes the homepage, a project page and a writing page at 1440×900 and 390×844 (reduced motion, `?intro=0`, stable data). The committed set is in `docs/screenshots/identity/{before,open-case,rogue-instrument,unauthorized-manual}`; `before` is the Workshop look prior to this change.
-
-`docs/screenshots/polish/{before,after}` holds the mobile polish set (390×844, first screen and the Selected work block, all three identities; the resting state with the floating pill; and the expanded card).
+`node scripts/capture-redesign.cjs` (against a running server) writes the redesign's after set to `docs/redesign/after/`, named like the before set, plus grayscale comparisons. `node scripts/capture-identities.cjs` writes the homepage, a project page and a writing page per identity to `docs/screenshots/identity/<id>/`.

@@ -53,9 +53,9 @@ export const INTRO_CSS = `
 html.mg-intro-on{overflow:hidden}
 html.mg-intro-on #mg-intro{display:block;position:fixed;inset:0;z-index:2147483000;overscroll-behavior:contain;touch-action:none;animation:mgi-failsafe 0s ${INTRO_FAILSAFE_MS / 1000}s forwards;--s:clamp(150px,28vmin,240px);--a:var(--j-bg,#12100D);--b:var(--j-accent,#ff6535);--c:color-mix(in srgb,var(--b) 24%,var(--a));--ink:var(--j-text,#f3ede3);--hot:color-mix(in srgb,var(--b) 45%,#fff);--void:color-mix(in srgb,var(--a) 10%,#000);--wm:#f3ede3}
 html[data-skin="workshop"] #mg-intro{--a:#12100D;--b:#ff6535;--hot:#ffc857;--ink:#f3ede3}
-html[data-skin="open-case"] #mg-intro{--a:#181B1C;--b:#C73723;--c:#F2F0EA;--hot:#D5F067;--ink:#F2F0EA;--wm:#F2F0EA;--void:#0B0C0C}
-html[data-skin="rogue-instrument"] #mg-intro{--a:#0D1214;--b:#D6F24D;--c:#141B1E;--hot:#5FC4C8;--ink:#E7EAE4;--wm:#E7EAE4;--void:#05080A}
-html[data-skin="unauthorized-manual"] #mg-intro{--a:#11100F;--b:#174CDB;--c:#EFD967;--hot:#FF6E45;--ink:#F6EDE2;--wm:#F6EDE2;--void:#050505}
+html[data-skin="open-case"] #mg-intro{--a:#1B2B3A;--b:#155E8A;--c:#E8EEF2;--hot:#D0E4F1;--ink:#E8EEF2;--wm:#E8EEF2;--void:#0C141B}
+html[data-skin="rogue-instrument"] #mg-intro{--a:#090D15;--b:#72E4FF;--c:#172233;--hot:#FF5C9B;--ink:#F8FAFF;--wm:#F8FAFF;--void:#04060A}
+html[data-skin="unauthorized-manual"] #mg-intro{--a:#0B1423;--b:#9EF3DC;--c:#142A3C;--hot:#43599C;--ink:#F8FBFF;--wm:#F8FBFF;--void:#050A12}
 html[data-skin="paper"] #mg-intro{--c:var(--j-text)}
 html[data-skin="pop"] #mg-intro{--c:var(--j-text)}
 html[data-skin="swiss"] #mg-intro{--c:var(--j-text)}

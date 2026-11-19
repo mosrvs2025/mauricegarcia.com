@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 };
 
 const ways = [
-  { id: "build", status: "Available now", title: "Custom development and consulting", body: "You bring an ambitious idea, a system that needs custom software, automation or an AI integration, or an experience that doesn't exist yet. I turn it into something working, in increments you can see, and I quote it to the outcome.", cta: "Start a build", href: "/connect?intent=paid-work", primary: true },
-  { id: "partner", status: "Open to conversations", title: "Licensing, partnerships and backing", body: "I'm building products of my own. Pipeline CRM, Ultimate and Lumen are open to licensing conversations, and ThriftScout is open to partnerships. If one fits your company, your portfolio or your market, let's talk.", cta: "Talk partnership", href: "/connect?intent=partner" },
+  { id: "build", status: "Available now", title: "Custom development and consulting", body: "You bring an ambitious idea, a system that needs custom software, automation or an AI integration, or an experience that doesn't exist yet. I turn it into something working, in increments you can see, and I quote it to the outcome.", cta: "Start a build", href: "/connect", primary: true },
+  { id: "partner", status: "Open to conversations", title: "Licensing, partnerships and backing", body: "I'm building products of my own. Pipeline CRM, Ultimate and Lumen are open to licensing conversations, and ThriftScout is open to partnerships. If one fits your company, your portfolio or your market, let's talk.", cta: "Talk partnership", href: "/connect" },
   { id: "products", status: "In development", title: "Products and subscriptions", body: "My long-term focus is building products that scale, not selling hours. Subscription products aren't live yet. ThriftScout is a live pilot with no payments, and I'd like to hear from people who would use or back what I'm building.", cta: "Follow what I'm building", href: "/projects?track=products" },
   { id: "learn", status: "Free and paid", title: "Education", body: "Free lessons on building useful things with AI, using whichever tools fit, and live one-to-one sessions if you'd rather move faster. Suitable for people with very little programming experience.", cta: "Start learning", href: "/learn" },
-  { id: "hire", status: "Open", title: "Hire me", body: "Recruiters and technology teams looking for creative engineering talent: I build across AI, software, interactive experiences, games and mobile, and I ship. Tell me about the role.", cta: "Tell me about the role", href: "/connect?intent=hire" },
+  { id: "hire", status: "Open", title: "Hire me", body: "Recruiters and technology teams looking for creative engineering talent: I build across AI, software, interactive experiences, games and mobile, and I ship. Tell me about the role.", cta: "Tell me about the role", href: "/connect" },
 ];
 
 export default function ServicesPage() {
@@ -25,7 +25,7 @@ export default function ServicesPage() {
         <p className="eyebrow">Work with me</p>
         <h1 className="display">Bring me the ambitious version of your idea</h1>
         <p className="lede">I&apos;m an Experience Engineer and independent builder. I work with companies and founders who want something that doesn&apos;t exist yet to be working, not just planned. I sell outcomes, capability and execution, so every engagement is a <strong>custom quote</strong>, agreed before work starts.</p>
-        <p className="j-actions"><Link className="btn btn-fill j-shine" href="/connect?intent=paid-work">Start a conversation</Link><Link className="j-link j-arrow" href="/projects">See the work first</Link></p>
+        <p className="j-actions"><Link className="btn btn-fill j-shine" href="/connect">Start a conversation</Link><Link className="j-link j-arrow" href="/projects">See the work first</Link></p>
       </header>
 
       <section className="j-section" style={{ paddingTop: 24 }} aria-labelledby="ways-h">
@@ -58,7 +58,7 @@ export default function ServicesPage() {
           <Reveal key={s.slug} delay={i * 40}><article className="j-cap" style={{ height: "100%" }}>
             <p className="j-tag">Custom quote</p><h3 className="display">{s.name}</h3><p>{s.summary}</p>
             <ul style={{ listStyle: "disc", paddingLeft: "1.2em", color: "var(--j-muted)", lineHeight: 1.6, fontSize: ".92rem" }}>{s.details.slice(0, 3).map((d) => <li key={d}>{d}</li>)}</ul>
-            <p className="j-cap-proof"><Link className="j-link j-arrow" href={`/connect?service=${s.slug}`}>Request this</Link></p>
+            <p className="j-cap-proof"><Link className="j-link j-arrow" href="/connect">Request this</Link></p>
           </article></Reveal>
         ))}</div>
         <p className="j-muted" style={{ marginTop: 26 }}>Also: <Link className="j-link" href="/coaching">one-to-one AI coaching</Link>, <Link className="j-link" href="/ai-receptionist">AI receptionist pilots</Link>, and <Link className="j-link" href="/shop">guides in the shop</Link>.</p>

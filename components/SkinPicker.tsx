@@ -72,7 +72,7 @@ function ClassicSkins({ skin, onPick }: { skin: SkinKey; onPick: (id: SkinKey) =
 }
 
 /**
- * The identity switcher: Open Case, Rogue Instrument and Unauthorized Manual first, "More skins" for the older ones.
+ * The identity switcher: Softworks, Mercury and Parallax first (ids open-case, rogue-instrument, unauthorized-manual), "More skins" for the older ones.
  * Reachable from the header (desktop and the mobile menu) and the footer on every page, plus Alt+Shift+S, and 1 to 3 while open.
  * Remembered per browser; also shareable as ?skin=.
  */

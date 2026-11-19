@@ -9,7 +9,8 @@ Automated checks that stop careless edits, by any agent or person, from undoing 
 | Content schema and disclosure rules | `npm run content:validate` |
 | No secrets in tracked files | `npm run guard:secrets` |
 | No private repo or client names | `npm run guard:names` (salted hashes in `scripts/private-names.json`) |
-| Contact flow and email safety | `scripts/contact.test.cjs` |
+| Contact flow and email safety (message and email required, name optional) | `scripts/contact.test.cjs`, `tests/redesign.test.ts` |
+| Three identities stay distinct compositions; one contact flow; no raw colours in identity CSS | `tests/redesign.test.ts`, `docs/redesign/spec.md` |
 | Identity switcher, default skin, boot script, fonts and tokens | `tests/portfolio.test.ts`, `tests/motion.test.ts`, `docs/DESIGN.md` |
 | Owner review of every change | `.github/CODEOWNERS` plus branch protection |
 

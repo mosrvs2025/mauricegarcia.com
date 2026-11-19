@@ -29,7 +29,7 @@ export default function LearnPage() {
         <h1 className="display">Learn to build useful things with AI</h1>
         <p className="lede">I use several AI models, tools, frameworks and workflows, and I pick whatever fits the job. This section teaches the thinking and the process, so it works with whatever you use. You don&apos;t need to know how to code to start.</p>
         <p className="j-actions">
-          <Link className="btn btn-fill j-shine" href="/connect?intent=coaching">Learn with me, one-to-one</Link>
+          <Link className="btn btn-fill j-shine" href="/connect">Learn with me, one-to-one</Link>
           {channel && <a className="btn btn-ghost" href={channel} rel="noopener noreferrer" data-track="feed_click" data-track-feed="youtube">Watch on YouTube</a>}
           <a className="j-link j-arrow" href="/learn/rss.xml" data-track="feed_click" data-track-feed="learn">Follow by RSS</a>
         </p>
@@ -45,7 +45,7 @@ export default function LearnPage() {
         {lessons.length === 0 ? (
           <div className="j-empty">
             <p>Nothing is published yet, and I&apos;d rather say that than fill this page with filler. New lessons appear here and in <Link className="j-link" href="/updates">Updates</Link> as soon as they&apos;re real. Follow by <a className="j-link" href="/learn/rss.xml">RSS</a>, or tell me what you&apos;d most like to learn first.</p>
-            <p style={{ marginTop: 14 }}><Link className="btn btn-ghost" href="/connect?intent=coaching">Tell me what you want to learn</Link></p>
+            <p style={{ marginTop: 14 }}><Link className="btn btn-ghost" href="/connect">Tell me what you want to learn</Link></p>
           </div>
         ) : levels.map((lv) => {
           const group = lessons.filter((l) => l.level === lv);
@@ -67,7 +67,7 @@ export default function LearnPage() {
         <div className="j-head"><div><p className="eyebrow">Go further</p><h2 className="display" id="path-h">When you want it done, or done faster</h2></div></div>
         <div className="j-split">
           <div className="j-panel"><h3 className="display">Learn live, on your own idea</h3><p>A hands-on session where we build a small part of your project together, at your level, with whichever tools you prefer.</p><div className="actions"><Link className="btn btn-ghost" href="/coaching">How coaching works</Link></div></div>
-          <div className="j-panel"><h3 className="display">Have it built for you</h3><p>If you&apos;d rather not do it yourself, I&apos;ll build it. Scope and price are agreed first, as a custom quote.</p><div className="actions"><Link className="btn btn-ghost" href="/connect?intent=paid-work">Start a build</Link></div></div>
+          <div className="j-panel"><h3 className="display">Have it built for you</h3><p>If you&apos;d rather not do it yourself, I&apos;ll build it. Scope and price are agreed first, as a custom quote.</p><div className="actions"><Link className="btn btn-ghost" href="/connect">Start a build</Link></div></div>
         </div>
       </section>
     </div>

@@ -3,14 +3,14 @@
 /*
  * Foundation. Semantic font tokens:
  *   --font-display  expressive headings      --font-sans  readable body and interface text
- * They default to the Open Case identity (Anybody + Atkinson Hyperlegible Next). Each skin in app/skins.css and
+ * They default to the SOFTWORKS identity (Manrope + DM Sans). Each skin in app/skins.css and
  * app/identities.css re-points them, so every rule can say var(--font-display) and follow the active identity.
  * Colour tokens for the whole-site skins (--j-*) live in app/tokens.css; the --color-* set below belongs to the
  * older standalone pages (studio, coaching, shop, lab) that keep the classic look.
  */
 @theme {
-  --font-display: var(--font-anybody), "Arial Narrow", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-atkinson), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   --font-classic-display: var(--font-fraunces), ui-serif, Georgia, serif;
   --font-classic-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
   --color-void: #090909;

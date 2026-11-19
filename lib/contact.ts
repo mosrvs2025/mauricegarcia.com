@@ -1,25 +1,35 @@
 export const contactEmail = "hello@mauricegarcia.com";
 
-export const INTENTS = ["hello", "collaborate", "paid-work", "partner", "coaching", "hire"] as const;
-export type Intent = (typeof INTENTS)[number];
-export const INTENT_LABELS: Record<Intent, string> = { hello: "Saying hello", collaborate: "Collaboration", "paid-work": "Build something", partner: "Licensing, partnership or investment", coaching: "Learning with me", hire: "Hiring or a role" };
+/** The whole contract of the contact form: a message and a reply address are required, a name is optional. */
+export const CONTACT_LIMITS = { messageMin: 10, messageMax: 3000, nameMax: 80, emailMax: 254 } as const;
+export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+export type Inquiry = { message: string; email: string; name: string; companyFax: string };
 
-export function parseInquiry(value: unknown) {
+// Control characters other than tab and newline never belong in a message (or anywhere near an email header).
+const CONTROL = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
+const clean = (v: string) => v.replace(/\r\n?/g, "\n").replace(CONTROL, "").trim();
+
+/**
+ * Validates and trims a submission on the server. Accepts `message` (or the older `body` key), `email`, an optional
+ * `name` and the `companyFax` honeypot; anything else is ignored. Returns null when the submission is not acceptable.
+ */
+export function parseInquiry(value: unknown): Inquiry | null {
   if (!value || typeof value !== "object" || Array.isArray(value)) return null;
   const source = value as Record<string, unknown>;
-  const limits: Record<string, number> = { name: 100, email: 254, service: 100, body: 5000, business: 200, website: 500, budget: 100, timeline: 100, companyFax: 200, intent: 20, project: 80 };
-  const fields: Record<string, string> = {};
-  for (const [key, limit] of Object.entries(limits)) {
+  for (const key of ["message", "body", "email", "name", "companyFax"]) {
     if (source[key] !== undefined && typeof source[key] !== "string") return null;
-    fields[key] = (source[key] as string | undefined)?.trim() || "";
-    if (fields[key].length > limit) return null;
   }
-  if (!fields.name || !fields.body || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email) || /[\r\n]/.test(fields.name)) return null;
-  if (fields.intent && !(INTENTS as readonly string[]).includes(fields.intent)) return null;
-  if (fields.project && !SLUG.test(fields.project)) return null;
-  return fields;
+  const str = (key: string) => clean((source[key] as string | undefined) ?? "");
+  const message = str("message") || str("body");
+  const email = str("email");
+  const name = str("name");
+  const companyFax = str("companyFax");
+  if (message.length < CONTACT_LIMITS.messageMin || message.length > CONTACT_LIMITS.messageMax) return null;
+  if (email.length > CONTACT_LIMITS.emailMax || !EMAIL_PATTERN.test(email) || /[\n\t]/.test(email)) return null;
+  if (name.length > CONTACT_LIMITS.nameMax || /[\n\t]/.test(name)) return null;
+  if (companyFax.length > 200) return null;
+  return { message, email, name, companyFax };
 }
 
 /** Bulk-link spam is the common abuse of an open contact form; a friendly note rarely has more than a couple of links. */

@@ -1,123 +1,129 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { track } from "@/lib/analytics";
-import { contactEmail, INTENTS, type Intent } from "@/lib/contact";
-import { services } from "@/lib/services";
+import { CONTACT_LIMITS, EMAIL_PATTERN, contactEmail } from "@/lib/contact";
 
-const COPY: Record<Intent, { title: string; hint: string }> = {
-  hello: { title: "Just saying hello", hint: "No agenda needed." },
-  collaborate: { title: "Make something together", hint: "A project, a game, a tool, an idea." },
-  "paid-work": { title: "Build something", hint: "Custom software, automation, AI or an experience. Custom quote." },
-  partner: { title: "License, invest or partner", hint: "About one of my products or tools." },
-  coaching: { title: "Learn with me", hint: "A working session on your own idea, with any AI tools." },
-  hire: { title: "Hire me", hint: "A role or a team looking for creative engineering talent." },
-};
+type Errors = { message?: string; email?: string };
 
-export type ProjectOption = { slug: string; title: string };
+function validate(message: string, email: string): Errors {
+  const errors: Errors = {};
+  const m = message.trim(), e = email.trim();
+  if (!m) errors.message = "Write a message first.";
+  else if (m.length < CONTACT_LIMITS.messageMin) errors.message = `A little more, please: at least ${CONTACT_LIMITS.messageMin} characters.`;
+  else if (m.length > CONTACT_LIMITS.messageMax) errors.message = `That's over ${CONTACT_LIMITS.messageMax.toLocaleString("en-US")} characters. Please shorten it, or email me directly.`;
+  if (!e) errors.email = "Add your email so I can reply.";
+  else if (!EMAIL_PATTERN.test(e) || e.length > CONTACT_LIMITS.emailMax) errors.email = "That email address doesn't look right.";
+  return errors;
+}
 
-export function ConnectForm({ initialIntent, initialService, initialProject, projects }: { initialIntent: Intent; initialService?: string; initialProject?: string; projects: ProjectOption[] }) {
-  const [intent, setIntent] = useState<Intent>(initialIntent);
+/**
+ * The one contact form: a message and an email (both required), and an optional name behind a small disclosure.
+ * Posts to /api/contact and shows success only after the server confirms delivery. On failure the message stays in
+ * the form and a direct email link carries it.
+ */
+export function ConnectForm() {
+  const uid = useId();
+  const ids = { message: `${uid}-message`, email: `${uid}-email`, name: `${uid}-name`, mErr: `${uid}-message-err`, eErr: `${uid}-email-err`, count: `${uid}-count` };
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "err">("idle");
+  const [reason, setReason] = useState("");
   const [message, setMessage] = useState("");
-  const [draft, setDraft] = useState({ name: "", email: "", body: "" });
-  const showService = intent === "paid-work" || intent === "coaching";
-  const mailto = `mailto:${contactEmail}?subject=${encodeURIComponent(`Hello from the website (${COPY[intent].title})`)}&body=${encodeURIComponent(draft.body)}`;
-
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [showName, setShowName] = useState(false);
+  const [errors, setErrors] = useState<Errors>({});
+  const [tried, setTried] = useState(false);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const resultRef = useRef<HTMLDivElement>(null);
   const started = useRef(false);
-  function onStart() { if (!started.current) { started.current = true; track("connect_start", { intent }); } }
+  // Revealing the optional name moves focus into it (only after a click, never on first render).
+  const revealed = useRef(false);
+  useEffect(() => { if (showName && revealed.current) nameRef.current?.focus(); revealed.current = true; }, [showName]);
+  const mailto = `mailto:${contactEmail}?subject=${encodeURIComponent("Hello from your website")}&body=${encodeURIComponent(message)}`;
+
+  function onStart() { if (!started.current) { started.current = true; track("connect_start", {}); } }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const form = e.currentTarget;
-    const payload = Object.fromEntries(new FormData(form));
-    setStatus("sending"); setMessage("");
+    const found = validate(message, email);
+    setErrors(found); setTried(true);
+    if (found.message) { messageRef.current?.focus(); return; }
+    if (found.email) { emailRef.current?.focus(); return; }
+    const companyFax = String(new FormData(e.currentTarget).get("companyFax") || "");
+    setStatus("sending"); setReason("");
     try {
-      const response = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+      const response = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: message.trim(), email: email.trim(), name: name.trim(), companyFax }) });
       const result = await response.json().catch(() => ({}));
-      if (!response.ok || !result.ok) throw new Error(result.error || "Your message could not be sent.");
-      track("connect_submit", { intent, project: String(payload.project || "") });
-      form.reset(); setStatus("ok");
+      if (!response.ok || !result.ok) throw new Error(typeof result.error === "string" ? result.error : "");
+      track("connect_submit", {});
+      setMessage(""); setEmail(""); setName(""); setShowName(false); setTried(false); setErrors({});
+      setStatus("ok");
+      requestAnimationFrame(() => resultRef.current?.focus());
     } catch (error) {
-      track("connect_error", { intent });
-      setStatus("err"); setMessage(error instanceof Error ? error.message : "Your message could not be sent.");
+      track("connect_error", {});
+      setStatus("err"); setReason(error instanceof Error ? error.message : "");
+      requestAnimationFrame(() => resultRef.current?.focus());
     }
   }
 
+  const recheck = (m: string, em: string) => { if (tried) setErrors(validate(m, em)); };
+
   if (status === "ok") return (
-    <section role="status" className="j-ok">
-      <h2 className="display" style={{ fontSize: "1.8rem" }}>Thank you. It's on its way to me.</h2>
-      <p style={{ marginTop: 10 }}>I read everything and reply by email, usually within a few days. Nothing here commits you to anything.</p>
-      <button type="button" className="btn btn-ghost" style={{ marginTop: 18 }} onClick={() => setStatus("idle")}>Send another</button>
-    </section>
+    <div ref={resultRef} tabIndex={-1} role="status" className="connect-done">
+      <p className="connect-done-title display">Message sent. Thanks for reaching out.</p>
+      <p className="j-muted">I read every message myself and reply by email.</p>
+      <button type="button" className="btn btn-ghost j-pressable" onClick={() => setStatus("idle")}>Send another message</button>
+    </div>
   );
 
+  const left = CONTACT_LIMITS.messageMax - message.length;
   return (
-    <form onSubmit={onSubmit} onFocus={onStart} className="j-form" noValidate={false}>
-      <fieldset>
-        <legend>What brings you here?</legend>
-        <div className="j-intents">
-          {INTENTS.map((i) => (
-            <label key={i} className="j-intent">
-              <input type="radio" name="intent" value={i} checked={intent === i} onChange={() => { setIntent(i); track("connect_intent", { intent: i }); }} />
-              <span><strong>{COPY[i].title}</strong><span className="j-muted">{COPY[i].hint}</span></span>
-            </label>
-          ))}
+    <form onSubmit={onSubmit} onFocus={onStart} className="j-form connect-form" noValidate aria-describedby={status === "err" ? `${uid}-fail` : undefined}>
+      <div className="cf-field">
+        <label htmlFor={ids.message}>Your message</label>
+        <textarea ref={messageRef} id={ids.message} name="message" required minLength={CONTACT_LIMITS.messageMin} maxLength={CONTACT_LIMITS.messageMax} rows={7}
+          value={message} onChange={(e) => { setMessage(e.target.value); recheck(e.target.value, email); }}
+          aria-invalid={errors.message ? true : undefined} aria-describedby={[errors.message ? ids.mErr : "", ids.count].filter(Boolean).join(" ")} />
+        <div className="cf-under">
+          {errors.message ? <p className="cf-err" id={ids.mErr}>{errors.message}</p> : <span />}
+          <p className="cf-count" id={ids.count}>{left < 300 ? `${left.toLocaleString("en-US")} characters left` : `Up to ${CONTACT_LIMITS.messageMax.toLocaleString("en-US")} characters`}</p>
         </div>
-      </fieldset>
-
-      {showService && (
-        <label>Which service? <span className="hint">(optional)</span>
-          <select name="service" defaultValue={initialService || ""}>
-            <option value="">Not sure yet</option>
-            {services.map((s) => <option key={s.slug} value={s.slug}>{s.name}</option>)}
-          </select>
-        </label>
-      )}
-
-      <label>About a project? <span className="hint">(optional)</span>
-        <select name="project" defaultValue={initialProject || ""}>
-          <option value="">Nothing in particular</option>
-          {projects.map((p) => <option key={p.slug} value={p.slug}>{p.title}</option>)}
-        </select>
-      </label>
-
-      <div className="j-two">
-        <label>Your name<input required name="name" maxLength={100} autoComplete="name" value={draft.name} onChange={(e) => setDraft({ ...draft, name: e.target.value })} /></label>
-        <label>Email<input required type="email" name="email" maxLength={254} autoComplete="email" value={draft.email} onChange={(e) => setDraft({ ...draft, email: e.target.value })} /></label>
       </div>
 
-      <label>Your message
-        <textarea required name="body" maxLength={5000} rows={6} value={draft.body} onChange={(e) => setDraft({ ...draft, body: e.target.value })}
-          placeholder={intent === "hello" ? "Anything at all. What are you working on?" : intent === "paid-work" ? "What do you want to exist, and what would make it a success?" : intent === "coaching" ? "What do you want to build, and what have you tried so far?" : intent === "partner" ? "Which project interests you, and what are you thinking of?" : intent === "hire" ? "Tell me about the role or the team." : "What would you like to try together?"} />
-      </label>
+      <div className="cf-field">
+        <label htmlFor={ids.email}>Your email</label>
+        <input ref={emailRef} id={ids.email} type="email" name="email" required maxLength={CONTACT_LIMITS.emailMax} autoComplete="email" inputMode="email" spellCheck={false}
+          value={email} onChange={(e) => { setEmail(e.target.value); recheck(message, e.target.value); }}
+          aria-invalid={errors.email ? true : undefined} aria-describedby={errors.email ? ids.eErr : undefined} />
+        {errors.email && <p className="cf-err" id={ids.eErr}>{errors.email}</p>}
+      </div>
 
-      {intent === "paid-work" && (
-        <details>
-          <summary style={{ cursor: "pointer" }}>Add details that help me scope it <span className="hint">(all optional)</span></summary>
-          <div style={{ display: "grid", gap: 18, marginTop: 16 }}>
-            <label>Company or project name<input name="business" maxLength={200} autoComplete="organization" /></label>
-            <label>Website, if you have one<input name="website" maxLength={500} placeholder="example.com" /></label>
-            <div className="j-two">
-              <label>Budget range, if you have one<select name="budget" defaultValue=""><option value="">Prefer to talk first</option><option>Still figuring it out</option><option>$5,000–$15,000</option><option>$15,000–$50,000</option><option>$50,000+</option></select></label>
-              <label>Timing<select name="timeline" defaultValue=""><option value="">Flexible</option><option>As soon as possible</option><option>Within a month</option><option>Within 3 months</option></select></label>
-            </div>
-          </div>
-        </details>
-      )}
+      <div className="cf-field cf-name">
+        <button type="button" className="cf-disclose j-pressable" aria-expanded={showName} aria-controls={`${uid}-name-wrap`}
+          onClick={() => setShowName(!showName)}>
+          <span aria-hidden="true" className="cf-disclose-mark">{showName ? "−" : "+"}</span>Add your name <span className="cf-optional">(optional)</span>
+        </button>
+        <div id={`${uid}-name-wrap`} hidden={!showName}>
+          <label htmlFor={ids.name}>Your name <span className="cf-optional">(optional)</span></label>
+          <input ref={nameRef} id={ids.name} name="name" maxLength={CONTACT_LIMITS.nameMax} autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} />
+        </div>
+      </div>
 
       <div hidden aria-hidden="true"><label>Leave blank<input name="companyFax" tabIndex={-1} autoComplete="off" /></label></div>
 
-      <div className="j-actions" style={{ marginTop: 0 }}>
-        <button type="submit" disabled={status === "sending"} className="btn btn-fill">{status === "sending" ? "Sending…" : "Send message"}</button>
-        <span className="j-muted">or email <a className="j-link" href={mailto}>{contactEmail}</a></span>
+      <div className="cf-submit">
+        <button type="submit" disabled={status === "sending"} className="btn btn-fill j-pressable">{status === "sending" ? "Sending…" : "Send message"}</button>
       </div>
 
-      {status === "err" && (
-        <div role="alert" className="j-error">
-          <strong>That didn't go through.</strong> {message} Your message is still in the form. You can <a className="j-link" href={mailto}>email me directly</a> with the text already filled in.
-        </div>
-      )}
-      <p className="j-muted" style={{ fontSize: ".9rem" }}>I use your details only to reply. No budget is needed for a friendly introduction.</p>
+      <div ref={resultRef} tabIndex={-1} className="cf-result">
+        {status === "err" && (
+          <div role="alert" className="j-error" id={`${uid}-fail`}>
+            <p><strong>Couldn&apos;t send your message.</strong> You can <a className="j-link" href={mailto}>email me directly</a> instead. Your message is still in the form.</p>
+            {reason && <p className="cf-reason">{reason}</p>}
+          </div>
+        )}
+      </div>
     </form>
   );
 }

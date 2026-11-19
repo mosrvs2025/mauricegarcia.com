@@ -159,7 +159,7 @@ export function GameWorld({ worlds }: { worlds: World[] }) {
       <footer className="gv-end">
         <h2>Final level: build something together</h2>
         <p>Have an idea that deserves its own world, or a business that needs custom software, automation or AI? Every project is scoped and quoted to the work.</p>
-        <Link href="/connect?intent=paid-work" className="gv-btn gv-btn-go">Start a build</Link>
+        <Link href="/connect" className="gv-btn gv-btn-go">Start a build</Link>
       </footer>
     </div>
   );

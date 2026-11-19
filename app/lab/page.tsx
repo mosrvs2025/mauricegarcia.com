@@ -9,7 +9,7 @@ export default function LabIndex() {
         <p className="eyebrow">Design lab</p>
         <h1 className="display">One site, six personalities</h1>
         <p className="lede">Same projects, same words, six very different looks. Open one to see a full page, and use ‹ › to hop between them. If you're thinking about a website for your business, this is the range of what's possible, and I can build any of these or something entirely your own.</p>
-        <p className="j-actions"><Link className="btn btn-fill" href="/connect?intent=paid-work">I want a site like one of these</Link><Link className="j-link j-arrow" href="/services">How I work</Link></p>
+        <p className="j-actions"><Link className="btn btn-fill" href="/connect">I want a site like one of these</Link><Link className="j-link j-arrow" href="/services">How I work</Link></p>
       </header>
       <section aria-labelledby="live-h" className="lab-live">
         <h2 className="display" id="live-h">Running this site right now</h2>

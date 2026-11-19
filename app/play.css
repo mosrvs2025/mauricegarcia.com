@@ -27,7 +27,7 @@
 @media (max-width:900px) {
   .play-dock { bottom:var(--float-bottom, 16px); }
   .play-fab { min-height:44px; opacity:1; }
-  /* Opened on purpose: sit above the shared baseline so it does not meet "Let's talk". */
+  /* Opened on purpose: the card sits a little higher than the pill so it clears the bottom edge (and, on phones, the contact rail). */
   .play-dock:has(.play-entry) { bottom:calc(var(--float-bottom, 16px) + 56px); }
 }
 @media (max-width:560px) { .play-name, .play-sep { display:none; } .play-who { padding-right:0; } .play-entry { max-width:min(270px,calc(100vw - 32px)); } }

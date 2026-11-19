@@ -58,15 +58,18 @@ test("counters use one tabular, plain-zero face (--font-num) in the identities",
   assert.doesNotMatch(showcase, /0\{selected/);
 });
 
-test("floating controls: shared baseline on phones, the Playground starts as a pill, and they step aside for marked content", () => {
+test("floating controls: the Playground is the only floater; on phones it rides above the Email/Copy rail and steps aside for marked content", () => {
   const journal = read("app/journal.css");
   assert.match(journal, /--float-bottom:/);
-  assert.match(journal, /html\[data-float-clear\] \.qc:not\(:focus-within\)/);
+  assert.doesNotMatch(journal, /\.qc\b/, "the old floating contact pill is gone");
   assert.match(journal, /html\[data-float-clear\] \.play-dock:not\(:focus-within\)/);
   const play = read("app/play.css");
-  assert.doesNotMatch(play, /\.play-dock \{ bottom:84px/, "no more stacking above Let's talk");
   assert.match(play, /\.play-dock \{ bottom:var\(--float-bottom/);
   assert.match(read("components/play/Playground.tsx"), /saved === null && matchMedia\("\(max-width: 900px\)"\)/);
+  assert.match(read("components/play/Playground.tsx"), /path\.startsWith\("\/connect"\)/, "no Playground dock over the contact form");
+  const ids = read("app/identities.css");
+  assert.match(ids, /html:has\(\.cx-rail\) \{ --float-bottom:calc\(/, "the Playground lifts above the phone contact rail");
+  assert.match(ids, /html:has\(\.cx-rail\) body \{ padding-bottom:calc\([^)]*env\(safe-area-inset-bottom\)\)/, "content never sits behind the rail");
   assert.match(read("app/layout.tsx"), /<FloatGuard \/>/);
   const home = read("app/page.tsx") + read("components/HomeShowcase.tsx");
   assert.ok((home.match(/data-float-clear/g) || []).length >= 3, "curiosity row, showcase header and selector are marked");
