@@ -19,6 +19,6 @@ export const skinById = (id: string) => SKINS.find((s) => s.id === id);
  */
 export const LIVE_IDENTITIES = [
   { id: "open-case", name: "Softworks", vibe: "Architectural neumorphism: one matte ceramic surface, raised instrument modules, controls that press in.", type: "Manrope + DM Sans", swatches: ["#E8EEF2", "#1B2B3A", "#155E8A", "#B6C6D1", "#D0E4F1"] },
-  { id: "rogue-instrument", name: "Mercury", vibe: "Liquid chrome on dark enamel: a cinematic poster hero, a floating chrome capsule, reflective horizon rules.", type: "Syne + Space Grotesk", swatches: ["#090D15", "#F8FAFF", "#72E4FF", "#FF5C9B", "#68819C"] },
-  { id: "unauthorized-manual", name: "Parallax", vibe: "Spatial glass: overlapping translucent planes in an atmospheric field, with real depth and restrained drift.", type: "Outfit + IBM Plex Sans", swatches: ["#0B1423", "#F8FBFF", "#9EF3DC", "#43599C", "#2CB4B1"] },
+  { id: "rogue-instrument", name: "Rogue Instrument", vibe: "A hardware control panel for software that doesn't behave like ordinary software: graphite, volt lime, focus brackets.", type: "Saira Condensed + IBM Plex Sans", swatches: ["#0D1214", "#E7EAE4", "#D6F24D", "#F26D46", "#5FC4C8"] },
+  { id: "unauthorized-manual", name: "Unauthorized Manual", vibe: "A rebellious instruction manual for improbable products: Try it, Break it, Understand it.", type: "Archivo Black + Public Sans", swatches: ["#F6EDE2", "#11100F", "#174CDB", "#FF6E45", "#EFD967"] },
 ] as const;

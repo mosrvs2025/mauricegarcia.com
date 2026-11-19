@@ -4,9 +4,8 @@ import { test } from "node:test";
 
 const read = (f: string) => fs.readFileSync(f, "utf8");
 
-// The approved redesign (docs/redesign/spec.md): three identities that are different compositions, not token swaps,
-// and one simple contact flow. These checks stop the work from quietly sliding back into a single shared layout or
-// into the old scattered contact UI.
+// SOFTWORKS keeps the Claude composition and the simple /connect flow. Rogue Instrument and
+// Unauthorized Manual are restored from the pre-#25 commit (316fc84).
 
 /** Every rule block in identities.css that targets one identity. */
 function rulesFor(skin: string) {
@@ -14,34 +13,30 @@ function rulesFor(skin: string) {
   return css.split("\n").filter((l) => l.includes(`html[data-skin="${skin}"]`)).join("\n");
 }
 
-test("each identity has its own navigation geometry, hero composition and material", () => {
+test("SOFTWORKS keeps the Claude composition; Rogue Instrument and Unauthorized Manual use the pre-redesign layout", () => {
   const sw = rulesFor("open-case"), mc = rulesFor("rogue-instrument"), px = rulesFor("unauthorized-manual");
-  // Navigation: a docked left rail, a floating capsule with a liquid indicator, a floating right glass rail.
+  // SOFTWORKS: docked left rail and 7/5 neumorphic hero.
   assert.match(sw, /\.site-header \{ position:fixed; inset:0 auto 0 0; width:var\(--rail-w\)/);
-  assert.match(mc, /\.nav-bar \{[^}]*border-radius:999px/);
-  assert.match(mc, /\.nav-liquid \{ display:block/);
-  assert.match(px, /\.site-header \{ position:fixed; z-index:50; top:20px; right:20px/);
-  // Hero: 7/5 split, 70/30 poster with a liquid form, three overlapping planes.
   assert.match(sw, /\.home-hero\.j-hero \{ grid-template-columns:minmax\(0,7fr\) minmax\(0,5fr\)/);
-  assert.match(mc, /\.home-hero\.j-hero \{[^}]*grid-template-columns:repeat\(10,/);
-  assert.match(mc, /\.hero-liquid \{ display:block/);
-  assert.match(px, /\.hero-backplane \{ display:block; position:absolute/);
-  assert.match(px, /\.hero-statement \{ grid-column:1 \/ span 7/);
-  assert.match(px, /\.hero-work \{ grid-column:7 \/ -1/, "the middle plane overlaps the front plane");
-  // Materials: neumorphic raise and inset, chrome gradients, glass with backdrop blur.
   assert.match(sw, /--sw-raise:12px 12px 26px var\(--j-shadow\), -12px -12px 26px var\(--j-light\)/);
   assert.match(sw, /\.j-inset/);
+  // The other two identities share the pre-#25 12-column editorial hero and hide the Claude planes.
   const all = read("app/identities.css");
-  assert.match(all, /--mc-chrome:linear-gradient\(115deg/);
-  assert.match(all, /--px-glass:linear-gradient\(140deg/);
-  assert.match(px, /backdrop-filter:blur\(24px\) saturate\(140%\)/);
-  assert.match(px, /\.j-scene \{ perspective:1200px; transform-style:preserve-3d; \}/);
+  assert.match(all, /html\[data-skin="rogue-instrument"\] \.home-hero\.j-hero[^}]*grid-template-columns:repeat\(12,/);
+  assert.match(all, /html\[data-skin="unauthorized-manual"\] \.home-hero\.j-hero\{[^}]*grid-template-columns:repeat\(12,/);
+  assert.match(all, /html\[data-skin="rogue-instrument"\] \.hero-statement,\s*html\[data-skin="unauthorized-manual"\] \.hero-statement \{ display:contents; \}/);
+  assert.match(all, /html\[data-skin="rogue-instrument"\] :is\(\.hero-liquid, \.hero-backplane, \.hero-atmos, \.hero-work, \.nav-liquid, \.nav-icon\),\s*html\[data-skin="unauthorized-manual"\] :is\(\.hero-liquid, \.hero-backplane, \.hero-atmos, \.hero-work, \.nav-liquid, \.nav-icon\) \{ display:none; \}/);
+  // Signature details from 316fc84.
+  assert.match(mc, /--id-header-rule:1px solid var\(--j-line-strong\); --id-dot-radius:0;/);
+  assert.match(px, /\.home-title em \{[^}]*background:var\(--j-play\)/);
 });
 
-test("identity rules use tokens only: no raw colours in identities.css", () => {
-  const css = read("app/identities.css").replace(/\/\*[\s\S]*?\*\//g, "");
-  assert.doesNotMatch(css, /#[0-9a-fA-F]{3,8}\b/, "hex colours belong in app/tokens.css");
-  assert.doesNotMatch(css, /rgba?\(/, "rgb() colours belong in app/tokens.css");
+test("SOFTWORKS identity rules use tokens only: no raw colours in the Claude composition", () => {
+  const css = read("app/identities.css");
+  const cut = css.indexOf("/* ============ Restored pre-#25 identities");
+  const claude = (cut >= 0 ? css.slice(0, cut) : css).replace(/\/\*[\s\S]*?\*\//g, "");
+  assert.doesNotMatch(claude, /#[0-9a-fA-F]{3,8}\b/, "hex colours belong in app/tokens.css");
+  assert.doesNotMatch(claude, /rgba?\(/, "rgb() colours belong in app/tokens.css");
 });
 
 test("motion and accessibility fallbacks exist for every identity", () => {
@@ -49,11 +44,10 @@ test("motion and accessibility fallbacks exist for every identity", () => {
   assert.match(css, /@media \(prefers-reduced-motion:reduce\)/);
   assert.match(css, /@media \(forced-colors:active\)/);
   assert.match(css, /@supports not \(\(backdrop-filter:blur\(1px\)\)/);
-  assert.match(css, /html\[data-kind="identity"\] :focus-visible \{ outline:3px solid/);
+  assert.match(css, /html\[data-skin="open-case"\] :focus-visible \{ outline:3px solid/);
   const drift = read("components/DepthDrift.tsx");
   assert.match(drift, /pointer: fine/); assert.match(drift, /prefers-reduced-motion: reduce/);
   assert.match(drift, /Math\.max\(-1, Math\.min\(1/, "drift is bounded");
-  assert.match(css, /calc\(var\(--drift-x\) \* -12px\)/, "decorative planes move at most 12px");
 });
 
 test("one contact flow: /connect with the approved copy, two shortcuts and a three-field form", () => {
@@ -90,30 +84,13 @@ test("classic skins keep their own hero and get none of the identity-only layers
   assert.match(read("app/page.tsx"), /<HomeShowcase projects=\{showcase\} \/>/);
 });
 
-test("the homepage headline is the same in all three identities, and in the home OG image", () => {
+test("SOFTWORKS keeps the shared headline; Rogue Instrument and Unauthorized Manual keep their original lines", () => {
   const home = read("app/page.tsx");
-  const headline = /Software, AI, and worlds<br \/><em>you can step into\.<\/em>/;
-  assert.match(home, new RegExp(String.raw`className="hv hv-case">${headline.source}`));
-  assert.match(home, new RegExp(String.raw`className="hv hv-rogue">${headline.source}`));
-  assert.match(home, new RegExp(String.raw`className="hv hv-manual">${headline.source}`));
-  assert.doesNotMatch(home, /I build things\.|Then I break them\.|Systems should<br|Do not build<br/);
+  assert.match(home, /className="hv hv-case">Software, AI, and worlds<br \/><em>you can step into\.<\/em>/);
+  assert.match(home, /className="hv hv-rogue">Systems should<br \/><em>do more\.<\/em>/);
+  assert.match(home, /className="hv hv-manual">Do not build<br \/><em>normal\.<\/em>/);
+  assert.doesNotMatch(home, /I build things\.|Then I break them\./);
   const og = read("app/opengraph-image.tsx");
   assert.match(og, /title: "Software, AI, and worlds you can step into\."/);
   assert.doesNotMatch(og, /I build things\./);
-});
-
-test("the Mercury homepage headline wraps on word boundaries and scales so the longest word fits", () => {
-  const css = read("app/identities.css");
-  const titleRules = css.split("}").filter((b) => b.includes('data-skin="rogue-instrument"') && b.includes(".home-hero .home-title")).join("}");
-  assert.match(titleRules, /overflow-wrap:\s*normal/);
-  assert.match(titleRules, /word-break:\s*normal/);
-  assert.match(titleRules, /text-wrap:\s*balance/);
-  assert.match(titleRules, /hyphens:\s*none/);
-  assert.doesNotMatch(titleRules, /overflow-wrap:\s*anywhere|word-break:\s*break-all/);
-  assert.match(titleRules, /font-size:\s*min\(var\(--j-hero-size\), 13\.6cqw\)/);
-  assert.match(titleRules, /font-size:\s*min\(var\(--j-hero-size-m\), 13\.6cqw\)/);
-  assert.match(css, /html\[data-skin="rogue-instrument"\] \.hero-statement \{[^}]*container-type:\s*inline-size/);
-  const shared = css.split("}").filter((b) => b.includes('data-kind="identity"') && b.includes(".home-hero .home-title")).join("}");
-  assert.match(shared, /overflow-wrap:\s*normal/);
-  assert.match(shared, /text-wrap:\s*balance/);
 });

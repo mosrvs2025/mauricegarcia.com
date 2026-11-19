@@ -68,8 +68,8 @@ test("floating controls: the Playground is the only floater; on phones it rides 
   assert.match(read("components/play/Playground.tsx"), /saved === null && matchMedia\("\(max-width: 900px\)"\)/);
   assert.match(read("components/play/Playground.tsx"), /path\.startsWith\("\/connect"\)/, "no Playground dock over the contact form");
   const ids = read("app/identities.css");
-  assert.match(ids, /html:has\(\.cx-rail\) \{ --float-bottom:calc\(/, "the Playground lifts above the phone contact rail");
-  assert.match(ids, /html:has\(\.cx-rail\) body \{ padding-bottom:calc\([^)]*env\(safe-area-inset-bottom\)\)/, "content never sits behind the rail");
+  assert.match(ids, /html:has\(\.cx-rail\)(?::not\(\[data-skin="[^"]+"\]\))* \{ --float-bottom:calc\(/, "the Playground lifts above the phone contact rail");
+  assert.match(ids, /html:has\(\.cx-rail\)(?::not\(\[data-skin="[^"]+"\]\))* body \{ padding-bottom:calc\([^)]*env\(safe-area-inset-bottom\)\)/, "content never sits behind the rail");
   assert.match(read("app/layout.tsx"), /<FloatGuard \/>/);
   const home = read("app/page.tsx") + read("components/HomeShowcase.tsx");
   assert.ok((home.match(/data-float-clear/g) || []).length >= 3, "curiosity row, showcase header and selector are marked");
