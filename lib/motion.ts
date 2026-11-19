@@ -93,11 +93,12 @@ html.mg-intro-on #mg-intro .word b{animation:none!important}
 `.replace(/\n/g, "");
 
 /**
- * Runs in <head> right after the skin boot script. Decides whether this tab has seen the intro, locks scroll
- * while it plays, and ends it when the last band finishes (or at the failsafe, whichever comes first).
- * `?intro=1` replays it; `?intro=0` suppresses it. Never throws: any failure simply means no intro.
+ * Runs in <head> right after the skin boot script. The intro does not play on its own: a first visit
+ * (and every later visit) goes straight to the page — Softworks by default, or a remembered / ?skin=
+ * choice — so the overlay never hides that identity. `?intro=1` still plays it. Never throws: any
+ * failure simply means no intro.
  */
-export const INTRO_BOOT_SCRIPT = `(function(){var d=document.documentElement;try{var q=location.search,f=/[?&]intro=1(&|$)/.test(q);if(window.top!==window||${MOTION_EXEMPT}.test(location.pathname)||/[?&]intro=0(&|$)/.test(q))return;if(!f&&sessionStorage.getItem("${INTRO_KEY}"))return;sessionStorage.setItem("${INTRO_KEY}","1")}catch(e){return}
+export const INTRO_BOOT_SCRIPT = `(function(){var d=document.documentElement;try{if(window.top!==window||${MOTION_EXEMPT}.test(location.pathname)||!/[?&]intro=1(&|$)/.test(location.search))return;sessionStorage.setItem("${INTRO_KEY}","1")}catch(e){return}
 var w=innerWidth-d.clientWidth;if(w>0)d.style.paddingRight=w+"px";d.classList.add("mg-intro-on");var done=0,t;
 function end(){if(done)return;done=1;clearTimeout(t);d.classList.remove("mg-intro-on","mg-intro-skip");d.style.paddingRight="";document.removeEventListener("animationend",onA,true);document.removeEventListener("click",onS,true);document.removeEventListener("keydown",onK,true)}
 function onA(e){if(e.animationName==="mgi-fade"||(e.animationName==="mgi-up"&&e.target.className.indexOf("b3")>-1))end()}
