@@ -1,92 +1,181 @@
 /*
- * Design tokens for the whole-site identities. One source of truth: components and stylesheets read the semantic
- * --j-* tokens only, never a raw colour, so changing <html data-skin> restyles everything at once.
+ * Design tokens for the whole-site identities (Identity System V2).
+ * One source of truth: components and stylesheets read semantic --j-* tokens only;
+ * hex values live exclusively here (and in classic skin definitions in app/skins.css).
  *
- *   Brand source values  --brand-*   Open Case's own palette (the default identity)
- *   Semantic tokens      --j-*       bg, surface, line, text, muted, accent, link, play, status colours
- *   Type tokens          --j-display-* / --j-stretch / --font-display / --font-sans
- *
- * Open Case is the default: it is on :root as well as on html[data-skin="open-case"], so it also applies before the
- * boot script has run and with JavaScript off. Rogue Instrument and Unauthorized Manual are defined here; the seven
- * older skins (Paper, Terminal, Neo-Pop, Glass, Swiss, Arcade) are in app/skins.css and "workshop" keeps the previous
- * default tokens below. Rules that use these tokens live in app/identities.css and app/journal.css.
+ *   open-case           → SOFTWORKS  (Architectural neumorphism · Manrope + DM Sans)
+ *   rogue-instrument    → MERCURY    (Liquid chrome / glossy UI · Syne + Space Grotesk)
+ *   unauthorized-manual → PARALLAX   (Spatial glass architecture · Outfit + IBM Plex Sans)
+ *   workshop + 6 classic skins       (Preserved unchanged)
  */
 
-:root {
-  /* Open Case brand source values */
-  --brand-paper: #F2F0EA;
-  --brand-ink: #181B1C;
-  --brand-red: #C73723;
-  --brand-blue: #255E79;
-  --brand-play: #D5F067;
-  --brand-rule: #C8CAC5;
-  /* Darker states, so hovers keep their contrast without opacity tricks */
-  --brand-red-deep: #A12C1B;
-  --brand-blue-deep: #1A4A60;
-  --brand-paper-raised: #FAF9F5;
-  --brand-ink-soft: #4B5254;
-  --brand-rule-strong: #767B7A;
-}
-
-/* Open Case. The default. Paper and ink, red for emphasis, blue for functional links, lime for play. */
+/* Identity A — SOFTWORKS (open-case, default). Architectural neumorphism: matte ceramic, warm tactile depth. */
 :root,
 html[data-skin="open-case"] {
   color-scheme: light;
-  --j-bg: var(--brand-paper); --j-surface: var(--brand-paper-raised);
-  --j-line: var(--brand-rule); --j-line-strong: var(--brand-rule-strong);
-  --j-text: var(--brand-ink); --j-muted: var(--brand-ink-soft);
-  --j-accent: var(--brand-red); --j-accent-hover: var(--brand-red-deep); --j-accent-ink: #ffffff;
-  --j-link: var(--brand-blue); --j-link-hover: var(--brand-blue-deep);
-  --j-play: var(--brand-play); --j-play-ink: var(--brand-ink);
-  --j-accent-rgb: 199,55,35; --j-text-rgb: 24,27,28;
-  --j-ok: #1D6B2B; --j-warn: #7A4B00; --j-warn-bg: #F3E6C4; --j-warn-line: #C9A44A; --j-danger-bg: #F6DDD6; --j-danger-line: #C73723;
-  --j-radius: 2px; --j-bw: 1px; --j-shadow: none; --j-aurora: 0;
-  /* Type: Anybody is variable in width and weight. Heavy and slightly condensed reads as a signature, still comfortable. */
-  --font-display: var(--font-anybody), "Arial Narrow", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-atkinson), ui-sans-serif, system-ui, sans-serif;
-  /* Counters: Atkinson's zero is slashed, which at 10px with tracking reads like 6 or 8, so numbers use the display face. */
+  --j-bg: #E8EEF2;
+  --j-surface: #E8EEF2;
+  --j-ink: #1B2B3A;
+  --j-muted: #4C6070;
+  --j-accent: #155E8A;
+  --j-accent-ink: #FFFFFF;
+  --j-light: #FFFFFF;
+  --j-shadow: #B6C6D1;
+  --j-outline: #849BAA;
+  --j-soft-accent: #D0E4F1;
+  --j-radius: 28px;
+
+  /* Semantic aliases derived from the palette */
+  --j-text: var(--j-ink);
+  --j-line: var(--j-soft-accent);
+  --j-line-strong: var(--j-outline);
+  --j-accent-hover: #0F4B6F;
+  --j-link: var(--j-accent);
+  --j-link-hover: #0F4B6F;
+  --j-play: var(--j-accent);
+  --j-play-ink: var(--j-accent-ink);
+  --j-accent-rgb: 21, 94, 138;
+  --j-text-rgb: 27, 43, 58;
+  --j-ok: #15623A;
+  --j-warn: #7A4B00;
+  --j-warn-bg: #F3E8CE;
+  --j-warn-line: #B8943D;
+  --j-danger-bg: #F6DFDB;
+  --j-danger-line: #B63829;
+  --j-bw: 1px;
+  --j-aurora: 0;
+
+  /* Typography: Manrope 700/800 (-0.055em) + DM Sans 400/600 */
+  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   --font-num: var(--font-display);
-  --j-stretch: 88%; --j-display-weight: 800; --j-display-track: -.012em; --j-display-case: uppercase; --j-display-leading: .94;
-  --j-hero-size: clamp(2.7rem, calc((100vw - 96px) / 9.3), 8.4rem); --j-hero-size-m: 12.2vw; --j-h1: clamp(2.2rem, 6.4vw, 4.6rem); --j-h2: clamp(1.7rem, 3.8vw, 3rem); --j-h3: clamp(1.25rem, 2.2vw, 1.6rem);
-  --j-kicker-track: .14em; --j-body-size: 1.0625rem; --j-body-leading: 1.7;
+  --j-stretch: 100%;
+  --j-display-weight: 800;
+  --j-display-track: -0.055em;
+  --j-display-case: none;
+  --j-display-leading: 0.96;
+  --j-hero-size: clamp(3.5rem, 8vw, 7.5rem);
+  --j-hero-size-m: clamp(2.5rem, 11vw, 3.6rem);
+  --j-h1: clamp(2.4rem, 5.5vw, 4.4rem);
+  --j-h2: clamp(1.85rem, 3.6vw, 2.9rem);
+  --j-h3: clamp(1.25rem, 2vw, 1.55rem);
+  --j-kicker-track: 0.14em;
+  --j-body-size: 1.0625rem;
+  --j-body-leading: 1.65;
+  --j-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* Rogue Instrument. A hardware control panel: graphite, porcelain, volt lime, with orange for warnings and cyan for links. */
+/* Identity B — MERCURY (rogue-instrument). Liquid chrome / glossy UI: dark enamel, reflective metal, cinematic scale. */
 html[data-skin="rogue-instrument"] {
   color-scheme: dark;
-  --j-bg: #0D1214; --j-surface: #141B1E; --j-line: #273237; --j-line-strong: #5A6C72;
-  --j-text: #E7EAE4; --j-muted: #A9B4B1;
-  --j-accent: #D6F24D; --j-accent-hover: #E6FF70; --j-accent-ink: #0D1214;
-  --j-link: #5FC4C8; --j-link-hover: #8FDDE0;
-  --j-play: #D6F24D; --j-play-ink: #0D1214; --j-signal: #F26D46;
-  --j-accent-rgb: 214,242,77; --j-text-rgb: 231,234,228;
-  --j-ok: #D6F24D; --j-warn: #F26D46; --j-warn-bg: #2A1912; --j-warn-line: #8E4630; --j-danger-bg: #2A1510; --j-danger-line: #F26D46;
-  --j-radius: 2px; --j-bw: 1px; --j-shadow: none; --j-aurora: 0;
-  --font-display: var(--font-saira), "Arial Narrow", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
+  --j-bg: #090D15;
+  --j-surface: #172233;
+  --j-ink: #F8FAFF;
+  --j-muted: #B8C6D6;
+  --j-accent: #72E4FF;
+  --j-accent-ink: #09121F;
+  --j-hot: #FF5C9B;
+  --j-light: #FFFFFF;
+  --j-shadow: #000000;
+  --j-outline: #68819C;
+  --j-radius: 20px;
+
+  /* Semantic aliases */
+  --j-text: var(--j-ink);
+  --j-line: color-mix(in srgb, var(--j-light) 16%, transparent);
+  --j-line-strong: var(--j-outline);
+  --j-accent-hover: #A3EEFF;
+  --j-link: var(--j-accent);
+  --j-link-hover: #A3EEFF;
+  --j-play: var(--j-accent);
+  --j-play-ink: var(--j-accent-ink);
+  --j-signal: var(--j-hot);
+  --j-accent-rgb: 114, 228, 255;
+  --j-text-rgb: 248, 250, 255;
+  --j-ok: #7BF0B8;
+  --j-warn: #FFC266;
+  --j-warn-bg: #261D14;
+  --j-warn-line: #8C6429;
+  --j-danger-bg: #2B1320;
+  --j-danger-line: var(--j-hot);
+  --j-bw: 1px;
+  --j-aurora: 0;
+
+  /* Typography: Syne 700/800 (-0.065em) + Space Grotesk 400/500 */
+  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
   --font-num: var(--font-display);
-  --j-stretch: 100%; --j-display-weight: 700; --j-display-track: .005em; --j-display-case: uppercase; --j-display-leading: .92;
-  --j-hero-size: clamp(3rem, calc((100vw - 96px) / 6.4), 10.4rem); --j-hero-size-m: 17vw; --j-h1: clamp(2.4rem, 6.8vw, 5rem); --j-h2: clamp(1.8rem, 4vw, 3.2rem); --j-h3: clamp(1.3rem, 2.3vw, 1.75rem);
-  --j-kicker-track: .16em; --j-body-size: 1.0625rem; --j-body-leading: 1.65;
+  --j-stretch: 100%;
+  --j-display-weight: 800;
+  --j-display-track: -0.065em;
+  --j-display-case: uppercase;
+  --j-display-leading: 0.9;
+  --j-hero-size: clamp(4rem, 10vw, 10rem);
+  --j-hero-size-m: clamp(2.65rem, 11.5vw, 4rem);
+  --j-h1: clamp(2.5rem, 6.2vw, 5rem);
+  --j-h2: clamp(1.9rem, 4.2vw, 3.4rem);
+  --j-h3: clamp(1.3rem, 2.2vw, 1.7rem);
+  --j-kicker-track: 0.18em;
+  --j-body-size: 1.0625rem;
+  --j-body-leading: 1.65;
+  --j-ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Unauthorized Manual. A rebellious instruction manual: parchment, black, cobalt, with coral and yellow as loud fills. */
+/* Identity C — PARALLAX (unauthorized-manual). Spatial glass architecture: layered translucent planes with depth. */
 html[data-skin="unauthorized-manual"] {
-  color-scheme: light;
-  --j-bg: #F6EDE2; --j-surface: #FFFAF2; --j-line: #11100F; --j-line-strong: #11100F;
-  --j-text: #11100F; --j-muted: #4A443E;
-  --j-accent: #174CDB; --j-accent-hover: #0F3AAE; --j-accent-ink: #ffffff;
-  --j-link: #174CDB; --j-link-hover: #0F3AAE;
-  --j-play: #EFD967; --j-play-ink: #11100F; --j-signal: #FF6E45;
-  --j-accent-rgb: 23,76,219; --j-text-rgb: 17,16,15;
-  --j-ok: #1B6B2A; --j-warn: #7A3B00; --j-warn-bg: #EFD967; --j-warn-line: #11100F; --j-danger-bg: #FFD9CC; --j-danger-line: #11100F;
-  --j-radius: 0px; --j-bw: 2px; --j-shadow: 4px 4px 0 #11100F; --j-aurora: 0;
-  --font-display: var(--font-archivo-black), "Arial Black", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif;
+  color-scheme: dark;
+  --j-bg: #0B1423;
+  --j-surface: #142A3C;
+  --j-ink: #F8FBFF;
+  --j-muted: #D0DEE9;
+  --j-accent: #9EF3DC;
+  --j-accent-ink: #09211C;
+  --j-ambient: #43599C;
+  --j-glow: #2CB4B1;
+  --j-light: #FFFFFF;
+  --j-shadow: #000000;
+  --j-outline: #A8D7E3;
+  --j-radius: 24px;
+
+  /* Semantic aliases */
+  --j-text: var(--j-ink);
+  --j-line: color-mix(in srgb, var(--j-light) 18%, transparent);
+  --j-line-strong: var(--j-outline);
+  --j-accent-hover: #C2F9EA;
+  --j-link: var(--j-accent);
+  --j-link-hover: #C2F9EA;
+  --j-play: var(--j-accent);
+  --j-play-ink: var(--j-accent-ink);
+  --j-signal: var(--j-glow);
+  --j-accent-rgb: 158, 243, 220;
+  --j-text-rgb: 248, 251, 255;
+  --j-ok: var(--j-accent);
+  --j-warn: #FCD688;
+  --j-warn-bg: #262317;
+  --j-warn-line: #8A763A;
+  --j-danger-bg: #2B1722;
+  --j-danger-line: #F08BA8;
+  --j-bw: 1px;
+  --j-aurora: 0;
+
+  /* Typography: Outfit 600/700 (-0.045em) + IBM Plex Sans 400/500 */
+  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
   --font-num: var(--font-display);
-  --j-stretch: 100%; --j-display-weight: 400; --j-display-track: -.02em; --j-display-case: uppercase; --j-display-leading: .95;
-  --j-hero-size: clamp(2.5rem, calc((100vw - 96px) / 9.8), 7.8rem); --j-hero-size-m: 9.4vw; --j-h1: clamp(2.1rem, 6vw, 4.4rem); --j-h2: clamp(1.6rem, 3.6vw, 2.8rem); --j-h3: clamp(1.2rem, 2.1vw, 1.5rem);
-  --j-kicker-track: .1em; --j-body-size: 1.0625rem; --j-body-leading: 1.7;
+  --j-stretch: 100%;
+  --j-display-weight: 700;
+  --j-display-track: -0.045em;
+  --j-display-case: none;
+  --j-display-leading: 0.96;
+  --j-hero-size: clamp(3.5rem, 7vw, 7rem);
+  --j-hero-size-m: clamp(2.4rem, 10.5vw, 3.5rem);
+  --j-h1: clamp(2.3rem, 5.5vw, 4.4rem);
+  --j-h2: clamp(1.85rem, 3.6vw, 2.9rem);
+  --j-h3: clamp(1.25rem, 2.1vw, 1.55rem);
+  --j-kicker-track: 0.14em;
+  --j-body-size: 1.0625rem;
+  --j-body-leading: 1.68;
+  --j-ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /*

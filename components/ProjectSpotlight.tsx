@@ -25,7 +25,7 @@ export function ProjectSpotlight({ project: p, eyebrow, headline, inside, privac
   return (
     <section className="studio-wrap j-section us cf cf-spread" aria-labelledby="us-h">
       <Reveal>
-        <div className="us-grid">
+        <div className="us-grid j-surface">
           <div className="us-copy">
             <p className="eyebrow">{number && <span className="cf-no">File {number}</span>}{eyebrow} · {TRACK_LABELS[p.track].title}</p>
             <h2 className="display" id="us-h">{headline}</h2>
@@ -34,8 +34,8 @@ export function ProjectSpotlight({ project: p, eyebrow, headline, inside, privac
             <p className="us-note"><span className="j-tag state">{MATURITY_LABELS[p.maturity]}</span> {privacyNote}</p>
             {notes && <div className="cf-notes" role="group" aria-label={`Notes on ${p.title}`}>{notes}</div>}
             <div className="j-actions">
-              <Link className="btn btn-fill j-shine" href={`/projects/${p.slug}`}>Read the case study <span aria-hidden="true">→</span></Link>
-              {release && <a className="btn btn-ghost" href={release.url} rel="noopener noreferrer" data-track="outbound_click" data-track-project={p.slug}>{release.label} <span aria-hidden="true">↗</span></a>}
+              <Link className="btn btn-fill j-shine j-pressable" href={`/projects/${p.slug}`}>Read the case study <span aria-hidden="true">→</span></Link>
+              {release && <a className="btn btn-ghost j-pressable" href={release.url} rel="noopener noreferrer" data-track="outbound_click" data-track-project={p.slug}>{release.label} <span aria-hidden="true">↗</span></a>}
               {p.links.repo && <a className="j-link j-arrow" href={p.links.repo} rel="noopener noreferrer" data-track="source_click" data-track-project={p.slug}>Source on GitHub</a>}
             </div>
           </div>

@@ -17,7 +17,7 @@ export function WorldDoors({ worlds }: { worlds: World[] }) {
           const shots = w.projects.filter((p) => p.image).slice(0, 3);
           return (
             <Reveal key={w.track} delay={i * 90} className={`wd-door wd-${w.track}`}>
-              <Link href={`/projects?track=${w.track}`} id={w.track} className="wd-link" aria-label={`${t.title}: ${w.total} projects`}>
+              <Link href={`/projects?track=${w.track}`} id={w.track} className="wd-link j-surface j-pressable" aria-label={`${t.title}: ${w.total} projects`}>
                 <div className="wd-stack" aria-hidden="true">
                   {shots.map((p, k) => <div key={p.slug} className="wd-shot" style={{ ["--k" as string]: k }}><Image src={p.image!.src} alt="" fill sizes="(max-width:900px) 80vw, 30vw" /></div>)}
                 </div>

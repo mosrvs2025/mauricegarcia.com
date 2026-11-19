@@ -72,7 +72,7 @@ test("intro CSS: Workshop boot colours, curtain timing, every skin, reduced moti
     assert.match(skins, new RegExp(`html\\[data-skin="${id}"\\]\\s*\\{[^}]*--j-accent:`), `${id} must define --j-accent for the intro bands`);
   }
   // The three identities and Workshop each carry their own intro palette; their wordmark takes the identity's display face.
-  for (const [id, bg, accent] of [["open-case", "#181B1C", "#C73723"], ["rogue-instrument", "#0D1214", "#D6F24D"], ["unauthorized-manual", "#11100F", "#174CDB"], ["workshop", "#12100D", "#ff6535"]]) {
+  for (const [id, bg, accent] of [["open-case", "#1B2B3A", "#155E8A"], ["rogue-instrument", "#090D15", "#72E4FF"], ["unauthorized-manual", "#0B1423", "#9EF3DC"], ["workshop", "#12100D", "#ff6535"]]) {
     assert.match(INTRO_CSS, new RegExp(`html\\[data-skin="${id}"\\] #mg-intro\\{--a:${bg};--b:${accent}`), `${id} intro palette`);
   }
   assert.match(INTRO_CSS, /font-family:var\(--j-font-display,var\(--font-display/);

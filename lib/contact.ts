@@ -1,25 +1,44 @@
 export const contactEmail = "hello@mauricegarcia.com";
 
-export const INTENTS = ["hello", "collaborate", "paid-work", "partner", "coaching", "hire"] as const;
-export type Intent = (typeof INTENTS)[number];
-export const INTENT_LABELS: Record<Intent, string> = { hello: "Saying hello", collaborate: "Collaboration", "paid-work": "Build something", partner: "Licensing, partnership or investment", coaching: "Learning with me", hire: "Hiring or a role" };
+export const MESSAGE_MIN = 10;
+export const MESSAGE_MAX = 3000;
+export const NAME_MAX = 80;
 
-const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+export type ContactInquiry = {
+  message: string;
+  /** Alias for message, kept for compatibility with existing email helpers. */
+  body: string;
+  email: string;
+  name: string;
+  companyFax: string;
+};
 
-export function parseInquiry(value: unknown) {
+/**
+ * Validates and trims a contact submission.
+ * Only `message` (10–3000 chars; also accepts legacy `body` key) and `email` are required.
+ * `name` is optional (max 80 chars). No intent, budget, timeline, or service is required.
+ */
+export function parseInquiry(value: unknown): ContactInquiry | null {
   if (!value || typeof value !== "object" || Array.isArray(value)) return null;
   const source = value as Record<string, unknown>;
-  const limits: Record<string, number> = { name: 100, email: 254, service: 100, body: 5000, business: 200, website: 500, budget: 100, timeline: 100, companyFax: 200, intent: 20, project: 80 };
-  const fields: Record<string, string> = {};
-  for (const [key, limit] of Object.entries(limits)) {
-    if (source[key] !== undefined && typeof source[key] !== "string") return null;
-    fields[key] = (source[key] as string | undefined)?.trim() || "";
-    if (fields[key].length > limit) return null;
-  }
-  if (!fields.name || !fields.body || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email) || /[\r\n]/.test(fields.name)) return null;
-  if (fields.intent && !(INTENTS as readonly string[]).includes(fields.intent)) return null;
-  if (fields.project && !SLUG.test(fields.project)) return null;
-  return fields;
+
+  const rawMessage = source.message !== undefined ? source.message : source.body;
+  if (typeof rawMessage !== "string") return null;
+  if (typeof source.email !== "string") return null;
+  if (source.name !== undefined && typeof source.name !== "string") return null;
+  if (source.companyFax !== undefined && typeof source.companyFax !== "string") return null;
+
+  const message = rawMessage.trim();
+  const email = source.email.trim();
+  const name = (source.name ?? "").trim();
+  const companyFax = (source.companyFax ?? "").trim();
+
+  if (message.length < MESSAGE_MIN || message.length > MESSAGE_MAX) return null;
+  if (!email || email.length > 254 || /[\r\n]/.test(email) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return null;
+  if (name.length > NAME_MAX || /[\r\n]/.test(name)) return null;
+  if (companyFax.length > 200) return null;
+
+  return { message, body: message, email, name, companyFax };
 }
 
 /** Bulk-link spam is the common abuse of an open contact form; a friendly note rarely has more than a couple of links. */

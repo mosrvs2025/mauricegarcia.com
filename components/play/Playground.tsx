@@ -45,7 +45,7 @@ export function Playground() {
   const toggle = useRef<HTMLButtonElement>(null);
   const enterBtn = useRef<HTMLButtonElement>(null);
   const focusNext = useRef<"bar" | "entry" | null>(null);
-  const hidden = MOTION_EXEMPT.test(path) || LEGACY_PREFIXES.test(path);
+  const hidden = MOTION_EXEMPT.test(path) || LEGACY_PREFIXES.test(path) || path.startsWith("/connect");
   const active = ready && entered && !hidden && CONFIG.enabled;
 
   useEffect(() => {

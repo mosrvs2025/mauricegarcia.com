@@ -22,9 +22,9 @@ export type SiteSkin = {
 };
 
 export const SITE_SKINS = [
-  { id: "open-case", name: "Open Case", note: "Case-file editorial. Paper, ink and one red pen.", group: "identity", swatch: ["#F2F0EA", "#181B1C", "#C73723"], specimen: "I BUILD THINGS.", fonts: ["--font-anybody", "--font-atkinson"], themeColor: "#F2F0EA" },
-  { id: "rogue-instrument", name: "Rogue Instrument", note: "A hardware control panel for software that misbehaves.", group: "identity", swatch: ["#0D1214", "#E7EAE4", "#D6F24D"], specimen: "SYSTEMS DO MORE.", fonts: ["--font-saira", "--font-plex"], themeColor: "#0D1214" },
-  { id: "unauthorized-manual", name: "Unauthorized Manual", note: "Try it. Break it. Understand it.", group: "identity", swatch: ["#F6EDE2", "#11100F", "#174CDB"], specimen: "DO NOT BUILD NORMAL", fonts: ["--font-archivo-black", "--font-public-sans"], themeColor: "#F6EDE2" },
+  { id: "open-case", name: "Softworks", note: "Architectural neumorphism. Matte ceramic, warm tactile depth.", group: "identity", swatch: ["#E8EEF2", "#1B2B3A", "#155E8A"], specimen: "I BUILD THINGS.", fonts: ["--font-manrope", "--font-dm-sans"], themeColor: "#E8EEF2" },
+  { id: "rogue-instrument", name: "Mercury", note: "Liquid chrome & dark enamel. Reflective highlights, cinematic scale.", group: "identity", swatch: ["#090D15", "#F8FAFF", "#72E4FF"], specimen: "SYSTEMS DO MORE.", fonts: ["--font-syne", "--font-space-grotesk"], themeColor: "#090D15" },
+  { id: "unauthorized-manual", name: "Parallax", note: "Spatial glass architecture. Layered translucent planes with depth.", group: "identity", swatch: ["#0B1423", "#F8FBFF", "#9EF3DC"], specimen: "DO NOT BUILD NORMAL", fonts: ["--font-outfit", "--font-plex"], themeColor: "#0B1423" },
   { id: "workshop", name: "Workshop (classic)", note: "Dark and warm. The previous default.", group: "classic", swatch: ["#12100d", "#f3ede3", "#ff7a4d"], specimen: "Useful products.", fonts: ["--font-fraunces", "--font-instrument"], themeColor: "#12100d" },
   { id: "paper", name: "Paper & Ink", note: "A printed journal.", group: "classic", swatch: ["#f3eee3", "#1b1814", "#c8321f"], specimen: "Useful products.", fonts: ["--font-fraunces", "--font-instrument"], themeColor: "#f3eee3" },
   { id: "terminal", name: "Terminal", note: "Monospace, phosphor green.", group: "classic", swatch: ["#050805", "#c9f7d4", "#5cff8a"], specimen: "$ useful --products", fonts: [], themeColor: "#050805" },

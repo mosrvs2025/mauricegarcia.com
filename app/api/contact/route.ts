@@ -1,8 +1,7 @@
 import { contactEmails } from "@/lib/contact-emails";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { serviceBySlug } from "@/lib/services";
-import { allowSubmission, contactEmail, INTENT_LABELS, linkCount, parseInquiry, type Intent } from "@/lib/contact";
+import { allowSubmission, contactEmail, linkCount, parseInquiry } from "@/lib/contact";
 
 export async function POST(req: Request) {
   const origin = req.headers.get("origin");
@@ -12,26 +11,24 @@ export async function POST(req: Request) {
   let value: unknown;
   try { value = JSON.parse(raw); } catch { return NextResponse.json({ error: "Invalid request" }, { status: 400 }); }
   const inquiry = parseInquiry(value);
-  if (!inquiry) return NextResponse.json({ error: "Please check your name, email, and message." }, { status: 400 });
+  if (!inquiry) return NextResponse.json({ error: "Please enter a message (10–3000 characters) and a valid email address." }, { status: 400 });
   if (inquiry.companyFax) return NextResponse.json({ error: "Unable to submit this request." }, { status: 400 });
-  if (linkCount(inquiry.body) > 3) return NextResponse.json({ error: "That message has several links in it. Please trim it to one or two, or email me directly." }, { status: 400 });
+  if (linkCount(inquiry.message) > 3) return NextResponse.json({ error: "That message has several links in it. Please trim it to one or two, or email me directly." }, { status: 400 });
   const client = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "unknown";
   if (!allowSubmission(client)) return NextResponse.json({ error: "A few messages have come from this connection recently. Please wait a few minutes, or email me directly." }, { status: 429 });
   const key = process.env.RESEND_API_KEY?.trim();
-  if (!key) return NextResponse.json({ error: "Email is temporarily unavailable. Please email Maurice directly." }, { status: 503 });
-  const service = serviceBySlug(inquiry.service)?.name;
-  const intent = inquiry.intent ? INTENT_LABELS[inquiry.intent as Intent] : undefined;
-  const label = service || intent || "General inquiry";
-  const { owner, visitor } = contactEmails(inquiry, label, service, intent);
+  if (!key) return NextResponse.json({ error: "Couldn't send your message. You can email me directly instead." }, { status: 503 });
+  const { owner, visitor } = contactEmails(inquiry);
   try {
     const resend = new Resend(key);
     const from = process.env.CONTACT_FROM_EMAIL?.trim() || "Maurice Garcia <noreply@mauricegarcia.com>";
     const { error } = await resend.emails.send({
       from,
-      to: contactEmail, replyTo: inquiry.email,
+      to: contactEmail,
+      replyTo: inquiry.email,
       ...owner,
     });
-    if (error) return NextResponse.json({ error: "Email could not be sent. Please try again or email Maurice directly." }, { status: 502 });
+    if (error) return NextResponse.json({ error: "Couldn't send your message. You can email me directly instead." }, { status: 502 });
     // Once the owner notification is accepted, never invite a duplicate submission
     // because the secondary confirmation failed.
     let confirmationSent = false;
@@ -44,6 +41,6 @@ export async function POST(req: Request) {
     }
     return NextResponse.json({ ok: true, confirmationSent });
   } catch {
-    return NextResponse.json({ error: "Email could not be sent. Please try again or email Maurice directly." }, { status: 502 });
+    return NextResponse.json({ error: "Couldn't send your message. You can email me directly instead." }, { status: 502 });
   }
 }

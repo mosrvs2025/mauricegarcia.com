@@ -25,10 +25,9 @@
 .play-cd { position:absolute; left:0; right:0; bottom:0; height:3px; background:var(--j-accent,#ff7a4d); transform-origin:left; animation:play-cd linear forwards; }
 @keyframes play-cd { from { transform:scaleX(1); } to { transform:scaleX(0); } }
 @media (max-width:900px) {
-  .play-dock { bottom:var(--float-bottom, 16px); }
+  .play-dock { bottom:calc(var(--float-bottom, 16px) + 68px); }
   .play-fab { min-height:44px; opacity:1; }
-  /* Opened on purpose: sit above the shared baseline so it does not meet "Let's talk". */
-  .play-dock:has(.play-entry) { bottom:calc(var(--float-bottom, 16px) + 56px); }
+  .play-dock:has(.play-entry) { bottom:calc(var(--float-bottom, 16px) + 68px); }
 }
 @media (max-width:560px) { .play-name, .play-sep { display:none; } .play-who { padding-right:0; } .play-entry { max-width:min(270px,calc(100vw - 32px)); } }
 @media (pointer:coarse) { .play-btn, .play-fab, .play-weapon { min-height:44px; } .play-bar { padding-left:12px; } }

@@ -16,6 +16,7 @@ import { CaseAnnotation } from "@/components/CaseAnnotation";
 import { HomeShowcase } from "@/components/HomeShowcase";
 import { PlaygroundTrigger } from "@/components/PlaygroundTrigger";
 import { ProjectSpotlight } from "@/components/ProjectSpotlight";
+import { SpatialStage } from "@/components/SpatialStage";
 import Image from "next/image";
 import { InstagramPortrait } from "@/components/InstagramPortrait";
 import { SecretShelf, SecretShelfTrigger } from "@/components/SecretShelf";
@@ -39,7 +40,7 @@ export default function HomePage() {
       <section className="j-hero-wrap home-opening" aria-labelledby="home-title">
         <div className="j-aurora" aria-hidden="true"><i /><i /><i /></div>
         <HeroField />
-        <div className="studio-wrap j-hero home-hero">
+        <SpatialStage className="studio-wrap j-hero home-hero">
           <div className="hero-meta">
             <div className="home-byline">
               <InstagramPortrait size="hero" />
@@ -56,31 +57,43 @@ export default function HomePage() {
             </div>
             {/* One line per identity; CSS shows the one that matches the active skin (see app/identities.css). */}
             <p className="hero-tag">
-              <span className="hv hv-case">Build / Test / Play</span>
-              <span className="hv hv-rogue">Build / Test / Play · Mode: experiment</span>
-              <span className="hv hv-manual">Unauthorized user manual · Rev. 001</span>
+              <span className="hv hv-case">Softworks · Build / Test / Play</span>
+              <span className="hv hv-rogue">Mercury · Build / Test / Play</span>
+              <span className="hv hv-manual">Parallax · Spatial Architecture</span>
             </p>
           </div>
-          <h1 id="home-title" className="display j-title home-title">
-            <span className="hv hv-case">I build things.<br /><em>Then I break them.</em></span>
-            <span className="hv hv-rogue">Systems should<br /><em>do more.</em></span>
-            <span className="hv hv-manual">Do not build<br /><em>normal.</em></span>
-          </h1>
-          <div className="hero-copy">
-            <p className="lede">I&apos;m Maurice Garcia, an experience engineer. After a decade in fraud prevention, I now build practical software, strange digital worlds, and experiments you can actually try.</p>
-            <div className="j-actions">
-              <Link href="#case-files" className="btn btn-fill j-shine">Explore the work <span aria-hidden="true">↘</span></Link>
-              <Link href="/connect?intent=paid-work" className="j-link j-arrow">Let&apos;s build something</Link>
+
+          <div className="hero-front">
+            <h1 id="home-title" className="display j-title home-title">
+              <span className="hv hv-case">I build things.<br /><em>Then I break them.</em></span>
+              <span className="hv hv-rogue">Systems should<br /><em>do more.</em></span>
+              <span className="hv hv-manual">Do not build<br /><em>normal.</em></span>
+            </h1>
+            <div className="hero-copy">
+              <p className="lede">I&apos;m Maurice Garcia, an experience engineer. After a decade in fraud prevention, I now build practical software, strange digital worlds, and experiments you can actually try.</p>
+              <div className="j-actions">
+                <Link href="#case-files" className="btn btn-fill j-shine j-pressable">Explore the work <span aria-hidden="true">↘</span></Link>
+                <Link href="/connect" className="j-link j-arrow">Say hello</Link>
+              </div>
+              <div className="home-curiosity" data-float-clear><SurpriseMe demos={demos} /><Link href="/v/game" className="j-link" data-track="game_version">Play this site as a game</Link><SecretShelf /></div>
             </div>
-            <div className="home-curiosity" data-float-clear><SurpriseMe demos={demos} /><Link href="/v/game" className="j-link" data-track="game_version">Play this site as a game</Link><SecretShelf /></div>
           </div>
+
+          {/* Pure CSS liquid-metal sculptural form, shown only in Mercury (rogue-instrument) */}
+          <div className="hero-chrome-sculpture" aria-hidden="true">
+            <span className="chrome-blob chrome-blob--main" />
+            <span className="chrome-blob chrome-blob--ring" />
+            <span className="chrome-blob chrome-blob--glint" />
+          </div>
+
           <HomeShowcase projects={showcase} />
+
           <ol className="hero-verbs" aria-label="How to use this site">
             <li><a href="#case-files"><b>01</b> Try it<span>Open a live demo</span></a></li>
             <li><PlaygroundTrigger><b>02</b> Break it<span>Open the Playground</span></PlaygroundTrigger></li>
             <li><Link href="/projects/ultimate"><b>03</b> Understand it<span>Read a case study</span></Link></li>
           </ol>
-        </div>
+        </SpatialStage>
       </section>
 
       <Ticker items={ticker} />
@@ -117,7 +130,7 @@ export default function HomePage() {
 
       {hub && (
         <section className="studio-wrap j-section cf cf-spread cf-hub" aria-labelledby="hub-h">
-          <Reveal><div className="cf-hub-grid">
+          <Reveal><div className="cf-hub-grid j-surface">
             <figure className="cf-media" data-measure={hub.media[0] ? `${hub.media[0].width} × ${hub.media[0].height}` : undefined}>
               {hub.media[0] && <Image src={hub.media[0].src} alt={hub.media[0].alt} width={hub.media[0].width ?? 1280} height={hub.media[0].height ?? 720} sizes="(max-width:900px) 100vw, 58vw" loading="lazy" />}
               {hub.media[0]?.caption && <figcaption className="cf-cap">{hub.media[0].caption}</figcaption>}
@@ -139,7 +152,7 @@ export default function HomePage() {
                 </CaseAnnotation>
               </div>
               <div className="j-actions">
-                <a href={site.hubUrl} className="btn btn-fill j-shine" rel="noopener noreferrer" data-verb="Try it">Open the hub <span aria-hidden="true">↗</span></a>
+                <a href={site.hubUrl} className="btn btn-fill j-shine j-pressable" rel="noopener noreferrer" data-verb="Try it">Open the hub <span aria-hidden="true">↗</span></a>
                 <a href={`${site.hubUrl}/realmbreak`} className="j-link j-arrow" rel="noopener noreferrer" data-verb="Try it">Play REALMBREAK</a>
                 <Link href="/projects/realmbreak" className="j-link" data-verb="Understand it">The project page</Link>
               </div>
@@ -173,21 +186,11 @@ export default function HomePage() {
         return { track, lead: { experiences: "Games and worlds built to be played.", products: "Software built around real problems.", labs: "Experiments that follow an interesting question." }[track], total: projectsByTrack(track).length, projects: rest.map(toCard) };
       })} />
 
-      <section className="studio-wrap qc-band" aria-labelledby="talk-h">
-        <Reveal><div className="qc-band-inner">
-          <div><p className="eyebrow">Have something in mind?</p><h2 className="display" id="talk-h">Let&apos;s make it real.</h2></div>
-          <div className="qc-band-actions">
-            <Link href="/connect?intent=paid-work" className="btn btn-fill j-shine">Start a project</Link>
-            <a href={`mailto:${site.email}`} className="j-link j-arrow">{site.email}</a>
-          </div>
-        </div></Reveal>
-      </section>
-
       <section className="studio-wrap j-section" aria-labelledby="cap-h">
         <Reveal><div className="j-head"><div><p className="eyebrow">Behind the work</p><h2 className="display" id="cap-h">Creative range. Practical execution.</h2></div></div></Reveal>
         <ul className="j-caps">
           {capabilities.map((c, i) => (
-            <Reveal as="li" key={c.id} delay={i * 60} className="j-cap-wrap"><div className="j-cap">
+            <Reveal as="li" key={c.id} delay={i * 60} className="j-cap-wrap"><div className="j-cap j-surface">
               <h3 className="display">{c.title}</h3><p>{c.line}</p>
               <p className="j-cap-proof">
                 {c.proof.map((slug) => projectBySlug(slug)).filter(Boolean).map((p, k) => <span key={p!.slug}>{k > 0 && " · "}<Link className="j-link" href={`/projects/${p!.slug}`}>{p!.title}</Link></span>)}
@@ -196,21 +199,6 @@ export default function HomePage() {
             </div></Reveal>
           ))}
         </ul>
-      </section>
-
-      <section className="studio-wrap j-section" aria-labelledby="work-h">
-        <Reveal><div className="j-head"><div><p className="eyebrow">Work together</p><h2 className="display" id="work-h">Five ways to start</h2></div><Link href="/services" className="j-link j-arrow">How each one works</Link></div></Reveal>
-        <div className="j-ways">
-          {[
-            ["Build something with me", "You have an ambitious idea, or a system that needs custom software, automation or AI. We scope it together and I quote it to the work.", "Start a build", "/connect?intent=paid-work"],
-            ["License, invest or partner", "Several of my products are early. If one fits your company or your portfolio, let's talk about licensing, partnership or backing it.", "Talk partnership", "/connect?intent=partner"],
-            ["Learn to build with AI", "Free tutorials and walkthroughs, and hands-on sessions if you want to move faster. Any AI tool, any experience level.", "Start learning", "/learn"],
-            ["Hire me", "Recruiters and teams: I'm a creative engineer who builds across AI, software, games and mobile. Tell me about the role.", "Tell me about the role", "/connect?intent=hire"],
-            ["Just say hello", "Played a demo, found a bug, or have an odd idea? Write to me. No agenda and no budget needed.", "Say hello", "/connect"],
-          ].map(([t, p, cta, href], i) => (
-            <Reveal key={t} delay={i * 60}><div className="j-panel"><h3 className="display">{t}</h3><p>{p}</p><div className="actions"><Link className={i === 0 ? "btn btn-fill j-shine" : "btn btn-ghost"} href={href}>{cta}</Link></div></div></Reveal>
-          ))}
-        </div>
       </section>
 
       {updates.length > 0 && (

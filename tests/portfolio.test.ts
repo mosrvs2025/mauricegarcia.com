@@ -113,17 +113,18 @@ test("style switcher: boot script is valid, always sets data-skin, only applies 
 
 test("identity design system: fonts, palettes and signature pieces are in place and old faces are not the default", () => {
   const layout = fs.readFileSync("app/layout.tsx", "utf8");
-  for (const f of ["Anybody", "Atkinson_Hyperlegible_Next", "Saira_Condensed", "IBM_Plex_Sans", "Archivo_Black", "Public_Sans"]) assert.match(layout, new RegExp(`\\b${f}\\(`), `${f} must be loaded through next/font`);
-  // Only the default identity's faces are preloaded; the rest are fetched when a visitor switches to that skin.
-  for (const f of ["saira", "plex", "archivoBlack", "publicSans", "fraunces", "instrument"]) assert.match(layout, new RegExp(`const ${f} = [^\\n]*preload: false`), `${f} must not be preloaded`);
-  assert.doesNotMatch(layout.match(/const anybody = [^\n]*/)![0] + layout.match(/const atkinson = [^\n]*/)![0], /preload: false/);
+  for (const f of ["Manrope", "DM_Sans", "Syne", "Space_Grotesk", "Outfit", "IBM_Plex_Sans"]) assert.match(layout, new RegExp(`\\b${f}\\(`), `${f} must be loaded through next/font`);
+  // Only the default identity's faces (Softworks: Manrope + DM Sans) are preloaded; the rest are fetched on demand.
+  for (const f of ["syne", "spaceGrotesk", "outfit", "plex", "fraunces", "instrument"]) assert.match(layout, new RegExp(`const ${f} = [^\\n]*preload: false`), `${f} must not be preloaded`);
+  assert.doesNotMatch(layout.match(/const manrope = [^\n]*/)![0] + layout.match(/const dmSans = [^\n]*/)![0], /preload: false/);
   const globals = fs.readFileSync("app/globals.css", "utf8");
-  assert.match(globals, /--font-display: var\(--font-anybody\)/);
-  assert.match(globals, /--font-sans: var\(--font-atkinson\)/);
+  assert.match(globals, /--font-display: var\(--font-manrope\)/);
+  assert.match(globals, /--font-sans: var\(--font-dm-sans\)/);
   assert.doesNotMatch(globals + fs.readFileSync("app/journal.css", "utf8"), /font-variation-settings:\s*"opsz" 96;?\s*\}?\s*$/m, "the Fraunces-only optical size override must stay scoped to the skins that use Fraunces");
   const tokens = fs.readFileSync("app/tokens.css", "utf8");
-  for (const [name, value] of [["--brand-paper", "#F2F0EA"], ["--brand-ink", "#181B1C"], ["--brand-red", "#C73723"], ["--brand-blue", "#255E79"], ["--brand-play", "#D5F067"], ["--brand-rule", "#C8CAC5"]]) assert.match(tokens, new RegExp(`${name}: ${value}`), `${name}`);
-  for (const hex of ["#0D1214", "#E7EAE4", "#D6F24D", "#F26D46", "#5FC4C8", "#F6EDE2", "#11100F", "#174CDB", "#FF6E45", "#EFD967"]) assert.ok(tokens.toUpperCase().includes(hex.toUpperCase()), `${hex} missing from tokens`);
+  for (const hex of ["#E8EEF2", "#1B2B3A", "#4C6070", "#155E8A", "#B6C6D1", "#D0E4F1", "#090D15", "#172233", "#F8FAFF", "#72E4FF", "#FF5C9B", "#0B1423", "#142A3C", "#F8FBFF", "#9EF3DC", "#43599C", "#2CB4B1"]) {
+    assert.ok(tokens.toUpperCase().includes(hex.toUpperCase()), `${hex} missing from tokens`);
+  }
   const annotation = fs.readFileSync("components/CaseAnnotation.tsx", "utf8");
   assert.match(annotation, /aria-expanded/); assert.match(annotation, /aria-controls/); assert.match(annotation, /Source:/);
   assert.match(fs.readFileSync("app/page.tsx", "utf8"), /<CaseAnnotation/);
