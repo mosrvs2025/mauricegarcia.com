@@ -1,3 +1,5 @@
+/* --f-black aliases the site-wide Archivo Black loaded in app/layout.tsx. */
+.lab-pop { --f-black: var(--font-archivo-black); }
 /* Design lab. Each style is scoped under .lab-<id>, so nothing here touches the main site. */
 body:has(.lab-skin) .site-header, body:has(.lab-skin) .j-footer, body:has(.lab-skin) .j-banner { display:none; }
 .lab-skin { min-height:100vh; position:relative; overflow-x:hidden; }
