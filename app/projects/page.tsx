@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Suspense } from "react";
 import { FeaturedGrid } from "@/components/FeaturedGrid";
 import { ProjectBrowser } from "@/components/ProjectBrowser";
@@ -20,6 +21,7 @@ export default function ProjectsPage() {
         <p className="eyebrow">Projects</p>
         <h1 className="display">Practical products and ambitious experiments</h1>
         <p className="lede">Three tracks: <strong>products</strong> with a clear user and a business case, <strong>experiences</strong> built to be played, and <strong>labs</strong> that test what&apos;s possible. Every project says honestly how finished it is.</p>
+        <p className="j-actions"><Link className="btn btn-fill j-shine" href="/products">Try the live product demos</Link></p>
         <dl className="j-legend" aria-label="What the maturity labels mean">
           {Object.entries(MATURITY_LABELS).map(([id, label]) => <div key={id}><dt><span className="j-tag state">{label}</span></dt><dd>{MATURITY_HELP[id]}</dd></div>)}
         </dl>
