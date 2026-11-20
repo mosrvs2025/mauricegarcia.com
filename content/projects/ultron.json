@@ -11,10 +11,10 @@
     "practical",
     "creative-tools"
   ],
-  "stateNote": "A working bot and dashboard, built for Mo's Lab, the owner's private builder server. There is no public demo you can open yet, so it is labelled a prototype.",
+  "stateNote": "The dashboard is live: sign in with Discord. The bot worker runs on Northflank, and the data lives on Neon. Built for Mo's Lab, the owner's private builder server.",
   "problem": "Running a Discord community usually means stacking several single-purpose bots, while build, pull request and deploy noise lives somewhere else. Ultron puts moderation, support, events and what actually shipped into one workspace, and tells short stories about the work instead of dumping raw logs.",
   "audience": "Server owners and small teams who want calmer Discord operations, and builders who want their GitHub and Vercel activity to show up as readable progress.",
-  "contribution": "It is my project: a Discord gateway bot and a Next.js dashboard that share a database, so the web app never holds the bot token. I built it for Mo's Lab, and I am not publishing a public server invite or a hosted dashboard URL yet.",
+  "contribution": "It is my project: a Discord gateway bot and a Next.js dashboard that share a database, so the web app never holds the bot token. I built it for Mo's Lab. The dashboard is hosted on Vercel and opens with Discord login. The bot worker runs on Northflank, and Postgres is on Neon. I am not publishing a public server invite.",
   "worksToday": [
     "Guided setup, explainable moderation with a review queue, onboarding and roles, support tickets, and events with RSVP.",
     "An append-only audit log for people, the bot and optional AI, kept in a staff-only area of the dashboard.",
@@ -22,16 +22,23 @@
     "Project Constellation maps projects as stars you can inspect, with builds, deploys and incidents in orbit.",
     "Ship Questlines awards achievements for verified shipped work, such as a first pull request or a first production deploy, not for time spent chatting.",
     "The Forge can turn a milestone into a collectible card or sticker. /council is an AI design review. Incident Time Machine replays a failed deploy.",
-    "Optional AI can draft channel summaries and help triage reports. It is advisory: a human approves every consequential moderation action."
+    "Optional AI can draft channel summaries and help triage reports. It is advisory: a human approves every consequential moderation action.",
+    "The dashboard is hosted on Vercel and opens with Discord login. The bot worker runs on Northflank, and the database is Postgres on Neon."
   ],
   "limitations": [
-    "There is no public hosted dashboard or demo link on this page.",
-    "The screenshots are from a development run that uses synthetic project data (labelled as such in the interface), not a public production deployment.",
+    "The live dashboard requires a Discord login, and it is built for Mo's Lab, so it is not a walk-in public demo.",
+    "The screenshots are from a development run that uses synthetic project data (labelled as such in the interface), not from the current production deployment.",
     "ShipPulse cannot tell live build stories until a project has signed GitHub and Vercel webhooks.",
     "This page is written from my description of the build and those screenshots, not from a public repository."
   ],
   "links": {
-    "other": []
+    "demo": "https://ultron-moslab.vercel.app",
+    "other": [
+      {
+        "label": "Open the dashboard",
+        "url": "https://ultron-moslab.vercel.app"
+      }
+    ]
   },
   "repoVisibility": "private",
   "ai": {
@@ -73,11 +80,17 @@
     }
   ],
   "dates": {
-    "lastChange": "2026-11-17",
+    "lastChange": "2026-11-20",
     "lastChangeSource": "documented by the owner",
-    "reviewed": "2026-11-17"
+    "reviewed": "2026-11-20"
   },
   "evidence": [
+    {
+      "label": "Live Ultron dashboard (Discord login, checked 2026-11-20)",
+      "url": "https://ultron-moslab.vercel.app",
+      "kind": "demo",
+      "verifiedAt": "2026-11-20"
+    },
     {
       "label": "Dashboard screenshots on this project page (synthetic test data, captured 2026-11-17)",
       "url": "https://www.mauricegarcia.com/projects/ultron",
@@ -94,12 +107,12 @@
     "intent": "collaborate"
   },
   "formerSlugs": [],
-  "maturity": "prototype",
+  "maturity": "beta",
   "track": "products",
   "openTo": [],
   "disclosure": {
     "basis": "owner-documented",
-    "note": "The owner asked on 2026-11-17 to feature Ultron and Mo's Lab on the homepage. The source repository is private and is not linked. This page is written from that request, the owner's description of the build, and dashboard screenshots taken for this site.",
+    "note": "The owner asked on 2026-11-17 to feature Ultron and Mo's Lab on the homepage, and later asked for the live dashboard link to be added. The source repository is private and is not linked. This page is written from those requests, the owner's description of the build, dashboard screenshots taken for this site, and the hosted dashboard linked here.",
     "documentedAt": "2026-11-17"
   },
   "caseStudy": {
@@ -114,11 +127,11 @@
         "why": "Optional AI can draft summaries and help triage reports, but a human approves every consequential moderation action."
       },
       {
-        "choice": "No public demo yet",
-        "why": "The bot and dashboard are real, but they still need an always-on host and a hosted database before a public URL would be honest."
+        "choice": "Host the dashboard, the worker and the database separately",
+        "why": "The dashboard is live on Vercel with Discord login. The bot worker runs on Northflank, and Postgres is on Neon, so the web app never holds the bot token."
       }
     ],
-    "outcome": "Ultron is the first project in Selected work on this site. A public hosted dashboard is not available yet.",
-    "source": "the project details above, as documented by the owner on 2026-11-17, plus the screenshots on this page."
+    "outcome": "Ultron is the first project in Selected work on this site. The dashboard is live on Vercel, the bot worker is hosted on Northflank, and the database is Postgres on Neon.",
+    "source": "the project details above, as documented by the owner on 2026-11-17 and updated 2026-11-20, plus the screenshots and live dashboard on this page."
   }
 }
