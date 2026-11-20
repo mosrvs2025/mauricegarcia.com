@@ -24,7 +24,7 @@ export const labProducts: LabProduct[] = [
     audience: "Fraud analysts and fintech risk teams",
     status: "live",
     preferredDemo: "https://risklab.mauricegarcia.com/demo",
-    fallbackDemo: "https://riskreplay.vercel.app/demo",
+    fallbackDemo: "https://risklab.mauricegarcia.com/demo",
     applicationCategory: "FinanceApplication",
   },
   {
@@ -34,7 +34,7 @@ export const labProducts: LabProduct[] = [
     audience: "Contractors and agencies dealing with bot and junk leads",
     status: "live",
     preferredDemo: "https://leads.mauricegarcia.com/demo",
-    fallbackDemo: "https://leadfirewall.vercel.app/demo",
+    fallbackDemo: "https://leads.mauricegarcia.com/demo",
     applicationCategory: "BusinessApplication",
   },
   {
@@ -44,7 +44,7 @@ export const labProducts: LabProduct[] = [
     audience: "Small merchants fighting payment disputes",
     status: "live",
     preferredDemo: "https://disputes.mauricegarcia.com/demo",
-    fallbackDemo: "https://disputedeck-vert.vercel.app/demo",
+    fallbackDemo: "https://disputes.mauricegarcia.com/demo",
     applicationCategory: "FinanceApplication",
   },
   {
@@ -54,7 +54,7 @@ export const labProducts: LabProduct[] = [
     audience: "Operators and risk teams reviewing Stripe refunds",
     status: "live",
     preferredDemo: "https://radar.mauricegarcia.com/demo",
-    fallbackDemo: "https://refundradar-zeta.vercel.app/demo",
+    fallbackDemo: "https://radar.mauricegarcia.com/demo",
     applicationCategory: "FinanceApplication",
   },
   {
@@ -103,7 +103,7 @@ export const liveLabProducts = labProducts.filter((p) => p.status === "live");
 export const upcomingLabProducts = labProducts.filter((p) => p.status === "coming-soon");
 
 /**
- * Prefer the custom-domain demo when it already serves HTTPS 200; otherwise use the vercel.app fallback.
+ * Prefer the custom-domain demo when it already serves HTTPS 200; otherwise use the fallback demo URL.
  * A short timeout keeps the products page from hanging while DNS is still being pointed.
  */
 export async function resolveDemoHref(product: LabProduct): Promise<string | null> {
@@ -121,7 +121,7 @@ export async function resolveDemoHref(product: LabProduct): Promise<string | nul
     });
     if (res.ok) return preferred;
   } catch {
-    // Subdomain is not ready (DNS still at Porkbun) or the probe timed out.
+    // Preferred host is not ready or the probe timed out.
   }
   return fallback;
 }
