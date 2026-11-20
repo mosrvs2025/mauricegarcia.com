@@ -72,7 +72,9 @@ export const labProducts: LabProduct[] = [
     name: "ScopeCanvas",
     pitch: "Turn an infinite canvas into visual project proposals with pricing and client approval.",
     audience: "Independent builders and agencies closing work",
-    status: "coming-soon",
+    status: "live",
+    preferredDemo: "https://scopecanvas.vercel.app/demo",
+    fallbackDemo: "https://scopecanvas.vercel.app/demo",
     applicationCategory: "BusinessApplication",
   },
   {
@@ -80,7 +82,9 @@ export const labProducts: LabProduct[] = [
     name: "CaseCanvas",
     pitch: "A visual fraud investigation board for assembling evidence and following a case through.",
     audience: "Fraud investigators and analysts",
-    status: "coming-soon",
+    status: "live",
+    preferredDemo: "https://casecanvas-nine.vercel.app/demo",
+    fallbackDemo: "https://casecanvas-nine.vercel.app/demo",
     applicationCategory: "FinanceApplication",
   },
   {
@@ -88,7 +92,9 @@ export const labProducts: LabProduct[] = [
     name: "AgentLatch",
     pitch: "Approval controls so AI agents cannot act until a human signs off.",
     audience: "Teams putting agents into production",
-    status: "coming-soon",
+    status: "live",
+    preferredDemo: "https://agentlatch.vercel.app/demo",
+    fallbackDemo: "https://agentlatch.vercel.app/demo",
     applicationCategory: "DeveloperApplication",
   },
 ];
@@ -157,4 +163,4 @@ export const softwareApplicationLd = (product: LabProduct, demo: string | null) 
 });
 
 export const PRODUCTS_PAGE_DESCRIPTION =
-  "Live demos of fraud-prevention tools from Maurice Garcia, after ten years at Galileo: RiskReplay, LeadFirewall, DisputeDeck, RefundRadar, and Is This Bullshit?";
+  "Live demos of fraud-prevention tools from Maurice Garcia, after ten years at Galileo: RiskReplay, LeadFirewall, DisputeDeck, RefundRadar, Is This Bullshit?, ScopeCanvas, CaseCanvas, and AgentLatch.";
