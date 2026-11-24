@@ -3,15 +3,16 @@
  * --j-* tokens only, never a raw colour, so changing <html data-skin> restyles everything at once. Hex values live
  * here (and in app/skins.css for the older skins) and nowhere else.
  *
- *   Brand source values  --brand-*   SOFTWORKS' own palette (the default identity)
+ *   Brand source values  --brand-*   SOFTWORKS' own palette (the identity token base on :root)
  *   Semantic tokens      --j-*       bg, surface, ink/text, muted, accent, link, light/shadow (material), status colours
  *   Type tokens          --j-display-* / --j-stretch / --font-display / --font-sans
  *
- * SOFTWORKS (open-case) is the default: it is on :root as well as on html[data-skin="open-case"], so it also applies
- * before the boot script has run and with JavaScript off. MERCURY (rogue-instrument) and PARALLAX (unauthorized-manual)
- * are defined here too; the skin ids are kept so existing ?skin= links and saved choices still work. The seven older
- * skins are in app/skins.css and "workshop" keeps the previous default tokens below. Material recipes and compositions
- * that use these tokens live in app/identities.css. The full spec is docs/redesign/spec.md.
+ * Workshop (classic) is the default look visitors see. Its tokens live on html[data-skin="workshop"] below (and in
+ * app/skins.css for a few older-skin extras). The server and the boot script always set data-skin, so those tokens
+ * apply on a first visit and with JavaScript off. SOFTWORKS tokens also stay on :root as the identity base, and are
+ * overridden whenever data-skin is set. MERCURY (rogue-instrument) and PARALLAX (unauthorized-manual) are defined
+ * here too; the skin ids are kept so existing ?skin= links and saved choices still work. Material recipes and
+ * compositions that use these tokens live in app/identities.css. The full spec is docs/redesign/spec.md.
  *
  * --j-text is the working name every stylesheet uses for body ink; --j-ink is the spec's name for the same value.
  * --j-shadow and --j-light are colours here (the two halves of a lit material), not box-shadow values.
@@ -94,7 +95,7 @@ html[data-skin="unauthorized-manual"] {
 }
 
 /*
- * Workshop (classic). The previous default, unchanged: dark and warm, Fraunces and Instrument Sans. Also what the older
+ * Workshop (classic). The default look: dark and warm, Fraunces and Instrument Sans. Also what the older
  * standalone pages (coaching, shop, ads, studio, lab, v) always show.
  */
 html[data-skin="workshop"] {

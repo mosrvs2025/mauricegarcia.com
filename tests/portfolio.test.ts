@@ -82,10 +82,10 @@ test("style switcher: boot script is valid, always sets data-skin, only applies 
     vm.runInNewContext(SKIN_BOOT_SCRIPT, ctx);
     return { attrs, store };
   };
-  // The default identity is Open Case, and the attribute is always present (so there is never a flash of the wrong skin).
-  assert.equal(DEFAULT_SKIN, "open-case");
-  assert.equal(run("/projects", "", null).attrs["data-skin"], "open-case", "first-time visitors see Open Case");
-  assert.equal(run("/projects", "", null).attrs["data-kind"], "identity");
+  // Workshop is the default look, and the attribute is always present (so there is never a flash of the wrong skin).
+  assert.equal(DEFAULT_SKIN, "workshop");
+  assert.equal(run("/projects", "", null).attrs["data-skin"], "workshop", "first-time visitors see Workshop");
+  assert.equal(run("/projects", "", null).attrs["data-kind"], "classic");
   assert.equal(run("/projects", "", "paper").attrs["data-skin"], "paper", "remembered choice");
   assert.equal(run("/projects", "", "paper").attrs["data-kind"], "classic");
   for (const id of ["open-case", "rogue-instrument", "unauthorized-manual", "workshop", "paper", "terminal", "pop", "glass", "swiss", "arcade"]) {
@@ -94,12 +94,12 @@ test("style switcher: boot script is valid, always sets data-skin, only applies 
   }
   assert.equal(run("/projects", "?skin=rogue-instrument", "paper").attrs["data-skin"], "rogue-instrument", "a shared link beats the saved choice");
   const reset = run("/projects", "?skin=default", "paper");
-  assert.equal(reset.attrs["data-skin"], "open-case", "?skin=default returns to the default identity");
+  assert.equal(reset.attrs["data-skin"], "workshop", "?skin=default returns to the default look");
   assert.equal(reset.store["mg-skin"], undefined, "...and forgets the saved choice");
-  assert.equal(run("/projects", "?skin=<script>", null).attrs["data-skin"], "open-case", "unknown values are ignored");
-  assert.equal(run("/projects", "", "evil\"quote").attrs["data-skin"], "open-case");
+  assert.equal(run("/projects", "?skin=<script>", null).attrs["data-skin"], "workshop", "unknown values are ignored");
+  assert.equal(run("/projects", "", "evil\"quote").attrs["data-skin"], "workshop");
   assert.equal(run("/projects", "?skin=terminal", null, true).attrs["data-skin"], "terminal", "blocked storage still honours a shared link for the page");
-  assert.equal(run("/projects", "", null, true).attrs["data-skin"], "open-case", "blocked storage falls back to the default");
+  assert.equal(run("/projects", "", null, true).attrs["data-skin"], "workshop", "blocked storage falls back to the default");
   for (const legacy of ["/coaching", "/shop/success", "/studio", "/lab/arcade", "/ai-receptionist", "/ads"]) assert.equal(run(legacy, "", "paper").attrs["data-skin"], "workshop", `${legacy} keeps the classic Workshop look`);
   assert.ok(LEGACY_PREFIXES.test("/shop") && !LEGACY_PREFIXES.test("/shopping") && !LEGACY_PREFIXES.test("/projects"));
   // The three identities lead, the seven older skins follow (all kept), ids are unique, and every skin has what the switcher needs.
@@ -111,12 +111,12 @@ test("style switcher: boot script is valid, always sets data-skin, only applies 
   assert.equal(skinMeta("workshop").name, "Workshop (classic)");
 });
 
-test("identity design system: fonts, palettes and signature pieces are in place and only the default identity's faces preload", () => {
+test("identity design system: fonts, palettes and signature pieces are in place and only the default look's faces preload", () => {
   const layout = fs.readFileSync("app/layout.tsx", "utf8");
   for (const f of ["Manrope", "DM_Sans", "Saira_Condensed", "IBM_Plex_Sans", "Archivo_Black", "Public_Sans", "Space_Grotesk"]) assert.match(layout, new RegExp(`\\b${f}\\(`), `${f} must be loaded through next/font`);
-  // Only SOFTWORKS' faces are preloaded; the rest are fetched when a visitor switches to that skin.
-  for (const f of ["saira", "plex", "archivoBlack", "publicSans", "spaceGrotesk", "fraunces", "instrument"]) assert.match(layout, new RegExp(`const ${f} = [^\\n]*preload: false`), `${f} must not be preloaded`);
-  assert.doesNotMatch(layout.match(/const manrope = [^\n]*/)![0] + layout.match(/const dmSans = [^\n]*/)![0], /preload: false/);
+  // Only Workshop's faces are preloaded; identity and other classic faces are fetched when a visitor switches to that skin.
+  for (const f of ["manrope", "dmSans", "saira", "plex", "archivoBlack", "publicSans", "spaceGrotesk"]) assert.match(layout, new RegExp(`const ${f} = [^\\n]*preload: false`), `${f} must not be preloaded`);
+  assert.doesNotMatch(layout.match(/const fraunces = [^\n]*/)![0] + layout.match(/const instrument = [^\n]*/)![0], /preload: false/);
   assert.match(layout.match(/const manrope = [^\n]*/)![0], /weight: \["700", "800"\]/, "only the weights the spec names");
   const globals = fs.readFileSync("app/globals.css", "utf8");
   assert.match(globals, /--font-display: var\(--font-manrope\)/);

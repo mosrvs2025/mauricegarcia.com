@@ -1,14 +1,16 @@
 /**
  * Whole-site identities ("skins"). One component tree, restyled by CSS variables keyed on <html data-skin="...">.
  *
- *  - Three identities are first-class and lead the switcher: SOFTWORKS (id "open-case", the default), MERCURY
- *    ("rogue-instrument") and PARALLAX ("unauthorized-manual"). The ids are older than the names and are kept so
- *    shared ?skin= links and saved choices keep working. Each is its own composition (navigation geometry, hero,
- *    project arrangement, material and motion), not just a palette. See docs/redesign/spec.md.
- *  - Seven older skins stay available under "More skins". "workshop" is the previous default, kept as "Workshop (classic)".
+ *  - Workshop (classic, id "workshop") is the default look first-time visitors see: dark and warm, with the tappable
+ *    square field in the hero. It stays under "More skins" in the switcher so the three identities still lead.
+ *  - Three identities are first-class and lead the switcher: SOFTWORKS (id "open-case"), MERCURY ("rogue-instrument")
+ *    and PARALLAX ("unauthorized-manual"). The ids are older than the names and are kept so shared ?skin= links and
+ *    saved choices keep working. Each is its own composition (navigation geometry, hero, project arrangement, material
+ *    and motion), not just a palette. See docs/redesign/spec.md.
+ *  - The other six older skins stay available under "More skins".
  *
- * The attribute is always present: the server renders data-skin="open-case" and SKIN_BOOT_SCRIPT corrects it in <head>
- * before first paint, so a remembered or shared (?skin=) choice never flashes the wrong identity.
+ * The attribute is always present: the server renders data-skin from DEFAULT_SKIN and SKIN_BOOT_SCRIPT corrects it in
+ * <head> before first paint, so a remembered or shared (?skin=) choice never flashes the wrong look.
  */
 export type SkinGroup = "identity" | "classic";
 export type SiteSkin = {
@@ -27,7 +29,7 @@ export const SITE_SKINS = [
   { id: "open-case", name: "Softworks", note: "Architectural neumorphism. Matte ceramic, pressed controls.", group: "identity", swatch: ["#E8EEF2", "#1B2B3A", "#155E8A"], specimen: "Softworks", fonts: ["--font-manrope", "--font-dm-sans"], themeColor: "#E8EEF2" },
   { id: "rogue-instrument", name: "Rogue Instrument", note: "A hardware control panel for software that misbehaves.", group: "identity", swatch: ["#0D1214", "#E7EAE4", "#D6F24D"], specimen: "SYSTEMS DO MORE.", fonts: ["--font-saira", "--font-plex"], themeColor: "#0D1214" },
   { id: "unauthorized-manual", name: "Unauthorized Manual", note: "Try it. Break it. Understand it.", group: "identity", swatch: ["#F6EDE2", "#11100F", "#174CDB"], specimen: "DO NOT BUILD NORMAL", fonts: ["--font-archivo-black", "--font-public-sans"], themeColor: "#F6EDE2" },
-  { id: "workshop", name: "Workshop (classic)", note: "Dark and warm. The previous default.", group: "classic", swatch: ["#12100d", "#f3ede3", "#ff7a4d"], specimen: "Useful products.", fonts: ["--font-fraunces", "--font-instrument"], themeColor: "#12100d" },
+  { id: "workshop", name: "Workshop (classic)", note: "Dark and warm, with a tappable square field. The default look.", group: "classic", swatch: ["#12100d", "#f3ede3", "#ff7a4d"], specimen: "Useful products.", fonts: ["--font-fraunces", "--font-instrument"], themeColor: "#12100d" },
   { id: "paper", name: "Paper & Ink", note: "A printed journal.", group: "classic", swatch: ["#f3eee3", "#1b1814", "#c8321f"], specimen: "Useful products.", fonts: ["--font-fraunces", "--font-instrument"], themeColor: "#f3eee3" },
   { id: "terminal", name: "Terminal", note: "Monospace, phosphor green.", group: "classic", swatch: ["#050805", "#c9f7d4", "#5cff8a"], specimen: "$ useful --products", fonts: [], themeColor: "#050805" },
   { id: "pop", name: "Neo-Pop", note: "Loud colour, hard shadows.", group: "classic", swatch: ["#ffe14d", "#111111", "#ff4fa3"], specimen: "Useful products!", fonts: ["--font-instrument"], themeColor: "#ffe14d" },
@@ -37,7 +39,7 @@ export const SITE_SKINS = [
 ] as const satisfies readonly SiteSkin[];
 
 export type SkinKey = (typeof SITE_SKINS)[number]["id"];
-export const DEFAULT_SKIN: SkinKey = "open-case";
+export const DEFAULT_SKIN: SkinKey = "workshop";
 /** The three new identities, in switcher order. */
 export const IDENTITY_SKINS = SITE_SKINS.filter((s) => s.group === "identity");
 /** The older skins, shown under "More skins". */
@@ -52,12 +54,12 @@ export const STORAGE_KEY = "mg-skin";
 export const LEGACY_SKIN: SkinKey = "workshop";
 /** Pages that carry their own older styles keep the classic look. */
 export const LEGACY_PREFIXES = /^\/(coaching|ai-receptionist|shop|ads|studio|lab|v)(\/|$)/;
-/** Visitor-chosen skin: ?skin=default (or reset) forgets the saved choice and returns to the default identity. */
+/** Visitor-chosen skin: ?skin=default (or reset) forgets the saved choice and returns to the default look. */
 export const RESET_SKIN_VALUES = ["default", "reset"] as const;
 
 /**
  * Runs in <head> before first paint. Always sets data-skin (never leaves it off) from, in order:
- * a shareable ?skin= link (which is also saved), the saved choice, then the default identity. Legacy routes get the classic skin.
+ * a shareable ?skin= link (which is also saved), the saved choice, then the default look. Legacy routes also use Workshop.
  * Never throws: blocked storage only means the choice is not remembered.
  */
 export const SKIN_BOOT_SCRIPT = `(function(){var d=document.documentElement,v=${JSON.stringify(DEFAULT_SKIN)};try{var ok=${JSON.stringify(SITE_SKINS.map((s) => s.id))},T=${JSON.stringify(Object.fromEntries(SITE_SKINS.map((s) => [s.id, s.themeColor])))},q=new URLSearchParams(location.search).get("skin"),s=null,c=null;
