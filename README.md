@@ -26,7 +26,7 @@ The black hole itself is a small CSS-only component (`components/BlackHole.tsx`,
 
 ### Three switchable identities
 
-SOFTWORKS (the default, architectural neumorphism), MERCURY (liquid chrome) and PARALLAX (layered glass) restyle the whole site from one component tree, each with its own navigation, hero and project layout. Switch from the header, the footer or with Alt+Shift+S; share one with `?skin=open-case`, `?skin=rogue-instrument` or `?skin=unauthorized-manual`. The seven older skins stay under "More skins". See [docs/DESIGN.md](docs/DESIGN.md).
+First-time visitors land on Workshop (classic): a dark, warm look with a tappable square field in the hero (`?skin=workshop`). SOFTWORKS (architectural neumorphism), MERCURY (liquid chrome) and PARALLAX (layered glass) still restyle the whole site from one component tree, each with its own navigation, hero and project layout. Switch from the header, the footer or with Alt+Shift+S; share one with `?skin=open-case`, `?skin=rogue-instrument` or `?skin=unauthorized-manual`. The seven older skins, including Workshop, stay under "More skins". See [docs/DESIGN.md](docs/DESIGN.md).
 
 | SOFTWORKS | MERCURY | PARALLAX |
 | --- | --- | --- |
@@ -34,7 +34,7 @@ SOFTWORKS (the default, architectural neumorphism), MERCURY (liquid chrome) and 
 
 ### Styles
 
-Under "More skins" in the identity switcher: Workshop (classic, the previous default), Paper & Ink, Terminal, Neo-Pop, Glass Aurora, Swiss Grid and Arcade. The choice is remembered per browser and `?skin=terminal` links straight to one. `/lab` shows the same content as full-page design demos.
+Under "More skins" in the identity switcher: Workshop (classic, the default), Paper & Ink, Terminal, Neo-Pop, Glass Aurora, Swiss Grid and Arcade. The choice is remembered per browser and `?skin=terminal` links straight to one. `/lab` shows the same content as full-page design demos.
 
 | Paper & Ink | Terminal | Neo-Pop |
 | --- | --- | --- |

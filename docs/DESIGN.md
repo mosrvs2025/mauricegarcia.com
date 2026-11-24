@@ -6,13 +6,13 @@ The three identities are **different interface compositions, not token swaps**: 
 
 | Identity (`data-skin`) | Design system | Fonts (next/font) | Navigation | Hero | Work |
 | --- | --- | --- | --- | --- | --- |
-| **SOFTWORKS** `open-case` (default) | Architectural neumorphism: one matte ceramic surface lit from the top left | Manrope 700/800 + DM Sans 400/600 | Docked vertical instrument rail (left) with raised icon-label controls; the current page is pressed in. Rounded top dock below 1100px | 7/5 split: statement and one raised CTA left, three raised project modules stacked right (a sideways rail on phones) | Raised tiles, screenshots in recessed frames, labels engraved in inset channels, 96px rhythm |
+| **SOFTWORKS** `open-case` | Architectural neumorphism: one matte ceramic surface lit from the top left | Manrope 700/800 + DM Sans 400/600 | Docked vertical instrument rail (left) with raised icon-label controls; the current page is pressed in. Rounded top dock below 1100px | 7/5 split: statement and one raised CTA left, three raised project modules stacked right (a sideways rail on phones) | Raised tiles, screenshots in recessed frames, labels engraved in inset channels, 96px rhythm |
 | **MERCURY** `rogue-instrument` | Liquid chrome / glossy UI on dark enamel | Syne 700/800 + Space Grotesk 400/500 | Floating horizontal chrome capsule with a liquid indicator that slides to the hovered or current link | Full-bleed 70/30 poster: massive headline with chrome emphasis, a CSS liquid-metal form, intro below | Near full-width chrome showcase, then an asymmetric editorial grid with alternating image/text; reflective horizon rules |
 | **PARALLAX** `unauthorized-manual` | Spatial glass architecture | Outfit 600/700 + IBM Plex Sans 400/500 | Slim floating glass rail (right) with a bright internal bar on the current page. Frosted top bar below 1100px | A stage of three overlapping depth planes: dimmed featured visual (back), frosted selected-work panel (middle), headline on a translucent surface (front) | Staggered bento with controlled overlap and varied elevation; cards are an image plane plus a separate frosted metadata plane |
 
 The ids are older than the names. They are kept so shared `?skin=` links and saved choices keep working.
 
-Older skins: `workshop` (the previous default, shown as "Workshop (classic)"), `paper`, `terminal`, `pop`, `glass`, `swiss`, `arcade`. They keep their own looks, typography and the older two-column hero with the `HomeShowcase` reel.
+Older skins: `workshop` (the default look first-time visitors see, shown as "Workshop (classic)"), `paper`, `terminal`, `pop`, `glass`, `swiss`, `arcade`. They keep their own looks, typography and the older two-column hero with the `HomeShowcase` reel.
 
 ## Where things live
 
@@ -20,7 +20,7 @@ Older skins: `workshop` (the previous default, shown as "Workshop (classic)"), `
 | --- | --- |
 | `lib/skin.ts` | Skin registry (ids, names, swatches, fonts, theme colours), default, legacy rules, and `SKIN_BOOT_SCRIPT` |
 | `lib/skin-client.ts` | `applySkin` (cross-fade via View Transitions, instant under reduced motion), font warm-up, `useSkin` |
-| `app/layout.tsx` | next/font setup. Only Manrope and DM Sans are preloaded; every other face is `preload: false` and only the weights the spec names are requested |
+| `app/layout.tsx` | next/font setup. Only Fraunces and Instrument Sans (Workshop, the default) are preloaded; every other face is `preload: false` and only the weights the spec names are requested |
 | `app/tokens.css` | `--brand-*` source values and the semantic `--j-*` tokens for each identity (the only place identity colours are written) |
 | `app/identities.css` | Material primitives and the three compositions. Sections: shared pieces, shared identity base, SOFTWORKS, MERCURY, PARALLAX, motion and fallbacks |
 | `app/skins.css` | Switcher UI and the seven older skins' overrides |
@@ -40,7 +40,7 @@ Older skins: `workshop` (the previous default, shown as "Workshop (classic)"), `
 
 ### How a skin is chosen
 
-`SKIN_BOOT_SCRIPT` runs in `<head>` before first paint and always sets `data-skin` (and `data-kind`), from the shareable `?skin=<id>` link, then the saved choice (`localStorage["mg-skin"]`), then the default. `?skin=default` forgets the saved choice. Legacy routes (`coaching`, `ai-receptionist`, `shop`, `ads`, `studio`, `lab`, `v`) always show `workshop`; on those pages the switcher saves the choice and takes the visitor home to see it. Alt+Shift+S opens the switcher; 1 to 3 pick an identity while it is open. The server renders `data-skin="open-case"`, so with JavaScript off the site is SOFTWORKS.
+`SKIN_BOOT_SCRIPT` runs in `<head>` before first paint and always sets `data-skin` (and `data-kind`), from the shareable `?skin=<id>` link, then the saved choice (`localStorage["mg-skin"]`), then the default. `?skin=default` forgets the saved choice. Legacy routes (`coaching`, `ai-receptionist`, `shop`, `ads`, `studio`, `lab`, `v`) always show `workshop`; on those pages the switcher saves the choice and takes the visitor home to see it. Alt+Shift+S opens the switcher; 1 to 3 pick an identity while it is open. The server renders `data-skin="workshop"`, so with JavaScript off the site is Workshop.
 
 ### Adding or changing a skin
 

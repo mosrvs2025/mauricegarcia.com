@@ -14,7 +14,7 @@ Preserve the live demos, interactive project presentation, media previews and si
 
 ## Design system
 
-The site has three switchable identities (SOFTWORKS is the default, plus MERCURY and PARALLAX; their ids are still `open-case`, `rogue-instrument` and `unauthorized-manual`) and seven older skins, all driven by tokens. Each identity is its own composition (navigation geometry, hero, project layout, material, motion); see `docs/redesign/spec.md`. Read `docs/DESIGN.md` before changing any styling, and extend the tokens or shared rules instead of adding one-off overrides. Annotations must be true and sourced.
+The site has three switchable identities (SOFTWORKS, MERCURY and PARALLAX; their ids are still `open-case`, `rogue-instrument` and `unauthorized-manual`) and seven older skins, all driven by tokens. Workshop (classic, id `workshop`) is the default look first-time visitors see. Each identity is its own composition (navigation geometry, hero, project layout, material, motion); see `docs/redesign/spec.md`. Read `docs/DESIGN.md` before changing any styling, and extend the tokens or shared rules instead of adding one-off overrides. Annotations must be true and sourced.
 
 ## Non-negotiables (any agent or contributor)
 

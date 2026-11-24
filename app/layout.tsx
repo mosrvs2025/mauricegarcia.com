@@ -25,22 +25,22 @@ import "./motion.css";
 import "./play.css";
 
 /*
- * Fonts, all self-hosted by next/font, only the weights each identity uses. Only the default identity's two faces
- * (SOFTWORKS: Manrope + DM Sans) are preloaded; every other face is declared but preload:false, so the browser fetches
- * it only when a visitor actually switches to a skin that uses it. Semantic tokens (--font-display, --font-sans) are
- * set per identity in app/tokens.css.
+ * Fonts, all self-hosted by next/font, only the weights each look uses. Only the default look's two faces
+ * (Workshop: Fraunces + Instrument Sans) are preloaded; every other face is declared but preload:false, so the
+ * browser fetches it only when a visitor actually switches to a skin that uses it. Semantic tokens
+ * (--font-display, --font-sans) are set per skin in app/tokens.css.
  */
-const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap", weight: ["700", "800"] });
-const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display: "swap", weight: ["400", "600"] });
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap", weight: ["700", "800"], preload: false });
+const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display: "swap", weight: ["400", "600"], preload: false });
 const saira = Saira_Condensed({ subsets: ["latin"], variable: "--font-saira", display: "swap", weight: ["500", "600", "700", "800"], preload: false });
 const plex = IBM_Plex_Sans({ subsets: ["latin"], variable: "--font-plex", display: "swap", weight: "variable", preload: false });
 const archivoBlack = Archivo_Black({ subsets: ["latin"], variable: "--font-archivo-black", display: "swap", weight: "400", preload: false });
 const publicSans = Public_Sans({ subsets: ["latin"], variable: "--font-public-sans", display: "swap", weight: "variable", preload: false });
 // Space Grotesk is also used by the /lab Neo-Pop demo; load it once here so lab/fonts.ts can reuse the variable.
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk", display: "swap", weight: ["400", "500"], preload: false });
-// The previous default's faces, kept for the Workshop, Paper, Neo-Pop and Glass skins.
-const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces", display: "swap", axes: ["opsz"], preload: false });
-const instrument = Instrument_Sans({ subsets: ["latin"], variable: "--font-instrument", display: "swap", preload: false });
+// Workshop (the default) plus Paper, Neo-Pop and Glass. Preloaded because Workshop is the first look visitors see.
+const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces", display: "swap", axes: ["opsz"] });
+const instrument = Instrument_Sans({ subsets: ["latin"], variable: "--font-instrument", display: "swap" });
 const fontVars = [manrope, dmSans, saira, plex, archivoBlack, publicSans, spaceGrotesk, fraunces, instrument].map((f) => f.variable).join(" ");
 
 export const viewport: Viewport = { themeColor: skinMeta(DEFAULT_SKIN).themeColor, colorScheme: "light dark" };
