@@ -1,0 +1,26 @@
+{
+  "id": "upd-39ea408b4374",
+  "slug": "2026-11-24-ultimate-2-26-1",
+  "title": "Ultimate 2.26.1",
+  "summary": "d2143ab20357ef4678fe3e4f87197860b3e6121fc1342591993bf7b8086bfd7d",
+  "whyCare": "[Needs review] Say why this release matters to a visitor.",
+  "kind": "release",
+  "projectId": "prj-ultimate",
+  "status": "draft",
+  "visibility": "public",
+  "eventAt": "2026-11-24T08:20:54.000Z",
+  "tags": [],
+  "evidence": [
+    {
+      "label": "The release",
+      "url": "https://github.com/mosrvs2025/ultimate-android/releases/tag/v2.26.1",
+      "kind": "release"
+    }
+  ],
+  "provenance": {
+    "origin": "sync",
+    "sourceId": "src-ultimate",
+    "eventId": "release:mosrvs2025_ultimate-android:456473949",
+    "importedAt": "2026-11-24T15:49:23.210Z"
+  }
+}
