@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-ultimate",
+  "eventId": "digest:src-ultimate:2026-11-25",
+  "eventAt": "2026-11-25T23:59:59.000Z",
+  "title": "Ultimate+: 2 merged pull requests, 2026-11-25 to 2026-11-25",
+  "summary": "2 merged pull requests were completed between 2026-11-25 and 2026-11-25.",
+  "changed": "2.27.0: daily activity (rings, usual-day pace, walks, week), with the launcher…; Launcher: settings hub, edit-home panel with wallpaper, favourites and…",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-26T02:48:28.171Z",
+    "contentHash": "fef0bef8ec49eb25bea404f61da3f4cc"
+  }
+}
