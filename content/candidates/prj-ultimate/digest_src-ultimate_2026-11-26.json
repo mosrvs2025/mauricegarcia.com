@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-ultimate",
+  "eventId": "digest:src-ultimate:2026-11-26",
+  "eventAt": "2026-11-26T23:59:59.000Z",
+  "title": "Ultimate+: 2 merged pull requests, 2026-11-26 to 2026-11-26",
+  "summary": "2 merged pull requests were completed between 2026-11-26 and 2026-11-26.",
+  "changed": "2.29.0: Opus output for speech, verified on an emulator round trip in CI; 2.28.0: smaller audio (variable-rate Smart sizes) and splitting long files…",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-27T04:59:48.953Z",
+    "contentHash": "ec45e3cbe604147f9e9b9cfcbdd456e1"
+  }
+}
