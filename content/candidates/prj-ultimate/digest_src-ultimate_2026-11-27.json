@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "projectId": "prj-ultimate",
+  "eventId": "digest:src-ultimate:2026-11-27",
+  "eventAt": "2026-11-27T23:59:59.000Z",
+  "title": "Ultimate+: 4 merged pull requests, 2026-11-27 to 2026-11-27",
+  "summary": "4 merged pull requests were completed between 2026-11-27 and 2026-11-27.",
+  "changed": "2.32.0: home cards (activity rings, heart rate, shared cameras) on the launcher; 2.31.0: living looks (time, focus, step goal) and colours matched to the…; 2.30.0: launcher looks (Terminal, Paper, Zen, Tiles, Dusk), mixable parts,…; CI: a by-hand workflow that renders the screenshot tests and attaches the PNGs",
+  "whyCare": "[Needs review] Say what a visitor can now do or see that they couldn't before.",
+  "status": "in-progress",
+  "state": "draft",
+  "publicSafe": true,
+  "completion": {
+    "kind": "none",
+    "verified": false
+  },
+  "provenance": {
+    "origin": "sync",
+    "importedAt": "2026-11-28T07:40:05.596Z",
+    "contentHash": "7e439f435b9fe4b813a28d07b14e1aef"
+  }
+}
